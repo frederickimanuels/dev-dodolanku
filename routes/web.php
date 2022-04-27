@@ -23,3 +23,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/home2','FrontendController@index')->name('homepage');
 Route::get('/login','FrontendController@login')->name('login');
+Route::get('/register','FrontendController@register')->name('register');
