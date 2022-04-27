@@ -11,4 +11,8 @@ class FrontendController extends Controller
     {
         return view ('frontend/home');
     }
+    public function login()
+    {
+        return view ('frontend/login');
+    }
 }

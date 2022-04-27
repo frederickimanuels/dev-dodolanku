@@ -24,7 +24,7 @@
 <section id="homepage-navbar">
     <!-- Navbar -->
     <nav class="navbar navbar-light justify-content-between fixed-top navbar-homepage">
-        <a class="navbar-brand">Navbar</a>
+        <a class="navbar-brand">Dodolanku.id</a>
         <form class="form-inline mr-auto">
             <input class="form-control mr-sm-2 form-homepage" type="search" placeholder="Search" aria-label="Search">
         </form>
