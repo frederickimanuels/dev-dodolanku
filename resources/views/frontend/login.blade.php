@@ -5,7 +5,10 @@
     <div class="container-login100">
         <div class="wrap-login100">
 
-            <div class="login100-pic js-tilt" data-tilt>
+            <!-- <div class="login100-pic js-tilt" data-tilt>
+                <img src="{{asset('images/homepage/profile1.jpg')}}" alt="IMG">
+            </div> -->
+            <div class="login100-pic js-tilt">
                 <img src="{{asset('images/homepage/profile1.jpg')}}" alt="IMG">
             </div>
 
@@ -46,7 +49,7 @@
                     <span class="txt1">
                         Don't Have Account?
                     </span>
-                    <a class="txt2" href="#">
+                    <a class="txt2" href="/register">
                         Register
                     </a>
                 </div>

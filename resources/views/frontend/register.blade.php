@@ -4,9 +4,11 @@
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
-
-            <div class="login100-pic js-tilt" data-tilt>
+            <!-- <div class="login100-pic js-tilt" data-tilt>
                 <img src="{{asset('images/homepage/profile1.jpg')}}" alt="IMG">
+            </div> -->
+            <div class="login100-pic js-tilt">
+                <img src="{{asset('images/homepage/billie2.jpg')}}" alt="IMG">
             </div>
 
             <form class="login100-form validate-form">
@@ -47,7 +49,7 @@
                     <span class="txt1">
                         Already Have Account?
                     </span>
-                    <a class="txt2" href="#">
+                    <a class="txt2" href="/login">
                         Login
                     </a>
                 </div>
