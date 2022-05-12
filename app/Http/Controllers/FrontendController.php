@@ -19,4 +19,16 @@ class FrontendController extends Controller
     {
         return view ('frontend/register');
     }
+    public function dashboard()
+    {
+        return view ('frontend/dashboard');
+    }
+    public function aboutus()
+    {
+        return view ('frontend/aboutUs');
+    }
+    public function profile()
+    {
+        return view('frontend/profile');
+    }
 }

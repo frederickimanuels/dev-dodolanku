@@ -1,38 +1,19 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('frontend.layouts.headerHome')
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-    <!-- Bootstrap User -->
-    <link rel="stylesheet" href="{{asset('css/homepage.css')}}">
-    <link rel="stylesheet" href="{{asset('css/fontawesome/all.min.css')}}">
-    <!-- Slick -->
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet" type='text/css'>
-<!-- // Add the new slick-theme.css if you want the default styling -->
-    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
-
-    <title>Hello, world!</title>
-  </head>
-  <body>
+@section('content')
 <section id="homepage-navbar">
     <!-- Navbar -->
-    <nav class="navbar navbar-light justify-content-between fixed-top navbar-homepage">
+    <!-- <nav class="navbar navbar-light justify-content-between fixed-top navbar-homepage">
         <a class="navbar-brand">Dodolanku.id</a>
         <form class="form-inline mr-auto">
             <input class="form-control mr-sm-2 form-homepage" type="search" placeholder="Search" aria-label="Search">
         </form>
         <img src="{{asset('images/homepage/profile1.jpg')}}" alt="Avatar" class="img-profile">
-    </nav>
+    </nav> -->
+    @include('frontend.layouts.navbar-home')
 </section>
 
-<section id="homepage-slider">>
+<section id="homepage-slider">
     <div class="single-item">
         <div><img src="{{asset('images/homepage/hyundai.jpg')}}" alt="" class="homepage-slick"></div>
         <div><img src="{{asset('images/homepage/hyundai.jpg')}}" alt="" class="homepage-slick"></div>
@@ -110,76 +91,5 @@
     </div>
 </section>
 
-<section id="homepage-footer">
-<div class="footer-clean">
-        <footer>
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-sm-4 col-md-3 item">
-                        <h3>About Us</h3>
-                        <ul>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse explicabo reiciendis veritatis velit rerum tempora, obcaecati quo in! Excepturi sint saepe perferendis dolor rerum fuga voluptate modi incidunt tenetur at.
-                        </ul>
-                    </div>
-                    <div class="col-sm-4 col-md-3 item">
-                        <h3>About</h3>
-                        <ul>
-                            <li><a href="#">Company</a></li>
-                            <li><a href="#">Team</a></li>
-                            <li><a href="#">Legacy</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-4 col-md-3 item">
-                        <h3>Careers</h3>
-                        <ul>
-                            <li><a href="#">Job openings</a></li>
-                            <li><a href="#">Employee success</a></li>
-                            <li><a href="#">Benefits</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-3 item social">
-                    <h3>Follow Us</h3>
-
-                        <a href="#"><img src="{{asset('images/homepage/icon-instagram.png')}}" alt="" class="social-icon"></a>
-                        <a href="#"><img src="{{asset('images/homepage/icon-facebook.png')}}" alt="" class="social-icon"></a>
-                        <a href="#"><img src="{{asset('images/homepage/icon-twitter.png')}}" alt="" class="social-icon"></a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-    </div>
-    <p class="copyright">
-        <a href="">Terms&Conditions</a>|<a href="">Privacy Policy</a>|<a href="">Disclaimer</a>
-
-    </p>
-
-</section>
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <!-- <script type="text/javascript" src="slick/slick.min.js"></script> -->
-
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    -->
-    <script>
-        $(document).ready(function(){
-            $('.single-item').slick({
-                nextArrow:$('.next-arrow'),
-                prevArrow:$('.prev-arrow'),
-    
-                // prevArrow: '<button class="slide-arrow prev-arrow"></button>',
-
-            });
-        });
-    </script>
-  </body>
-</html>
+@include('frontend.layouts.footer-home')
+@endsection 

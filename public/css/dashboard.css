@@ -1,0 +1,25 @@
+.sidebar-brand{
+    padding: 1.5rem 1rem 8rem !important;
+}
+.img-profile-sidebar{
+    height: 100px;
+    width: 100px;
+}
+.bg-gradient-primary{
+    background: #189AB4!important;
+}
+
+
+@media screen and (max-width:767px){
+    .sidebar-brand{
+        padding: 1.5rem 1rem 6rem !important;
+    }
+    .img-profile-sidebar{
+        height: 60px;
+        width: 60px;
+    }
+}
+.h1-dashboard{
+    margin-bottom: 50px;
+    color: black;
+}
