@@ -31,4 +31,12 @@ class FrontendController extends Controller
     {
         return view('frontend/profile');
     }
+    public function cart()
+    {
+        return view('frontend/cart');
+    }
+    public function category()
+    {
+        return view('frontend/category');
+    }
 }

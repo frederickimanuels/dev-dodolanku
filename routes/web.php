@@ -27,3 +27,5 @@ Route::get('/register','FrontendController@register')->name('register');
 route::get('/dashboard','FrontendController@dashboard')->name('dashboard');
 Route::get('/aboutus','FrontendController@aboutus')->name('aboutus');
 Route::get('/profile','FrontendController@profile')->name('profile');
+Route::get('/cart','FrontendController@cart')->name('cart');
+Route::get('/category','FrontendController@category')->name('category');

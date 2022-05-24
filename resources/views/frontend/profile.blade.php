@@ -6,9 +6,11 @@
 <section id="personal-information">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-3 left-profile">
                 <div class="img-container">
-                    <img src="{{asset('images/homepage/profile1.jpg')}}" alt="Avatar" class="img-profile-big">
+                    <div class="img-inner">
+                        <img src="{{asset('images/homepage/profile1.jpg')}}" alt="Avatar" class="img-profile-big">
+                    </div>
                 </div>
                   <h2 class="profile-name" >Billie H</h2>
                   <ul class="profile-menu-list">
