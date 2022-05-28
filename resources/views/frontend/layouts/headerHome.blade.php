@@ -60,6 +60,47 @@
                 // prevArrow: '<button class="slide-arrow prev-arrow"></button>',
             });
         });
+        $('.center').slick({
+              centerMode: true,
+              centerPadding: '60px',
+              slidesToShow: 3,
+              responsive: [
+                {
+                  breakpoint: 768,
+                  settings: {
+                    arrows: false,
+                    centerMode: true,
+                    centerPadding: '40px',
+                    slidesToShow: 3
+                  }
+                },
+                {
+                  breakpoint: 480,
+                  settings: {
+                    arrows: false,
+                    centerMode: true,
+                    centerPadding: '40px',
+                    slidesToShow: 1
+                  }
+                }
+              ]
+            });
+
+            $('.slick-slider').slick({
+              centerMode: true,
+              slidesToShow: 3,
+              dots: false,
+              arrows: true,
+              swipe: true,
+              focusOnSelect:true,
+            //  infinite: true,
+              swipeToSlide: true,
+              prevArrow:false,
+              nextArrow:false,
+              //adaptiveHeight: true,
+            });
+
+                
     </script>
   </body>
 </html>

@@ -1,23 +1,14 @@
 @extends('frontend.layouts.headerHome')
 
 @section('content')
-<section id="homepage-navbar">
-    <!-- Navbar -->
-    <!-- <nav class="navbar navbar-light justify-content-between fixed-top navbar-homepage">
-        <a class="navbar-brand">Dodolanku.id</a>
-        <form class="form-inline mr-auto">
-            <input class="form-control mr-sm-2 form-homepage" type="search" placeholder="Search" aria-label="Search">
-        </form>
-        <img src="{{asset('images/homepage/profile1.jpg')}}" alt="Avatar" class="img-profile">
-    </nav> -->
-    @include('frontend.layouts.navbar-home')
-</section>
+@include('frontend.layouts.navbar-home')
+
 
 <section id="homepage-slider">
     <div class="single-item">
-        <div><img src="{{asset('images/homepage/hyundai.jpg')}}" alt="" class="homepage-slick"></div>
-        <div><img src="{{asset('images/homepage/hyundai.jpg')}}" alt="" class="homepage-slick"></div>
-        <div><img src="{{asset('images/homepage/hyundai.jpg')}}" alt="" class="homepage-slick"></div> 
+        <div><img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick"></div>
+        <div><img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick"></div>
+        <div><img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick"></div> 
     </div>
     <i class="fa-solid fa-chevron-left prev-arrow fa-2xl"></i>
     <i class="fa-solid fa-chevron-right next-arrow fa-2xl"></i>

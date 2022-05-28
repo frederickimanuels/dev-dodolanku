@@ -9,15 +9,15 @@
                             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse explicabo reiciendis veritatis velit rerum tempora, obcaecati quo in! Excepturi sint saepe perferendis dolor rerum fuga voluptate modi incidunt tenetur at.
                         </ul>
                     </div>
-                    <div class="col-sm-4 col-md-3 item">
+                    <div class="col-sm-4 col-md-3 item text-center">
                         <h3>About</h3>
                         <ul>
                             <li><a href="#">Company</a></li>
                             <li><a href="#">Team</a></li>
                             <li><a href="#">Legacy</a></li>
                         </ul>
-                    </div>
-                    <div class="col-sm-4 col-md-3 item">
+                    </div> 
+                    <div class="col-sm-4 col-md-3 item text-center">
                         <h3>Careers</h3>
                         <ul>
                             <li><a href="#">Job openings</a></li>

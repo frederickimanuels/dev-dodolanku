@@ -11,6 +11,9 @@ class FrontendController extends Controller
     {
         return view ('frontend/home');
     }
+    public function home2(){
+        return view('frontend/homepage2');
+    }
     public function login()
     {
         return view ('frontend/login');
@@ -38,5 +41,9 @@ class FrontendController extends Controller
     public function category()
     {
         return view('frontend/category');
+    }
+    public function createStore()
+    {
+        return view('frontend/createStore');
     }
 }
