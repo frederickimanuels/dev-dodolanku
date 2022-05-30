@@ -34,3 +34,5 @@ Route::get('/cart','FrontendController@cart')->name('cart');
 Route::get('/category','FrontendController@category')->name('category');
 
 Route::get('/create-store','StoreController@create')->name('store.create');
+
+Route::get('/location/getCities/{province}','LocationController@getCities');

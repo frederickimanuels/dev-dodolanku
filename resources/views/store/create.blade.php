@@ -40,16 +40,16 @@
                                 <label for="exampleInputEmail2">Provinsi dan Kota</label>
                                 <div class="row">
                                     <div class="col-12 col-xl-6">
-                                    <select class="custom-select" id="provinsi">
-                                        <option selected></option>
+                                    <select class="custom-select" name="provinsi">
+                                        <option value="" disabled selected>Pilih Provinsi</option>
+                                        @foreach($provinces as $province)
+                                            <option value="{{ $province->id }}">{{ $province->name }}</option>
+                                        @endforeach
                                     </select>
                                     </div>
                                     <div class="col-12 col-xl-6">
-                                        <select class="custom-select" id="inputGroupSelect04">
-                                            <option selected></option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                        <select class="custom-select" name="city">
+                                            <option value="" disabled selected>Pilih Kota</option>
                                         </select>
                                     </div>
                                 </div>
