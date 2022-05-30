@@ -15,4 +15,12 @@ class HomepageController extends Controller
     {
         return view ('homepage/about');
     }
+    public function landingPage()
+    {
+        return view ('homepage/landingPage');
+    }
+    public function aboutUs()
+    {
+        return view ('homepage/aboutUs');
+    }
 }
