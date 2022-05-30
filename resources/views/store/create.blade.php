@@ -1,8 +1,4 @@
-<<<<<<< HEAD:resources/views/frontend/createStore.blade.php
-@extends('frontend.layouts.headerHome')
-=======
 @extends('store.layouts.headerHome')
->>>>>>> 8235f79b9dc52dbfc0619d92d10c2d5b67ab688c:resources/views/store/create.blade.php
 
 @section('content')
 @include('store.layouts.navbar-home')
