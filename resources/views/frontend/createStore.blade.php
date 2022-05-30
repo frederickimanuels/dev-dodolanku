@@ -1,4 +1,4 @@
-@extends('homepage.layouts.headerHome')
+@extends('frontend.layouts.headerHome')
 
 @section('content')
 @include('frontend.layouts.navbar-home')
