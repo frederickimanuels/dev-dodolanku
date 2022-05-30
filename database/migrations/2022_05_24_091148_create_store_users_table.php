@@ -15,11 +15,12 @@ class CreateStoreUsersTable extends Migration
     {
         Schema::create('store_users', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('stores_id');
-            $table->unique(['user_id','stores_id']);
+            $table->unsignedBigInteger('store_id');
+            $table->unique(['user_id','store_id']);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('stores_id')->references('id')->on('stores')->onDelete('cascade');
+            $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

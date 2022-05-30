@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'HomepageController@index')->name('base');
-Route::get('/about', 'HomepageController@about');
+Route::get('/about', 'HomepageController@about')->name('about');
 
 Auth::routes();
 
@@ -23,8 +23,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/home2','FrontendController@home2')->name('homepage2');
 
-Route::get('/login','FrontendController@login')->name('login');
-Route::get('/register','FrontendController@register')->name('register');
+// Route::get('/login','FrontendController@login')->name('login');
+// Route::get('/register','FrontendController@register')->name('register');
 
 
 route::get('/dashboard','FrontendController@dashboard')->name('dashboard');
@@ -33,4 +33,4 @@ Route::get('/profile','FrontendController@profile')->name('profile');
 Route::get('/cart','FrontendController@cart')->name('cart');
 Route::get('/category','FrontendController@category')->name('category');
 
-Route::get('/create-store','FrontendController@createStore')->name('create-store');
+Route::get('/create-store','StoreController@create')->name('store.create');

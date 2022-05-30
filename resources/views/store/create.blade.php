@@ -1,7 +1,11 @@
+<<<<<<< HEAD:resources/views/frontend/createStore.blade.php
 @extends('frontend.layouts.headerHome')
+=======
+@extends('store.layouts.headerHome')
+>>>>>>> 8235f79b9dc52dbfc0619d92d10c2d5b67ab688c:resources/views/store/create.blade.php
 
 @section('content')
-@include('frontend.layouts.navbar-home')
+@include('store.layouts.navbar-home')
 
 <section id="createStore" class="display-desktop">
     <div class="createStore-inner">
@@ -12,18 +16,18 @@
                 </div>
                 <div class="col-6 col-xl-6">
                     <div class="createStore-outer-form">
-                        <h3>Halo,<span style="font-weight:bold">User</span> ayo isi detail toko anda</h3>
+                        <h3>Halo,<span style="font-weight:bold">{{explode(' ', Auth::user()->name, 2)[0]}}</span> ayo isi detail toko anda</h3>
                         <form class="createStore-form" >
                             <div class="form-group form-email">
-                                <label for="exampleInputEmail1" class="form-label mt-10">Masukkan Email anda</label>
-                                <input type="email" class="form-control form-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                <small id="emailHelp" class="form-text text-muted">Pastikan email yang diisi sudah benar</small>
+                                <label class="form-label mt-10">Email anda</label>
+                                <span>{{Auth::user()->email}}</span>
+                                
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="form-label form-label-1">Masukkan Nama Toko dan Domain</label>
                                 <label for="exampleInputEmail2">Nama toko</label>
-                                <input type="email" class="form-control form-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Toko Punya saya">
+                                <input type="email" class="form-control form-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Masukkan nama toko">
                                 <small id="emailHelp" class="form-text text-muted">Pastikan nama toko yang diisi sudah benar</small>
                                 <div class="row">
                                     <label for="exampleInputEmail2">Domain Toko</label>
@@ -31,7 +35,7 @@
                                     <span class="form-domain" >dodolanku.id/</span>
                                     </div>
                                     <div class="col-9">
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="tokopunyasaya">
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Masukkan link toko">
                                     </div>
                                 </div>
                             </div>
@@ -40,11 +44,8 @@
                                 <label for="exampleInputEmail2">Provinsi dan Kota</label>
                                 <div class="row">
                                     <div class="col-12 col-xl-6">
-                                    <select class="custom-select" id="inputGroupSelect04">
+                                    <select class="custom-select" id="provinsi">
                                         <option selected></option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
                                     </select>
                                     </div>
                                     <div class="col-12 col-xl-6">
@@ -109,15 +110,14 @@
                                 <label for="exampleInputEmail2">Provinsi dan Kota</label>
                                 <div class="row">
                                     <div class="col-6 col-xl-6">
-                                    <select class="custom-select" id="inputGroupSelect04">
-                                        <option selected></option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <select class="custom-select" id="provinsi">
+                                        @foreach($provinces as $province)
+                                            <option value="{{ $province->id }}">{{ $province->name }}</option>
+                                        @endforeach
                                     </select>
                                     </div>
                                     <div class="col-6 col-xl-6">
-                                        <select class="custom-select" id="inputGroupSelect04">
+                                        <select class="custom-select" id="inputGroupSelect05">
                                             <option selected></option>
                                             <option value="1">One</option>
                                             <option value="2">Two</option>
@@ -144,5 +144,6 @@
     </div>
 </section>
 
-@include('frontend.layouts.footer-home')
-@endsection 
+@include('store.layouts.footer-home')
+@endsection
+
