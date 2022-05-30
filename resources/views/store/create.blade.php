@@ -1,6 +1,5 @@
-@extends('store.layouts.headerHome')
+@include('store.layouts.header')
 
-@section('content')
 @include('store.layouts.navbar-home')
 
 <section id="createStore" class="display-desktop">
@@ -140,6 +139,5 @@
     </div>
 </section>
 
-@include('store.layouts.footer-home')
-@endsection
+@include('store.layouts.footer')
 

@@ -1,7 +1,6 @@
-@extends('frontend.layouts.headerHome')
+@include('user.layouts.header')
 
-@section('content')
-@include('frontend.layouts.navbar-home')
+@include('layouts.navbar-home')
 
 <section id="personal-information">
     <div class="container">
@@ -66,5 +65,8 @@
 </section>
 
 
-@include('frontend.layouts.footer-home')
-@endsection 
+@include('layouts.js')
+<!-- Add JS Here -->
+
+<!-- End JS -->
+@include('layouts.footer')

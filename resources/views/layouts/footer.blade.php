@@ -41,3 +41,5 @@
         <a href="">Terms&Conditions</a>|<a href="">Privacy Policy</a>|<a href="">Disclaimer</a>
     </p>
 </section>
+</body>
+</html>

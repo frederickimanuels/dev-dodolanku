@@ -1,15 +1,40 @@
-@extends('homepage.layouts.headerHome')
+@include('homepage.layouts.header')
 
-@section('content')
-    <!-- Navbar -->
-    <!-- <nav class="navbar navbar-light justify-content-between fixed-top navbar-homepage">
-        <a class="navbar-brand">Dodolanku.id</a>
-        <form class="form-inline mr-auto">
-            <input class="form-control mr-sm-2 form-homepage" type="search" placeholder="Search" aria-label="Search">
-        </form>
-        <img src="{{asset('images/homepage/profile1.jpg')}}" alt="Avatar" class="img-profile">
-    </nav> -->
-    @include('frontend.layouts.navbar-home')
+@include('layouts.navbar-home')
+
+<style>
+    .slick-text-inner{
+        position: absolute;
+        width: 730px;
+        height: 320px;
+        background-color: #41B29E;
+        opacity: 0.75;
+        top: calc(50% - 750px);
+        left: calc(50% - 670px);
+    }
+
+    .slick-text{
+        padding: 70px 43px 20px 32px ;
+    }
+    .slick-text h1{
+        color: #FFFFFF;
+        font-weight: 700;
+        font-size: 40px;
+        line-height: 50px;
+        margin-bottom: 52px;
+        font-family: Montserrat-Light;
+    }
+    .slick-text a{
+        background-color: #EE6530;
+        padding: 16px 25px ;
+        text-decoration: none;
+        cursor: pointer;
+        color: #FFFFFF;
+        font-size: 16px;
+        line-height: 28px;
+        font-family: Montserrat-Light;
+    }
+</style>
 
 <section id="homepage-slider">
     <div class="single-item">
@@ -27,7 +52,7 @@
                 <div class="slick-text">
                     <h1>Solusi End-to-End Terlengkap untuk Bisnis Online di Indonesia</h1>
                     <a href="/">
-                        <span>Create Your Site</span>
+                        <span>Create Your Siteee</span>
                     </a>
                 </div>
             </div>
@@ -115,6 +140,16 @@
         </div>
     </div>
 </section>
-
-@include('frontend.layouts.footer-home')
-@endsection 
+@include('layouts.js')
+<!-- Add JS Here... -->
+<script>
+    $(document).ready(function(){
+        $('.single-item').slick({
+            nextArrow:$('.next-arrow'),
+            prevArrow:$('.prev-arrow'),
+            // prevArrow: '<button class="slide-arrow prev-arrow"></button>',
+        });
+    });
+</script>
+<!-- End JS -->
+@include('layouts.footer')

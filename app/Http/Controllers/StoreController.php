@@ -20,7 +20,7 @@ class StoreController extends Controller
 
     public function index()
     {
-        //
+        return view ('store/dashboard');
     }
 
     /**

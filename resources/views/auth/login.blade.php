@@ -1,6 +1,5 @@
-@extends('frontend.layouts.headerLogin')
+@include('auth.layouts.header')
 
-@section('content')
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
@@ -67,4 +66,4 @@
         </div>
     </div>
 </div>
-@endsection
+@include('auth.layouts.footer')

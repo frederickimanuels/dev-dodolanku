@@ -1,7 +1,7 @@
-@extends('frontend.layouts.headerHome')
+@include('homepage.layouts.header')
 
-@section('content')
-@include('frontend.layouts.navbar-home')
+@include('layouts.navbar-home')
+
 <section id="aboutus-banner">
 <div class="container">
     <img src="{{asset('images/homepage/hyundai.jpg')}}" alt=".." class="aboutus-img">
@@ -41,6 +41,8 @@
     </div>
 </section>
 
+@include('homepage.layouts.js')
+<!-- Add Js Here... -->
 
-@include('frontend.layouts.footer-home')
-@endsection 
+<!-- End JS -->
+@include('homepage.layouts.footer')

@@ -1,7 +1,6 @@
-@extends('frontend.layouts.headerHome')
+@include('cart.layouts.header')
 
-@section('content')
-@include('frontend.layouts.navbar-home')
+@include('layouts.navbar-home')
 
 <section id="shopping_cart" >
 <main>
@@ -139,5 +138,8 @@
 
 </section>
 
-@include('frontend.layouts.footer-home')
-@endsection 
+@include('layouts.js')
+<!-- Add JS Here -->
+
+<!-- End JS -->
+@include('layouts.footer')
