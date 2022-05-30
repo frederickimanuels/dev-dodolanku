@@ -47,6 +47,16 @@ class User extends Authenticatable
         return $this->roles()->where('name', $role)->count() == 1;
     }
 
+    public function stores()
+    {
+        return $this->belongsToMany(Store::class, 'store_users');
+    }
+
+    public function hasStore()
+    {
+        return $this->stores()->first();
+    }
+
     protected static function booted(){
         
     }
