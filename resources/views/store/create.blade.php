@@ -140,6 +140,6 @@
     </div>
 </section>
 
-@include('frontend.layouts.footer-home')
+@include('store.layouts.footer-home')
 @endsection
 
