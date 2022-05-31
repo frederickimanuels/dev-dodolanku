@@ -29,7 +29,7 @@ Route::get('/aboutstore','HomepageController@aboutStore')->name('aboutus');
 
 Route::get('/create-store','StoreController@create')->name('store.create');
 Route::get('/dashboard','StoreController@index')->name('store.dashboard');
-Route::get('/templatess','StoreController@StoreTemplates')->name('store.templates');
+Route::get('/template','StoreController@StoreTemplates')->name('store.templates');
 
 
 Route::get('/location/getCities/{province}','LocationController@getCities');

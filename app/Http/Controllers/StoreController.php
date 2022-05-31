@@ -26,7 +26,7 @@ class StoreController extends Controller
     public function StoreTemplates()
     {
         // dd("test");
-        return view('store/templates');
+        return view('store/template-list');
     }
 
     /**
