@@ -41,8 +41,8 @@
     </div>
 </section>
 
-@include('homepage.layouts.js')
+@include('layouts.js')
 <!-- Add Js Here... -->
 
 <!-- End JS -->
-@include('homepage.layouts.footer')
+@include('layouts.footer')

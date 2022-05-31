@@ -13,7 +13,7 @@ class HomepageController extends Controller
 
     public function about()
     {
-        return view ('homepage/about');
+        return view ('homepage/aboutUs');
     }
     public function feature()
     {

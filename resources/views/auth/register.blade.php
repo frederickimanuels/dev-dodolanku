@@ -48,7 +48,7 @@
                     <span class="txt1">
                         Already Have Account?
                     </span>
-                    <a class="txt2" href="{{route('register')}}">
+                    <a class="txt2" href="{{route('login')}}">
                         Login
                     </a>
                 </div>

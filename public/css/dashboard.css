@@ -23,3 +23,42 @@
     margin-bottom: 50px;
     color: black;
 }
+
+#templates{
+    background-color: gainsboro;
+}
+.templates-wrapper{
+    text-align: center;
+    padding: 4rem 4rem 5rem 4rem;
+}
+.templates-wrapper h1{
+    font-size: 72px;
+    line-height: 98px;
+}
+.templates-wrapper p{
+    font-size: 18px;
+    line-height: 26px;
+    font-family: Montserrat-Bold;
+}
+.template-selection-label{
+    text-align: right;
+}
+.template-selection-label label{
+    font-size: 16px;
+    line-height: 25px;
+}
+.template-selection{
+    text-align: left;
+}
+#template-selection-inner{
+    width: 40%;
+}
+.template-list{
+    margin-top: 2.5rem;
+}
+.card button{
+    float: right;
+}
+.card span{
+    line-height: 35px;
+}

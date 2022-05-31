@@ -23,6 +23,12 @@ class StoreController extends Controller
         return view ('store/dashboard');
     }
 
+    public function StoreTemplates()
+    {
+        // dd("test");
+        return view('store/templates');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -1,7 +1,7 @@
-@extends('frontend.layouts.headerHome')
+@extends('layouts.headerHome')
 
 @section('content')
-@include('frontend.layouts.navbar-home')
+@include('layouts.navbar-home')
 
 
 <section id="homepage-slider">
@@ -82,5 +82,5 @@
     </div>
 </section>
 
-@include('frontend.layouts.footer-home')
+@include('layouts.footer-home')
 @endsection 
