@@ -1,3 +1,32 @@
+@font-face {
+    font-family: Montserrat-Bold;
+    src: url('../templates/login/fonts/montserrat/Montserrat-Bold.ttf') format('truetype'); 
+    /* src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap'); */
+  }
+  @font-face {
+    font-family: Montserrat-Light;
+    src: url('../templates/login/fonts/montserrat/Montserrat-Light.ttf') format('truetype'); 
+  }
+  @font-face {
+    font-family: Montserrat-Medium;
+    src: url('../templates/login/fonts/montserrat/Montserrat-Medium.ttf') format('truetype'); 
+  }
+  @font-face {
+    font-family: Montserrat-Regular;
+    src: url('../templates/login/fonts/montserrat/Montserrat-Regular.ttf') format('truetype'); 
+    /* src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap'); */
+  }
+  @font-face{
+    font-family:PlusJakarta-Regular;
+    src: url('..fonts/PlusJakarta/PlusJakartaSans-VariableFont_wght.ttf') format('truetype');
+  }
+  
+  @font-face{
+    font-family:PlusJakarta-Italic;
+    src: url('..fonts/PlusJakarta/PlusJakartaSans-Italic-VariableFont_wght.ttf') format('truetype');
+  }
+  
+
 .sidebar-brand{
     padding: 1.5rem 1rem 8rem !important;
 }
@@ -61,4 +90,53 @@
 }
 .card span{
     line-height: 35px;
+}
+div[data-acc-content]{
+    display: none;
+}
+.NextBTN{
+    background-color: #EE6530;
+    color: #FFFFFF;
+    font-size: 13px;
+    font-family: Montserrat-Medium;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.NextBTN:hover{
+    color: green;
+}
+.PrevBTN{
+    background-color: #EE6530;
+    color: #FFFFFF;
+    font-size: 13px;
+    font-family: Montserrat-Medium;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    text-decoration: none;
+    cursor: pointer;
+    margin-right: 50px;
+    border-radius: 5px;
+}
+.PrevBTN:hover{
+    color:green;
+}
+.NextBTN[type="submit"]{
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    /* background-color: yellow; */
+    position: absolute;
+    top: calc(50% + 30px);
+    left: calc(50% - 80px);
+}
+.border-line{
+    border-left: 1px solid black;
 }

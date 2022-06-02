@@ -4,10 +4,8 @@
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 
-
-<!-- 
-<script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/slick.min.js')}}"></script> -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
+<script src="{{asset('js/jquery.accordion-wizard.min.js')}}"></script>
 
 
 <script src="{{asset('templates/dashboard/bootstrap/js/bootstrap.min.js')}}"></script>

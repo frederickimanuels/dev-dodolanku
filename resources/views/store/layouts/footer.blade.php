@@ -1,11 +1,74 @@
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<section id="homepage-footer">
+<div class="footer-clean">
+        <footer>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-sm-4 col-md-5 item">
+                        <div class="homepage-logo" >INI LOGO</div>
+                        <h3>Subscribe to Us</h3>
+                        <form action="" class="subscribe-form">
+                            <div class="search-wrapper">
+                                <input type="text" placeholder="Email Address" name="Email Address">
+                                <button type="submit">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-4 col-md-2 item contact-left">
+                        <h3>Sitemap</h3>
+                        <ul class="contact-wrapper">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Feature</a></li>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Help</a></li>
+                            <li><a href="#">About Us</a></li>
+                        </ul>
+                    </div> 
+                    <div class="col-sm-4 col-md-2 item contact-left">
+                        <h3>Company</h3>
+                        <ul class="contact-wrapper">
+                            <li><a href="#">Syarat & Ketentuan</a></li>
+                            <li><a href="#">Kebijakan Privasi</a></li>
+                            <li><a href="#">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 item social">
+                        <h3>Contact Us</h3>
+                        <ul class="contact-wrapper" >
+                            <li><a href="#"><img src="{{asset('images/homepage/telephone.png')}}" alt="" class="contact-icon">customerservice@dodolanku.id</a></li>
+                            <li><a href="#"><img src="{{asset('images/homepage/house.png')}}" alt="" class="contact-icon">(021) 210-135-45</a></li>
+                        </ul>
+                    </div>
+                    <!-- <div class="col-lg-3 item social">
+                        <h3>Contact Us</h3>
+                        <a href="#"><img src="{{asset('images/homepage/icon-instagram.png')}}" alt="" class="social-icon"></a>
+                        <a href="#"><img src="{{asset('images/homepage/icon-facebook.png')}}" alt="" class="social-icon"></a>
+                        <a href="#"><img src="{{asset('images/homepage/icon-twitter.png')}}" alt="" class="social-icon"></a>
+                    </div> -->
+                </div>
+            </div>
+        </footer>
 
-<script src="{{asset('templates/dashboard/bootstrap/js/bootstrap.min.js')}}"></script>
-<script src="{{asset('templates/dashboard/js/chart.min.js')}}"></script>
-<script src="{{asset('templates/dashboard/js/bs-init.js')}}"></script>
-<script src="{{asset('templates/dashboard/js/theme.js')}}"></script>
+    </div>
+    <div class="div copyright-wrapper">
+        <div class="container" style="display:flex">
+            <div class="copyright">
+                <a href="">&#169; 2022 Dodolanku.id. Hak Cipta Dilindungi.</a>
+            </div>
+            <div class="social-media" >
+                <a href="#">
+                    <!-- <img src="{{asset('images/homepage/icon-instagram.png')}}" alt="" class="social-icon"> -->
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="#">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+                <a href="#">
+                    <i class="fa-brands fa-twitter"></i>
+                    <!-- <img src="{{asset('images/homepage/icon-twitter.png')}}" alt="" class="social-icon"> -->
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
 </body>
 </html>
