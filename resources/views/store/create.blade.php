@@ -28,6 +28,9 @@
                                         <div data-acc-content>
                                             <label for="store_name">Nama toko</label>
                                             <input type="text" class="form-control form-input" id="store_name" aria-describedby="store_name" placeholder="Masukkan nama toko" name="store_name">
+                                            @error('store_name')
+                                                <p class="help-block text-danger">Nama toko harus diisi</p>
+                                            @enderror
                                             <small id="store_name" class="form-text text-muted">Pastikan nama toko yang diisi sudah benar</small>
                                             <div class="row">
                                                 <label for="store_slug">Link Toko</label>
@@ -36,6 +39,9 @@
                                                 </div>
                                                 <div class="col-9">
                                                     <input type="text" class="form-control" id="store_slug" aria-describedby="store_slug" placeholder="Masukkan link toko" name="store_slug">
+                                                    @error('store_slug')
+                                                        <p class="help-block text-danger">Link toko harus diisi</p>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
@@ -52,15 +58,24 @@
                                                         <option value="{{ $province->id }}">{{ $province->name }}</option>
                                                     @endforeach
                                                 </select>
+                                                @error('province')
+                                                    <p class="help-block text-danger">Provinsi harus dipilih</p>
+                                                @enderror
                                                 </div>
                                                 <div class="col-12 col-xl-6">
                                                     <select class="custom-select" name="city" id="cities">
                                                         <option value="" disabled selected>Pilih Kota</option>
                                                     </select>
+                                                    @error('city')
+                                                        <p class="help-block text-danger">Kota harus dipilih</p>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <label for="store_address" style="margin-top:10px">Alamat toko</label>
-                                            <textarea type="email" class="form-control form-input" id="store_address" aria-describedby="store_address" placeholder="Masukkan alamat toko" name="store_address"></textarea>
+                                            <textarea class="form-control form-input" id="store_address" aria-describedby="store_address" placeholder="Masukkan alamat toko" name="store_address"></textarea>
+                                            @error('store_address')
+                                                <p class="help-block text-danger">Alamat harus diisi</p>
+                                            @enderror
                                             <small style="display:flex;margin-bottom:10px" class="form-text text-muted">Pastikan Alamat toko yang diisi sudah benar</small>
                                         </div>
                                     </div>
@@ -68,6 +83,9 @@
                                         <div data-acc-content style="position:relative">
                                             <input type="checkbox" class="form-check-input" id="terms" name="terms">
                                             <label class="form-check-label" for="terms">Agree to our Terms & Conditons</label>
+                                            @error('terms')
+                                                <p class="help-block text-danger">Anda harus menyetujui syarat dan ketentuan</p>
+                                            @enderror
                                         </div>
                                     </div>
                                     <!-- <div class="d-flex justify-content-center">
