@@ -28,6 +28,8 @@ Route::get('/aboutstore','HomepageController@aboutStore')->name('aboutus');
 // Route::get('/register','FrontendController@register')->name('register');
 
 Route::get('/create-store','StoreController@create')->name('store.create');
+Route::post('/create-store','StoreController@store')->name('store.store');
+
 Route::get('/dashboard','StoreController@index')->name('store.dashboard');
 Route::get('/template','StoreController@StoreTemplates')->name('store.templates');
 

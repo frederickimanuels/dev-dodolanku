@@ -17,7 +17,7 @@
                             </div>
                             <div class="col-11">
                                 <h3>Halo,<span style="font-weight:bold">{{explode(' ', Auth::user()->name, 2)[0]}}</span> ayo isi detail toko anda</h3>
-                                <form class="createStore-form" id="form-1" >
+                                <form class="createStore-form" id="form-1" method="POST" action="{{ route('store.store') }}">
                                     @csrf
                                     <div class="form-group form-email">
                                         <label class="form-label mt-10">Email anda</label>
@@ -115,7 +115,7 @@
             success: function(data){
                 $("#cities").html('<option value="" disabled selected>Pilih Kota</option>');
                 $.each( data, function( key, value ) {
-                    $("#cities").append('"<option value="'+ value.id + '">' + value.name + '</option>"');
+                    $("#cities").append('"<option value="'+ value.id + '">' + value.type + ' ' + value.name + '</option>"');
                 });
             },
             error: function( error ){

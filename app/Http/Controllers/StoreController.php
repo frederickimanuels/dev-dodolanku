@@ -54,7 +54,18 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'store_name' => 'required|unique:stores,name|max:60',
+            'store_slug' => 'required|unique:stores,slug|max:60',
+            'store_address' => 'required|max:255',
+            'city' => 'required|exists:cities,id',
+            'terms' => 'accepted',
+        ]);
+        if(!$validatedData){
+            return json_encode("gagal");
+        }else{
+            return json_encode("berhasil");
+        }
     }
 
     /**
