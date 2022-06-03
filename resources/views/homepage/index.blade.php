@@ -52,7 +52,7 @@
                 <div class="slick-text">
                     <h1>Solusi End-to-End Terlengkap untuk Bisnis Online di Indonesia</h1>
                     <a href="/">
-                        <span>Create Your Siteee</span>
+                        <span>Create Your Siteeeeee</span>
                     </a>
                 </div>
             </div>

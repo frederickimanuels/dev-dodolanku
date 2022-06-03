@@ -1,6 +1,6 @@
 @include('store.layouts.header')
 
-@include('store.layouts.navbar-home')
+@include('layouts.navbar-home')
 
 <section id="templates">
     <div class="container templates-wrapper">

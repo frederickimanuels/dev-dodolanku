@@ -79,15 +79,31 @@ h1{
 }
 
 
-/* navbar test */
-.nav-link{
-  color: black;
-}
-/* end navbar */
+/* navbar homepage */
 .navbar-homepage{
-    background-color: #53A7B2;
-    padding: 5px 10px 5px 10px;
+  background-color: #53A7B2 !important;
+  /* padding: 5px 10px 5px 10px; */
 }
+.navbar-search input{
+  background-color:#FFFFFF;
+  border-top-left-radius: 10px !important;
+  border-bottom-left-radius: 10px !important;
+}
+.navbar-search span{
+  border-top-right-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+}
+.fa-shopping-cart{
+  color:#FFFFFF;
+}
+.navbar-burger-btn:hover{
+  background-color:#53A7B2;
+  opacity: 0.5;
+  border:1px solid white;
+}
+
+/* end navbar */
+
 .navbar-brand{
   color: black;
 }
