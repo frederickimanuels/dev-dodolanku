@@ -12,3 +12,5 @@
 <script src="{{asset('templates/dashboard/js/chart.min.js')}}"></script>
 <script src="{{asset('templates/dashboard/js/bs-init.js')}}"></script>
 <script src="{{asset('templates/dashboard/js/theme.js')}}"></script>
+
+

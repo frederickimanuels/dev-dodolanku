@@ -29,6 +29,9 @@ Route::get('/aboutstore','HomepageController@aboutStore')->name('aboutus');
 
 Route::get('/create-store','StoreController@create')->name('store.create');
 Route::post('/create-store','StoreController@store')->name('store.store');
+Route::get('/list-product','StoreController@list')->name('store.list');
+Route::get('/list-order','StoreController@listOrder')->name('store.order');
+
 
 Route::get('/dashboard','StoreController@index')->name('store.dashboard');
 Route::get('/template','StoreController@StoreTemplates')->name('store.templates');

@@ -1,82 +1,79 @@
-<!-- Navbar-->
-<nav class="navbar navbar-expand-lg navbar-homepage">
-  <div class="container-fluid justify-content-between">
-    <!-- Left elements -->
-    <div class="d-flex">
-      <!-- Brand -->
-      <a class="navbar-brand me-2 mb-1 d-flex align-items-center" href="#">
-        <img
-          src=""
-          height="20"
-          alt="Logo"
-          loading="lazy"
-          style="margin-top: 2px;"
-        />
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-homepage">
+  <div class="container-fluid navbar-container">
+    <button class="navbar-toggler navbar-burger-btn" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Navbar brand -->
+      <a class="navbar-brand mt-2 mt-lg-0" href="#">
+        <img src="" height="15" alt=".." loading="lazy"/>
+      </a>
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Feature</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Faq</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Right elements -->
+    <div class="d-flex align-items-center">
+      <a class="text-reset me-3" href="#">
+      <i class="fa-solid fa-magnifying-glass"></i>
       </a>
 
-      <!-- Search form -->
-      <form class="input-group w-auto my-auto d-none d-sm-flex">
-        <input
-          autocomplete="off"
-          type="search"
-          class="form-control rounded"
-          placeholder="Search"
-          style="min-width: 125px;"
-        />
-        <span class="input-group-text border-0 d-none d-lg-flex"
-          ><i class="fas fa-search"></i
-        ></span>
-      </form>
+      <!-- Appear When Not Login -->
+      <!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sign In</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sign Up</a>
+        </li>
+      </ul> -->
+
+
+
+      <!-- Appear when login -->
+      <a class="text-reset me-3" href="{{url('/cart')}}">
+          <i class="fa-solid fa-shopping-cart"></i>
+      </a>
+
+      <!-- Appear When have shop -->
+      <div class="shop-outer">
+        <a class="text-reset shop-icon" href="{{url('')}}">
+          <i class="fa-solid fa-shop"></i>
+          <span class="navbar-shop-name" >Nama Toko</span>
+        </a>
+      </div>
+
+
+      <div class="dropdown">
+        <a class="dropdown-toggle d-flex align-items-center hidden-arrow navbar-profile" href="#" id="navbarDropdownMenuAvatar" role="button" data-toggle="dropdown" aria-expanded="false">
+          <strong class="d-none d-sm-block ms-1 me-2">Hi, {{Auth::check() ? explode(' ', Auth::user()->name, 2)[0] : 'User'}}</strong>
+        
+          <img src="{{asset('images/homepage/profile1.jpg')}}" class="rounded-circle" height="25"alt="Black and White Portrait of a Man" loading="lazy"/>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+          <li>
+            <a class="dropdown-item" href="#">My profile</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">Settings</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">Logout</a>
+          </li>
+        </ul>
+      </div>
+      <!-- End Appear Login -->
+
     </div>
-    <!-- Left elements -->
-
-    <!-- Center elements -->
-    <ul class="navbar-nav flex-row d-none d-md-flex">
-      <li class="nav-item me-3 me-lg-1 active">
-        <a class="nav-link" href="#">
-          <!-- <span><i class="fas fa-home fa-lg"></i></span> -->
-          <span>Home</span>
-        </a>
-      </li>
-
-      <li class="nav-item me-3 me-lg-1">
-        <a class="nav-link" href="#">
-          <!-- <span><i class="fas fa-flag fa-lg"></i></span> -->
-          <span>Dashboard</span>
-        </a>
-      </li>
-
-      <li class="nav-item me-3 me-lg-1">
-        <a class="nav-link" href="#">
-          <!-- <span><i class="fas fa-video fa-lg"></i></span> -->
-          <span>FAQ</span>
-        </a>
-      </li>
-
-    </ul>
-    <!-- Center elements -->
-
-    <!-- Right elements -->
-    <ul class="navbar-nav flex-row">
-      <li class="nav-item me-3 me-lg-1">
-        <a class="nav-link" href="#">
-          <span><i class="fas fa-shopping-cart"></i></span>
-        </a>
-      </li>
-      <li class="nav-item me-3 me-lg-1">
-        <a class="nav-link d-sm-flex align-items-sm-center" href="#">
-          <img
-            src="{{asset('images/homepage/profile1.jpg')}}"
-            class="rounded-circle"
-            height="22"
-            alt="Black and White Portrait of a Man"
-            loading="lazy"
-          />
-          <strong class="d-none d-sm-block ms-1">Billie</strong>
-        </a>
-      </li>
-    </ul>
-    <!-- Right elements -->
   </div>
 </nav>
-<!-- Navbar -->
