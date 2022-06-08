@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Province;
+use App\Store;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StoreController extends Controller
 {
@@ -47,7 +50,7 @@ class StoreController extends Controller
             return redirect()->route('base');
         }
         if($request->user()->hasStore()){
-            return redirect()->route('about');
+            return redirect()->route('store.dashboard');
         }
         $provinces = Province::all();
         return view('store/create',compact('provinces'));
@@ -61,7 +64,7 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $this->validate($request, [
             'store_name' => 'required|unique:stores,name|max:60',
             'store_slug' => 'required|unique:stores,slug|max:60',
             'store_address' => 'required|max:255',
@@ -69,11 +72,15 @@ class StoreController extends Controller
             'city' => 'required|exists:cities,id',
             'terms' => 'accepted',
         ]);
-        if(!$validatedData){
-            return json_encode("gagal");
-        }else{
-            return json_encode("berhasil");
-        }
+        $store = new Store();
+        $store->name = $request->store_name;
+        $store->slug = $request->store_slug;
+        $store->save();
+
+        $user = User::find(Auth::user()->id);
+        $user->stores()->attach($store->id);
+
+        return redirect()->route('store.dashboard');
     }
 
     /**
@@ -82,9 +89,10 @@ class StoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $store = Store::where('slug',$slug)->first();
+        dd($store);
     }
 
     /**

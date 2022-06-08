@@ -42,4 +42,6 @@ Route::get('/location/getCities/{province}','LocationController@getCities');
 
 Route::get('/profile','FrontendController@profile')->name('profile');
 Route::get('/cart','FrontendController@cart')->name('cart');
+
+Route::get('/{slug}','StoreController@show')->name('store.show');
 // Route::get('/category','FrontendController@category')->name('category');
