@@ -104,17 +104,45 @@
                             </form>
                             <div class="row product-list-row">
                             <div class="break-line-1"></div>
-                                <div class="col-4" style="display:flex;align-items:center">
-                                    <img class="product-list-img" src="{{asset('images/homepage/profile1.jpg')}}" alt="Card image cap">
+                                <div class="row">
+                                    <div class="container product-list-mobile ">
+                                        <h6>Pesanan Dikirim</h6>
+                                        <p>INV/2022/MPL/2321398131</p>
+                                        <p>Benny Stefano</p>
+                                    </div>
+                                    <div class="break-line-1" style="margin:10px 10px;border-radius:10px"></div>
+
                                 </div>
-                                <div class="col-6 product-list-mobile-text">
-                                    <h1>Scarlett Whitening</h1>
-                                    <h2>Rp.42.000</h2>
-                                    <p>Stock <span>99</span></p>
-                                    <p>Stock <span>Aktif</span></p>
+                                <div class="row">
+                                    <div class="col-4" style="display:flex;align-items:center">
+                                        <img class="product-list-img" src="{{asset('images/homepage/profile1.jpg')}}" alt="Card image cap">
+                                    </div>
+                                    <div class="col-8 product-list-mobile-text">
+                                        <h1>Scarlett Whitening</h1>
+                                        <p>Varian Biru Muda</p>
+                                        <h2>Rp.42.000</h2>
+                                    </div>
+                                    <!-- <div class="col-2" style="display:flex;align-items:center">
+                                        <i class="fa-solid fa-angle-right"></i>
+                                    </div> -->
                                 </div>
-                                <div class="col-2" style="display:flex;align-items:center">
-                                    <i class="fa-solid fa-angle-right"></i>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="mobile-shipping-details" >
+                                            <i class="fa-solid fa-truck"></i>
+                                            <span>Sicepat - Regular Package</span>
+                                        </div>
+                                        <div class="mobile-shipping-details" >
+                                            <i class="fa-solid fa-location-dot"></i>
+                                            <span>DKI Jakarta</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <a href="" class="mobile-track">
+                                            <span>Lacak</span>
+                                        </a>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>

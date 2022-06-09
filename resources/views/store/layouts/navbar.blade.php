@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top ">
     <div class="container-fluid">
-        <button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button">
+        <button class="btn btn-link rounded-circle me-3" id="sidebarToggleTop" type="button">
             <i id="toggle-open" class="fa fa-bars"></i>
             <i id="toggle-exit" class="fa-solid fa-xmark d-none"></i>
         </button>

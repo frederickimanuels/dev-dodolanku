@@ -10,6 +10,7 @@
 
     <link rel="stylesheet" href="{{asset('css/homepage.css')}}">
     <link rel="stylesheet" href="{{asset('css/dashboard.css')}}">
+    <link rel="stylesheet" href="{{asset('css/chat.scss')}}">
     <link rel="stylesheet" href="{{asset('css/fontawesome/all.min.css')}}">
 
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
