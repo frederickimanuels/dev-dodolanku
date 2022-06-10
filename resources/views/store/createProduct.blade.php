@@ -4,6 +4,7 @@
 
 <section id="createproduct" class="display-desktop">
     <div class="container create-product-container">
+        <form action="">
         <h1>Tambahkan Produk</h1>
         <div class="form-container-content">
             <div class="row">
@@ -14,7 +15,7 @@
                     </div>
                 </div>
                 <div class="col-8">
-                    <form action="upload.php" method="post" enctype="multipart/form-data">
+                    <div class="upload-img">
                         <div class="row">
                             <div class="col-3">
                                 <img id="image-upload" src="http://via.placeholder.com/150" style="border-radius:8px"/>
@@ -31,7 +32,7 @@
                         </div>
                         <input type="file" id="myfile" style="display: none;">
                         <!-- <input type="submit" value="Upload Image" name="submit"> -->
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -41,7 +42,7 @@
         <div class="form-container-content">
             <h3>Informasi Produk</h3>
             <div class="container">
-                <form class="upload-form-content">
+                <div class="upload-form-content">
                     <div class="form-group row">
                         <label for="staticEmail" class="col-sm-2 col-form-label form-upload-label">Nama Produk <span style="color:red">*</span></label>
                         <div class="col-sm-10">
@@ -72,7 +73,7 @@
                         <input type="text" class="form-control" id="product-category">
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
 
@@ -81,7 +82,7 @@
         <div class="form-container-content">
             <h3>Harga Produk</h3>
             <div class="container">
-                <form class="upload-form-content">
+                <div class="upload-form-content">
                     <div class="form-group row">
                         <label for="staticEmail" class="col-sm-2 col-form-label form-upload-label">Minimum Pemesanan</label>
                         <div class="col-sm-10">
@@ -116,7 +117,7 @@
                         </div>
                     </div>
                    
-                </form>
+                </div>
             </div>
         </div>
 
@@ -131,12 +132,11 @@
                 <a href="">
                     <i class="fa-solid fa-plus"></i>
                     <span>Tambah</span>
-                   
                 </a>
             </div>
         </div>
         <!-- <div class="break-line-3" style="margin: 0px;border:30px solid #E5E5E5;"></div> -->
-
+        </form>
     </div>
 </section>
 
