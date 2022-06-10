@@ -43,6 +43,10 @@ class StoreController extends Controller
     {
         return view('store/chats');
     }
+    public function createProduct()
+    {
+        return view('store/createProduct');
+    }
     /**
      * Show the form for creating a new resource.
      *

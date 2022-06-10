@@ -879,9 +879,10 @@ aside {
 /* createStore */
 #createStore{
   background-color: gray;
+  min-height: 50vh;
 }
 .createStore-inner{
-  padding: 50px;
+  padding: 150px 50px 250px 50px;
 }
 .createStore-outer-form{
   padding: 50px;

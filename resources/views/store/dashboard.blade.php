@@ -285,4 +285,6 @@
 
     
 
-@include('store.layouts.footer')
+@include('store.layouts.footer-copyright')
+</body>
+</html>
