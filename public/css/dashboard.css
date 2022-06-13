@@ -37,7 +37,9 @@
     src: url('../fonts/PlusJakarta/PlusJakartaSans-Italic-VariableFont_wght.ttf') format('truetype');
   }
   
-
+  html, body {
+    height: 100%;
+  }
 .sidebar-brand{
     padding: 1.5rem 1rem 8rem !important;
 }
@@ -52,6 +54,9 @@
     background-color: #E5E5E5 !important;
 }
 /* Sidebar Custom */
+.container-copyright{
+    display: flex;
+}
 
 
 /* END sidebar custom */
@@ -534,11 +539,33 @@ div[data-acc-content]{
 }
 
 /* End Create Product */
-
+.footer-mobile{
+    justify-content: center;
+}
 @media screen and (max-width:1199px){
+    .footer-mobile{
+        text-align: center;
+        justify-content: none;
+    }
+    .item.social{
+        text-align: center !important;
+    }
     #sidebarToggleTop{
         display: block;
     }    
+    .container-copyright{
+        display: block;
+        text-align: center;
+    }
+    .copyright-mobile{
+        text-align: center;
+        padding-bottom: 0px;
+        padding-top: 10px;
+    }
+    .social-media{
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
     .product-list-img{
         width: 100px;
         height: 100px;

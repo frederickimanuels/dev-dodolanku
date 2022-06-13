@@ -2,7 +2,7 @@
 <div class="footer-clean">
         <footer>
             <div class="container">
-                <div class="row justify-content-center">
+                <div class="row footer-mobile">
                     <div class="col-sm-4 col-md-5 item">
                         <div class="homepage-logo" >INI LOGO</div>
                         <h3>Subscribe to Us</h3>

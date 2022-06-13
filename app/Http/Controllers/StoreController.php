@@ -47,6 +47,14 @@ class StoreController extends Controller
     {
         return view('store/createProduct');
     }
+    public function storeHomepage()
+    {
+        return view('store/storeHomepage');
+    }
+    public function detailProduct()
+    {
+        return view('store/detailProduct');
+    }
     /**
      * Show the form for creating a new resource.
      *

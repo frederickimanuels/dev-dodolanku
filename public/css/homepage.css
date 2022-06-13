@@ -879,7 +879,8 @@ aside {
 /* createStore */
 #createStore{
   background-color: gray;
-  min-height: 50vh;
+  /* min-height: 50vh; */
+  height: 100%;
 }
 .createStore-inner{
   padding: 150px 50px 250px 50px;
@@ -969,6 +970,9 @@ aside {
   }
   .basket-labels {
     display: none;
+  }
+  .footer-mobile{
+    text-align: center;
   }
   .basket-module {
     margin-bottom: 1rem;
