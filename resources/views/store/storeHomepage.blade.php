@@ -6,37 +6,57 @@
     :root{
 
         /* Header Disini */
-        --headerBgColor:#AE8D84;
         /* BG Color Dsini */
         --bgcolor:#AE8D84;
-        --popularproduct:#FFF8F6;
-        --popularproductInner:#DFC3BB;
+        --bgcolor1:#FFFFFF;
+        --bgcolor2:#FFF8F6;
+        --bgcolor3:#DFC3BB;
+        --bgcolorFooter:#AE8D84;
+        --bgcolorHeader:#AE8D84;
+       
 
         /* Text Gede Color Disini */
         --textColor1:#FFFFFF;
         --textColor2:#000000;
+        --textColor3:#FC764E;
 
         /* Popular Product Color */
-        --popularProductName:#000000;
-        --popularProductPrice:#FC764E;
+      
 
 
         /* FooterColor */
     }
     .navbar-homepage{
-        background-color:var(--headerBgColor) !important;
+        background-color:var(--bgcolorHeader) !important;
     }
     #store-homepage{
         color:#E5E5E5;
+    }
+    .store-home-wrapper{
+        background-color: var(--bgcolor1);
     }
     .homepage-slick{
         height: 100%;
     }
     .next-arrow{
         top: calc(50% - 420px);
+        cursor: pointer;
     }
     .prev-arrow{
         top: calc(50% - 420px);
+        cursor: pointer;
+    }
+    .next-arrow-2{
+        top: calc(50% - 420px);
+        right:20px;
+        cursor: pointer;
+        position: absolute;
+    }
+    .prev-arrow-2{
+        top: calc(50% - 420px);
+        left: 20px;
+        cursor: pointer;
+        position: absolute;
     }
     .store-home{
         padding-top: 40px;
@@ -45,6 +65,7 @@
     }
     .store-content{
         max-width: 80%;
+        padding-bottom: 50px;
     }
     .store-content h1{
         color: var(--textColor2);
@@ -73,7 +94,7 @@
         font-size: 36px;
         font-family: PlusJakarta-Bold;
         line-height: 56px;
-        color: #FFFFFF;
+        color: var(--textColor1);
     }
     .text-over-img h5{
         position: absolute;
@@ -83,16 +104,16 @@
         font-size: 24px;
         font-family: PlusJakarta-Bold;
         line-height: 32px;
-        color: #FFFFFF;
+        color: var(--textColor1);
     }
     .popular-product{
-        background-color: var(--popularproduct);
-        margin-top: 80px;
+        background-color: var(--bgcolor2);
+        /* margin-top: 80px; */
         padding-top: 50px;
     }
     .popular-product-wrapper{
         padding-top: 30px;
-        background-color:var(--popularproductInner);
+        background-color:var(--bgcolor3);
         max-width: 80%;
     }
     .popular-product-wrapper h1{
@@ -106,13 +127,13 @@
         font-family: Montserrat-Regular;
         font-size: 14px;
         line-height: 23px;
-        color: var(--popularProductName);
+        color: var(--textColor2);
     }
     .popular-card-text h6{
         font-family: Montserrat-Bold;
         font-size: 16px;
         line-height: 24px;
-        color: var(--popularProductPrice);
+        color: var(--textColor3);
     }
     .checked {
         color: orange;
@@ -124,25 +145,27 @@
         font-family: Montserrat-Regular;
     }
     .prev-arrow-1{
-        left: -50px;
+        left: -30px;
         color: #FFFFFF;
         top: calc(50% - 230px);
+        cursor: pointer;
     }
     .next-arrow-1{
-        right: -50px;
+        right: -30px;
         color: #FFFFFF;
         top: calc(50% - 230px);
+        cursor: pointer;
     }
     .store-video{
         padding-top: 50px;
-        background-color: var(--popularproduct);
+        background-color: var(--bgcolor2);
         padding-bottom: 70px;
     }
     .store-video-container{
         max-width: 80%;
     }
     #homepage-footer .footer-clean{
-        background-color:var(--bgcolor);
+        background-color:var(--bgcolorFooter);
     }
     .copyright-wrapper{
         background-color:var(--bgcolor);
@@ -185,45 +208,49 @@
 </style>
 
 <section id="store-homepage">
-    <div class="container store-home">
-        <div class="single-item">
-            <div><img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick"></div>
-            <div><img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick"></div>
-            <div><img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick"></div> 
-        </div>
-        <div class="slick-arrow d-none d-xl-block">
-            <i class="fa-solid fa-chevron-left prev-arrow fa-2xl"></i>
-            <i class="fa-solid fa-chevron-right next-arrow fa-2xl"></i>
+    <div class="store-home-wrapper">
+        <div class="container store-home">
+            <div class="single-item">
+                <div><img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick"></div>
+                <div><img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick"></div>
+                <div><img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick"></div> 
+            </div>
+            <div class="slick-arrow d-none d-xl-block">
+                <i class="fa-solid fa-chevron-left prev-arrow-2 fa-2xl"></i>
+                <i class="fa-solid fa-chevron-right next-arrow-2 fa-2xl"></i>
+            </div>
         </div>
     </div>
-    <div class="container store-content">
-        <h1>Shop By Categories</h1>
-        <div class="row">
-            <div class="col-12 col-xl-3">
-                <div class="row">
-                    <div class="col-xl-12 col-6 text-over-img" style="margin-bottom:20px">
-                        <img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick">
-                        <h5>Sepatu</h5>
+    <div class="store-home-wrapper">
+        <div class="container store-content">
+            <h1>Shop By Categories</h1>
+            <div class="row">
+                <div class="col-12 col-xl-3">
+                    <div class="row">
+                        <div class="col-xl-12 col-6 text-over-img" style="margin-bottom:20px">
+                            <img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick">
+                            <h5>Sepatu</h5>
+                        </div>
+                        <div class="col-xl-12 col-6 text-over-img">
+                            <img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick">
+                            <h5>Jaket</h5>
+                        </div>
                     </div>
-                    <div class="col-xl-12 col-6 text-over-img">
-                        <img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick">
-                        <h5>Jaket</h5>
-                    </div>
+                </div> 
+                <div class="col-12 col-xl-6 text-over-img">
+                    <img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick">
+                    <h4>Dress Wanita</h4>
                 </div>
-            </div> 
-            <div class="col-12 col-xl-6 text-over-img">
-                <img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick">
-                <h4>Dress Wanita</h4>
-            </div>
-            <div class="col-12 col-xl-3">
-                <div class="row">
-                    <div class="col-xl-12 col-6 text-over-img" style="margin-bottom:20px">
-                        <img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick">
-                        <h5>Celana</h5>
-                    </div>
-                    <div class="col-xl-12 col-6 text-over-img">
-                        <img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick"> 
-                        <h5>Kemeja</h5>
+                <div class="col-12 col-xl-3">
+                    <div class="row">
+                        <div class="col-xl-12 col-6 text-over-img" style="margin-bottom:20px">
+                            <img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick">
+                            <h5>Celana</h5>
+                        </div>
+                        <div class="col-xl-12 col-6 text-over-img">
+                            <img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick"> 
+                            <h5>Kemeja</h5>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -334,7 +361,7 @@
     </div>
     <div class="store-video">
         <div class="container store-video-container">
-            <div class="responsive">
+            <!-- <div class="responsive">
                 <div>
                     <video style="padding:10px" width="100%" height="390" controls>
                         <source src="movie.mp4" type="video/mp4">
@@ -347,13 +374,15 @@
                         Your browser does not support the video tag.
                     </video>
                 </div>
-                <div>
+            </div> -->
+            <div class="row">
+                <div class="col-xl-6 col-12">
                     <video style="padding:10px" width="100%" height="390" controls>
                         <source src="movie.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
-                <div>
+                <div class="col-xl-6 col-12">
                     <video style="padding:10px" width="100%" height="390" controls>
                         <source src="movie.mp4" type="video/mp4">
                         Your browser does not support the video tag.
@@ -370,8 +399,8 @@
 <script>
     $(document).ready(function(){
         $('.single-item').slick({
-            nextArrow:$('.next-arrow'),
-            prevArrow:$('.prev-arrow'),
+            nextArrow:$('.next-arrow-2'),
+            prevArrow:$('.prev-arrow-2'),
             // prevArrow: '<button class="slide-arrow prev-arrow"></button>',
         });
         $('.multiple-items').slick({
@@ -397,24 +426,24 @@
                 },
             ]
         });
-        $('.responsive').slick({
-                dots: false,
-                infinite: false,
-                speed: 300,
-                slidesToShow: 2,
-                slidesToScroll: 2,
-                prevArrow: null,
-                nextArrow: null,
-                responsive: [
-                    {
-                    breakpoint: 1199,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1,
-                    }
-                    },
-                ]
-            });
+        // $('.responsive').slick({
+        //         dots: false,
+        //         infinite: false,
+        //         speed: 300,
+        //         slidesToShow: 2,
+        //         slidesToScroll: 2,
+        //         prevArrow: null,
+        //         nextArrow: null,
+        //         responsive: [
+        //             {
+        //             breakpoint: 1199,
+        //             settings: {
+        //                 slidesToShow: 1,
+        //                 slidesToScroll: 1,
+        //             }
+        //             },
+        //         ]
+        //     });
     });
 </script>
 

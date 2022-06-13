@@ -5,19 +5,21 @@
 <style>
     :root{
 
-        /* Header Disini */
-        --headerBgColor:#AE8D84;
-        /* BG Color Dsini */
+        /* BG */
         --bgcolor:#AE8D84;
         --bgcolor1:#FFFFFF;
-        --bgcolor2:#E5E5e5;
-        --popularproduct:#FFF8F6;
-        --popularproductInner:#DFC3BB;
+        --bgcolor2:#FFF8F6;
+        --bgcolor3:#DFC3BB;
+        --bgcolorFooter:#AE8D84;
+        --bgcolorHeader:#AE8D84;
+       
 
-        /* Text Gede Color Disini */
+        /* Text */
         --textColor1:#FFFFFF;
         --textColor2:#000000;
         --textColor3:#8A3624;
+        --textColor4:#9A9A9A;
+        --textColor5:#FC764E;
 
         /* Popular Product Color */
         --popularProductName:#000000;
@@ -31,16 +33,16 @@
         /* FooterColor */
     }
     #homepage-footer .footer-clean{
-        background-color:var(--bgcolor);
+        background-color:var(--bgcolorFooter);
     }
     #detail-product{
-        padding-bottom: 80px;
+        /* padding-bottom: 80px; */
     }
     .copyright-wrapper{
         background-color:var(--bgcolor);
     }
     .navbar-homepage{
-        background-color:var(--headerBgColor) !important;
+        background-color:var(--bgcolorHeader) !important;
     }
     
     .js .slider-single > div:nth-child(1n+2) { display: none }
@@ -97,7 +99,7 @@
         color: orange;
     }
     .detail-product-name{
-        display: flex;
+        /* display: flex; */
     }
     .product-rating{
         order: 2;
@@ -125,11 +127,11 @@
     .form-select{
         width: 40%;
         border-radius: 15px;
-        background-color: #FFFFFF;
-        color: #9A9A9A;
+        background-color: var(--textColor1);
+        color: var(--textColor4);
     }
     .detail-product-variant label{
-        color: #000000;
+        color: var(--textColor2);
         font-family: Montserrat-Bold;
         font-size: 18px;
         line-height: 26px;
@@ -161,6 +163,7 @@
         position: relative;
         white-space: nowrap;
         vertical-align: top; 
+        background-color: var(--bgcolor1);
     }
 
     .quantity.buttons_added input {
@@ -282,13 +285,13 @@
         font-family: Montserrat-Regular;
         font-size: 14px;
         line-height: 23px;
-        color: var(--popularProductName);
+        color: var(--textColor2);
     }
     .popular-card-text h6{
         font-family: Montserrat-Bold;
         font-size: 16px;
         line-height: 24px;
-        color: var(--popularProductPrice);
+        color: var(--textColor5);
     }
     .card{
         border-radius: 5%;
@@ -298,22 +301,23 @@
         left: -50px;
         color: #FFFFFF;
         top: calc(50% - 230px);
+        cursor: pointer;
     }
     .next-arrow-1{
         right: -50px;
         color: #FFFFFF;
         top: calc(50% - 230px);
-    }
-    .multiple-items{
-        /* background-color: green; */
+        cursor: pointer;
     }
     .detail-product-wrapper{
-        background-color: var(--popularproduct);
+        background-color: var(--bgcolor2);
         padding-top: 50px;
+        padding-bottom: 50px;
     }
     .popular-product{
-        background-color: var(--bgcolor1);
+        background-color: var(--bgcolor3);
         padding-top: 40px;
+        padding-bottom: 80px;
     }
     .popular-product-wrapper h1{
         color: var(--textColor2);
