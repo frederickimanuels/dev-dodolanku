@@ -502,9 +502,84 @@ div[data-acc-content]{
     order: 2;
 }
 .product-varian{
-    display: flex;
+    /* display: flex; */
     padding: 50px 30px 30px 50px;
     /* margin-bottom: 100px; */
+}
+.varian-wrapper-1{
+    display: flex;
+    padding: 5px;
+    border: 1px solid #9A9A9A;
+    border-radius: 5px;
+}
+.btn-add-varian{
+    width: 100%;
+    background-color: #EE6530;
+    padding: 11px 0;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-family: Montserrat-Bold;
+}
+.form-select-varian{
+    padding:13px 10px;
+}
+.fa-x-varian{
+    margin-left: 10px;
+}
+.varian-delete{
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.variant-price-wrapper{
+    border-radius: 8px;
+    display: flex;
+}
+.variant-price-wrapper input{
+    background: #FFFFFF;
+}
+.variant-price-currency{
+    background-color: #9A9A9A;
+    padding: 0px 20px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    padding: 10px 10px;
+}
+.variant-stock-wrapper input{
+    border-radius: 8px;
+    background-color: #FFFFFF;
+}
+.variant-weight input{
+    background-color: #FFFFFF;
+}
+#image-variant{
+    height: 50px;
+}
+#variant-switch{
+    background-color: #53A7B2;
+    border-color: #53A7B2;
+}
+.table-variant-wrapper th{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.table-variant-wrapper td{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.input-name{
+    background-color: #FFFFFF !important;
+    border: none;
+}
+
+.varian-type{
+    margin-right: 10px;
+    margin-left: 10px;
+    background-color: #189AB4;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #FFFFFF;
 }
 .product-varian-btn{
     margin-left: auto;
