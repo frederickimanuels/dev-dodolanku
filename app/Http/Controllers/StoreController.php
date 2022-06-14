@@ -31,10 +31,6 @@ class StoreController extends Controller
         // dd("test");
         return view('store/template-list');
     }
-    public function list()
-    {
-        return view('store/listProduct');
-    }
     public function listOrder()
     {
         return view('store/listOrder');
