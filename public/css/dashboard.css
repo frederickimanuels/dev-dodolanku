@@ -574,7 +574,9 @@ div[data-acc-content]{
     background-color: #FFFFFF !important;
     border: none;
 }
-
+.input-images-2{
+    height: 500px;
+}
 .varian-type{
     margin-right: 10px;
     margin-left: 10px;

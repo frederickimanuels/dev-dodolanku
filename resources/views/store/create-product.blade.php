@@ -1,10 +1,14 @@
 @include('store.layouts.header')
 
 @include('store.layouts.navbar-home')
-
+<style>
+    .uploaded{
+        height: 150px;
+    }
+</style>
 <section id="createproduct" class="display-desktop">
     <div class="container create-product-container">
-        <form action="">
+        <form action="" enctype="multipart/form-data">
             <h1>Tambahkan Produk</h1>
             <div class="form-container-content">
                 <div class="row">
@@ -17,17 +21,9 @@
                     <div class="col-8">
                         <div class="upload-img">
                             <div class="row">
-                                <div class="col-3">
-                                    <img id="image-upload" src="http://via.placeholder.com/150" style="border-radius:8px"/>
-                                </div>
-                                <div class="col-3">
-                                    <img id="image-upload" src="http://via.placeholder.com/150" style="border-radius:8px"/>
-                                </div>
-                                <div class="col-3">
-                                    <img id="image-upload" src="http://via.placeholder.com/150" style="border-radius:8px"/>
-                                </div>
-                                <div class="col-3">
-                                    <img id="image-upload" src="http://via.placeholder.com/150" style="border-radius:8px"/>
+                                <div class="input-field">
+                                    <!-- <label class="active">Photos</label> -->
+                                    <div class="input-images-1" style="padding-top: .5rem;"></div>
                                 </div>
                             </div>
                             <input type="file" id="myfile" style="display: none;">
@@ -124,8 +120,13 @@
 
             <div class="form-container-content product-varian">
                 <div class="product-varian-text">
-                    <h2 class="upload-image-text-h2">Varian Produk</h2>
-                    <p>Tambahkan varian seperti warna, ukuran, atau lainnya. maksimum 2 tipe varian.</p>
+                    <div>
+                        <h2 class="upload-image-text-h2">Varian Produk</h2>
+                        <p>Tambahkan varian seperti warna, ukuran, atau lainnya. maksimum 2 tipe varian.</p>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary" ></button>
+                    </div>
                 </div>
                 <div class="product-varian-content">
                     <div class="row">
@@ -270,9 +271,12 @@
 @include('store.layouts.js')
 <!-- Add Js Here -->
 <script>
+  
+    $('.input-images-1').imageUploader();
+
     $(document).ready(function(){
-            $('#imageVar').click(function(){
-            $('.form-image').click()
+            $('#image-upload').click(function(){
+            $('#myfile').click()
         });
         // $('#add-variant').attr('disabled','true');
         var select1 = document.getElementById("selection-variant");
