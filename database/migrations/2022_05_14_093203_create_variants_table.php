@@ -15,11 +15,12 @@ class CreateVariantsTable extends Migration
     {
         Schema::create('variants', function (Blueprint $table) {
             $table->id();
-            $table->string('name1');
-            $table->string('name2')->nullable();
+            $table->string('type');
+            $table->string('name');
             $table->integer('price');
             $table->integer('weight');
             $table->integer('stock');
+            $table->integer('is_active')->default('1');
             $table->timestamps();
         });
     }

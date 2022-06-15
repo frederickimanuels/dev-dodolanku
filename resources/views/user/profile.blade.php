@@ -13,32 +13,34 @@
                 </div>
                   <h2 class="profile-name" >Billie H</h2>
                   <ul class="profile-menu-list">
-                      <li>Wallet</li>
-                      <li>Rewards</li>
-                      <li>Orders</li>
-                      <li>Personal Information</li>
-                      <li>Payment Methods</li>
+                        {{-- <li>Wallet</li> --}}
+                        <li>
+                            <a href="{{ route('user.profile') }}">Profile</a>
+                        </li>
+                        <li>Orders</li>
+                        <li>Address</li>
+                        {{-- <li>Payment Methods</li> --}}
                   </ul>
             </div>
             <div class="col-lg-9 personal-info-detail">
-                <h1 class="personal-info-h1">Personal Information</h1>
+                <h1 class="personal-info-h1">Profile</h1>
                 <form action="">
                     <div class="row form-list">
                         <div class="col">
-                            <input type="text" class="form-control profile-form" placeholder="First name">
+                            <input type="text" name="name" class="form-control profile-form" placeholder="Full name" value="{{ Auth::user()->name }}">
                         </div>
-                        <div class="col">
+                        {{-- <div class="col">
                             <input type="text" class="form-control profile-form" placeholder="Last name">
+                        </div> --}}
+                    </div>
+                    <div class="row form-list">
+                        <div class="col">
+                            <input type="email" name="email"  class="form-control profile-form" placeholder="Email" value="{{ Auth::user()->email }}">
                         </div>
                     </div>
                     <div class="row form-list">
                         <div class="col">
-                            <input type="text" class="form-control profile-form" placeholder="Email">
-                        </div>
-                    </div>
-                    <div class="row form-list">
-                        <div class="col">
-                            <input type="text" class="form-control profile-form" placeholder="Password">
+                            <input type="password" name="password" class="form-control profile-form" placeholder="Password">
                         </div>
                     </div>
                     <div class="row form-list">
@@ -49,14 +51,14 @@
                             <input type="text" class="form-control profile-form" placeholder="Birth Date">
                         </div>
                     </div>
-                    <div class="row form-list">
+                    {{-- <div class="row form-list">
                         <div class="col-6">
                             <input type="text" class="form-control profile-form" placeholder="Password">
                         </div>
                         <div class="col-6">
                             <!-- <input type="text" class="form-control profile-form" placeholder="Password"> -->
                         </div>
-                    </div>
+                    </div> --}}
                     <button type="submit" class="btn btn-primary btn-profile">Save</button>
                 </form>
             </div>

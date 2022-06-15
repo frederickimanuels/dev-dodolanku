@@ -21,9 +21,22 @@ class StoreController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return view ('store/dashboard');
+        if($request->user()->hasStore()){
+            return redirect()->route('store.dashboard');
+        }else{
+            return redirect()->route('store.create');
+        }
+    }
+
+    public function dashboard(Request $request)
+    {
+        if(!$request->user()->hasStore()){
+            return redirect()->route('store.create');
+        }else{
+            return view ('store/dashboard');
+        }
     }
 
     public function StoreTemplates()

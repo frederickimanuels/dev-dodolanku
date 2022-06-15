@@ -11,10 +11,10 @@
       <!-- Left links -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="#">Home</a>
+          <a class="nav-link" href="{{ route('base') }}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Feature</a>
+          <a class="nav-link" href="{{ route('feature') }}">Feature</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Faq</a>
@@ -24,54 +24,66 @@
 
     <!-- Right elements -->
     <div class="d-flex align-items-center">
-      <a class="text-reset me-3" href="#">
-      <i class="fa-solid fa-magnifying-glass"></i>
-      </a>
+      {{-- <a class="text-reset me-3" href="#">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </a> --}}
 
       <!-- Appear When Not Login -->
-      <!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      @if(Auth::guest())
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="#">Sign In</a>
+          <a class="nav-link" href="{{ route('login') }}">Sign In</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Sign Up</a>
+          <a class="nav-link" href="{{ route('register') }}">Sign Up</a>
         </li>
-      </ul> -->
+      </ul>
+      @endif
+      <!-- End Appear When Not Login -->
 
 
 
       <!-- Appear when login -->
-      <a class="text-reset me-3" href="{{url('/cart')}}">
-          <i class="fa-solid fa-shopping-cart"></i>
-      </a>
-
-      <!-- Appear When have shop -->
-      <div class="shop-outer">
-        <a class="text-reset shop-icon" href="{{url('')}}">
-          <i class="fa-solid fa-shop"></i>
-          <span class="navbar-shop-name" >Nama Toko</span>
+      @if(!Auth::guest())
+        <a class="text-reset me-3" href="{{route('cart')}}">
+            <i class="fa-solid fa-shopping-cart"></i>
         </a>
-      </div>
+
+        <!-- Appear When have shop -->
+        @if(Auth::user()->hasStore())
+          <div class="shop-outer">
+            <a class="text-reset shop-icon" href="{{ route('store.dashboard') }}">
+              <i class="fa-solid fa-shop"></i>
+              <span class="navbar-shop-name">{{ Auth::user()->hasStore()->name }}</span>
+            </a>
+          </div>
+        @endif
 
 
-      <div class="dropdown">
-        <a class="dropdown-toggle d-flex align-items-center hidden-arrow navbar-profile" href="#" id="navbarDropdownMenuAvatar" role="button" data-toggle="dropdown" aria-expanded="false">
-          <strong class="d-none d-sm-block ms-1 me-2">Hi, {{Auth::check() ? explode(' ', Auth::user()->name, 2)[0] : 'User'}}</strong>
-        
-          <img src="{{asset('images/homepage/profile1.jpg')}}" class="rounded-circle" height="25"alt="Black and White Portrait of a Man" loading="lazy"/>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
-          <li>
-            <a class="dropdown-item" href="#">My profile</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#">Settings</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#">Logout</a>
-          </li>
-        </ul>
-      </div>
+        <div class="dropdown">
+          <a class="dropdown-toggle d-flex align-items-center hidden-arrow navbar-profile" href="#" id="navbarDropdownMenuAvatar" role="button" data-toggle="dropdown" aria-expanded="false">
+            <strong class="d-none d-sm-block ms-1 me-2">Hi, {{Auth::check() ? explode(' ', Auth::user()->name, 2)[0] : 'User'}}</strong>
+          
+            <img src="{{asset('images/homepage/profile1.jpg')}}" class="rounded-circle" height="25"alt="Black and White Portrait of a Man" loading="lazy"/>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+            <li>
+              <a class="dropdown-item" href="{{ route('user.profile') }}">My profile</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Orders</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                Logout
+              </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+              </form>
+            </li>
+          </ul>
+        </div>
+      @endif
       <!-- End Appear Login -->
 
     </div>
