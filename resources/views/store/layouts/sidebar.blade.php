@@ -12,15 +12,15 @@
             <li class="nav-item"><a class="nav-link active" href="index.html"><i class="fas fa-tachometer-alt"></i><span>Saldo Toko</span></a></li>
             <li class="nav-item"><a class="nav-link" href="profile.html"><i class="fas fa-user"></i><span>Penghasilan</span></a></li>
             <hr class="sidebar-divider my-0" >
-            <li class="nav-item"><a class="nav-link" href="table.html"><i class="fas fa-table"></i><span>Home</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="login.html"><i class="far fa-user-circle"></i><span>Chat</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-user-circle"></i><span>Produk</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('store.dashboard') }}"><i class="fas fa-table"></i><span>Dashboard</span></a></li>
+            {{-- <li class="nav-item"><a class="nav-link" href="login.html"><i class="far fa-user-circle"></i><span>Chat</span></a></li> --}}
+            <li class="nav-item"><a class="nav-link" href="{{ route('store.product.manage') }}"><i class="fas fa-user-circle"></i><span>Produk</span></a></li>
             <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-user-circle"></i><span>Pesanan</span></a></li>
             <hr class="sidebar-divider my-0" >
-            <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-user-circle"></i><span>Statistik Penjualan</span></a></li>
+            {{-- <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-user-circle"></i><span>Statistik Penjualan</span></a></li>
             <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-user-circle"></i><span>Ulasan Pembeli</span></a></li>
             <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-user-circle"></i><span>Ulasan Bantuan</span></a></li>
-            <hr class="sidebar-divider my-0" >
+            <hr class="sidebar-divider my-0" > --}}
             <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-user-circle"></i><span>Pengaturan Toko</span></a></li>
         </ul>
         <!-- <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div> -->

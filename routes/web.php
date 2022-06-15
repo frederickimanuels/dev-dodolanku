@@ -26,6 +26,7 @@ Route::get('/profile','UserController@profile')->name('user.profile');
 
 Route::get('/cart','FrontendController@cart')->name('cart');
 
+// Store Dashboard
 Route::get('/store', 'StoreController@index')->name('store.index');
 Route::get('/store/dashboard','StoreController@dashboard')->name('store.dashboard');
 Route::get('/create-store','StoreController@create')->name('store.create');
@@ -37,6 +38,7 @@ Route::get('/store/add-product','ProductController@create')->name('store.product
 Route::get('/list-order','StoreController@listOrder')->name('store.order');
 
 Route::get('/chats','StoreController@chats')->name('store.chats');
+
 Route::get('/create-product','StoreController@createProduct')->name('store.createProduct');
 Route::get('/store-home','StoreController@storeHomepage')->name('store.home');
 Route::get('/detail-product','StoreController@detailProduct')->name('store.detailProduct');

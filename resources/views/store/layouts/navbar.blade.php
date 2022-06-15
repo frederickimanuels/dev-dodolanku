@@ -4,9 +4,9 @@
             <i id="toggle-open" class="fa fa-bars"></i>
             <i id="toggle-exit" class="fa-solid fa-xmark d-none"></i>
         </button>
-        <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
+        {{-- <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder=""><button class="btn btn-primary py-0" type="button">Cari</button></div>
-        </form>
+        </form> --}}
         <ul class="navbar-nav flex-nowrap ms-auto">
             <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">Cari</i></a>
                 <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in" aria-labelledby="searchDropdown">
