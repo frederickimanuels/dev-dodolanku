@@ -4,7 +4,7 @@
             <div class="sidebar-brand-icon">
                 <img class="border rounded-circle img-profile img-profile-sidebar" src="{{asset('images/homepage/profile1.jpg')}}">
             </div>
-            <div class="sidebar-brand-text mx-3"><span>Ini Brand</span></div>
+            <div class="sidebar-brand-text mx-3"><span>{{ Auth::user()->hasStore()->name }}</span></div>
         </a>
         <hr class="sidebar-divider my-0">
         <ul class="navbar-nav text-light" id="accordionSidebar">
