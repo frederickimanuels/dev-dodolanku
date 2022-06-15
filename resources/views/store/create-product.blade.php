@@ -31,7 +31,6 @@
                                 </div>
                             </div>
                             <input type="file" id="myfile" style="display: none;">
-                            <!-- <input type="submit" value="Upload Image" name="submit"> -->
                         </div>
                     </div>
                 </div>
@@ -130,49 +129,31 @@
                 </div>
                 <div class="product-varian-content">
                     <div class="row">
-                        <label>Tipe Varian</label>
+                        <label>Pilih Varian</label>
                         <div class="col-3">
                             <select class="form-select form-select-varian" id="selection-variant" aria-label="Default select example">
                                 <option selected value="0">...</option>
-                                <option >Sobek</option>
+                                <option>Ukuran</option>
+                                <option>Warna</option>
                             </select>
-                        </div>
-                        <div class="col-1">
-                            <button type="button" class="btn btn-add-varian">Add</button>
-                        </div>
-                        <div class="col-8">
-                            <div class="varian-wrapper-1">
-                                <div href="" class="varian-type">
-                                    <span>Penyok Dikit</span>
-                                    <a href="" class="varian-delete">
-                                        <i class="fa-solid fa-x fa-x-varian"></i>
-                                    </a>
-                                </div>
-                                <div href="" class="varian-type">
-                                    <span>Sobek</span>
-                                    <a href="" class="varian-delete">
-                                        <i class="fa-solid fa-x fa-x-varian"></i>
-                                    </a>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="row">
-                        <label>Warna</label>
-                        <div class="col-3">
-                            <select class="form-select form-select-varian" id="selection-color" aria-label="Default select example">
+                        <!-- <label id="variant-label">Warna</label> -->
+                        <!-- <div class="col-3 pt-2">
+                            <select class="form-select form-select-varian" id="selection-color" aria-label="Default select example" disabled>
                                 <option selected value="0">...</option>
-                                <option>Polkadot</option>
-                                <option>Biru Maroon</option>
+                                <option value="polkadot">Polkadot</option>
+                                <option value="birumaroon">Biru Maroon</option>
                             </select>
-                        </div>
-                        <div class="col-1">
+                        </div> -->
+                        <div class="col-1 pt-2">
                             <!-- <button type="button" class="btn btn-add-varian" data-target="#exampleModal">Add</button> -->
-                            <button type="button" class="btn btn-add-varian" data-toggle="modal" data-target="#exampleModal">
+                            <button type="button" class="btn btn-add-varian" id="add-variant" data-toggle="modal" data-target="#inputvarmodal" disabled>
                             Add
                             </button>
 
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade inputvarmodal" id="inputvarmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                 <div class="modal-header">
@@ -182,42 +163,29 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <input type="text" class="form-control" value="1" aria-label="Username" aria-describedby="addon-wrapping">
+                                    <input type="text" class="form-control" id="newVar" aria-label="Username" aria-describedby="addon-wrapping" autocomplete="off">
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Exit</button>
-                                    <button type="button" class="btn btn-primary">Simpan</button>
+                                    <button type="button" onclick="addVar()" id="save-var" data-dismiss="modal" class="btn btn-primary" disabled>Simpan</button>
                                 </div>
                                 </div>
                             </div>
                             </div>
                         </div>
-                        <div class="col-8">
-                            <div class="varian-wrapper-1">
-                                <div href="" class="varian-type">
+                        <div class="col-8 pt-2 variant-list-wrapper">
+                            <div class="varian-wrapper-1" id="list-variant">
+                                <div class="varian-type" id="0" hidden>
                                     <span>Biru</span>
-                                    <a href="" class="varian-delete">
-                                        <i class="fa-solid fa-x fa-x-varian"></i>
-                                    </a>
-                                </div>
-                                <div href="" class="varian-type">
-                                    <span>Polkadot</span>
-                                    <a href="" class="varian-delete">
-                                        <i class="fa-solid fa-x fa-x-varian"></i>
-                                    </a>
-                                </div>
-                                <div href="" class="varian-type">
-                                    <span>Biru Maroon</span>
-                                    <a href="" class="varian-delete">
-                                        <i class="fa-solid fa-x fa-x-varian"></i>
-                                    </a>
+                                    <div class="varian-delete">
+                                        <i class="fa-solid fa-x fa-x-varian" id="delete-item" onclick="deletetable(this.id)"></i>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-                    <div class="add-new-variant">
-                        <button type="button" class="btn btn-primary" onclick="addField()">Tambah Varian</button>
+                    <div class="add-new-variant pt-3 pb-3">
+                        <!-- <button type="button" id="add-variant" class="btn btn-primary" onclick="addField()">Tambah Varian</button> -->
                     </div>
                     <div class="tabel-varian">
                         <h4>Tabel Varian</h4>
@@ -294,7 +262,6 @@
                     </a>
                 </div> -->
             </div>
-            <!-- <div class="break-line-3" style="margin: 0px;border:30px solid #E5E5E5;"></div> -->
         </form>
     </div>
 </section>
@@ -304,56 +271,135 @@
 <!-- Add Js Here -->
 <script>
     $(document).ready(function(){
-        $('#imageVar').click(function(){
-        console.log("asuu");
-        $('.form-image').click()
-    })
+            $('#imageVar').click(function(){
+            $('.form-image').click()
+        });
+        // $('#add-variant').attr('disabled','true');
+        var select1 = document.getElementById("selection-variant");
+        var select1Val = select1.value;
+        // if(select1Val == 0)
+        // {
+        // }else if(select1Val != 0){
+        //     $('#selection-color').removeAttr('disabled');
+        // }
+        $('#selection-variant').change(function(){
+            // console.log(document.getElementById("selection-variant").value);
+            if(document.getElementById("selection-variant").value != 0)
+            {
+                console.log("val not 0")
+                $('#add-variant').removeAttr('disabled')
+            }else if(document.getElementById("selection-variant").value == 0){
+                // $('#selection-color').attr('disabled','true');
+                // $('#selection-color').val('0');
+                $('#add-variant').attr('disabled','true');
+            }
+        });
+        $('#newVar').on('keyup',function(){
+            let empty = false;
+            // $('#newVar').
+            empty = $(this).val().length;
+            console.log(empty);
+            if(empty < 2){
+                $('#save-var').attr('disabled','true');
+            }else if(empty >= 2){
+                $('#save-var').removeAttr('disabled');
+            }
+        });
+      
+       
+
     });
   
+    function addVar(){
+        var inputvar = document.getElementById("newVar");
+        var inputVal = inputvar.value;
+        var select1 = document.getElementById("selection-variant");
+        var select1Val = select1.value;
+        var body = document.getElementById('list-variant').children[0];
+        var bodyParent = document.getElementById('list-variant');
+        var count = bodyParent.children.length;
+        var newList = body.cloneNode(true);
+        variantName = select1Val+"~"+inputVal;
 
+        newList.setAttribute('id',count);
+        newList.removeAttribute("hidden");
+        $('#inputvarmodal').modal('hide');
+
+
+        newList.children[0].setAttribute('id',inputVal);
+        newList.children[1].children[0].setAttribute('id',inputVal);
+        newList.children[0].innerHTML = variantName;
+        // newList.children[2].children[0].children[0].children[1].setAttribute('id',inputVal);
+        bodyParent.appendChild(newList);
+
+
+        var tableBody = document.getElementById('variantTable').children[1].children[0];
+        var Table = document.getElementById('TableParent');
+        var colName = document.getElementById("variant-name");
+       
+
+        var variantName;
+        var rows = tableBody.children.length;
+        var count1 = Table.children.length;
+        console.log(count1);
+        // clone the last row (which contains the last table)
+        var newRow = tableBody.cloneNode(true);
+        // get the new row table
+        var newTable = newRow;
+        // change the table id
+        newTable.setAttribute('id', count1);
+        newTable.children[1].children[0].children[0].setAttribute('value',variantName);
+        newTable.children[2].children[0].children[0].children[1].setAttribute('id',variantName);
+        newTable.children[3].children[0].children[0].children[0].setAttribute('id',variantName);
+        newTable.children[4].children[0].children[0].children[0].setAttribute('id',variantName);
+        newTable.children[5].children[0].children[0].children[1].setAttribute('id',variantName);
+        newTable.children[6].children[0].children[0].children[0].setAttribute('id',variantName);
+        newTable.removeAttribute("hidden");
+        // append the new row to the main table body
+        Table.appendChild(newRow);
+
+    }
+    function deletetable(id){
+        var test=id;
+
+        var test1 = $('#'+id).parent().attr('ID');
+        // console.log('jembut'+id);
+        // $('#list-variant > #'+id).remove();
+        $("#"+test).parent().remove();
+        console.log(test1);
+        $("#TableParent").find("#"+test1).remove();
+        
+    }
+   
     function addField(){
-        // get main table body
         var tableBody = document.getElementById('variantTable').children[1].children[0];
         var Table = document.getElementById('TableParent');
         var colName = document.getElementById("variant-name");
         var select1 = document.getElementById("selection-variant");
         var select1Val = select1.value;
-        var select2 = document.getElementById("selection-color");
-        var select2Val = select2.value;
         var variantName;
-        if(select1Val== 0 && select2Val== 0)
-        {
-            variantName="Kosonngngg"   
-        }else if(select1Val!= 0 && select2Val== 0)
-        {
-            variantName=select1Val  
-        }else if(select1Val== 0 && select2Val!= 0)
-        {
-            variantName=select2Val  
-        }else if(select1Val!= 0 && select2Val!= 0)
-        {
-            variantName = select1Val+"~"+select2Val;
+        // if(select1Val== 0 && select2Val== 0)
+        // {
+        //     variantName="Kosonngngg"   
+        // }else if(select1Val!= 0 && select2Val== 0)
+        // {
+        //     variantName=select1Val  
+        // }else if(select1Val== 0 && select2Val!= 0)
+        // {
+        //     variantName=select2Val  
+        // }else if(select1Val!= 0 && select2Val!= 0)
+        // {
+        //     variantName = select1Val+"~"+select2Val;
 
-        }
-        console.log(variantName);
-
-
-
-
-        // var test3 = document.getElementById("variant-name");
-        // test3.setAttribute("value","aadasdasd");
-      
+        // }    
         // get existing rows
         var rows = tableBody.children.length;
         var count = Table.children.length;
         console.log(count);
-
         // clone the last row (which contains the last table)
         var newRow = tableBody.cloneNode(true);
-
         // get the new row table
         var newTable = newRow;
-
         // change the table id
         newTable.setAttribute('id', count);
         newTable.children[1].children[0].children[0].setAttribute('value',variantName);
@@ -362,16 +408,7 @@
         newTable.children[4].children[0].children[0].children[0].setAttribute('id',variantName);
         newTable.children[5].children[0].children[0].children[1].setAttribute('id',variantName);
         newTable.children[6].children[0].children[0].children[0].setAttribute('id',variantName);
-
-
         newTable.removeAttribute("hidden");
-
-
-        // var cells = newTable;
-        // for (var i=0; i<cells.length; i++) {
-        //     cells[i].children[1].value = "";
-        // }
-
         // append the new row to the main table body
         Table.appendChild(newRow);
         }

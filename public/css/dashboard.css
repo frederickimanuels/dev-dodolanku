@@ -509,7 +509,7 @@ div[data-acc-content]{
 .varian-wrapper-1{
     display: flex;
     padding: 5px;
-    border: 1px solid #9A9A9A;
+    /* border: 1px solid #9A9A9A; */
     border-radius: 5px;
 }
 .btn-add-varian{
@@ -559,6 +559,9 @@ div[data-acc-content]{
     background-color: #53A7B2;
     border-color: #53A7B2;
 }
+.variant-list-wrapper{
+    min-height: 53px;
+}
 .table-variant-wrapper th{
     padding-top: 30px;
     padding-bottom: 30px;
@@ -580,6 +583,7 @@ div[data-acc-content]{
     border-radius: 5px;
     text-decoration: none;
     color: #FFFFFF;
+    display: flex;
 }
 .product-varian-btn{
     margin-left: auto;
