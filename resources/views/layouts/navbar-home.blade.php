@@ -49,6 +49,16 @@
             <i class="fa-solid fa-shopping-cart"></i>
         </a>
 
+        <!-- Appear When don't have shop -->
+        @if(!Auth::user()->hasStore())
+          <div class="shop-outer">
+            <a class="text-reset shop-icon" href="{{ route('store.create') }}">
+              {{-- <i class="fa-solid fa-shop"></i> --}}
+              <span class="navbar-shop-create">Create Your Site</span>
+            </a>
+          </div>
+        @endif
+
         <!-- Appear When have shop -->
         @if(Auth::user()->hasStore())
           <div class="shop-outer">
