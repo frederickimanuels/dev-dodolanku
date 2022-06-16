@@ -5,6 +5,9 @@
     .uploaded{
         height: 150px;
     }
+    /* .modal-dialog{
+        max-width: 300px;
+    } */
 </style>
 
 <section id="createproduct">
@@ -14,13 +17,13 @@
             <h1>Tambahkan Produk</h1>
             <div class="form-container-content">
                 <div class="row">
-                    <div class="col-4 upload-image-text">
+                    <div class="col-xl-4 col-12 upload-image-text">
                         <div class="upload-text-inner">
                             <h2 class="upload-image-text-h2" >Foto Produk <span style="color:red">*</span></h2>
                             <p>Format Gambar .jpg .jpeg .png dan ukuran minimum 300 x 300px minimal 3 foto yang diupload</p>
                         </div>
                     </div>
-                    <div class="col-8">
+                    <div class="col-xl-8 col-12">
                         <div class="upload-img">
                             <div class="row">
                                 <div class="input-field">
@@ -132,21 +135,21 @@
                         <span class="button-checkbox">
                             <div id="enable-varian" class="btn btn-primary">Aktifkan Varian</div>
                             <div id="disable-varian" class="btn btn-danger" hidden>Matikan Varian</div>
-                            <input type="checkbox" name="variant_active" id="varian-status-checkbox" style="opacity:0; position:absolute; left:9999px;">
+                            <input type="checkbox" name="variant_active" id="varian-status-checkbox" hidden>
                         </span>
                     </div>
                 </div>
                 <div class="product-varian-content" hidden>
                     <div class="row">
-                        <label>Pilih Varian</label>
-                        <div class="col-3">
+                        <label class="variant-label pt-xl-0 pt-3" >Pilih Varian</label>
+                        <div class="col-xl-3 col-12 pt-xl-0 pt-2">
                             <select class="form-select form-select-varian" id="selection-variant" aria-label="Default select example">
                                 <option disabled>Pilih Varian</option>
                                 <option selected value="size">Ukuran</option>
                                 <option value="color">Warna</option>
                             </select>
                         </div>
-                        <div class="col-1">
+                        <div class="col-xl-1 col-12 pt-xl-0 pt-3">
                             <button type="button" class="btn btn-add-varian" id="add-variant" data-toggle="modal" data-target="#inputvarmodal" disabled>
                                 Tambah
                             </button>
@@ -179,8 +182,8 @@
                             </div>
                         </div>
                     </div>
+                    <h4 class="label-varian-table" >Tabel Varian</h4>
                     <div class="tabel-varian">
-                        <h4>Tabel Varian</h4>
                         <table class="table" id="variantTable">
                             <thead>
                                 <tr>
@@ -198,27 +201,31 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-success">Simpan</button>
+            <div class="button-save-product" >
+                <button type="submit" class="btn btn-success">Simpan</button>
+            </div>
         </form>
     </div>
 </section>
 
 <!-- Modal Add Varian -->
-<div class="modal fade inputvarmodal" id="inputvarmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Varian</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <input type="text" class="form-control" id="addVar" aria-describedby="addon-wrapping" autocomplete="off" placeholder="Masukkan nama varian">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Exit</button>
-                <button type="button" id="save-var" data-dismiss="modal" class="btn btn-primary" disabled>Simpan</button>
+<div class="container">
+    <div class="modal fade inputvarmodal" id="inputvarmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Varian</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control" id="addVar" aria-describedby="addon-wrapping" autocomplete="off" placeholder="Masukkan nama varian">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Exit</button>
+                    <button type="button" id="save-var" data-dismiss="modal" class="btn btn-primary" disabled>Simpan</button>
+                </div>
             </div>
         </div>
     </div>

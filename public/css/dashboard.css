@@ -503,10 +503,17 @@ div[data-acc-content]{
     margin-left: auto;
     order: 2;
 }
+.product-varian-text p{
+    font-family: Montserrat-Regular;
+    font-size: 14px;
+}
 .product-varian{
     /* display: flex; */
     padding: 50px 30px 30px 50px;
     /* margin-bottom: 100px; */
+}
+.variant-label{
+    font-family: Montserrat-Regular;
 }
 .varian-wrapper-1{
     display: flex;
@@ -540,7 +547,12 @@ div[data-acc-content]{
 .tabel-varian{
     overflow-x: auto;
 }
-.variantTable{
+.label-varian-table{
+    font-size: 18px;
+    font-family: Montserrat-Bold;
+    line-height: 28px;
+}
+#variantTable{
     border-collapse: collapse;
     border-spacing: 0;
     width: 100%;
@@ -611,7 +623,7 @@ div[data-acc-content]{
 }
 .create-product-container{
     padding-top: 50px;
-    padding-bottom: 50px;
+    padding-bottom: 100px;
 }
 .form-upload-label{
     font-family: Montserrat-Bold;
@@ -632,10 +644,38 @@ div[data-acc-content]{
 .footer-mobile{
     justify-content: center;
 }
+.form-upload-volume{
+    font-family: Montserrat-Regular;
+}
+.button-save-product{
+    margin-top: 20px;
+    float: right;
+    font-family: Montserrat-Bold;
+    font-size: 24px;
+    line-height: 32px;
+}
+.button-save-product button{
+    padding: 10px 30px;
+    background-color: #EE6530;
+    border-radius: 5px;
+    border: 1px solid #EE6530;
+}
+.btn-primary{
+    font-family: Montserrat-Bold;
+    font-size: 14px;
+    line-height: 21px;
+}
 @media screen and (max-width:1199px){
+    #variantTable{
+        width: 1000px;
+    }
     .footer-mobile{
         text-align: center;
         justify-content: none;
+    }
+    .create-product-container{
+        padding-top: 20px;
+        padding-bottom: 100px;
     }
     .item.social{
         text-align: center !important;
