@@ -49,7 +49,9 @@ Route::get('/template','StoreController@StoreTemplates')->name('store.templates'
 
 Route::get('/location/getCities/{province}','LocationController@getCities');
 
+Route::get('/seed-template','TemplateController@store');
 
 
 Route::get('/{slug}','StoreController@show')->name('store.show');
+Route::get('/{storeSlug}/{productSlug}','ProductController@show')->name('store.product.show');
 // Route::get('/category','FrontendController@category')->name('category');

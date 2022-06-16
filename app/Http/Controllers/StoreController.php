@@ -118,10 +118,17 @@ class StoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function show($slug)
     {
         $store = Store::where('slug',$slug)->first();
-        dd($store);
+        if(!$store){
+            return redirect()->route('base');
+        }else{
+            $template = $store->template()->first();
+            $popular_products = $store->products()->take(8)->get();
+            return view('store/templates/'.$template->code.'/homepage',compact('store','popular_products'));
+        }
     }
 
     /**
