@@ -366,7 +366,7 @@
                                 <span class="rating-text">(127)</span>
                             </div> --}}
                         </div>
-                        <h3>Rp {{number_format($product->price,0,',','.')}}</h3>
+                        <h3 id="variant-price">Rp {{number_format($product->variants()->orderBy('price','ASC')->first()->price,0,',','.')}}</h3>
                         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas velit pariatur sequi. Beatae esse distinctio sunt. Magni, optio necessitatibus minima omnis aliquam dolores at natus enim officia accusamus aperiam suscipit?</p>
                         <div class="detail-product-variant">
                             @if(count($variants) == 1 && $variants->first()->name == 'default')

@@ -14,8 +14,8 @@
                                 </div>
                                 <div class="mr-auto p-2 product-menu">
                                     <ul style="padding-left:0">
-                                        <li><a href="">Semua Produk</a></li>
-                                        <li><a href="" class="active-list" >Aktif</a></li>
+                                        <li><a href="{{ route('store.product.manage') }}" class="active-list">Semua Produk</a></li>
+                                        <li><a href="" >Aktif</a></li>
                                         <li><a href="">Nonaktif</a></li>
                                     </ul>
                                 </div>
@@ -36,10 +36,10 @@
                             <table class="table product-table">
                                 <thead class="table-head" >
                                     <tr>
-                                    <th scope="col" style="padding-left:40px">
+                                    {{-- <th scope="col" style="padding-left:40px">
                                         <input class="table-checkbox"  type="checkbox" aria-label="Checkbox for following text input">
-                                    </th>
-                                    <th scope="col" style="">Nama Produk</th>
+                                    </th> --}}
+                                    <th scope="col" style="padding-left:40px">Nama Produk</th>
                                     <th scope="col">Statistik</th>
                                     <th scope="col">Harga</th>
                                     <th scope="col">Stok</th>
@@ -48,53 +48,60 @@
                                     </tr>
                                 </thead>
                                 <tbody class="table-body">
-                                    <tr style="position:relative" >
-                                    <th scope="row" style="padding-left:40px;border:none"> 
-                                        <input class="table-checkbox" type="checkbox" aria-label="Checkbox for following text input">
-                                    </th>
-                                    <td>
-                                        <div class="row">
-                                            <div class="col-3 product-list-img-container">
-                                                <img class="product-list-img" src="{{asset('images/homepage/profile1.jpg')}}" alt="Card image cap">
-                                            </div>
-                                            <div class="col-9 product-list-text pt-4">
-                                                <h2>Baju Tidur Wanita Bahan</h2>
-                                                <p>ini deskripsi</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <ul class="product-statistics pt-4">
-                                            <li><i class="fa-solid fa-eye"></i>999</li>
-                                            <li><i class="fa-solid fa-cart-shopping"></i></i>100</li>
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        <div class="product-price pt-4">
-                                            Rp.70000
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="product-stock pt-4" >
-                                            999
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-check form-switch product-switch pt-4">
-                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="product-action pt-4">
-                                            <div class="product-action-icon">
-                                                <a href=""><i class="fa-solid fa-pen-to-square"></i></a>
-                                            </div>
-                                            <div class="product-action-icon">
-                                                <a href=""><i class="fa-solid fa-trash-can"></i></a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    </tr>
+                                    @foreach($products as $product)
+                                        <tr style="position:relative" >
+                                            {{-- <th scope="row" style="padding-left:40px;border:none"> 
+                                                <input class="table-checkbox" type="checkbox" aria-label="Checkbox for following text input">
+                                            </th> --}}
+                                            <td style="padding-left:40px;">
+                                                <a href="{{ route('store.product.show',[$store->slug,$product->slug]) }}">
+                                                    <div class="row">
+                                                        <div class="col-3 product-list-img-container">
+                                                            <img class="product-list-img" src="{{asset('images/homepage/profile1.jpg')}}" alt="Card image cap">
+                                                        </div>
+                                                        <div class="col-9 product-list-text pt-4">
+                                                            <h2>{{ $product->name }}</h2>
+                                                            <p>{{ $product->description }}</p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <ul class="product-statistics pt-4">
+                                                    {{-- <li><i class="fa-solid fa-eye"></i>999</li> --}}
+                                                    <li><i class="fa-solid fa-cart-shopping"></i></i>100</li>
+                                                </ul>
+                                            </td>
+                                            <td>
+                                                <div class="product-price pt-4">
+                                                    Rp {{number_format($product->variants()->orderBy('price','ASC')->first()->price,0,',','.')}}
+                                                    @if(count($product->variants()->get()) > 1)
+                                                    - Rp {{number_format($product->variants()->orderBy('price','DESC')->first()->price,0,',','.')}}
+                                                    @endif
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="product-stock pt-4" >
+                                                    {{ $product->variants()->sum('stock') }}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-check form-switch product-switch pt-4">
+                                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="product-action pt-4">
+                                                    <div class="product-action-icon">
+                                                        <a href=""><i class="fa-solid fa-pen-to-square"></i></a>
+                                                    </div>
+                                                    <div class="product-action-icon">
+                                                        <a href=""><i class="fa-solid fa-trash-can"></i></a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

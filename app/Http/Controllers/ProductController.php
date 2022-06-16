@@ -17,9 +17,11 @@ class ProductController extends Controller
         $this->middleware('store.manage');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return view('store/manage-product');
+        $store = Auth::user()->hasStore();
+        $products = $store->products()->orderBy('created_at', 'desc')->paginate(12);
+        return view('store/manage-product',compact('products','store'));
     }
 
     public function create()
