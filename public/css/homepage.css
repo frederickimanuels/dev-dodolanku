@@ -17,13 +17,24 @@
   /* src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap'); */
 }
 @font-face{
-  font-family:PlusJakarta-Regular;
-  src: url('..fonts/PlusJakarta/PlusJakartaSans-VariableFont_wght.ttf') format('truetype');
+  font-family:PlusJakarta-Bold;
+  src: url('../fonts/PlusJakarta/static/PlusJakartaSans-Bold.ttf') format('truetype');
 }
-
+@font-face{
+  font-family:PlusJakarta-Medium;
+  src: url('../fonts/PlusJakarta/static/PlusJakartaSans-Medium.ttf') format('truetype');
+}
+@font-face{
+  font-family:PlusJakarta-Regular;
+  src: url('../fonts/PlusJakarta/static/PlusJakartaSans-Regular.ttf') format('truetype');
+}
+@font-face{
+  font-family:PlusJakarta-Light;
+  src: url('../fonts/PlusJakarta/static/PlusJakartaSans-Light.ttf') format('truetype');
+}
 @font-face{
   font-family:PlusJakarta-Italic;
-  src: url('..fonts/PlusJakarta/PlusJakartaSans-Italic-VariableFont_wght.ttf') format('truetype');
+  src: url('../fonts/PlusJakarta/PlusJakartaSans-Italic-VariableFont_wght.ttf') format('truetype');
 }
 
 h1{
@@ -54,8 +65,8 @@ h1{
 }
 .section-home-inner-1 h1{
     font-size:36px;
-    font-weight:700;
-    line-height:30px;
+    line-height:42px;
+    font-family: PlusJakarta-Bold;
 }
 .section-home-inner-1 p{
     margin-top:20px;
@@ -65,8 +76,9 @@ h1{
 }
 .section-home-inner h2{
     font-size:36px;
-    font-weight:700;
     line-height:44px;
+    font-family: PlusJakarta-Bold;
+    text-align: center;
 }
 .align-left{
     text-align: left;
@@ -77,6 +89,47 @@ h1{
     height:50px;
     /* margin-right:50px; */
 }
+.slick-dots {
+  text-align: center;
+  margin: 0 0 10px 0;
+  padding: 0;
+}
+.slick-dots li {
+  display: inline-block;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+.slick-dots li.slick-active button {
+  background-color: black;
+}
+.slick-dots li button {
+  font: 0/0 a;
+  text-shadow: none;
+  color: transparent;
+  background-color: #999;
+  border: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+.slick-dots li:hover {
+  background-color: black;
+}
+.slick-slide:hover{
+  border: none;
+}
+
+/* .slick-dots{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 0px;
+}
+.slick-dots button{
+  border-radius: 50%;
+  margin: 10px;
+} */
+
 
 
 /* navbar homepage */
@@ -318,7 +371,7 @@ ul {
 
 /* personal informartion */
 #personal-information{
-  padding: 50px 60px 50px 60px;
+  padding: 50px 100px 50px 100px;
 }
 .personal-info-h1{
   font-size: 36px;
@@ -348,7 +401,7 @@ ul {
 .profile-menu-list li{
   margin-top: 20px;
   font-size: 24px;
-  font-family: Montserrat-Light;
+  font-family: Montserrat-Medium;
 }
 .personal-info-detail{
   padding-right: 150px;
@@ -601,8 +654,6 @@ li.subtotal:before {
   width: 35%;
 }
 
-
-
 .product-frame {
   border: 1px solid #aaa;
 }
@@ -789,15 +840,15 @@ aside {
   line-height: 29px;
 }
 .homepage-header-outer a{
-  padding: 16px 43px 16px 43px;
+  padding: 16px 43px;
   background-color: #EE6530;
   text-decoration: none;
   color: #FFFFFF;
   cursor: pointer;
   font-size: 24px;
-  font-family: Monserrat-Regular;
-  font-weight: 700;
+  font-family: Montserrat-Bold;
   line-height: 28px;
+  border-radius: 5px;
 }
 
 .mr-auto{
@@ -816,21 +867,21 @@ aside {
 }
 .homepage-row-2-inner h1{
   color: #333333;
-  font-weight: 700;
+  font-family: PlusJakarta-Bold;
   font-size: 56px;
   line-height: 70px;
   margin-bottom: 1rem;
 }
 .homepage-row-2-inner h2{
-  font-weight: 600;
-  font-size: 30px;
+  font-family: PlusJakarta-Bold;
+  font-size: 28px;
   line-height: 38px;
   margin-bottom: 2rem;
 }
 .homepage-row-2-inner p{
-  font-weight: 400;
   font-size: 18px;
-  line-height: 29px;
+  line-height: 28px;
+  font-family: PlusJakarta-Regular;
 }
 
 .homepage-row-2-inner a{
@@ -842,6 +893,7 @@ aside {
   font-size: 24px;
   font-family: Montserrat-Bold;
   line-height: 28px;
+  border-radius: 5px;
 }
 #homepage-row-3{
   margin-top: 50px;
@@ -852,18 +904,18 @@ aside {
   text-align: center;
 }
 .homepage-row-3-inner h1{
-  font-family: Montserrat-Bold;
+  font-family: PlusJakarta-Bold;
   font-size: 64px;
   line-height: 80px;
 }
 .homepage-row-3-inner h2{
-  font-family: Montserrat-Medium;
+  font-family: PlusJakarta-Bold;
   font-size: 30px;
   line-height: 37px;
   margin-top: 20px;
 }
 .homepage-row-3-inner p{
-  font-family: Montserrat-Light;
+  font-family: PlusJakarta-Regular;
   font-size: 18px;
   line-height: 29px;
   margin-top: 20px;
@@ -878,6 +930,7 @@ aside {
   font-family: Montserrat-Bold;
   line-height: 28px;
   margin-top: 20px;
+  border-radius: 5px;
 }
 .homepage-button{
   margin-top: 50px;
@@ -954,6 +1007,12 @@ aside {
 .display-mobile{
   display: none;
 }
+.profile-label{
+  font-family: Montserrat-Bold;
+  font-size: 18px;
+  line-height: 27px;
+  color: #000000;
+}
 
 @media screen and (max-width:1199px){
   .display-desktop{
@@ -967,6 +1026,24 @@ aside {
   }
   .img-profile{
     margin-right: 0px;
+  }
+  .profile-menu-list{
+    text-align: center;
+  }
+  .img-inner{
+    text-align: center;
+  }
+  .profile-menu-list li{
+    display: inline-block;
+    font-size: 20px;
+    padding: 20px;
+  }
+  #personal-information{
+    padding: 30px;
+  }
+  .personal-info-detail{
+    padding-right: 20px;
+    padding-left: 20px;
   }
 }
 
@@ -1019,6 +1096,12 @@ aside {
   .summary {
     margin-top: 1.25rem;
     position: relative;
+  }
+  .profile-menu-list{
+    padding-left: 0px;
+  }
+  .profile-menu-list li{
+    padding: 5px;
   }
 }
 
@@ -1242,19 +1325,18 @@ aside {
 .text-left{
   text-align: left;
 }
+.start-now{
+  margin-bottom: 20px;
+}
 .start-button{
   background-color:#EE6530 ;
   /* padding: 20px 40px 20px 40px ; */
   text-decoration: none;
   cursor: pointer;
   color:#FFFFFF;
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font-family: Montserrat-Medium;
+  padding: 10px 30px;
+  font-family: Montserrat-Bold;
   font-size: 24px;
-  font-weight: 700;
   line-height: 28px;
 }
 .start-now-inner{
@@ -1273,12 +1355,12 @@ aside {
     overflow: hidden;  
 }
 .newsletter {
-    padding: 6% 0 5%;
+    padding: 60px 0px;
     /* background: url(https://i.ibb.co/JRrHmhv/shanghai.jpg) no-repeat center center; */
     background-size: cover;
     position: relative;
     z-index: 2;
-    min-height: 20vh;
+    /* min-height: 20vh; */
 }
   .newsletter:after {
     position: absolute;
@@ -1391,7 +1473,7 @@ aside {
   @media (max-width:767px) {
     .footer-clean .item {
       text-align:center;
-      padding-bottom:20px;
+      padding-bottom:8px;
     }
   }
   
@@ -1477,19 +1559,189 @@ aside {
     color: #FFFFFF;
     opacity: 0.8;
 }
+.slick-text-inner{
+  position: absolute;
+  /* width: 730px;
+  height: 320px; */
+  background-color: #41B29E;
+  opacity: 0.75;
+  top: 50%;
+  left: 50%;
+  transform: translate(-90%, -200%);
+}
+.slick-text{
+  padding: 50px 43px 50px 50px ;
+}
+
+.slick-text h1{
+  color: #FFFFFF;
+  font-size: 40px;
+  line-height: 50px;
+  margin-bottom: 52px;
+  font-family: PlusJakarta-Bold;
+}
+.slick-text a{
+  background-color: #EE6530;
+  padding: 16px 25px ;
+  text-decoration: none;
+  cursor: pointer;
+  color: #FFFFFF;
+  font-size: 16px;
+  line-height: 28px;
+  font-family: Montserrat-Bold;
+}
+.section-home-inner-1{
+  margin-top: 100px;
+}
+.container-homepage-content{
+  margin-top: 50px;
+}
 @media screen and (max-width:1199px){
   .copyright{
     margin-top: 0px;
     padding:0 0 20px 0;
   }
+  .footer-clean{
+    padding: 10px 0 10px 0;
+  }
+  .item{
+    margin-bottom: 0px;
+    padding-bottom: 5px;
+  }
+  .footer-clean h3{
+    padding: 0px;
+    margin-bottom: 5px;
+  }
+  .homepage-logo{
+    padding: 0px;
+  }
+  .contact-left{
+    padding: 0px;
+  }
+  .contact-wrapper li{
+    margin: 8px 0;
+  }
+  .footer-clean ul{
+    padding: 0px;
+  }
+  .social-media{
+    padding-top: 0px;
+  }
+  .slick-text{
+    padding: 50px 43px 50px 50px ;
+  }
+  .slick-text-inner{
+    /* width: 500px;
+    height: 300px; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -200%);
+  }
+  .slick-text h1 {
+      color: #FFFFFF;
+      font-weight: 700;
+      font-size: 28px;
+      line-height: 36px;
+      margin-bottom: 30px;
+  }
  
 }
 @media screen and (max-width:767px){
+  .section-home-inner-1{
+    margin-top: 20px;
+  }
+  .slick-text-inner{
+    /* width: 300px;
+    height: 200px; */
+    transform: translate(-50%, -190%);
+  }
+  .section-home-inner{
+    padding: 1rem 20px;
+  }
+  #section-home-contents{
+    margin-top: 20px;
+  }
   .section-contents-img p{
     margin-top: 20px;
     margin-bottom:20px;
   }
   #section-home-email{
-    margin-top:50px;
+    margin-top:20px;
   }
+  .slick-text{
+    padding: 10px 40px 50px 40px ;
+  }
+  .slick-text a{
+    opacity:1 ;
+    padding: 10px;
+    font-size: 12px;
+    line-height: 21px;
+  }
+  .container-homepage-content{
+    margin-top: 10px;
+  }
+  .text-right{
+    text-align: center;
+  }
+  .text-left{
+    text-align: center;
+  }
+  .start-button{
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+  .homepage-header-outer h1{
+    font-size: 36px;
+    font-family: PlusJakarta-Bold;
+    line-height: 44px;
+    color: #333333;
+  }
+  #homepage-row-1{
+    height: 100%;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+  }
+  .homepage-row-2-inner h1{
+    font-size: 44px;
+    line-height: 52px;
+    text-align: center;
+  }
+  .homepage-row-2-inner h2{
+    font-size: 18px;
+    line-height: 28px;
+    text-align: center;
+  }
+  .homepage-row-2-inner p{
+    font-size: 16px;
+    line-height: 26px;
+    text-align: center;
+  }
+  .homepage-button{
+    text-align: center;
+  }
+  .homepage-row-2-inner a{
+    padding: 15px 30px;
+    font-size: 18px;
+  }
+  .homepage-row-3-inner h1 {
+    font-size: 44px;
+    line-height: 52px;
+  }
+  .homepage-row-3-inner h2{
+    font-size: 18px;
+    line-height: 28px;
+  }
+  .homepage-row-3-inner a{
+    padding: 15px 30px; 
+    font-size: 18px;
+  }
+  .homepage-header-outer a{
+    padding: 15px 30px; 
+    font-size: 18px;
+  }
+  #homepage-row-3{
+    margin-top: 0px;
+  }
+  
 }

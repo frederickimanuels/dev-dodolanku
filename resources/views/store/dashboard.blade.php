@@ -284,7 +284,10 @@
     </div>
 
     
+@include('store.layouts.js')
+<!-- JS add here -->
 
+<!-- END JS -->
 @include('store.layouts.footer-copyright')
 </body>
 </html>

@@ -3,37 +3,39 @@
 @include('layouts.navbar-home')
 
 <style>
-    .slick-text-inner{
-        position: absolute;
-        width: 730px;
-        height: 320px;
-        background-color: #41B29E;
-        opacity: 0.75;
-        top: calc(50% - 750px);
-        left: calc(50% - 670px);
+ .card{
+    border: none;
+ }
+ .card h2{
+    font-family: Montserrat-Bold;
+    text-align: left;
+    color: #000000;
+    font-size: 24px;
+    margin-bottom: 20px;
+ }
+ .card p{
+    font-family: Montserrat-Medium;
+    text-align: justify;
+    color: #000000;
+    font-size: 16px;
+ }
+ .card img{
+    width: 250px;
+    height: 250px;
+ }
+.card:hover{
+  border: none;
+  cursor:unset;
+}
+@media screen and (max-width:599px)
+{
+    .card img{
+        width: 100%;
+        height: 100%;
     }
-
-    .slick-text{
-        padding: 70px 43px 20px 32px ;
-    }
-    .slick-text h1{
-        color: #FFFFFF;
-        font-weight: 700;
-        font-size: 40px;
-        line-height: 50px;
-        margin-bottom: 52px;
-        font-family: Montserrat-Light;
-    }
-    .slick-text a{
-        background-color: #EE6530;
-        padding: 16px 25px ;
-        text-decoration: none;
-        cursor: pointer;
-        color: #FFFFFF;
-        font-size: 16px;
-        line-height: 28px;
-        font-family: Montserrat-Light;
-    }
+}
+ 
+   
 </style>
 
 <section id="homepage-slider">
@@ -51,8 +53,8 @@
             <div class="slick-text-inner">
                 <div class="slick-text">
                     <h1>Solusi End-to-End Terlengkap untuk Bisnis Online di Indonesia</h1>
-                    <a href="/">
-                        <span>Create Your Siteeeeee</span>
+                    <a href="{{route('store.create')}}">
+                        <span>Create Your Site</span>
                     </a>
                 </div>
             </div>
@@ -74,33 +76,49 @@
                 </div>
             </div>
         </div>
-        <div class="container section-home-inner-1" style="margin-top:100px">
+        <div class="container section-home-inner-1">
             <div class="yellow-line" style="padding:10px;margin:auto"></div>
             <h1 style="margin-top:10px;">Mengapa Para Top Seller Memilih Kami ?</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi architecto repudiandae ipsam repellendus doloremque mollitia placeat impedit</p>
         </div>
     </div>
-    <div class="container" style="margin-top:50px">
-        <div class="row">
-            <div class="col-xl-3 col-sm-6 section-contents-img">
-                <img src="{{asset('images/homepage/result.png')}}" alt="" class="homepage-img">
-                <h2>Result Oriented</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet quo aspernatur vel, saepe animi necessitatibus. Qui voluptate veritatis ullam aut deleniti doloribus</p>
+    <div class="container container-homepage-content">
+        <div class="multiple-items">
+            <div>
+                <div class="card">
+                    <img src="{{asset('images/homepage/result.png')}}" alt="" class="homepage-img">
+                    <div class="card-body">
+                        <h2>Result Oriented</h2>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
             </div>
-            <div class="col-xl-3 col-sm-6 section-contents-img">
-                <img src="{{asset('images/homepage/ideas.png')}}" alt="" class="homepage-img">
-                <h2>Result Oriented</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet quo aspernatur vel, saepe animi necessitatibus. Qui voluptate veritatis ullam aut deleniti doloribus</p>
+            <div>
+                <div class="card">
+                    <img src="{{asset('images/homepage/ideas.png')}}" alt="" class="homepage-img">
+                    <div class="card-body">
+                        <h2>Result Oriented</h2>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
             </div>
-            <div class="col-xl-3 col-sm-6 section-contents-img">
-                <img src="{{asset('images/homepage/excellent.png')}}" alt="" class="homepage-img">
-                <h2>Result Oriented</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet quo aspernatur vel, saepe animi necessitatibus. Qui voluptate veritatis ullam aut deleniti doloribus</p>
+            <div>
+                <div class="card">
+                    <img src="{{asset('images/homepage/excellent.png')}}" alt="" class="homepage-img">
+                    <div class="card-body">
+                        <h2>Result Oriented</h2>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
             </div>
-            <div class="col-xl-3 col-sm-6 section-contents-img">
-                <img src="{{asset('images/homepage/onestop.png')}}" alt="" class="homepage-img">
-                <h2>Result Oriented</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet quo aspernatur vel, saepe animi necessitatibus. Qui voluptate veritatis ullam aut deleniti doloribus</p>
+            <div>
+                <div class="card">
+                    <img src="{{asset('images/homepage/onestop.png')}}" alt="" class="homepage-img">
+                    <div class="card-body">
+                        <h2>Result Oriented</h2>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -124,15 +142,15 @@
                 </div>
             </div> -->
             <div class="row">
-                <div class="col-6 text-right" >
+                <div class="col-xl-6 col-md-6 col-12  text-right start-now">
                     <h2>Power up your commerce website</h2>
                 </div>
-                <div class="col-6 text-left">
+                <div class="col-xl-6 col-md-6 col-12 text-left start-now">
                     <!-- <a href="/" class="start-button">
                         <span>Start Now its Free</span>
                     </a> -->
                     <form>
-                        <button class="start-button" formaction="/link">Start now its Free</button>
+                        <button class="start-button" formaction="{{route('store.create')}}">Start now its Free</button>
                     </form>
                 </div>
             </div>
@@ -148,6 +166,30 @@
             nextArrow:$('.next-arrow'),
             prevArrow:$('.prev-arrow'),
             // prevArrow: '<button class="slide-arrow prev-arrow"></button>',
+        });
+        $('.multiple-items').slick({
+            infinite: true,
+            slidesToShow: 4,
+            slidesToScroll: 4,
+            nextArrow:$('.next-arrow'),
+            prevArrow:$('.prev-arrow'),
+            responsive: [
+                {
+                breakpoint: 1199,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                }
+                },
+                {
+                breakpoint: 599,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    dots:true,
+                }
+                },
+            ]
         });
     });
 </script>

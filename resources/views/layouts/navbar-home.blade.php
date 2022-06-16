@@ -19,15 +19,24 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Faq</a>
         </li>
+         <li>
+        <input autocomplete="off" type="search" class="form-control rounded" placeholder="Search" style="min-width: 125px;"/>
+        </li>
       </ul>
     </div>
+
+    
 
     <!-- Right elements -->
     <div class="d-flex align-items-center">
       {{-- <a class="text-reset me-3" href="#">
         <i class="fa-solid fa-magnifying-glass"></i>
       </a> --}}
-
+      <!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li>
+        <input autocomplete="off" type="search" class="form-control rounded" placeholder="Search" style="min-width: 100px;"/>
+        </li>
+      </ul> -->
       <!-- Appear When Not Login -->
       @if(Auth::guest())
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -37,6 +46,7 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ route('register') }}">Sign Up</a>
         </li>
+
       </ul>
       @endif
       <!-- End Appear When Not Login -->

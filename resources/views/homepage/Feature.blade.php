@@ -34,11 +34,27 @@
   /* padding: 30px 0px; */
 }
 .slick-center{
-  /* background:linear-gradient(45deg, rgb(246, 146, 89), rgb(241, 105, 117)); */
-  /* padding: 30px 0px; */
-  -webkit-transform: scale(2) !important;
-  -moz-transform: scale(2) !important;
-  transform: scale(2.5) !important;
+    /* background:linear-gradient(45deg, rgb(246, 146, 89), rgb(241, 105, 117)); */
+    /* padding: 30px 0px; */
+    -webkit-transform: scale(2) !important;
+    -moz-transform: scale(2) !important;
+    transform: scale(2.5) !important;
+}
+@media screen and (max-width:767px){
+    .slick-slide{
+        padding: 0;
+        margin: 0;
+    }
+  .slick-list { 
+        padding:10px 10px !important;
+        margin-left:10px !important;
+        min-height: 50vw;
+    }
+    .slick-center{
+        -webkit-transform: scale(1) !important;
+        -moz-transform: scale(1) !important;
+        transform: scale(1) !important;
+    }
 }
 </style>
 <section id="homepage-header">
@@ -78,9 +94,9 @@
                 <a href="">
                     <span>Create your site</span>
                 </a>
+            </div>
         </div>
-        </div>
-        <div class="col-12 col-xl-6">
+        <div class="col-12 d-none d-xl-block col-xl-6">
             <div class="homepage-row-2-img">
                 <img src="{{asset('images/homepage/laptop-1.png')}}" alt="">
             </div>
@@ -96,7 +112,7 @@
         <h2>Power up your online commerce website</h2>
         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates, at. Dolore quam placeat esse debitis iusto dolorum consequatur culpa doloribus, commodi dignissimos maxime similique maiores saepe labore eum possimus voluptas. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos error odit suscipit dicta minima modi, ratione voluptas non similique! Aut totam praesentium vel odio ea! Repellendus quis numquam hic dolorum.</p>
         <div class="homepage-button" >
-            <a href="">
+            <a href="{{ route('store.home') }}">
                 <span>Start Selling</span>
             </a>
         </div>
@@ -135,7 +151,7 @@ $('.center').slick({
     $('.slick-slider').slick({
         centerMode: true,
         slidesToShow: 3,
-        dots: false,
+        dots: true,
         arrows: true,
         swipe: true,
         focusOnSelect:true,
@@ -143,7 +159,22 @@ $('.center').slick({
         swipeToSlide: true,
         prevArrow:false,
         nextArrow:false,
-        //adaptiveHeight: true,
+        responsive: [
+                {
+                breakpoint: 1199,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                }
+                },
+                {
+                breakpoint: 599,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+                },
+            ]
     });
 </script>
 <!-- End JavaScript -->

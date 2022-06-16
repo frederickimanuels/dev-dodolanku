@@ -76,7 +76,9 @@
     font-family:PlusJakarta-Bold;
     font-weight: 700;
 }
-
+.see-store{
+    color: #9A9A9A;
+}
 #templates{
     background-color: gainsboro;
 }
@@ -534,6 +536,14 @@ div[data-acc-content]{
 .variant-price-wrapper{
     border-radius: 8px;
     display: flex;
+}
+.tabel-varian{
+    overflow-x: auto;
+}
+.variantTable{
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
 }
 .variant-price-wrapper input{
     background: #FFFFFF;

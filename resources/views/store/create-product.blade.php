@@ -1,28 +1,28 @@
 @include('store.layouts.header')
 
-@include('store.layouts.navbar-home')
+@include('layouts.navbar-home')
+
 <style>
     .uploaded{
         height: 150px;
     }
 </style>
-<section id="createproduct" class="display-desktop">
+<section id="createproduct">
     <div class="container create-product-container">
         <form action="" enctype="multipart/form-data">
             <h1>Tambahkan Produk</h1>
             <div class="form-container-content">
                 <div class="row">
-                    <div class="col-4 upload-image-text">
+                    <div class="col-xl-4 col-12 upload-image-text">
                         <div class="upload-text-inner">
                             <h2 class="upload-image-text-h2" >Foto Produk <span style="color:red">*</span></h2>
                             <p>Format Gambar .jpg .jpeg .png dan ukuran minimum 300 x 300px minimal 3 foto yang diupload</p>
                         </div>
                     </div>
-                    <div class="col-8">
+                    <div class="col-xl-8 col-12">
                         <div class="upload-img">
                             <div class="row">
                                 <div class="input-field">
-                                    <!-- <label class="active">Photos</label> -->
                                     <div class="input-images-1" style="padding-top: .5rem;"></div>
                                 </div>
                             </div>
@@ -98,17 +98,35 @@
                         </div>
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-2 col-form-label form-upload-label">Volume</label>
-                            <div class="col-sm-3 form-upload-volume">
-                                <label for="inputPassword" class="form-upload-label">Panjang</label>
-                                <input type="text" class="form-control" id="product-category">
+                            <div class="col-xl-3 col-12 form-upload-volume">
+                                <div class="row">
+                                    <div class="col-xl-4 col-4">
+                                        <label for="inputPassword" class="form-upload-label">Panjang</label>
+                                    </div>
+                                    <div class="col-xl-8 col-8">
+                                        <input type="text" class="form-control" id="product-category">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-sm-3 form-upload-volume">
-                                <label for="inputPassword" class="form-upload-label">Lebar</label>
-                                <input type="text" class="form-control" id="product-category">
+                            <div class="col-xl-3 col-12 form-upload-volume pt-xl-0 pt-3">
+                                <div class="row">
+                                    <div class="col-xl-4 col-4">
+                                        <label for="inputPassword" class="form-upload-label">Lebar</label>
+                                    </div>
+                                    <div class="col-xl-8 col-8">
+                                        <input type="text" class="form-control" id="product-category">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-sm-3 form-upload-volume">
-                                <label for="inputPassword" class="form-upload-label">Tinggi</label>
-                                <input type="text" class="form-control" id="product-category">
+                            <div class="col-xl-3 col-12 form-upload-volume pt-xl-0 pt-3">
+                                <div class="row">
+                                    <div class="col-xl-4 col-4">
+                                        <label for="inputPassword" class="form-upload-label">Tinggi</label>
+                                    </div>
+                                    <div class="col-xl-8 col-8">
+                                        <input type="text" class="form-control" id="product-category">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     
@@ -131,7 +149,7 @@
                 <div class="product-varian-content">
                     <div class="row">
                         <label>Pilih Varian</label>
-                        <div class="col-3">
+                        <div class="col-xl-3 col-6">
                             <select class="form-select form-select-varian" id="selection-variant" aria-label="Default select example">
                                 <option selected value="0">...</option>
                                 <option>Ukuran</option>
@@ -148,7 +166,7 @@
                                 <option value="birumaroon">Biru Maroon</option>
                             </select>
                         </div> -->
-                        <div class="col-1 pt-2">
+                        <div class="col-xl-1 col-6 pt-2">
                             <!-- <button type="button" class="btn btn-add-varian" data-target="#exampleModal">Add</button> -->
                             <button type="button" class="btn btn-add-varian" id="add-variant" data-toggle="modal" data-target="#inputvarmodal" disabled>
                             Add

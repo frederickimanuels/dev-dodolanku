@@ -7,7 +7,7 @@
                 <a class="nav-link" href="#">Category</a> 
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Storeee</a>
+                <a class="nav-link" href="#">Store</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">About Us</a> 

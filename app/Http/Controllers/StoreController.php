@@ -65,6 +65,9 @@ class StoreController extends Controller
     {
         return view('store/detailProduct');
     }
+    public function search(){
+        return view('store/search');
+    }
     /**
      * Show the form for creating a new resource.
      *

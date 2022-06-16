@@ -13,17 +13,17 @@
                             </div>
                         </form>
                     </div>
-                    <div class="col-sm-4 col-md-2 item contact-left">
+                    <div class="col-sm-4 col-md-2 col-6 item contact-left">
                         <h3>Sitemap</h3>
                         <ul class="contact-wrapper">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Feature</a></li>
+                            <li><a href="{{route('base')}}">Home</a></li>
+                            <li><a href="{{route('feature')}}">Feature</a></li>
                             <li><a href="#">FAQ</a></li>
                             <li><a href="#">Help</a></li>
-                            <li><a href="#">About Us</a></li>
+                            <li><a href="{{route('about')}}">About Us</a></li>
                         </ul>
                     </div> 
-                    <div class="col-sm-4 col-md-2 item contact-left">
+                    <div class="col-sm-4 col-md-2 col-6 item contact-left">
                         <h3>Company</h3>
                         <ul class="contact-wrapper">
                             <li><a href="#">Syarat & Ketentuan</a></li>
@@ -56,7 +56,6 @@
             </div>
             <div class="social-media" >
                 <a href="#">
-                    <!-- <img src="{{asset('images/homepage/icon-instagram.png')}}" alt="" class="social-icon"> -->
                     <i class="fa-brands fa-instagram"></i>
                 </a>
                 <a href="#">
@@ -64,7 +63,6 @@
                 </a>
                 <a href="#">
                     <i class="fa-brands fa-twitter"></i>
-                    <!-- <img src="{{asset('images/homepage/icon-twitter.png')}}" alt="" class="social-icon"> -->
                 </a>
             </div>
         </div>

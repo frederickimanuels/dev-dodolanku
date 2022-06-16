@@ -21,9 +21,7 @@
         --textColor3:#FC764E;
 
         /* Popular Product Color */
-      
-
-
+    
         /* FooterColor */
     }
     .navbar-homepage{
