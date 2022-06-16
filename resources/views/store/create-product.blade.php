@@ -392,6 +392,10 @@
                     "</tr>"
                 )
             });
+            $(".varian-delete").click(function(){
+                $(this).parent().remove();
+                generateTable();
+            })
         }
 
 
