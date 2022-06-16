@@ -18,4 +18,9 @@ class Product extends Model
     {
         return $this->belongsToMany(Variant::class, 'variant_products');
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_products');
+    }
 }

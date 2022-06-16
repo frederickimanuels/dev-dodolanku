@@ -15,4 +15,9 @@ class Store extends Model
     {
         return $this->belongsToMany(Product::class, 'product_stores');
     }
+
+    public function template()
+    {
+        return $this->belongsToMany(Template::class, 'template_stores');
+    }
 }

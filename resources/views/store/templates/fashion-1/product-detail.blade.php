@@ -356,33 +356,30 @@
                 <div class="col-xl-6 col-12">
                     <div class="detail-product">
                         <div class="detail-product-name">
-                            <h2>Product Name</h2>
-                            <div class="product-rating">
+                            <h2>{{ $product->name }}</h2>
+                            {{-- <div class="product-rating">
                                 <span class="fa fa-star checked"></span>
                                 <span class="fa fa-star checked"></span>
                                 <span class="fa fa-star checked"></span>
                                 <span class="fa fa-star"></span>
                                 <span class="fa fa-star"></span>
                                 <span class="rating-text">(127)</span>
-                            </div>
+                            </div> --}}
                         </div>
-                        <h3>Rp. 850.000</h3>
+                        <h3>Rp {{number_format($product->price,0,',','.')}}</h3>
                         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas velit pariatur sequi. Beatae esse distinctio sunt. Magni, optio necessitatibus minima omnis aliquam dolores at natus enim officia accusamus aperiam suscipit?</p>
                         <div class="detail-product-variant">
+                            @if(count($variants) == 1 && $variants->first()->name == 'default')
+                            <input type="hidden" name="variant_name" value="default">
+                            @else
                             <label for="form-select">Variasi</label>
-                            <select class="form-select" aria-label="Default select example">
+                            <select class="form-select" aria-label="variant select" name="variant_name">
                                 <option selected>Pilih Varian</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
                                 <option value="3">Three</option>
                             </select>
-                            <label for="form-select">Ukuran</label>
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Pilih Ukuran</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
+                            @endif
                             <label for="form-select">Jumlah</label>
                             <div class="quantity buttons_added">
                                 <input type="button" value="-" class="minus">
@@ -418,96 +415,25 @@
             <h1>Produk Terpopuler</h1>
             <div class="container store-home">
                 <div class="multiple-items">
-                    <div>
-                        <div class="card">
-                            <img class="card-img-top" src="{{asset('images/homepage/bag-1.png')}}" alt="Card image cap">
-                            <div class="card-body popular-card-text">
-                                <h5 class="card-text">Praide Designer Shoulder Bags 2020</h5>
-                                <h6>Rp. 750.000</h6>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="rating-text">(127)</span>
+                    @foreach($popular_products as $popular_product)
+                        <div>
+                            <div class="card">
+                                <a href="{{ route('store.product.show',[$store->slug,$popular_product->slug]) }}">
+                                    <img class="card-img-top" src="{{asset('images/homepage/bag-1.png')}}" alt="Card image cap">
+                                    <div class="card-body popular-card-text">
+                                        <h5 class="card-text">{{ $popular_product->name }}</h5>
+                                        <h6>Rp {{number_format($popular_product->variants()->orderBy('price','ASC')->first()->price,0,',','.')}}</h6>
+                                        {{-- <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span> --}}
+                                        {{-- <span class="rating-text">(127)</span> --}}
+                                    </div>
+                                </a>
                             </div>
                         </div>
-                    </div>
-                    <div>
-                        <div class="card">
-                            <img class="card-img-top" src="{{asset('images/homepage/bag-1.png')}}" alt="Card image cap">
-                            <div class="card-body popular-card-text">
-                                <h5 class="card-text">Praide Designer Shoulder Bags 2020</h5>
-                                <h6>Rp. 750.000</h6>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="rating-text">(127)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="card">
-                            <img class="card-img-top" src="{{asset('images/homepage/bag-1.png')}}" alt="Card image cap">
-                            <div class="card-body popular-card-text">
-                                <h5 class="card-text">Praide Designer Shoulder Bags 2020</h5>
-                                <h6>Rp. 750.000</h6>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="rating-text">(127)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="card">
-                            <img class="card-img-top" src="{{asset('images/homepage/bag-1.png')}}" alt="Card image cap">
-                            <div class="card-body popular-card-text">
-                                <h5 class="card-text">Praide Designer Shoulder Bags 2020</h5>
-                                <h6>Rp. 750.000</h6>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="rating-text">(127)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="card">
-                            <img class="card-img-top" src="{{asset('images/homepage/bag-1.png')}}" alt="Card image cap">
-                            <div class="card-body popular-card-text">
-                                <h5 class="card-text">Praide Designer Shoulder Bags 2020</h5>
-                                <h6>Rp. 750.000</h6>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="rating-text">(127)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="card">
-                            <img class="card-img-top" src="{{asset('images/homepage/bag-1.png')}}" alt="Card image cap">
-                            <div class="card-body popular-card-text">
-                                <h5 class="card-text">Praide Designer Shoulder Bags 2020</h5>
-                                <h6>Rp. 750.000</h6>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="rating-text">(127)</span>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="slick-arrow d-none d-xl-block">
                     <i class="fa-solid fa-chevron-left prev-arrow prev-arrow-1 fa-2xl"></i>

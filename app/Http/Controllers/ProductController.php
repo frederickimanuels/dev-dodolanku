@@ -27,6 +27,23 @@ class ProductController extends Controller
         return view('store/create-product');
     }
 
+    public function show($store_slug, $product_slug)
+    {
+        $store = Store::where('slug',$store_slug)->first();
+        if(!$store){
+            return redirect()->route('base');
+        }
+        $product = $store->products()->where('slug',$product_slug)->orderBy('version','DESC')->first();
+        $variants = $product->variants()->get();
+        // dd($variants->first());
+        if(!$product){
+            return redirect()->route('store.show',$store_slug);
+        }
+        $template = $store->template()->first();
+        $popular_products = $store->products()->take(8)->get();
+        return view('store/templates/'.$template->code.'/product-detail',compact('store','popular_products','product','variants'));
+    }
+
     public function store(Request $request)
     {
         // dd($request);
