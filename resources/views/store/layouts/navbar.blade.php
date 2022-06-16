@@ -20,7 +20,7 @@
 
             <li class="nav-item dropdown no-arrow mx-1">
                 <div class="nav-item dropdown no-arrow">
-                    <a class="nav-link" href="{{route('store.show',$store->slug)}}">
+                    <a class="nav-link" href="{{route('store.show',Auth::user()->hasStore()->slug)}}">
                         <span class="see-store" >
                         <i class="fa-solid fa-store fa-fw"></i>Lihat Toko
                         </span>
