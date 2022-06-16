@@ -36,7 +36,8 @@ class StoreController extends Controller
         if(!$request->user()->hasStore()){
             return redirect()->route('store.create');
         }else{
-            return view ('store/dashboard');
+            $store = Auth::user()->hasStore();
+            return view ('store/dashboard',compact('store'));
         }
     }
 
