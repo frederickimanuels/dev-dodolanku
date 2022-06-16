@@ -588,8 +588,7 @@ div[data-acc-content]{
     height: 500px;
 }
 .varian-type{
-    margin-right: 10px;
-    margin-left: 10px;
+    margin-right: 20px;
     background-color: #189AB4;
     padding: 8px 15px;
     border-radius: 5px;

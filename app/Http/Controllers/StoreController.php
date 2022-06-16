@@ -19,7 +19,7 @@ class StoreController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('store.manage')->except('create');
+        $this->middleware('store.manage')->except('create','store');
     }
 
     public function index(Request $request)
@@ -95,7 +95,7 @@ class StoreController extends Controller
     {
         $this->validate($request, [
             'store_name' => 'required|unique:stores,name|max:60',
-            'store_slug' => 'required|unique:stores,slug|max:60',
+            'store_slug' => 'required|alpha_dash|unique:stores,slug|max:60',
             'store_address' => 'required|max:255',
             'province' => 'required',
             'city' => 'required|exists:cities,id',
