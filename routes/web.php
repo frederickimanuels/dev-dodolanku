@@ -25,6 +25,7 @@ Route::get('/profile','UserController@profile')->name('user.profile');
 
 
 Route::get('/cart','FrontendController@cart')->name('cart');
+Route::get('/cartshop','FrontendController@cartshop')->name('cart.shop');
 
 // Store Dashboard
 Route::get('/store', 'StoreController@index')->name('store.index');
