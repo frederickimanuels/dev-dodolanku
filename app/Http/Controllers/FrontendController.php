@@ -15,6 +15,10 @@ class FrontendController extends Controller
     {
         return view('cart/cart');
     }
+    public function cartshop()
+    {
+        return view('cart/listshop');
+    }
     public function category()
     {
         return view('frontend/category');
