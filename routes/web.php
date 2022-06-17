@@ -52,7 +52,7 @@ Route::get('/seed-template','TemplateController@store');
 
 
 Route::get('/cart','CartController@index')->name('cart');
-ROute::post('/buy-now','CartController@buyNow')->name('cart.buynow')
+ROute::post('/buy-now','CartController@buyNow')->name('cart.buynow');
 Route::get('/{storeSlug}','StoreController@show')->name('store.show');
 Route::get('/{storeSlug}/product','ProductController@list')->name('store.product.list');
 Route::get('/{storeSlug}/cart','CartController@show')->name('cart.show');
