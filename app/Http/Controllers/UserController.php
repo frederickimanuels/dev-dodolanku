@@ -12,4 +12,7 @@ class UserController extends Controller
     public function address(){
         return view('user/address');
     }
+    public function listOrder(){
+        return view('user/listOrder');
+    }
 }
