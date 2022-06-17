@@ -28,8 +28,10 @@ class CartController extends Controller
         $cart = Auth::user()->hasCart($store->id);
         $variants = $cart->variants()->get();
         $address = Auth::user()->address()->first();
-        $address->province = Province::where('id',$address->province_id)->first()->name;
-        $address->city = City::where('id',$address->city_id)->first()->name;
+        if($address){
+            $address->province = Province::where('id',$address->province_id)->first()->name;
+            $address->city = City::where('id',$address->city_id)->first()->name;
+        }
         return view('cart/cart',compact('store','cart','variants','address'));
     }
 
@@ -46,7 +48,16 @@ class CartController extends Controller
         $store = Store::find($request->store_id);
         $exist_cart = Auth::user()->hasCart($store->id);
         if($exist_cart){
-            dd("AA");
+            $cart = $exist_cart;
+            $cart_variant = $cart->hasVariant($request->variant_id);
+            // dd($cart_variant);
+            if($cart_variant){
+                $variant = $cart->changecountVariant($cart_variant->id,$cart_variant->variant_id,1);
+                return redirect()->route('cart.show',$store->slug);
+            }else{
+                $cart->variants()->attach($request->variant_id, ['count'=> $request->variant_quantity ]);
+            }
+            return redirect()->route('cart.show',$store->slug);
         }else{
             $cart = new Cart();
             $cart->save();
@@ -57,5 +68,16 @@ class CartController extends Controller
             $cart->variants()->attach($request->variant_id, ['count'=> $request->variant_quantity ]);
         }
         return redirect()->route('cart.show',$store->slug);
+    }
+
+    public function pay(Request $request){
+        dd($request);
+        // $this->validate($request, [
+        //     'store_id' => 'required|exists:stores,id',
+        //     'variant_id' => 'required|exists:variants,id',
+        //     'variant_quantity' => 'required|integer|min:1',
+        // ]);
+        $cart = Cart::where('id',$request->cart_id)->first();
+        // $cart
     }
 }
