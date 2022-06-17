@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Store;
 use App\Cart;
+use App\City;
+use App\Province;
 use App\Status;
 use App\Variant;
 use Illuminate\Http\Request;
@@ -19,13 +21,18 @@ class CartController extends Controller
     {
         return view('cart/cart-list');
     }
+
     public function show($slug)
     {
         $store = Store::where('slug',$slug)->first();
         $cart = Auth::user()->hasCart($store->id);
         $variants = $cart->variants()->get();
-        return view('cart/cart',compact('store','cart','variants'));
+        $address = Auth::user()->address()->first();
+        $address->province = Province::where('id',$address->province_id)->first()->name;
+        $address->city = City::where('id',$address->city_id)->first()->name;
+        return view('cart/cart',compact('store','cart','variants','address'));
     }
+
     public function create($slug)
     {
 

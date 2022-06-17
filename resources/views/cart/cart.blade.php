@@ -41,51 +41,18 @@
           <div class="container">
           <h1 class="cart-h1 delivery-h1">Delivery</h1>
             <div class="row">
-              <div class="col-6 col-sm-12 col-lg-6 col-md-6">
-                <div class="delivery-checkbox">
-                    <div class="card" style="width: 100%">
-                      <div class="card-body">
-                        <h5 class="card-title">Sicepat</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">1-3 Hari</h6>
-                        <p class="card-text">Rp.100.000</p>
+              <!-- Courier -->
+                <div class="col-6 col-sm-12 col-lg-6 col-md-6">
+                  <div class="delivery-checkbox">
+                      <div class="card" style="width: 100%">
+                        <div class="card-body">
+                          <h5 class="card-title">Sicepat</h5>
+                          <h6 class="card-subtitle mb-2 text-muted">1-3 Hari</h6>
+                          <p class="card-text">Rp.100.000</p>
+                        </div>
                       </div>
-                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="col-6 col-sm-12 col-lg-6 col-md-6">
-                <div class="delivery-checkbox">
-                    <div class="card" style="width: 100%">
-                      <div class="card-body">
-                        <h5 class="card-title">JnT</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">2-3 Hari</h6>
-                        <p class="card-text">Rp.60.000</p>
-                      </div>
-                    </div>
-                </div>
-              </div>
-              <div class="w-100"></div>
-              <div class="col-6 col-sm-12 col-lg-6 col-md-6">
-                <div class="delivery-checkbox">
-                    <div class="card" style="width: 100%">
-                      <div class="card-body">
-                        <h5 class="card-title">JnT</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">2-3 Hari</h6>
-                        <p class="card-text">Rp.60.000</p>
-                      </div>
-                    </div>
-                </div>
-              </div>
-              <div class="col-6 col-sm-12 col-lg-6 col-md-6">
-                <div class="delivery-checkbox">
-                    <div class="card" style="width: 100%">
-                      <div class="card-body">
-                        <h5 class="card-title">JnT</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">2-3 Hari</h6>
-                        <p class="card-text">Rp.60.000</p>
-                      </div>
-                    </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -96,13 +63,15 @@
       <div class="summary summary-address">
         <!-- <div class="summary-total-items"><span class="total-items"></span>Address</div> -->
         <div class="summary-delivery">
-          <select name="delivery-collection" class="summary-delivery-selection">
+          {{ $address->description }}</br>
+          {{ $address->province . '-' . $address->city }}
+          {{-- <select name="delivery-collection" class="summary-delivery-selection">
               <option value="0" selected="selected">Select Collection or Delivery</option>
              <option value="collection">Collection</option>
              <option value="first-class">Royal Mail 1st Class</option>
              <option value="second-class">Royal Mail 2nd Class</option>
              <option value="signed-for">Royal Mail Special Delivery</option>
-          </select>
+          </select> --}}
         </div>
       </div>
       <h1 class="cart-h1" >Summary</h1>
@@ -141,6 +110,34 @@
 
 @include('layouts.js')
 <!-- Add JS Here -->
-
+<script>
+  $(document).ready(function(){
+    $('.checkout-cta').on('click',function(){
+      calculateOngkir();
+    });
+    function calculateOngkir(){
+      var formData = {
+        origin: 1,
+        destination: 200,
+        weight: 2000,
+        courier: 'jne',
+      };
+      $.ajax({
+        type: "POST",
+        url: "https://api.rajaongkir.com/starter/cost",
+        headers: {
+            'Content-Type':'application/x-www-form-urlencoded',
+            'key':'f17773ff1279822ff97bb9ba2767d682',
+        },
+        data: formData,
+        dataType: "json",
+        encode: true,
+        success: function (result) {
+          console.log(result);
+        }
+      });
+    }
+  });
+</script>
 <!-- End JS -->
 @include('layouts.footer')
