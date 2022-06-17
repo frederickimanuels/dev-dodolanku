@@ -12,7 +12,7 @@ class Cart extends Model
     }
     public function status()
     {
-        return $this->belongsToMany(Status::class, 'status_carts');
+        return $this->belongsToMany(Status::class, 'cart_status');
     }
     public function address()
     {
