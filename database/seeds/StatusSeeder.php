@@ -26,5 +26,17 @@ class StatusSeeder extends Seeder
         DB::table('status')->insert([
             'name' => 'cancel',
         ]);
+
+        DB::table('status')->insert([
+            'name' => 'process',
+        ]);
+
+        DB::table('status')->insert([
+            'name' => 'ship',
+        ]);
+
+        DB::table('status')->insert([
+            'name' => 'complete',
+        ]);
     }
 }
