@@ -4,17 +4,6 @@
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 
-
-<!-- 
-<script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/slick.min.js')}}"></script> -->
-
-
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
-
-
-
-<!-- <script src="{{asset('templates/dashboard/bootstrap/js/bootstrap.min.js')}}"></script> -->
 <script src="{{asset('templates/dashboard/js/chart.min.js')}}"></script>
 <script src="{{asset('templates/dashboard/js/bs-init.js')}}"></script>
 <script src="{{asset('templates/dashboard/js/theme.js')}}"></script>

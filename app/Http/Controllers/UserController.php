@@ -17,4 +17,7 @@ class UserController extends Controller
         $provinces = Province::all();
         return view('user/address',compact('provinces','address'));
     }
+	public function listOrder(){
+        return view('user/listOrder');
+    }
 }

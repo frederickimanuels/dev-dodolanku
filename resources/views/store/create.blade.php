@@ -1,7 +1,15 @@
 @include('store.layouts.header')
 
 @include('layouts.navbar-home')
-
+<style>
+  div[data-acc-content] { display: none;  }
+  div[data-acc-step]:not(.open) { 
+        /* background: #f2f2f2;     */
+        color: green;
+    }
+  /* div[data-acc-step]:not(.open) h5 { color: #777;  } */
+  /* div[data-acc-step]:not(.open) .badge-primary { background: #ccc;  } */
+</style>
 <section id="createStore" class="display-desktop">
     <div class="createStore-inner">
         <div class="container">
@@ -13,7 +21,8 @@
                     <div class="createStore-outer-form">
                         <div class="row">
                             <div class="col-1 border-line">
-                                
+                            <img src="{{asset('images/homepage/elips.png')}}" alt="">
+
                             </div>
                             <div class="col-11">
                                 <h3>Halo,<span style="font-weight:bold">{{explode(' ', Auth::user()->name, 2)[0]}}</span> ayo isi detail toko anda</h3>
@@ -23,7 +32,7 @@
                                         <label class="form-label mt-10">Email anda</label>
                                         <span>{{Auth::user()->email}}</span>
                                     </div>
-                                    <div class="form-group" data-acc-step>
+                                    <div class="form-group" id="form-create" data-acc-step>
                                         <label for="store_name" class="form-label form-label-1" ata-acc-title>Nama Toko dan Link Toko</label>
                                         <div data-acc-content>
                                             <label for="store_name">Nama toko</label>
@@ -46,7 +55,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group" data-acc-step>
+                                    <div class="form-group" id="form-create" data-acc-step>
                                         <label class="form-label form-label-1" ata-acc-title>Masukkan Alamat Tokomu</label>
                                         <div data-acc-content>
                                             <label for="province">Provinsi dan Kota</label>
@@ -79,7 +88,7 @@
                                             <small style="display:flex;margin-bottom:10px" class="form-text text-muted">Pastikan Alamat toko yang diisi sudah benar</small>
                                         </div>
                                     </div>
-                                    <div class="form-check" data-acc-step>
+                                    <div class="form-check" id="form-create" data-acc-step>
                                         <div data-acc-content style="position:relative">
                                             <input type="checkbox" class="form-check-input" id="terms" name="terms">
                                             <label class="form-check-label" for="terms">Agree to our Terms & Conditons</label>
@@ -88,13 +97,9 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <!-- <div class="d-flex justify-content-center">
-                                        <button type="submit" class="btn createStore-btn">Buat Toko Gratis</button>
-                                    </div> -->
                                 </form>
                             </div>
                         </div>
-                       
                     </div>
                 </div>
             </div>
@@ -106,6 +111,19 @@
 @include('store.layouts.js')
 <!-- Add Js Here -->
 <script>
+    
+    // $(function() {
+    //     $( "#form" ).accordionForm({
+    //         mode: 'accordion',
+    //         autoButtonsNextClass: 'btn btn-primary float-right',
+    //         autoButtonsPrevClass: 'btn btn-light',
+    //         stepNumberClass: 'badge badge-pill badge-primary mr-1',
+    //         onSubmit: function() {
+    //         alert('Form submitted!');
+    //         return true;
+    //         }
+    //     });
+    // });
     $(function(){
         $("#form-1").accWizard({
             autoButtons: true,
@@ -121,6 +139,17 @@
             start:0,
             stepNumbers:true,
             stepNumberClass:'',
+        });
+    });
+    $(document).ready(function(){
+        $("#form-create").click(function(){
+            // if(document.getElementById("store_name").value.length == 0)
+            // {
+                
+            // }
+            if($('data-acc-step').hasClass("open")){
+                    console.log("aaa")
+                }
         });
     });
 

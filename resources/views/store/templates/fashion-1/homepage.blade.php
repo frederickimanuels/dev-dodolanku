@@ -57,13 +57,15 @@
         position: absolute;
     }
     .store-home{
-        padding-top: 40px;
-        max-width: 95%;
-        padding-bottom: 50px;
+        /* padding-top: 40px; */
+        max-width: 100%;
+        padding: 0;
+        /* padding-bottom: 50px; */
     }
     .store-content{
         max-width: 80%;
         padding-bottom: 50px;
+        padding-top: 40px;
     }
     .store-content h1{
         color: var(--textColor2);
