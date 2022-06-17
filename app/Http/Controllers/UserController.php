@@ -9,27 +9,43 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function profile(){
         return view('user/profile');
     }
 
     public function address(Request $request){
-        $address = Auth::user()->address()->first();
         $provinces = Province::all();
-        return view('user/address',compact('provinces','address'));
+        return view('user/address',compact('provinces'));
     }
 
-    public function seed_address(){
+    public function storeAddress(Request $request){
+        $this->validate($request, [
+            'province' => 'required',
+            'city' => 'required|exists:cities,id',
+            'description' => 'required|string|min:10',
+        ]);
+        $old_address = Auth::user()->address()->orderBy('created_at','ASC')->first();
+        if($old_address){
+            $old_address->delete();
+        }
+
         $address = new Address();
-        $address->description = "Jl magelang no 129";
-        $address->province_id = 11;
-        $address->city_id = 248;
+        $address->description = $request->description;
+        $address->province_id = $request->province;
+        $address->city_id = $request->city;
         $address->save();
 
         $address->users()->attach(Auth::user()->id);
+
+        return redirect()->route('user.address');
     }
 
-	public function listOrder(){
+	public function orders(){
         return view('user/listOrder');
     }
 }

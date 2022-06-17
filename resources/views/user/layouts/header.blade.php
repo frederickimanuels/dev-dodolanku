@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <!-- <link rel="stylesheet" type="text/css" href="slick/slick.css"/> -->
     <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet" type='text/css'>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <!-- // Add the new slick-theme.css if you want the default styling -->
     <!-- <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/> -->
 

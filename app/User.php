@@ -65,7 +65,7 @@ class User extends Authenticatable
     public function hasCart($store_id)
     { 
         $cart = $this->carts()
-                    ->join('status_carts','status_carts.cart_id','=','carts.id')
+                    ->join('cart_status','cart_status.cart_id','=','carts.id')
                     ->join('cart_stores','cart_stores.cart_id','=','carts.id')
                     ->where('status_id',1)
                     ->where('store_id',$store_id)->first();
@@ -79,6 +79,11 @@ class User extends Authenticatable
     public function address()
     {
         return $this->belongsToMany(Address::class, 'address_users');
+    }
+
+    public function currentAddress()
+    {
+        return $this->address()->orderBy('created_at','DESC')->first();
     }
 
     protected static function booted(){
