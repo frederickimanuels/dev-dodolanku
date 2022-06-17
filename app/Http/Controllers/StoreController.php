@@ -69,6 +69,10 @@ class StoreController extends Controller
     public function search(){
         return view('store/search');
     }
+    public function editTemplate()
+    {
+        return view('store/edit-template');
+    }
     /**
      * Show the form for creating a new resource.
      *
