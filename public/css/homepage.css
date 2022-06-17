@@ -1307,7 +1307,39 @@ aside {
 /* product cart */
 
 /* List Cart Shop */
-
+#shop-cart-list{
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.shop-list{
+  background-color:pink;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+.shop-list h2{
+  font-size: 24px;
+  font-family: Montserrat-Bold;
+  line-height: 32px;
+}
+.shop-list h3{
+  font-size: 18px;
+  font-family: Montserrat-Regular;
+  line-height: 27px;
+}
+.shop-list span{
+  font-size: 18px;
+  font-family: Montserrat-Bold;
+  line-height: 27px;
+  color: red;
+}
+.shop-list button{
+  font-size: 18px;
+  font-family: Montserrat-Bold;
+  line-height: 27px;
+  color: white;
+  padding: 10px 20px;
+}
 
 /* END Cart Shop */
 
