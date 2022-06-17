@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomepageController@index')->name('base');
 Route::get('/about', 'HomepageController@about')->name('about');
 Route::get('/feature','HomepageController@feature')->name('feature');
+Route::get('/null','HomepageController@null')->name('null');
 
 Auth::routes();
 

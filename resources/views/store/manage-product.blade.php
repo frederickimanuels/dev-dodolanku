@@ -1,5 +1,24 @@
 @include('store.layouts.header')
-
+<style>
+    a{
+        color: #5b5b5b;
+        text-decoration: none;
+    }
+    a:hover{
+        color: #5b5b5b;
+    }
+    .h1-dashboard{
+        font-size: 32px;
+    }
+    /* .pagination{
+        justify-content: center;
+    }
+    .page-link{
+        font-family: Montserrat-Medium;
+        font-size: 16px;
+        color: #000000;
+    } */
+</style>
 <div id="wrapper">
         @include('store.layouts.sidebar')
         <div class="d-flex flex-column" id="content-wrapper">
@@ -134,6 +153,8 @@
                         </div>
                     </div>
                 </div>
+                {!! $products->links() !!}
+
             </div>
             <!-- <footer class="bg-white sticky-footer">
                 <div class="container my-auto">

@@ -134,6 +134,13 @@
             line-height: 23px;
             color: var(--textColor2);
         }
+        .pagination{
+            justify-content: end;
+        }
+        .page-item.active .page-link{
+            background-color: var(--bgcolor3);
+            color: var(--textColor2);
+        }
        
 </style>
 <section id="aboutus-banner">
@@ -277,6 +284,10 @@
                     @endforeach
                 </div>
             </div>
+        </div>
+        <div class="row mt-3">
+        {!! $products->links() !!}
+
         </div>
     </div>
 </section>
