@@ -665,6 +665,13 @@ div[data-acc-content]{
     font-size: 14px;
     line-height: 21px;
 }
+
+/* Address */
+.address-list{
+    background-color: #E5E5E5;
+}
+
+/* ENd Address */
 @media screen and (max-width:1199px){
     #variantTable{
         width: 1000px;
