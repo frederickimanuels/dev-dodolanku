@@ -1,6 +1,6 @@
 @include('store.layouts.header')
 
-@include('layouts.navbar-home')
+@include('store.layouts.navbar-home')
 
 <style>
      :root{
@@ -139,7 +139,7 @@
 <section id="aboutus-banner">
     <div class="container banner-text">
         <img src="{{asset('images/homepage/hyundai.jpg')}}" alt=".." class="aboutus-img">
-        <h1>Kategori Produk</h1>
+        <h1>Produk</h1>
     </div>
     <div class="container bootdey">
         <div class="row search-filter-wrapper">
@@ -191,7 +191,7 @@
                         </ul>
                     </div>
                     <!-- <div class="break-line"></div> -->
-                    <header class="panel-heading panel-filter">
+                    {{-- <header class="panel-heading panel-filter">
                         <h1>Material</h1>
                     </header>
                     <div class="panel-body ">
@@ -221,7 +221,7 @@
                                 </div>
                             </li>
                         </ul>
-                    </div>
+                    </div> --}}
                     <header class="panel-heading panel-filter">
                         <h1>Harga</h1>
                     </header>
@@ -258,66 +258,23 @@
             </div>
             <div class="col-md-9">
                 <div class="row product-list">
-                    <div class="col-md-3">
-                        <div class="card">
-                            <img class="card-img-top" src="{{asset('images/homepage/bag-1.png')}}" alt="Card image cap">
-                            <div class="card-body popular-card-text">
-                                <h5 class="card-text">Praide Designer Shoulder Bags 2020</h5>
-                                <h6>Rp. 750.000</h6>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="rating-text">(127)</span>
-                            </div>
+                    @foreach($products as $product)
+                        <div class="col-md-3">
+                            <a href="{{ route('store.product.show',[$store->slug,$product->slug]) }}" class="card" style="text-decoration: none;color:inherit;">
+                                <img class="card-img-top" src="{{asset('images/homepage/bag-1.png')}}" alt="Card image cap">
+                                <div class="card-body popular-card-text">
+                                    <h5 class="card-text">{{ $product->name }}</h5>
+                                    <h6>Rp {{number_format($product->variants()->orderBy('price','ASC')->first()->price,0,',','.')}}</h6>
+                                    {{-- <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="rating-text">(127)</span> --}}
+                                </div>
+                            </a>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card">
-                            <img class="card-img-top" src="{{asset('images/homepage/bag-1.png')}}" alt="Card image cap">
-                            <div class="card-body popular-card-text">
-                                <h5 class="card-text">Praide Designer Shoulder Bags 2020</h5>
-                                <h6>Rp. 750.000</h6>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="rating-text">(127)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card">
-                            <img class="card-img-top" src="{{asset('images/homepage/bag-1.png')}}" alt="Card image cap">
-                            <div class="card-body popular-card-text">
-                                <h5 class="card-text">Praide Designer Shoulder Bags 2020</h5>
-                                <h6>Rp. 750.000</h6>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="rating-text">(127)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card">
-                            <img class="card-img-top" src="{{asset('images/homepage/bag-1.png')}}" alt="Card image cap">
-                            <div class="card-body popular-card-text">
-                                <h5 class="card-text">Praide Designer Shoulder Bags 2020</h5>
-                                <h6>Rp. 750.000</h6>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="rating-text">(127)</span>
-                            </div>
-                        </div>
-                    </div> 
+                    @endforeach
                 </div>
             </div>
         </div>

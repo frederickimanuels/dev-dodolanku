@@ -24,8 +24,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile','UserController@profile')->name('user.profile');
 
 
-Route::get('/cart','FrontendController@cart')->name('cart');
-Route::get('/cartshop','FrontendController@cartshop')->name('cart.shop');
 
 // Store Dashboard
 Route::get('/store', 'StoreController@index')->name('store.index');
@@ -53,6 +51,10 @@ Route::get('/location/getCities/{province}','LocationController@getCities');
 Route::get('/seed-template','TemplateController@store');
 
 
-Route::get('/{slug}','StoreController@show')->name('store.show');
+Route::get('/cart','CartController@index')->name('cart');
+ROute::post('/buy-now','CartController@buyNow')->name('cart.buynow')
+Route::get('/{storeSlug}','StoreController@show')->name('store.show');
+Route::get('/{storeSlug}/product','ProductController@list')->name('store.product.list');
+Route::get('/{storeSlug}/cart','CartController@show')->name('cart.show');
 Route::get('/{storeSlug}/{productSlug}','ProductController@show')->name('store.product.show');
 // Route::get('/category','FrontendController@category')->name('category');

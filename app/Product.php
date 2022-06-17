@@ -23,4 +23,8 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class, 'category_products');
     }
+
+    // public function priceBelow($limit){
+    //     return $this->variants()->where('')
+    // }
 }

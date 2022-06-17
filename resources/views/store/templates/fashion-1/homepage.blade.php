@@ -1,6 +1,6 @@
 @include('store.layouts.header')
 
-@include('layouts.navbar-home')
+@include('store.layouts.navbar-home')
 
 <style>
     :root{

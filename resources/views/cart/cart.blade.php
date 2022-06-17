@@ -14,7 +14,7 @@
         </ul>
       </div> -->
       <div id="details">
-        <h1 class="cart-h1" >Order</h1>
+        <h1 class="cart-h1">Order</h1>
         <div class="basket-product">
           <div class="basket-item">
             <div class="product-image">

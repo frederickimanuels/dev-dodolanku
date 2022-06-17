@@ -29,6 +29,33 @@ class ProductController extends Controller
         return view('store/create-product');
     }
 
+    public function list($store_slug, Request $request)
+    {
+        $store = Store::where('slug',$store_slug)->first();
+        $template = $store->template()->first();
+        if(!$store){
+            return redirect()->route('base');
+        }
+        // $products = $store->products()->get();
+        $products = $store->activeProducts();
+        if (request()->priceMin != "" or request()->priceMax != "" ) {
+            $products = $products->join('variant_products','products.id','=','variant_products.product_id')
+                                    ->join('variants','variants.id','=','variant_products.variant_id');
+            if(request()->priceMin != ""){
+                $products = $products->where('variants.price', '>=', request()->priceMin);
+            }
+            if(request()->priceMax != ""){
+                $products = $products->where('variants.price', '<=', request()->priceMax);
+            }
+        }
+        if (request()->get('keywords') != "") {
+            $products = $products->where('products.name', 'LIKE', '%' . request()->get('keywords') . '%');
+        }
+        $products = $products->orderBy('products.created_at', 'desc')->paginate(20);
+        $products->appends(request()->all());
+        return view('store/templates/'.$template->code.'/search',compact('store','products'));
+    }
+
     public function show($store_slug, $product_slug)
     {
         $store = Store::where('slug',$store_slug)->first();

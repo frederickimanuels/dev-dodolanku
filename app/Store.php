@@ -20,4 +20,9 @@ class Store extends Model
     {
         return $this->belongsToMany(Template::class, 'template_stores');
     }
+
+    public function activeProducts()
+    {
+        return $this->products()->where('products.is_active','1');
+    }
 }

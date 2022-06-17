@@ -1,49 +1,109 @@
-<section id="homepage-navbar">
-<nav class="navbar navbar-expand navbar-homepage shadow topbar static-top">
-    <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
-    <a class="navbar-brand" href="#">Ini Logo</a>
-        <ul class="navbar-nav mx-auto text-md-center text-left">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Category</a> 
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Store</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">About Us</a> 
-            </li>
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-homepage">
+    <div class="container-fluid navbar-container">
+      <button class="navbar-toggler navbar-burger-btn" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Navbar brand -->
+        <a class="navbar-brand mt-2 mt-lg-0" href="#">
+          <img src="" height="15" alt=".." loading="lazy"/>
+        </a>
+        <!-- Left links -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('store.show',$store->slug) }}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('store.product.list',$store->slug) }}">Products</a>
+          </li>
+           <li>
+          <input autocomplete="off" type="search" class="form-control rounded" placeholder="Search" style="min-width: 125px;"/>
+          </li>
         </ul>
-        <ul class="navbar-nav flex-nowrap ms-auto">
-            <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">Cari</i></a>
-                <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in" aria-labelledby="searchDropdown">
-                    <form class="me-auto navbar-search w-100">
-                        <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="">
-                            <div class="input-group-append"><button class="btn btn-primary py-0" type="button">Cari</button></div>
-                        </div>
-                    </form>
-                </div>
-            </li>
-            <li class="nav-item dropdown no-arrow mx-1">
-                <div class="nav-item dropdown no-arrow">
-                  <div class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
-                  <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
-                      <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder=""><button class="btn btn-primary py-0" type="button">Cari</button></div>
-                  </form>                    
-                  </div>   
-                </div>
-            </li>
-            <div class="d-none d-sm-block topbar-divider"></div>
-            <li class="nav-item dropdown no-arrow">
-                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-white-600 small">Juan FW</span><img class="border rounded-circle img-profile" src="{{asset('images/homepage/profile1.jpg')}}"></a>
-                    <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
-                        <a class="dropdown-item" href="#"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profil</a>
-                        <a class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Setting</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
-                    </div>
-                </div>
-            </li>
+      </div>
+  
+      
+  
+      <!-- Right elements -->
+      <div class="d-flex align-items-center">
+        {{-- <a class="text-reset me-3" href="#">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </a> --}}
+        <!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li>
+          <input autocomplete="off" type="search" class="form-control rounded" placeholder="Search" style="min-width: 100px;"/>
+          </li>
+        </ul> -->
+        <!-- Appear When Not Login -->
+        @if(Auth::guest())
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('login') }}">Sign In</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('register') }}">Sign Up</a>
+          </li>
+  
         </ul>
+        @endif
+        <!-- End Appear When Not Login -->
+  
+  
+  
+        <!-- Appear when login -->
+        @if(!Auth::guest())
+          <a class="text-reset me-3" href="{{route('cart.show',$store->slug)}}">
+              <i class="fa-solid fa-shopping-cart"></i>
+          </a>
+  
+          <!-- Appear When don't have shop -->
+          @if(!Auth::user()->hasStore())
+            <div class="shop-outer">
+              <a class="text-reset shop-icon" href="{{ route('store.create') }}">
+                {{-- <i class="fa-solid fa-shop"></i> --}}
+                <span class="navbar-shop-create">Create Your Site</span>
+              </a>
+            </div>
+          @endif
+  
+          <!-- Appear When have shop -->
+          @if(Auth::user()->hasStore())
+            <div class="shop-outer">
+              <a class="text-reset shop-icon" href="{{ route('store.dashboard') }}">
+                <i class="fa-solid fa-shop"></i>
+                <span class="navbar-shop-name">{{ Auth::user()->hasStore()->name }}</span>
+              </a>
+            </div>
+          @endif
+  
+  
+          <div class="dropdown">
+            <a class="dropdown-toggle d-flex align-items-center hidden-arrow navbar-profile" href="#" id="navbarDropdownMenuAvatar" role="button" data-toggle="dropdown" aria-expanded="false">
+              <strong class="d-none d-sm-block ms-1 me-2">Hi, {{Auth::check() ? explode(' ', Auth::user()->name, 2)[0] : 'User'}}</strong>
+            
+              <img src="{{asset('images/homepage/profile1.jpg')}}" class="rounded-circle" height="25"alt="Black and White Portrait of a Man" loading="lazy"/>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+              <li>
+                <a class="dropdown-item" href="{{ route('user.profile') }}">My profile</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Orders</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                  Logout
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                  @csrf
+                </form>
+              </li>
+            </ul>
+          </div>
+        @endif
+        <!-- End Appear Login -->
+  
+      </div>
     </div>
-</nav>
-</section>
+  </nav>
+  
