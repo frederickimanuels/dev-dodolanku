@@ -1013,7 +1013,13 @@ aside {
   line-height: 27px;
   color: #000000;
 }
+/* List Order User */
+.order-detail-wrapper{
+  
+}
 
+
+/* ENd list order User */
 @media screen and (max-width:1199px){
   .display-desktop{
     display: none;
