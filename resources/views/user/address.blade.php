@@ -80,7 +80,6 @@
 
 @include('layouts.js')
 <!-- Add JS Here -->
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
 <script>
     $(document).ready(function(){
         $("#province").on("change", function () {

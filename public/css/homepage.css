@@ -1015,7 +1015,7 @@ aside {
 }
 /* List Order User */
 .order-detail-wrapper{
-  
+
 }
 
 
@@ -1318,8 +1318,10 @@ aside {
   padding-bottom: 50px;
 }
 .shop-list{
-  background-color:pink;
+  /* background-color:pink; */
   padding: 10px 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
   border-radius: 5px;
   margin: 10px 0;
 }
@@ -1784,6 +1786,9 @@ aside {
   }
   #homepage-row-3{
     margin-top: 0px;
+  }
+  .shop-list{
+    padding: 10px 5px;
   }
   
 }
