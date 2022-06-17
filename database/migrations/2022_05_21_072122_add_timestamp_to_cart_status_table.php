@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrderstatusTable extends Migration
+class AddTimestampToCartStatusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,7 @@ class CreateOrderstatusTable extends Migration
      */
     public function up()
     {
-        Schema::create('orderstatus', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+        Schema::table('cart_status', function (Blueprint $table) {
             $table->timestamps();
         });
     }
@@ -27,6 +25,9 @@ class CreateOrderstatusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orderstatus');
+        Schema::table('cart_status', function (Blueprint $table) {
+            Schema::dropIfExists('created_at');
+            Schema::dropIfExists('updated_at');
+        });
     }
 }

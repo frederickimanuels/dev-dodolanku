@@ -354,45 +354,49 @@
                     </div>
                 </div>
                 <div class="col-xl-6 col-12">
-                    <div class="detail-product">
-                        <div class="detail-product-name">
-                            <h2>{{ $product->name }}</h2>
-                            {{-- <div class="product-rating">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="rating-text">(127)</span>
-                            </div> --}}
-                        </div>
-                        <h3 id="variant-price">Rp {{number_format($product->variants()->orderBy('price','ASC')->first()->price,0,',','.')}}</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas velit pariatur sequi. Beatae esse distinctio sunt. Magni, optio necessitatibus minima omnis aliquam dolores at natus enim officia accusamus aperiam suscipit?</p>
-                        <div class="detail-product-variant">
-                            @if(count($variants) == 1 && $variants->first()->name == 'default')
-                            <input type="hidden" name="variant_name" value="default">
-                            @else
-                            <label for="form-select">Variasi</label>
-                            <select class="form-select" aria-label="variant select" name="variant_name">
-                                <option selected>Pilih Varian</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                            @endif
-                            <label for="form-select">Jumlah</label>
-                            <div class="quantity buttons_added">
-                                <input type="button" value="-" class="minus">
-                                <input type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="" inputmode="">
-                                <input type="button" value="+" class="plus">
+                    <form method="POST" action="{{ route('cart.buynow') }}">
+                        @csrf
+                        <div class="detail-product">
+                            <div class="detail-product-name">
+                                <h2>{{ $product->name }}</h2>
+                                {{-- <div class="product-rating">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="rating-text">(127)</span>
+                                </div> --}}
+                            </div>
+                            <h3 id="variant-price">Rp {{number_format($product->variants()->orderBy('price','ASC')->first()->price,0,',','.')}}</h3>
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas velit pariatur sequi. Beatae esse distinctio sunt. Magni, optio necessitatibus minima omnis aliquam dolores at natus enim officia accusamus aperiam suscipit?</p>
+                            <div class="detail-product-variant">
+                                <input type="hidden" name="store_id" value="{{ $store->id }}">
+                                @if(count($variants) == 1 && $variants->first()->name == 'default')
+                                <input type="hidden" name="variant_id" value="{{ $variants->first()->id }}">
+                                @else
+                                <label for="form-select">Variasi</label>
+                                <select class="form-select" aria-label="variant select" name="variant_name">
+                                    <option selected>Pilih Varian</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                                @endif
+                                <label for="form-select">Jumlah</label>
+                                <div class="quantity buttons_added">
+                                    <input type="button" value="-" class="minus">
+                                    <input type="number" step="1" min="1" max="" name="variant_quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="" inputmode="">
+                                    <input type="button" value="+" class="plus">
+                                </div>
+                            </div>
+                            <div class="detail-product-navigation">
+                                <button type="submit" class="btn btn-buy-now">Beli Sekarang</button>
+                                <button type="button" class="btn btn-add-cart">Masukkan Keranjang</button>
+                                <button type="button" class="btn btn-share">Bagikan Produk</button>
                             </div>
                         </div>
-                        <div class="detail-product-navigation">
-                            <button type="button" class="btn btn-buy-now">Beli Sekarang</button>
-                            <button type="button" class="btn btn-add-cart">Masukkan Keranjang</button>
-                            <button type="button" class="btn btn-share">Bagikan Produk</button>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <div class="product-desc">

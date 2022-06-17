@@ -15,23 +15,24 @@
       </div> -->
       <div id="details">
         <h1 class="cart-h1">Order</h1>
-        <div class="basket-product">
-          <div class="basket-item">
-            <div class="product-image">
-              <img src="{{asset('images/homepage/profile1.jpg')}}" alt="Placholder Image 2" class="product-frame">
+        @foreach($variants as $variant)
+          <div class="basket-product">
+            <div class="basket-item">
+              <div class="product-image">
+                <img src="{{asset('images/homepage/profile1.jpg')}}" alt="Placholder Image 2" class="product-frame">
+              </div>
+              <div class="product-details">
+                <h1><strong>{{ $variant->product()->first()->name }}</strong></h1>
+                <p><strong>{{ $variant->name == 'default' ? '' : $variant->name }}</strong></p>
+              </div>
             </div>
-            <div class="product-details">
-              <h1><strong>Hoddie Kece</strong></h1>
-              <p><strong>Navy, Size 10</strong></p>
-              <p><strong>Navy, Size 10</strong></p>
+            <div class="price">Rp {{number_format($variant->price,0,',','.')}}</div>
+            <div class="quantity">
+              <input type="text" value="{{ $variant->pivot->count }}" class="quantity-field">
             </div>
+            <div class="subtotal">Rp {{number_format($variant->price * $variant->pivot->count,0,',','.')}}</div>
           </div>
-          <div class="price">26.00</div>
-          <div class="quantity">
-            <input type="number" value="1" min="1" class="quantity-field">
-          </div>
-          <div class="subtotal">26.00</div>
-        </div>
+        @endforeach
       </div>
 
 
