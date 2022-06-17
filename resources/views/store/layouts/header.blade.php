@@ -10,6 +10,7 @@
 
     <link type="text/css" rel="stylesheet" href="{{asset('js/dist/image-uploader.min.css')}}">
     
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
     <link rel="stylesheet" href="{{asset('css/homepage.css')}}">
     <link rel="stylesheet" href="{{asset('css/dashboard.css')}}">
