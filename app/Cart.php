@@ -26,4 +26,24 @@ class Cart extends Model
     {
         return $this->belongsToMany(Store::class, 'cart_stores');
     }
+
+    public function hasVariant($variant_id)
+    { 
+        $cart = $this->join('cart_variants','cart_variants.cart_id','=','carts.id')
+                    ->where('variant_id',$variant_id)
+                    ->first();
+        if($cart){
+            return $cart;
+        }else{
+            return false;
+        }
+    }
+    public function changecountVariant($cart_id,$variant_id,$add)
+    {
+        $cart = $this->where('id',$cart_id)->first();
+        $cart = $cart->variants()->where('id',$variant_id)->first();
+        $cart->pivot->count = $cart->pivot->count + $add;
+        $cart->pivot->save();
+        return $cart;
+    }
 }
