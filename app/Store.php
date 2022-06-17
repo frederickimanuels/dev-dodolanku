@@ -25,4 +25,8 @@ class Store extends Model
     {
         return $this->products()->where('products.is_active','1');
     }
+    public function carts()
+    {
+        return $this->belongsToMany(Cart::class, 'cart_stores');
+    }
 }

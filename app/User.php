@@ -57,6 +57,25 @@ class User extends Authenticatable
         return $this->stores()->first();
     }
 
+    public function carts()
+    {
+        return $this->belongsToMany(Cart::class, 'cart_users');
+    }
+
+    public function hasCart($store_id)
+    { 
+        $cart = $this->carts()
+                    ->join('status_carts','status_carts.cart_id','=','carts.id')
+                    ->join('cart_stores','cart_stores.cart_id','=','carts.id')
+                    ->where('status_id',1)
+                    ->where('store_id',$store_id)->first();
+        if($cart){
+            return $cart;
+        }else{
+            return false;
+        }
+    }
+
     protected static function booted(){
         
     }

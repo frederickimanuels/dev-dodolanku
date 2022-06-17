@@ -15,10 +15,5 @@ class TemplateSeeder extends Seeder
             'name' => 'Fashion Elegant',
             'code' => 'fashion-1'
         ]);
-
-        DB::table('template_stores')->insert([
-            'store_id' => '1',
-            'template_id' => '1'
-        ]);
     }
 }

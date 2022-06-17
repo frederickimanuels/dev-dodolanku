@@ -109,6 +109,7 @@ class StoreController extends Controller
 
         $user = User::find(Auth::user()->id);
         $user->stores()->attach($store->id);
+        $store->template()->attach(1);
 
         return redirect()->route('store.dashboard');
     }
