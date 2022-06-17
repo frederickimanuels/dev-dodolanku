@@ -23,8 +23,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile','UserController@profile')->name('user.profile');
 Route::get('/address','UserController@address')->name('user.address');
-Route::get('/listorder','UserController@listOrder')->name('user.order');
-
 
 
 // Store Dashboard

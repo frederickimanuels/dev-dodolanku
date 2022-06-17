@@ -10,4 +10,8 @@ class Address extends Model
     {
         return $this->belongsToMany(Cart::class, 'cart_addresses');
     }
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'address_users');
+    }
 }

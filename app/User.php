@@ -76,6 +76,11 @@ class User extends Authenticatable
         }
     }
 
+    public function address()
+    {
+        return $this->belongsToMany(Address::class, 'address_users');
+    }
+
     protected static function booted(){
         
     }
