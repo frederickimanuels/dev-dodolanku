@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStatusCartsTable extends Migration
+class CreateCartStatusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateStatusCartsTable extends Migration
      */
     public function up()
     {
-        Schema::create('status_carts', function (Blueprint $table) {
+        Schema::create('cart_status', function (Blueprint $table) {
             $table->unsignedBigInteger('status_id');
             $table->unsignedBigInteger('cart_id');
             $table->unique(['status_id','cart_id']);
@@ -30,6 +30,6 @@ class CreateStatusCartsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('status_carts');
+        Schema::dropIfExists('cart_status');
     }
 }
