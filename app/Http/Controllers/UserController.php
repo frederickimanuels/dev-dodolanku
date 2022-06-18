@@ -52,8 +52,9 @@ class UserController extends Controller
         $carts = Auth::user()->carts();
         $carts = $carts->join('cart_status','cart_status.cart_id','=','carts.id')
                     ->where('status_id','<>','1')
+                    ->whereNull('cart_status.deleted_at')
                     ->orderBy('cart_status.created_at','DESC')
-                    ->paginate(2);
+                    ->paginate(10);
         return view('user/listOrder',compact('carts'));
     }
     

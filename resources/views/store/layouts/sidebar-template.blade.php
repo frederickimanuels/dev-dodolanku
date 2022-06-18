@@ -18,8 +18,8 @@
             <div class="panel">
                 <ul>
                     <li id="btn-banner-home">Banner Homepage</li>
-                    <li id="btn-banner-search">Banner Search</li>
-                    <li id="btn-banner-category">Banner Kategori</li>
+                    <li id="btn-banner-search">Banner Kategori</li>
+                    <li id="btn-banner-category">Banner Products</li>
                 </ul>
             </div>
 

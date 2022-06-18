@@ -38,7 +38,6 @@ Route::post('/address','UserController@storeAddress')->name('user.address.store'
 Route::get('/orders','UserController@orders')->name('user.order');
 Route::get('/orders/{reference_no}','UserController@detailOrders')->name('user.order.detail');
 
-
 // Store
 Route::get('/store', 'StoreController@index')->name('store.index');
 Route::get('/store/dashboard','StoreController@dashboard')->name('store.dashboard');
@@ -47,23 +46,23 @@ Route::post('/create-store','StoreController@store')->name('store.store');
 Route::get('/store/manage','StoreController@edit')->name('store.manage');
 Route::post('/store/update','StoreController@update')->name('store.update');
 
+Route::get('/store/list-order','CartController@listOrder')->name('store.order');
 
 // Product
 Route::get('/store/manage-product','ProductController@index')->name('store.product.manage');
 Route::get('/store/add-product','ProductController@create')->name('store.product.add');
 Route::post('/store/add-product','ProductController@store')->name('store.product.store');
 
-Route::get('/store/list-order','CartController@listOrder')->name('store.order');
 
 Route::get('/create-product','StoreController@createProduct')->name('store.createProduct');
 // Route::get('/detail-product','StoreController@detailProduct')->name('store.detailProduct');
 
+// Template
 Route::get('/store/template','TemplateController@index')->name('store.template');
 Route::get('/store/template/list','TemplateController@list')->name('store.template.list');
+Route::post('/store/template/update','TemplateController@update')->name('store.template.update');
 
-// Route::get('/seed-template','TemplateController@store');
-
-// Route::get('/seed-address','UserController@seed_address');
+// Cart
 Route::get('/cart','CartController@index')->name('cart');
 Route::post('/buy-now','CartController@buyNow')->name('cart.buynow');
 Route::post('/pay','CartController@pay')->name('cart.pay');

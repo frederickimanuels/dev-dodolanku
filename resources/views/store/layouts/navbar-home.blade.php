@@ -5,8 +5,8 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <!-- Navbar brand -->
-        <a class="navbar-brand mt-2 mt-lg-0" href="#">
-          <img src="" height="15" alt=".." loading="lazy"/>
+        <a class="navbar-brand mt-2 mt-lg-0" href="{{ route('store.show',$store->slug) }}">
+          <img src="{{ $store->templateconfigs()->where('type','store_logo')->first() ?  asset('images/stored/'. $store->templateconfigs()->where('type','store_logo')->first()->images()->first()->filepath) : ''  }}" height="30" alt=".." loading="lazy"/>
         </a>
         <!-- Left links -->
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">

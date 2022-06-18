@@ -39,4 +39,8 @@ class Store extends Model
     {
         return $this->address()->whereNull('address_stores.deleted_at')->withTimestamps();
     }
+    public function templateconfigs()
+    {
+        return $this->belongsToMany(Templateconfig::class, 'store_templateconfigs');
+    }
 }

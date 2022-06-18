@@ -64,7 +64,7 @@
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-2 col-form-label form-upload-label">Alamat Toko <span style="color:red">*</span></label>
                             <div class="col-sm-10">
-                                <textarea type="text" class="form-control" name="store_address" placeholder="Tulis alamat lengkap toko..">{{ $store->currentAddress()->first()->description }}</textarea>
+                                <textarea type="text" class="form-control" name="store_address" placeholder="Tulis alamat lengkap toko..">{{ $store->currentAddress()->first() ? $store->currentAddress()->first()->description : ''}}</textarea>
                                 @error('store_address')
                                     <p class="help-block text-danger">Alamat toko harus diisi, minimal 10 karakter</p>
                                 @enderror

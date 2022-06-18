@@ -108,36 +108,44 @@ label{
                 <div class="container-fluid">
                     <div class="container">
                         <div class="template-wrapper" id="input-logo">
-                            <form>
+                            <form action="{{ route('store.template.update') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" name="input_type" value="store_logo">
+                                <input type="hidden" id="store_logo_preload" value="{{ $store->templateconfigs()->where('type','store_logo')->first() ?  $store->templateconfigs()->where('type','store_logo')->first()->images()->first()->filepath : ''  }}">
                                 <div class="form-group">
-                                <h2 for="exampleInputEmail1">Input Logo Toko</h2>
-                                <p>Maksimal Ukuran 300x300</p>
+                                <h2>Upload Logo Toko</h2>
+                                {{-- <p>Maksimal Ukuran 300x300</p> --}}
                                     <div class="upload-img">
                                         <div class="row">
                                             <div class="input-field">
-                                                <div class="input-images-1" style="padding-top: .5rem;"></div>
+                                                <div class="input-images-logo" style="padding-top: .5rem;"></div>
                                             </div>
                                         </div>
-                                        <input type="file" id="myfile" style="display: none;">
+                                        <input type="file" id="input-logo" style="display: none;">
                                     </div>
                                 </div>
                                 <div style="display:flex">
                                     <button type="submit" class="btn btn-primary mt-3" id="submit-btn">Submit</button>
                                 </div>
+                                @error('images.*')
+                                    <p class="help-block text-danger">Image maksimal berukuran 2MB dengan format jpeg,png,jpg,svg</p>
+                                @enderror
                             </form>
                         </div>
                         <div class="template-wrapper" id="input-banner-homepage">
-                            <form>
+                            <form action="{{ route('store.template.update') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
                                 <div class="form-group">
-                                <h2 for="exampleInputEmail1">Input Banner Homepage</h2>
-                                <p>Minimal Ukuran 1920x1080</p>
+                                <h2>Input Banner Homepage</h2>
+                                {{-- <p>Minimal Ukuran 1920x1080</p> --}}
+                                <input type="hidden" name="input_type" value="store_banner">
                                 <div class="upload-img">
                                     <div class="row">
                                         <div class="input-field">
-                                            <div class="input-images-1" style="padding-top: .5rem;"></div>
+                                            <div class="input-images-banner" style="padding-top: .5rem;"></div>
                                         </div>
                                     </div>
-                                    <input type="file" id="myfile" style="display: none;">
+                                    <input type="file" id="5" style="display: none;">
                                 </div>
                                 </div>
                                 <div style="display:flex">
@@ -156,7 +164,7 @@ label{
                                         <div class="upload-img">
                                             <div class="row">
                                                 <div class="input-field">
-                                                    <div class="input-images-1" style="padding-top: .5rem;"></div>
+                                                    <div class="input-images-3" style="padding-top: .5rem;"></div>
                                                 </div>
                                             </div>
                                             <input type="file" id="myfile" style="display: none;">
@@ -224,12 +232,12 @@ label{
                         <div class="template-wrapper" id="input-banner-search">
                             <form>
                                 <div class="form-group">
-                                <h2 for="exampleInputEmail1">Input Banner Search</h2>
+                                <h2 for="exampleInputEmail1">Input Banner Products</h2>
                                 <p>Minimal Ukuran 1920x1080</p>
                                 <div class="upload-img">
                                     <div class="row">
                                         <div class="input-field">
-                                            <div class="input-images-1" style="padding-top: .5rem;"></div>
+                                            <div class="input-images-4" style="padding-top: .5rem;"></div>
                                         </div>
                                     </div>
                                     <input type="file" id="myfile" style="display: none;">
@@ -326,75 +334,97 @@ label{
 @include('store.layouts.js')
 <!-- JS add here -->
 <script>
-$(document).ready(function(){
-    $("#btn-logo").click(function(){
-        $("#input-logo").show();
-        $("#input-banner-homepage").hide();
-        $("#input-banner-homepage-category").hide();
-        $("#input-banner-search").hide();
-        $("#input-color-text").hide();
-        $("#input-color-bg").hide();
-    });
-    $("#btn-banner-home").click(function(){
-        $("#input-logo").hide();
-        $("#input-banner-homepage").show();
-        $("#input-banner-homepage-category").hide();
-        $("#input-banner-search").hide();
-        $("#input-color-text").hide();
-        $("#input-color-bg").hide();
-    });
-    $("#btn-banner-search").click(function(){
-        $("#input-logo").hide();
-        $("#input-banner-homepage").hide();
-        $("#input-banner-homepage-category").show();
-        $("#input-banner-search").hide();
-        $("#input-color-text").hide();
-        $("#input-color-bg").hide();
-    });
-    $("#btn-banner-category").click(function(){
-        $("#input-logo").hide();
-        $("#input-banner-homepage").hide();
-        $("#input-banner-homepage-category").hide();
-        $("#input-banner-search").show();
-        $("#input-color-text").hide();
-        $("#input-color-bg").hide();
-    });
-    $("#btn-bg-color").click(function(){
-        $("#input-logo").hide();
-        $("#input-banner-homepage").hide();
-        $("#input-banner-homepage-category").hide();
-        $("#input-banner-search").hide();
-        $("#input-color-text").show();
-        $("#input-color-bg").hide();
-    });
-    $("#btn-text-color").click(function(){
-        $("#input-logo").hide();
-        $("#input-banner-homepage").hide();
-        $("#input-banner-homepage-category").hide();
-        $("#input-banner-search").hide();
-        $("#input-color-text").hide();
-        $("#input-color-bg").show();
+    $(document).ready(function(){
+        $("#btn-logo").click(function(){
+            $("#input-logo").show();
+            $("#input-banner-homepage").hide();
+            $("#input-banner-homepage-category").hide();
+            $("#input-banner-search").hide();
+            $("#input-color-text").hide();
+            $("#input-color-bg").hide();
+        });
+        $("#btn-banner-home").click(function(){
+            $("#input-logo").hide();
+            $("#input-banner-homepage").show();
+            $("#input-banner-homepage-category").hide();
+            $("#input-banner-search").hide();
+            $("#input-color-text").hide();
+            $("#input-color-bg").hide();
+        });
+        $("#btn-banner-search").click(function(){
+            $("#input-logo").hide();
+            $("#input-banner-homepage").hide();
+            $("#input-banner-homepage-category").show();
+            $("#input-banner-search").hide();
+            $("#input-color-text").hide();
+            $("#input-color-bg").hide();
+        });
+        $("#btn-banner-category").click(function(){
+            $("#input-logo").hide();
+            $("#input-banner-homepage").hide();
+            $("#input-banner-homepage-category").hide();
+            $("#input-banner-search").show();
+            $("#input-color-text").hide();
+            $("#input-color-bg").hide();
+        });
+        $("#btn-bg-color").click(function(){
+            $("#input-logo").hide();
+            $("#input-banner-homepage").hide();
+            $("#input-banner-homepage-category").hide();
+            $("#input-banner-search").hide();
+            $("#input-color-text").show();
+            $("#input-color-bg").hide();
+        });
+        $("#btn-text-color").click(function(){
+            $("#input-logo").hide();
+            $("#input-banner-homepage").hide();
+            $("#input-banner-homepage-category").hide();
+            $("#input-banner-search").hide();
+            $("#input-color-text").hide();
+            $("#input-color-bg").show();
+        });
+
+        $("#input-logo").on("change", function() {
+            if ($("#input-logo")[0].files.length > 1) {
+                alert("You can select only 1 images");
+            }
+            // else {
+            //     $("#imageUploadForm").submit();
+            // }
+        });
+        $('.input-images-logo').imageUploader({});
+        $('.input-images-banner').imageUploader({});
+        
+        
+        // $('.input-images-1').imageUploader({
+        //     preloaded: preloaded,
+        //     imagesInputName: 'photos',
+        //     preloadedInputName: 'old'
+        // });
+        
+        // $('.input-images-2').imageUploader({
+        //     preloaded: preloaded,
+        //     imagesInputName: 'photos',
+        //     preloadedInputName: 'old'
+        // });
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                panel.style.display = "none";
+                } else {
+                panel.style.display = "block";
+                }
+            });
+        }
     });
 
 
-});
 
-
-$('.input-images-1').imageUploader();
-var acc = document.getElementsByClassName("accordion");
-var i;
-
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.display === "block") {
-      panel.style.display = "none";
-    } else {
-      panel.style.display = "block";
-    }
-  });
-}
 </script>
 <!-- END JS -->
 @include('store.layouts.footer-copyright')

@@ -122,7 +122,7 @@
                                     </div>
                                 </div>
                                 <div class="container order-detail-wrapper-product">
-                                    <h6 class="order-detail-h6">Nama Toko Disini</h6>
+                                    <h6 class="order-detail-h6">{{ $cart->stores()->first()->name }}</h6>
                                     <div class="row">
                                         <?php $products = $cart->products()->get(); ?>
                                         @foreach($products as $product)

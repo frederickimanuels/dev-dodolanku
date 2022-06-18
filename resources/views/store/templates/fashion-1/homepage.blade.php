@@ -221,9 +221,12 @@
     <div class="store-home-wrapper">
         <div class="container store-home">
             <div class="single-item">
-                <div><img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick"></div>
-                <div><img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick"></div>
-                <div><img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick"></div> 
+                <?php $store_banners = $store->templateconfigs()->where('type','store_banner')->get() ?>
+                @if(count($store_banners) > 0)
+                @foreach($store_banners as $store_banner)
+                    <div><img src="{{ asset('images/stored/'. $store_banner->images()->first()->filepath) }}" alt="" class="homepage-slick"></div>
+                @endforeach
+                @endif
             </div>
             <div class="slick-arrow d-none d-xl-block">
                 <i class="fa-solid fa-chevron-left prev-arrow-2 fa-2xl"></i>
