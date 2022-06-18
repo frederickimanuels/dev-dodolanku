@@ -26,6 +26,7 @@ Route::get('/profile','UserController@profile')->name('user.profile');
 Route::get('/address','UserController@address')->name('user.address');
 Route::post('/address','UserController@storeAddress')->name('user.address.store');
 Route::get('/orders','UserController@orders')->name('user.order');
+Route::get('/detail-orders','UserController@detailOrders')->name('user.orderdetail');
 
 
 // Store Dashboard

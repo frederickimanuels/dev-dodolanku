@@ -48,4 +48,7 @@ class UserController extends Controller
 	public function orders(){
         return view('user/listOrder');
     }
+    public function detailOrders(){
+        return view('user/detailOrder');
+    }
 }

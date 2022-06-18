@@ -17,7 +17,7 @@
           <a class="nav-link" href="{{ route('feature') }}">Feature</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Faq</a>
+          <a class="nav-link" href="{{ route('about') }}">Faq</a>
         </li>
          <li>
         <input autocomplete="off" type="search" class="form-control rounded" placeholder="Search" style="min-width: 125px;"/>
@@ -91,7 +91,7 @@
               <a class="dropdown-item" href="{{ route('user.profile') }}">My profile</a>
             </li>
             <li>
-              <a class="dropdown-item" href="#">Orders</a>
+              <a class="dropdown-item" href="{{ route('user.order') }}">Orders</a>
             </li>
             <li>
               <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
