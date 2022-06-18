@@ -117,6 +117,9 @@ class CartController extends Controller
             $p->pivot->count = $request->product_count[$i];
             $p->pivot->save();
             $p->stock = $p->stock - $request->product_count[$i];
+            if($p->stock == 0){
+                $p->is_active = 0;
+            }
             $p->save();
             $total_amount = $total_amount + ($p->pivot->count * $p->price);
             $i+=1;
@@ -133,5 +136,28 @@ class CartController extends Controller
         $cart->orders()->attach($order->id);
         $cart->address()->attach($request->address_id);
         return redirect()->route('user.order');
+    }
+    public function listOrder()
+    {
+        $carts = Auth::user()->hasStore()->carts();
+        $carts = $carts->join('cart_status','cart_status.cart_id','=','carts.id')
+                    ->where('status_id','<>','1')
+                    ->whereNull('cart_status.deleted_at')
+                    ->orderBy('cart_status.created_at','DESC')
+                    ->paginate(10);
+        return view('store/order-list',compact('carts'));
+    }
+
+    public function postTracking(Request $request){
+        $cart = Cart::where('id',$request->cart_id)->first();
+        $cart->status()->updateExistingPivot(2, ['deleted_at' => Carbon::now()]);
+        $cart->status()->attach(4);
+        $order = $cart->orders()->first();
+        $order->couriertracking = $request->couriertracking;
+        $order->save();
+        $response = array(
+            'status' => 'success',
+         );
+        return response()->json($response);
     }
 }

@@ -28,4 +28,9 @@ class Product extends Model
     {
         return $this->belongsToMany(Cart::class, 'cart_products')->withPivot('count');;
     }
+
+    public function images()
+    {
+        return $this->belongsToMany(Image::class, 'product_images');
+    }
 }

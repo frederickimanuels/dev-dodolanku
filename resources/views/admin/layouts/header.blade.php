@@ -27,7 +27,5 @@
     <link rel="stylesheet" href="{{asset('templates/dashboard/fonts/fontawesome-all.min.css')}}">
     
     <title>Hello, worldddd!</title>
-
-    <meta name="csrf-token" content="{{ csrf_token() }}">
   </head>
   <body>

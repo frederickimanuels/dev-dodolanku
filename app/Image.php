@@ -1,0 +1,18 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Image extends Model
+{
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'product_images');
+    }
+
+    public function templateconfigs()
+    {
+        return $this->belongsToMany(Templateconfig::class, 'templateconfig_images');
+    }
+}

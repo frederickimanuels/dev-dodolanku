@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'HomepageController@index')->name('base');
+
+Route::group([ 'middleware' => '\App\Http\Middleware\AdminMiddleware'], function(){
+    Route::get('/admin', 'admin\AdminController@index')->name('admin.dashboard');
+});
+
 Route::get('/about', 'HomepageController@about')->name('about');
 Route::get('/feature','HomepageController@feature')->name('feature');
 Route::get('/null','HomepageController@null')->name('null');
@@ -39,15 +44,13 @@ Route::get('/store/manage-product','ProductController@index')->name('store.produ
 Route::get('/store/add-product','ProductController@create')->name('store.product.add');
 Route::post('/store/add-product','ProductController@store')->name('store.product.store');
 
-Route::get('/list-order','StoreController@listOrder')->name('store.order');
-
-Route::get('/chats','StoreController@chats')->name('store.chats');
+Route::get('/store/list-order','CartController@listOrder')->name('store.order');
 
 Route::get('/create-product','StoreController@createProduct')->name('store.createProduct');
 Route::get('/store-home','StoreController@storeHomepage')->name('store.home');
 Route::get('/detail-product','StoreController@detailProduct')->name('store.detailProduct');
 
-Route::get('/template','StoreController@StoreTemplates')->name('store.templates');
+Route::get('/store/template','TemplateController@index')->name('store.templates');
 Route::get('/edittemplate','StoreController@editTemplate')->name('store.edittemplate');
 
 
@@ -59,6 +62,8 @@ Route::get('/seed-template','TemplateController@store');
 Route::get('/cart','CartController@index')->name('cart');
 Route::post('/buy-now','CartController@buyNow')->name('cart.buynow');
 Route::post('/pay','CartController@pay')->name('cart.pay');
+Route::post('/cart/update-couriertracking','CartController@postTracking')->name('cart.update.couriertracking');
+
 Route::get('/{storeSlug}','StoreController@show')->name('store.show');
 Route::get('/{storeSlug}/product','ProductController@list')->name('store.product.list');
 Route::get('/{storeSlug}/cart','CartController@show')->name('cart.show');

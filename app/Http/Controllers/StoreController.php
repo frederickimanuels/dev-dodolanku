@@ -40,34 +40,11 @@ class StoreController extends Controller
             return view ('store/dashboard',compact('store'));
         }
     }
-
-    public function StoreTemplates()
-    {
-        // dd("test");
-        return view('store/template-list');
-    }
-    public function listOrder()
-    {
-        return view('store/listOrder');
-    }
-    public function chats()
-    {
-        return view('store/chats');
-    }
+    
+    
     public function createProduct()
     {
         return view('store/createProduct');
-    }
-    public function storeHomepage()
-    {
-        return view('store/storeHomepage');
-    }
-    public function detailProduct()
-    {
-        return view('store/detailProduct');
-    }
-    public function search(){
-        return view('store/search');
     }
     public function editTemplate()
     {

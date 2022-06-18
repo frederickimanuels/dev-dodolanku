@@ -56,10 +56,11 @@ class UserController extends Controller
                     ->paginate(2);
         return view('user/listOrder',compact('carts'));
     }
+    
     public function detailOrders($reference_no){
         $order = Order::where('reference_no',$reference_no)->first();
         $cart = $order->carts()->first();
-        $address = $cart->address()->first();
+        $address = $cart->address()->withTrashed()->first();
         $address->province = Province::where('id',$address->province_id)->first()->name;
         $address->city = City::where('id',$address->city_id)->first()->name;
         return view('user/detailOrder',compact('cart','address'));
