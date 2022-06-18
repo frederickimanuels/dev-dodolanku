@@ -24,6 +24,12 @@
     
         /* FooterColor */
     }
+    a{
+        text-decoration: none !important;
+    }
+    a:hover{
+        /* border: 1px solid green; */
+    }
     .navbar-homepage{
         background-color:var(--bgcolorHeader) !important;
     }
@@ -82,6 +88,9 @@
         border-radius: 5%;
         margin: 0 20px;
     }
+    .card:hover{
+        border: none;
+    }
     .card-img-top{
         border-top-left-radius: 5%;
         border-top-right-radius: 5%;
@@ -113,6 +122,7 @@
     }
     .popular-product-wrapper{
         padding-top: 30px;
+        padding-bottom: 50px;
         background-color:var(--bgcolor3);
         max-width: 80%;
     }

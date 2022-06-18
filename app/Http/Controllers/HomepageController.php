@@ -25,4 +25,8 @@ class HomepageController extends Controller
     {
         return view ('homepage/aboutStore');
     }
+    public function null()
+    {
+        return view ('homepage/pageNull');
+    }
 }

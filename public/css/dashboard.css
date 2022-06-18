@@ -57,6 +57,14 @@
 .container-copyright{
     display: flex;
 }
+.pagination{
+    justify-content: center;
+}
+.page-link{
+    font-family: Montserrat-Medium;
+    font-size: 16px;
+    color: #000000;
+}
 
 
 /* END sidebar custom */
@@ -74,7 +82,6 @@
     color: black;
     font-size: 40px;
     font-family:PlusJakarta-Bold;
-    font-weight: 700;
 }
 .see-store{
     color: #9A9A9A;

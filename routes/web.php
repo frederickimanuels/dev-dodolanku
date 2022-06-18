@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomepageController@index')->name('base');
 Route::get('/about', 'HomepageController@about')->name('about');
 Route::get('/feature','HomepageController@feature')->name('feature');
+Route::get('/null','HomepageController@null')->name('null');
 
 Auth::routes();
 
@@ -46,6 +47,7 @@ Route::get('/store-home','StoreController@storeHomepage')->name('store.home');
 Route::get('/detail-product','StoreController@detailProduct')->name('store.detailProduct');
 
 Route::get('/template','StoreController@StoreTemplates')->name('store.templates');
+Route::get('/edittemplate','StoreController@editTemplate')->name('store.edittemplate');
 
 
 Route::get('/location/getCities/{province}','LocationController@getCities');

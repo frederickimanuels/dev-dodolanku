@@ -21,7 +21,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $store = Auth::user()->hasStore();
-        $products = $store->products()->orderBy('created_at', 'desc')->paginate(12);
+        $products = $store->products()->orderBy('created_at', 'desc')->paginate(1);
         return view('store/manage-product',compact('products','store'));
     }
 
