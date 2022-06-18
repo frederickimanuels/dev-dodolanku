@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Address;
 use App\Province;
 use App\Store;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -46,10 +48,6 @@ class StoreController extends Controller
     {
         return view('store/createProduct');
     }
-    public function editTemplate()
-    {
-        return view('store/edit-template');
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -76,7 +74,7 @@ class StoreController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'store_name' => 'required|unique:stores,name|max:60',
+            'store_name' => 'required|max:60',
             'store_slug' => 'required|alpha_dash|unique:stores,slug|max:60',
             'store_address' => 'required|max:255',
             'province' => 'required',
@@ -120,9 +118,10 @@ class StoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        $store = Auth::user()->stores()->first();
+        return view('store/edit',compact('store'));
     }
 
     /**
@@ -132,19 +131,27 @@ class StoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    public function update(Request $request){
+        $this->validate($request, [
+            'store_name' => 'required|max:60',
+            'province' => 'required',
+            'city' => 'required|exists:cities,id',
+            'store_address' => 'required|max:255',
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $store = Auth::user()->hasStore();
+        $store->name = $request->store_name;
+        $store->save();
+        if($store->address()->first()){
+            $store->address()->updateExistingPivot($store->address()->first()->id, ['deleted_at' => Carbon::now()]);
+        }
+        $address = new Address();
+        $address->description = $request->store_address;
+        $address->province_id = $request->province;
+        $address->city_id = $request->city;
+        $address->save();
+        $store->address()->attach($address->id);
+
+        return redirect()->route('store.dashboard');
     }
 }

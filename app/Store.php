@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Store extends Model
 {
+    use SoftDeletes;
     public function users()
     {
         return $this->belongsToMany(User::class, 'store_users');
@@ -28,5 +30,13 @@ class Store extends Model
     public function carts()
     {
         return $this->belongsToMany(Cart::class, 'cart_stores');
+    }
+    public function address()
+    {
+        return $this->belongsToMany(Address::class, 'address_stores')->withTimestamps();
+    }
+    public function currentAddress()
+    {
+        return $this->address()->whereNull('address_stores.deleted_at')->withTimestamps();
     }
 }

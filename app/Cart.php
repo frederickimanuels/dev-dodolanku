@@ -10,7 +10,11 @@ class Cart extends Model
     use SoftDeletes;
     public function status()
     {
-        return $this->belongsToMany(Status::class, 'cart_status')->whereNull('cart_status.deleted_at')->withTimestamps();;
+        return $this->belongsToMany(Status::class, 'cart_status')->whereNull('cart_status.deleted_at')->withTimestamps();
+    }
+    public function allStatus()
+    {
+        return $this->belongsToMany(Status::class, 'cart_status')->withTimestamps();
     }
     public function address()
     {

@@ -15,6 +15,12 @@ class TemplateController extends Controller
 
     public function index()
     {
+        return view('store/edit-template');
+    }
+
+    
+    public function list()
+    {   
         $templates = Template::get();
         return view('store/template-list',compact('templates'));
     }

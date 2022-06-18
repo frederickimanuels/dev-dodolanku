@@ -22,7 +22,8 @@
             <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-user-circle"></i><span>Ulasan Pembeli</span></a></li>
             <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-user-circle"></i><span>Ulasan Bantuan</span></a></li>
             <hr class="sidebar-divider my-0" > --}}
-            <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-cog"></i><span>Pengaturan Toko</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('store.manage') }}"><i class="fas fa-cog"></i><span>Pengaturan Toko</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('store.template') }}"><i class="fas fa-cog"></i><span>Pengaturan Template</span></a></li>
         </ul>
         <!-- <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div> -->
     </div>

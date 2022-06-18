@@ -9,7 +9,7 @@
         <hr class="sidebar-divider my-0">
         <ul class="navbar-nav text-light" id="accordionSidebar">
             <hr class="sidebar-divider my-0" >
-            <h3 class="mt-3">Editor Website</h3>
+            <h3 class="mt-3">Pengaturan Template</h3>
             <!-- <button class="accordion">Logo <i class="fa-solid fa-angle-down"></i></button> -->
             <ul class="btn-non-accordeon">
                 <li id="btn-logo">Logo Home</li>

@@ -16,4 +16,8 @@ class Address extends Model
     {
         return $this->belongsToMany(User::class, 'address_users');
     }
+    public function stores()
+    {
+        return $this->belongsToMany(Store::class, 'address_stores');
+    }
 }
