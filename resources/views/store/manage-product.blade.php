@@ -93,7 +93,7 @@
                                             </td>
                                             <td>
                                                 <div class="product-price pt-4">
-                                                    Rp {{number_format($product->first()->price,0,',','.')}}
+                                                    Rp {{number_format($product->price,0,',','.')}}
                                                 </div>
                                             </td>
                                             <td>

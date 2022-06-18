@@ -373,6 +373,7 @@
                     </div>
                 </div>
                 <div class="col-xl-6 col-12">
+                    @if($product->is_active == '0')
                     <div class="product-not-avaliable">
                         <div>
                             <h3>Produk Tidak Tersedia</h3>
@@ -381,6 +382,7 @@
                             </a>
                         </div>
                     </div>
+                    @endif
                     <form method="POST" action="{{ route('cart.buynow') }}">
                         @csrf
                         <div class="detail-product">
@@ -395,7 +397,7 @@
                                     <span class="rating-text">(127)</span>
                                 </div> --}}
                             </div>
-                            <h3 id="product-price">Rp {{number_format($product->first()->price,0,',','.')}}</h3>
+                            <h3 id="product-price">Rp {{number_format($product->price,0,',','.')}}</h3>
                             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas velit pariatur sequi. Beatae esse distinctio sunt. Magni, optio necessitatibus minima omnis aliquam dolores at natus enim officia accusamus aperiam suscipit?</p>
                             <div class="detail-product">
                                 <input type="hidden" name="store_id" value="{{ $store->id }}">

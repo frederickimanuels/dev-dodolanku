@@ -39,7 +39,7 @@ class ProductController extends Controller
             return redirect()->route('base');
         }
         // $products = $store->products()->get();
-        $products = $store->activeProducts();
+        $products = $store->products();
         if (request()->priceMin != "" or request()->priceMax != "" ) {
             $products = $products->join('variant_products','products.id','=','variant_products.product_id')
                                     ->join('variants','variants.id','=','variant_products.variant_id');

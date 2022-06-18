@@ -23,7 +23,13 @@ class CartController extends Controller
     }
     public function index(Request $request)
     {
-        return view('cart/cart-list');
+        $carts = Auth::user()->carts();
+        $carts = $carts->join('cart_status','cart_status.cart_id','=','carts.id')
+            ->where('status_id','=','1')
+            ->whereNull('cart_status.deleted_at')
+            ->orderBy('cart_status.created_at','DESC')
+            ->get();
+        return view('cart/cart-list',compact('carts'));
     }
 
     public function show($slug)

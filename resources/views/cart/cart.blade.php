@@ -77,7 +77,7 @@
 <main class="" >
   <form method="POST" action="{{ route('cart.pay') }}">
     @csrf 
-    <div class="basket container cart-empty">
+    <div class="basket container cart-empty {{ $products ? 'd-none' : '' }}">
       <h2>Keranjang Belanjaanmu Masih Kosong Nih</h2>
       <h3>Yuk Tambahkan produknya dan dapatkan diskon menarik</h3>
       <a href="">
@@ -86,7 +86,7 @@
         </span>
       </a>
     </div>
-    <div class="basket d-none">
+    <div class="basket {{ $products ? '' : 'd-none' }}">
       <!-- <div class="basket-labels">
         <ul>
           <li class="item item-heading">Item</li>
