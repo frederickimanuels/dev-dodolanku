@@ -11,4 +11,8 @@ class Status extends Model
     {
         return $this->belongsToMany(Cart::class, 'cart_status');
     }
+    public function notinCart()
+    {
+        return $this->carts()->wherePivot('status_id','<>',1)->get();
+    }
 }

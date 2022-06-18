@@ -368,30 +368,20 @@
                                     <span class="rating-text">(127)</span>
                                 </div> --}}
                             </div>
-                            <h3 id="variant-price">Rp {{number_format($product->variants()->orderBy('price','ASC')->first()->price,0,',','.')}}</h3>
+                            <h3 id="product-price">Rp {{number_format($product->first()->price,0,',','.')}}</h3>
                             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas velit pariatur sequi. Beatae esse distinctio sunt. Magni, optio necessitatibus minima omnis aliquam dolores at natus enim officia accusamus aperiam suscipit?</p>
-                            <div class="detail-product-variant">
+                            <div class="detail-product">
                                 <input type="hidden" name="store_id" value="{{ $store->id }}">
-                                @if(count($variants) == 1 && $variants->first()->name == 'default')
-                                <input type="hidden" name="variant_id" value="{{ $variants->first()->id }}">
-                                @else
-                                <label for="form-select">Variasi</label>
-                                <select class="form-select" aria-label="variant select" name="variant_name">
-                                    <option selected>Pilih Varian</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                                @endif
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
                                 <label for="form-select">Jumlah</label>
                                 <div class="quantity buttons_added">
-                                    <input type="button" value="-" class="minus">
-                                    <input type="number" step="1" min="1" max="" name="variant_quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="" inputmode="">
-                                    <input type="button" value="+" class="plus">
+                                    <input type="button" value="-" class="minus" {{ $product->stock == 0 ? "disabled='disabled'" : '' }}>
+                                    <input type="number" step="1" min="1" max="{{ $product->stock }}" name="product_quantity" {{ $product->stock == 0 ? "disabled='disabled'" : '' }} value="{{ $product->stock == 0 ? '0' : '1' }}" title="Qty" class="input-text qty text" size="4" pattern="" inputmode="">
+                                    <input type="button" value="+" class="plus" {{ $product->stock == 0 ? "disabled='disabled'" : '' }}>
                                 </div>
                             </div>
                             <div class="detail-product-navigation">
-                                <button type="submit" class="btn btn-buy-now">Beli Sekarang</button>
+                                <button type="submit" class="btn btn-buy-now" {{ $product->stock == 0 ? 'disabled="disabled"' : '' }}>Beli Sekarang</button>
                                 <button type="button" class="btn btn-add-cart">Masukkan Keranjang</button>
                                 <button type="button" class="btn btn-share">Bagikan Produk</button>
                             </div>
@@ -426,7 +416,7 @@
                                     <img class="card-img-top" src="{{asset('images/homepage/bag-1.png')}}" alt="Card image cap">
                                     <div class="card-body popular-card-text">
                                         <h5 class="card-text">{{ $popular_product->name }}</h5>
-                                        <h6>Rp {{number_format($popular_product->variants()->orderBy('price','ASC')->first()->price,0,',','.')}}</h6>
+                                        <h6>Rp {{number_format($popular_product->orderBy('price','ASC')->first()->price,0,',','.')}}</h6>
                                         {{-- <span class="fa fa-star checked"></span>
                                         <span class="fa fa-star checked"></span>
                                         <span class="fa fa-star checked"></span>

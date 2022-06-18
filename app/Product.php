@@ -23,4 +23,9 @@ class Product extends Model
     {
         return $this->stores()->first();
     }
+
+    public function carts()
+    {
+        return $this->belongsToMany(Cart::class, 'cart_products')->withPivot('count');;
+    }
 }

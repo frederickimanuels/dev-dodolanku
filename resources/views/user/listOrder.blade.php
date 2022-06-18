@@ -91,58 +91,65 @@
                 @include('user.layouts.sidebarmenu')
                 <div class="col-lg-9 col-12">
                     <h1 class="personal-info-h1">List Order</h1>
-                    <div class="user-order-wrapper">
-                        <div class="container user-order-detail">
-                            <div class="row">
-                                <div class="col-xl-3 col-6">
-                                    <div class="order-detail-wrapper">
-                                        <h4 class="order-detail-h4">Nomor Pesanan</h4>
-                                        <h5>10281028102</h5>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-6">
-                                    <div class="order-detail-wrapper">
-                                        <h4 class="order-detail-h4">Tanggal Transaksi</h4>
-                                        <h5>15 Jun 2022,15.00</h5>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-6">
-                                    <div class="order-detail-wrapper">
-                                        <h4 class="order-detail-h4">Total Pembayaran</h4>
-                                        <h5>Rp.940.000</h5>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-6">
-                                    <div class="order-detail-wrapper">
-                                        <h4 class="order-detail-h4">Status</h4>
-                                        <h5>Dalam Perjalanan</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="container order-detail-wrapper-product">
-                            <h6 class="order-detail-h6">Nama Toko Disini</h6>
-                            <div class="row">
-                                <div class="col-xl-8 col-9">
+                        @foreach($carts as $cart)
+                            <div class="user-order-wrapper">
+                                <div class="container user-order-detail">
                                     <div class="row">
-                                        <div class="col-xl-6 col-12">
-                                            <img src="{{asset('images/homepage/laptop-1.png')}}" alt="">
+                                        <div class="col-xl-3 col-6">
+                                            <div class="order-detail-wrapper">
+                                                <h4 class="order-detail-h4">Nomor Pesanan</h4>
+                                                <h5>{{ $cart->orders()->first()->reference_no }}</h5>
+                                            </div>
                                         </div>
-                                        <div class="col-xl-6 col-12">
-                                            <h6 clas="order-detail-h6" >Ultra Voucher 100k</h6>
-                                            <p>Jumlah : <span>999</span></p>
-                                            <p><span style="color:#EE6530">Rp.5000 </span>/unit</p>
+                                        <div class="col-xl-3 col-6">
+                                            <div class="order-detail-wrapper">
+                                                <h4 class="order-detail-h4">Tanggal Transaksi</h4>
+                                                <h5>{{ $cart->orders()->first()->created_at }}</h5>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-6">
+                                            <div class="order-detail-wrapper">
+                                                <h4 class="order-detail-h4">Total Pembayaran</h4>
+                                                <h5>Rp {{number_format( $cart->orders()->first()->total_amount + $cart->orders()->first()->shipping_fee,0,',','.')}}</h5>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-6">
+                                            <div class="order-detail-wrapper">
+                                                <h4 class="order-detail-h4">Status</h4>
+                                                <h5>{{ $cart->status()->first()->name }}</h5>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-4 col-3" style="position:relative">
-                                    <div class="btn-lacak">
-                                        <button class="btn btn-primary">Lacak Pesanan</button>
+                                <div class="container order-detail-wrapper-product">
+                                    <h6 class="order-detail-h6">Nama Toko Disini</h6>
+                                    <div class="row">
+                                        <?php $products = $cart->products()->get(); ?>
+                                        @foreach($products as $product)
+                                        <div class="col-xl-8 col-9">
+                                            <div class="row">
+                                                <div class="col-xl-6 col-12">
+                                                    <img src="{{asset('images/homepage/laptop-1.png')}}" alt="">
+                                                </div>
+                                                <div class="col-xl-6 col-12">
+                                                    <h6 clas="order-detail-h6" >{{ $product->name }}</h6>
+                                                    <p>Jumlah : <span>{{ $product->pivot->count }}</span></p>
+                                                    <p><span style="color:#EE6530">Rp {{number_format( $product->price,0,',','.')}}</span>/unit</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                        <div class="col-xl-4 col-3" style="position:relative">
+                                            <div class="btn-lacak">
+                                                <a href="{{ route('user.order.detail',$cart->orders()->first()->reference_no) }}">
+                                                    <button class="btn btn-primary">Lihat Pesanan</button>
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        @endforeach
                 </div>
             </div>
         </div>

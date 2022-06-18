@@ -271,7 +271,7 @@
                                 <img class="card-img-top" src="{{asset('images/homepage/bag-1.png')}}" alt="Card image cap">
                                 <div class="card-body popular-card-text">
                                     <h5 class="card-text">{{ $product->name }}</h5>
-                                    <h6>Rp {{number_format($product->variants()->orderBy('price','ASC')->first()->price,0,',','.')}}</h6>
+                                    <h6>Rp {{number_format($product->first()->price,0,',','.')}}</h6>
                                     {{-- <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star checked"></span>

@@ -17,29 +17,31 @@
       </div> -->
       <div id="details">
         <h1 class="cart-h1">Order</h1>
-        <input type="hidden" name="cart_id" value="{{ $cart->id }}">
+        <input type="hidden" name="cart_id" value="{{ $cart ? $cart->id : '' }}">
         <input type="hidden" name="address_id" value="{{ $address ? $address->id : '' }}">
-        @foreach($variants as $variant)
+        <input type="hidden" id="input_shipping_fee" name="shipping_fee" value="">
+        @if($products)
+        @foreach($products as $product)
           <div class="basket-product">
             <div class="basket-item">
               <div class="product-image">
                 <img src="{{asset('images/homepage/profile1.jpg')}}" alt="Placholder Image 2" class="product-frame">
               </div>
               <div class="product-details">
-                <h1><strong>{{ $variant->product()->first()->name }}</strong></h1>
-                <p><strong>{{ $variant->name == 'default' ? '' : $variant->name }}</strong></p>
+                <h1><strong>{{ $product->name }}</strong></h1>
               </div>
             </div>
-            <div class="price">Rp {{number_format($variant->price,0,',','.')}}</div>
+            <div class="price">Rp {{number_format($product->price,0,',','.')}}</div>
             <div class="quantity">
-              <input type="hidden" name="variant_id[]" class="variant_id" value="{{ $variant->id }}">
-              <input type="text" name="variant_count[]" value="{{ $variant->pivot->count }}" class="quantity-field variant_count">
-              <input type="hidden" name="" class="variant_price" value="{{ $variant->price }}">
-              <input type="hidden" name="" class="variant_weight" value="{{ $variant->weight }}">
+              <input type="hidden" name="product_id[]" class="product_id" value="{{ $product->id }}">
+              <input type="text" name="product_count[]" value="{{ $product->pivot->count }}" class="quantity-field product_count">
+              <input type="hidden" name="" class="product_price" value="{{ $product->price }}">
+              <input type="hidden" name="" class="product_weight" value="{{ $product->weight }}">
             </div>
-            <div class="subtotal">Rp <span id="variant_subtotal_{{$variant->id}}">{{number_format($variant->price * $variant->pivot->count,0,',','.')}}</span></div>
+            <div class="subtotal">Rp <span id="product_subtotal_{{$product->id}}">{{number_format($product->price * $product->pivot->count,0,',','.')}}</span></div>
           </div>
         @endforeach
+        @endif
       </div>
 
 
@@ -70,6 +72,7 @@
       <div class="summary summary-address">
         <!-- <div class="summary-total-items"><span class="total-items"></span>Address</div> -->
         <div class="summary-delivery">
+          @if($address)
           {{ $address ? $address->description : ''}}</br>
           {{ $address ? $address->province . '-' . $address->city : ''}}
           {{-- <select name="delivery-collection" class="summary-delivery-selection">
@@ -79,6 +82,9 @@
              <option value="second-class">Royal Mail 2nd Class</option>
              <option value="signed-for">Royal Mail Special Delivery</option>
           </select> --}}
+          @else
+            <a href="{{ route('user.address') }}">Atur alamat pengiriman</a>
+          @endif
         </div>
       </div>
       <h1 class="cart-h1" >Summary</h1>
@@ -107,7 +113,11 @@
           <div class="total-value final-value" id="basket-total">Rp <span id="total_amount"></span></div>
         </div>
         <div class="summary-checkout pt-5">
-          <button type="submit" class="checkout-cta">Payment</button>
+          @if($address)
+            <button type="submit" class="checkout-cta">Payment</button>
+          @else
+            <a class="btn checkout-cta" href="{{ route('user.address') }}"><button>Atur alamat pengiriman</button></a>
+          @endif
         </div>
       </div>
     </aside>
@@ -124,19 +134,19 @@
     calculateOngkir();
     calculateOrder();
     calculateTotal()
-    $(".variant_count").on("keypress keyup blur", function () {
+    $(".product_count").on("keypress keyup blur", function () {
         var val = $(this).val();
         val = val.replace(/[^\d]/g, "");;
         $(this).val(val);
-        var variant_id = Number($(this).siblings('.variant_id').val());
-        var price = Number($(this).siblings('.variant_price').val());
+        var product_id = Number($(this).siblings('.product_id').val());
+        var price = Number($(this).siblings('.product_price').val());
         var subtotal = Number(val) * price;
         subtotal =  Intl.NumberFormat('de-DE').format(subtotal);
-        document.getElementById("variant_subtotal_"+variant_id).innerHTML = '';
-        document.getElementById("variant_subtotal_"+variant_id).innerHTML = subtotal;
+        document.getElementById("product_subtotal_"+product_id).innerHTML = '';
+        document.getElementById("product_subtotal_"+product_id).innerHTML = subtotal;
         calculateOngkir();
         calculateOrder();
-        calculateTotal()
+        calculateTotal();
     });
 
     $('.checkout-cta').on('click',function(){
@@ -148,12 +158,13 @@
       document.getElementById("shipping_fee_1").innerHTML = '';
       document.getElementById("shipping_fee_2").innerHTML = '';
       var total_weight = 0;
-      $('.variant_weight').each(function () {
+      $('.product_weight').each(function () {
         var weight = Number($(this).val());
-        var count = Number($(this).siblings('.variant_count').val());
+        var count = Number($(this).siblings('.product_count').val());
         total_weight = total_weight + (weight * count);
       });
       ongkir = total_weight / 1000 * 20000;
+      // $('#input_shipping_fee').val() = ongkir;
       global_ongkir = ongkir;
       ongkir = Intl.NumberFormat('de-DE').format(ongkir);
       document.getElementById("shipping_fee_1").innerHTML = ongkir;
@@ -163,9 +174,9 @@
     function calculateOrder(){
       document.getElementById("order_value").innerHTML = '';
       var total_order = 0;
-      $('.variant_price').each(function () {
+      $('.product_price').each(function () {
         var price = Number($(this).val());
-        var count = Number($(this).siblings('.variant_count').val());
+        var count = Number($(this).siblings('.product_count').val());
         total_order = total_order + (price * count);
       });
       
@@ -177,6 +188,7 @@
       var total_amount = Number(global_total_order) + Number(global_ongkir);
       total_amount = Intl.NumberFormat('de-DE').format(total_amount);
       document.getElementById("total_amount").innerHTML = total_amount;
+      document.getElementById("input_shipping_fee").value = global_ongkir;
     }
   });
 </script>

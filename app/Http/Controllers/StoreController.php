@@ -19,7 +19,7 @@ class StoreController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('store.manage')->except('create','store');
+        $this->middleware('store.manage')->except('create','store','show');
     }
 
     public function index(Request $request)

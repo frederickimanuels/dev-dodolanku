@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Address;
+use App\Order;
 use App\Province;
+use App\City;
+use App\Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -45,10 +48,20 @@ class UserController extends Controller
         return redirect()->route('user.address');
     }
 
-	public function orders(){
-        return view('user/listOrder');
+	public function orders(Request $request){
+        $carts = Auth::user()->carts();
+        $carts = $carts->join('cart_status','cart_status.cart_id','=','carts.id')
+                    ->where('status_id','<>','1')
+                    ->orderBy('cart_status.created_at','DESC')
+                    ->paginate(2);
+        return view('user/listOrder',compact('carts'));
     }
-    public function detailOrders(){
-        return view('user/detailOrder');
+    public function detailOrders($reference_no){
+        $order = Order::where('reference_no',$reference_no)->first();
+        $cart = $order->carts()->first();
+        $address = $cart->address()->first();
+        $address->province = Province::where('id',$address->province_id)->first()->name;
+        $address->city = City::where('id',$address->city_id)->first()->name;
+        return view('user/detailOrder',compact('cart','address'));
     }
 }

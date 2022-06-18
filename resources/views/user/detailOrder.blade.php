@@ -116,26 +116,26 @@
                             <div class="row">
                                 <div class="col-xl-3 col-6">
                                     <div class="order-detail-wrapper">
-                                        <h4 class="order-detail-h4">Invoice</h4>
-                                        <h5>10281028102</h5>
+                                        <h4 class="order-detail-h4">Nomor Pesanan</h4>
+                                        <h5>{{ $cart->orders()->first()->reference_no }}</h5>
                                     </div>
                                 </div>
                                 <div class="col-xl-3 col-6">
                                     <div class="order-detail-wrapper">
                                         <h4 class="order-detail-h4">Tanggal Transaksi</h4>
-                                        <h5>15 Jun 2022,15.00</h5>
+                                        <h5>{{ $cart->orders()->first()->created_at }}</h5>
                                     </div>
                                 </div>
                                 <div class="col-xl-3 col-6">
                                     <div class="order-detail-wrapper">
                                         <h4 class="order-detail-h4">Total Pembayaran</h4>
-                                        <h5>Rp.940.000</h5>
+                                        <h5>Rp {{number_format( $cart->orders()->first()->total_amount + $cart->orders()->first()->shipping_fee,0,',','.')}}</h5>
                                     </div>
                                 </div>
                                 <div class="col-xl-3 col-6">
                                     <div class="order-detail-wrapper">
                                         <h4 class="order-detail-h4">Status</h4>
-                                        <h5>Dalam Perjalanan</h5>
+                                        <h5>{{ $cart->status()->first()->name }}</h5>
                                     </div>
                                 </div>
                             </div>
@@ -146,53 +146,35 @@
                                     <h6 class="order-detail-h6">Detail Pembelian</h6>
                                 </div>
                                 <div class="col-6 d-flex">
-                                    <h6 class="order-detail-h6" style="margin-left:auto">Toko Sumber Tjuan</h6>
+                                    <h6 class="order-detail-h6" style="margin-left:auto">{{ $cart->stores()->first()->name }}</h6>
                                 </div>
                             </div>
                         </div>
                         <div class="container order-detail-wrapper-product">
-                            <div class="detail-order-wrapper mt-2 mb-2">
-                                <div class="row">
-                                    <div class="col-xl-8 col-9">
-                                        <div class="row">
-                                            <div class="col-xl-6 col-12">
-                                                <img src="{{asset('images/homepage/laptop-1.png')}}" alt="">
-                                            </div>
-                                            <div class="col-xl-6 col-12">
-                                                <h6 clas="order-detail-h6" >Ultra Voucher 100k</h6>
-                                                <p>Jumlah : <span>999</span></p>
-                                                <p><span style="color:#EE6530">Rp.5000 </span>/unit</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-4 col-3">
-                                        <h6>Total Harga</h6>
-                                        <h3 class="total-price">Rp.500.000</h3>
-                                        <button class="btn btn-primary">Beli Lagi</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="detail-order-wrapper mt-2 mb-2">
-                                <div class="row">
-                                    <div class="col-xl-8 col-9">
-                                        <div class="row">
-                                            <div class="col-xl-6 col-12">
-                                                <img src="{{asset('images/homepage/laptop-1.png')}}" alt="">
-                                            </div>
-                                            <div class="col-xl-6 col-12">
-                                                <h6 clas="order-detail-h6" >Ultra Voucher 100k</h6>
-                                                <p>Jumlah : <span>999</span></p>
-                                                <p><span style="color:#EE6530">Rp.5000 </span>/unit</p>
+                            <?php $products = $cart->products()->get(); ?>
+                            @foreach($products as $product)
+                                <div class="detail-order-wrapper mt-2 mb-2">
+                                    <div class="row">
+                                        <div class="col-xl-8 col-9">
+                                            <div class="row">
+                                                <div class="col-xl-6 col-12">
+                                                    <img src="{{asset('images/homepage/laptop-1.png')}}" alt="">
+                                                </div>
+                                                <div class="col-xl-6 col-12">
+                                                    <h6 clas="order-detail-h6" >{{ $product->name }}</h6>
+                                                    <p>Jumlah : <span>{{ $product->pivot->count }}</p>
+                                                    <p><span style="color:#EE6530">Rp {{number_format( $product->price,0,',','.')}}</span>/unit</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-xl-4 col-3">
-                                        <h6>Total Harga</h6>
-                                        <h3 class="total-price">Rp.500.000</h3>
-                                        <button class="btn btn-primary">Beli Lagi</button>
+                                        <div class="col-xl-4 col-3">
+                                            <h6>Total Harga</h6>
+                                            <h3 class="total-price">Rp.500.000</h3>
+                                            <button class="btn btn-primary">Beli Lagi</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
                         <div class="container order-detail-wrapper-product">
                             <div class="row pt-2" >
@@ -203,36 +185,36 @@
                             <div class="row pt-2 pb-2">
                                 <div class="col-2">Kurir</div>
                                 <div class="col-1">:</div>
-                                <div class="col-9">Sicepat-Regular Package</div>
+                                <div class="col-9">{{ $cart->orders()->first()->courier }}</div>
                             </div>
                             <div class="row pt-2 pb-2">
                                 <div class="col-2">No Resi</div>
                                 <div class="col-1">:</div>
-                                <div class="col-9">10298102172</div>
+                                <div class="col-9">xxxx</div>
                             </div>
                             <div class="row pt-2 pb-2">
                                 <div class="col-2">Alamat</div>
                                 <div class="col-1">:</div>
                                 <div class="col-9">
-                                    <h3>Juan Fernando Wijaya</h3>
-                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem eum esse voluptatum totam provident itaque, sit iure minima at tenetur quam cumque corporis nostrum delectus sint quibusdam quo odio cupiditate.</p>
+                                    <h3>{{ Auth::user()->name }}</h3>
+                                    <p>{{ $address->description . ', ' . $address->city . ', ' . $address->province }}</p>
                                 </div>
                             </div>
-                            <div class="row">
+                            {{-- <div class="row">
                                 <div class="col-6 ml-auto">
                                     <div class="row">
                                         <div class="col-4">
-                                        <button class="btn btn-100 btn-light">Bantuan</button>
+                                            <button class="btn btn-100 btn-light">Bantuan</button>
                                         </div>
                                         <div class="col-4">
-                                        <button class="btn btn-100 btn-success">Beri Ulasan</button>
+                                            <button class="btn btn-100 btn-success">Beri Ulasan</button>
                                         </div>
                                         <div class="col-4">
                                         <button class="btn btn-100 btn-primary">Lacak</button>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

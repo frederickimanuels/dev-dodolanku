@@ -3,13 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Cart extends Model
 {
-    public function variants()
-    {
-        return $this->belongsToMany(Variant::class, 'cart_variants')->withPivot('count');
-    }
+    use SoftDeletes;
     public function status()
     {
         return $this->belongsToMany(Status::class, 'cart_status');
@@ -26,11 +24,19 @@ class Cart extends Model
     {
         return $this->belongsToMany(Store::class, 'cart_stores');
     }
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'cart_products')->withPivot('count');
+    }
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'cart_orders');
+    }
 
-    public function hasVariant($variant_id)
+    public function hasProduct($product_id)
     { 
-        $cart = $this->join('cart_variants','cart_variants.cart_id','=','carts.id')
-                    ->where('variant_id',$variant_id)
+        $cart = $this->join('cart_products','cart_products.cart_id','=','carts.id')
+                    ->where('product_id',$product_id)
                     ->first();
         if($cart){
             return $cart;
@@ -38,10 +44,14 @@ class Cart extends Model
             return false;
         }
     }
-    public function changecountVariant($cart_id,$variant_id,$add)
+    public function changecountVariant($cart_product,$add)
     {
-        $cart = $this->where('id',$cart_id)->first();
-        $cart = $cart->variants()->where('id',$variant_id)->first();
+        $product = Product::where('id',$cart_product->product_id)->first();
+        if($product->stock < ($cart_product->count + $add)){
+            return false;
+        }
+        $cart = $this->where('id',$cart_product->id)->first();
+        $cart = $cart->products()->where('id',$product->id)->first();
         $cart->pivot->count = $cart->pivot->count + $add;
         $cart->pivot->save();
         return $cart;

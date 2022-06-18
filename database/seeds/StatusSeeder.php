@@ -16,27 +16,19 @@ class StatusSeeder extends Seeder
         ]);
 
         DB::table('status')->insert([
-            'name' => 'checkout',
+            'name' => 'Diproses',
         ]);
 
         DB::table('status')->insert([
-            'name' => 'late',
+            'name' => 'Dibatalkan',
         ]);
 
         DB::table('status')->insert([
-            'name' => 'cancel',
+            'name' => 'Dikirim',
         ]);
 
         DB::table('status')->insert([
-            'name' => 'process',
-        ]);
-
-        DB::table('status')->insert([
-            'name' => 'ship',
-        ]);
-
-        DB::table('status')->insert([
-            'name' => 'complete',
+            'name' => 'Selesai',
         ]);
     }
 }

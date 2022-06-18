@@ -15,13 +15,13 @@ class ProductController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('store.manage');
+        $this->middleware('store.manage')->except('show','list');
     }
 
     public function index(Request $request)
     {
         $store = Auth::user()->hasStore();
-        $products = $store->products()->orderBy('created_at', 'desc')->paginate(1);
+        $products = $store->products()->orderBy('created_at', 'desc')->paginate(10);
         return view('store/manage-product',compact('products','store'));
     }
 
@@ -70,7 +70,7 @@ class ProductController extends Controller
         }
         $template = $store->template()->first();
         $popular_products = $store->products()->take(8)->get();
-        return view('store/templates/'.$template->code.'/product-detail',compact('store','popular_products','product','variants'));
+        return view('store/templates/'.$template->code.'/product-detail',compact('store','popular_products','product'));
     }
 
     public function store(Request $request)

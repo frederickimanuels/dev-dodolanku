@@ -25,7 +25,7 @@
                                 <select class="form-control profile-form" name="province" id="province">
                                     <option value="" disabled {{ Auth::user()->currentAddress()  ? '' : 'selected'}}>Pilih Provinsi</option>
                                     @foreach($provinces as $province)
-                                        <option {{ Auth::user()->currentAddress()->province_id == $province->id  ? 'selected' : ''}} value="{{ $province->id }}">{{ $province->name }}</option>
+                                        <option {{ Auth::user()->currentAddress() ? Auth::user()->currentAddress()->province_id == $province->id  ? 'selected' : '' : ''}} value="{{ $province->id }}">{{ $province->name }}</option>
                                     @endforeach
                                 </select>
                                 @error('province')
@@ -33,7 +33,7 @@
                                 @enderror
                             </div>
                             <div class="col-xl-6 col-12 pt-3 pt-xl-0">
-                                <input type="hidden" id="hidden_city" value="{{ Auth::user()->currentAddress()->city_id ? Auth::user()->currentAddress()->city_id : ''}}">
+                                <input type="hidden" id="hidden_city" value="{{ Auth::user()->currentAddress() ? Auth::user()->currentAddress()->city_id ? Auth::user()->currentAddress()->city_id : '' : ''}}">
                                 <select class="form-control profile-form" name="city" id="cities">
                                     <option value="" disabled selected>Pilih kota</option>
                                 </select>
@@ -79,7 +79,7 @@
                     });
                 },
                 error: function( error ){
-                    alert( error );
+                    // alert( error );
                 }
             });
         }
