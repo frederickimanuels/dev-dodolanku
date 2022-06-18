@@ -167,11 +167,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-xl-4 col-3">
+                                        {{-- <div class="col-xl-4 col-3">
                                             <h6>Total Harga</h6>
                                             <h3 class="total-price">Rp.500.000</h3>
-                                            <button class="btn btn-primary">Beli Lagi</button>
-                                        </div>
+                                            <button class="btn btn-primary">Lihat Halaman Produk</button>
+                                        </div> --}}
                                     </div>
                                 </div>
                             @endforeach
@@ -190,7 +190,7 @@
                             <div class="row pt-2 pb-2">
                                 <div class="col-2">No Resi</div>
                                 <div class="col-1">:</div>
-                                <div class="col-9">xxxx</div>
+                                <div class="col-9">{{ $cart->orders()->first()->couriertracking }}</div>
                             </div>
                             <div class="row pt-2 pb-2">
                                 <div class="col-2">Alamat</div>

@@ -10,6 +10,13 @@ class TemplateController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('store.manage');
+    }
+
+    public function index()
+    {
+        $templates = Template::get();
+        return view('store/template-list',compact('templates'));
     }
 
     public function store(Request $request)

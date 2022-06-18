@@ -25,6 +25,8 @@ class HomeController extends Controller
     {
         if ($request->user()->hasRole('user')) {
             return redirect()->route('base');
+        }else if($request->user()->hasRole('admin')){
+            return redirect()->route('admin.dashboard');
         }
     }
 }
