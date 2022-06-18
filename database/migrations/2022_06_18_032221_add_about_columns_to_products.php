@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddVersionToProductsTable extends Migration
+class AddAboutColumnsToProducts extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddVersionToProductsTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->integer('version')->default('0');
+            $table->longText('about');
         });
     }
 
@@ -26,7 +26,7 @@ class AddVersionToProductsTable extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('version');
+            $table->dropColumn('about');
         });
     }
 }

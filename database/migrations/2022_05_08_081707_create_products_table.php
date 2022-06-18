@@ -19,6 +19,10 @@ class CreateProductsTable extends Migration
             $table->string('slug');
             $table->longText('description');
             $table->integer('min_order');
+            $table->integer('price');
+            $table->integer('weight');
+            $table->integer('stock');
+            $table->integer('is_active')->default('1');
             $table->timestamps();
             $table->softDeletes();
         });

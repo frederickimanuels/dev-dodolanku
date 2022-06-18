@@ -14,17 +14,13 @@ class Product extends Model
         return $this->belongsToMany(Store::class, 'product_stores');
     }
 
-    public function variants()
-    {
-        return $this->belongsToMany(Variant::class, 'variant_products');
-    }
-
     public function category()
     {
-        return $this->belongsTo(Category::class, 'category_products');
+        return $this->belongsToMany(Category::class, 'category_products');
     }
 
-    // public function priceBelow($limit){
-    //     return $this->variants()->where('')
-    // }
+    public function hasStore()
+    {
+        return $this->stores()->first();
+    }
 }

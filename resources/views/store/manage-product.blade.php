@@ -74,15 +74,12 @@
                                             </td>
                                             <td>
                                                 <div class="product-price pt-4">
-                                                    Rp {{number_format($product->variants()->orderBy('price','ASC')->first()->price,0,',','.')}}
-                                                    @if(count($product->variants()->get()) > 1)
-                                                    - Rp {{number_format($product->variants()->orderBy('price','DESC')->first()->price,0,',','.')}}
-                                                    @endif
+                                                    Rp {{number_format($product->first()->price,0,',','.')}}
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="product-stock pt-4" >
-                                                    {{ $product->variants()->sum('stock') }}
+                                                    {{ $product->stock }}
                                                 </div>
                                             </td>
                                             <td>

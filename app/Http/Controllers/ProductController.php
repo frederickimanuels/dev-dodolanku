@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use Illuminate\Support\Facades\Auth;
 use App\Product;
 use Illuminate\Http\Request;
@@ -26,7 +27,8 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('store/create-product');
+        $categories = Category::get();
+        return view('store/create-product',compact('categories'));
     }
 
     public function list($store_slug, Request $request)
@@ -62,9 +64,7 @@ class ProductController extends Controller
         if(!$store){
             return redirect()->route('base');
         }
-        $product = $store->products()->where('slug',$product_slug)->orderBy('version','DESC')->first();
-        $variants = $product->variants()->get();
-        // dd($variants->first());
+        $product = $store->products()->where('slug',$product_slug)->orderBy('id','DESC')->first();
         if(!$product){
             return redirect()->route('store.show',$store_slug);
         }
@@ -78,39 +78,37 @@ class ProductController extends Controller
         // dd($request);
         $this->validate($request, [
             'product_name' => 'required|min:5|max:60',
-            'product_description' => 'required|min:5|max:2000',
+            'product_description' => 'required|min:5|max:500',
+            'product_about' => 'required|min:10|max:2000',
             'product_min_order' => 'required|integer|min:1',
             'product_price' => 'required|integer|min:100',
             'product_weight' => 'required|integer|min:10',
             'product_stock' => 'required|integer|min:1',
         ]);
-        if($request->variant_active != "on"){
-            $product = new Product();
-            $product->name = $request->product_name;
-            $product->description = $request->product_description;
-            $replace_whitespace_with_dash = preg_replace("/[\s_]/", "-", $product->name);
-            $product_slug_not_avail = Product::where('slug',$replace_whitespace_with_dash)->first();
-            if(!$product_slug_not_avail){
-                $product->slug = $replace_whitespace_with_dash;
-            }else{
-                $product->slug = $replace_whitespace_with_dash . '-' . (string)time();
-            }
-            $product->min_order = $request->product_min_order;
-            $product->save();
-            
-            $variant = new Variant();
-            $variant->type = 'default';
-            $variant->name = 'default';
-            $variant->price = $request->product_price;
-            $variant->weight = $request->product_weight;
-            $variant->stock = $request->product_stock;
-            $variant->is_active = 1;
-            $variant->save();
 
-            $product->variants()->attach($variant->id);
+        $product = new Product();
+        $product->name = $request->product_name;
+        $product->description = $request->product_description;
+        $product->about = $request->product_about;
+        $replace_whitespace_with_dash = preg_replace("/[\s_]/", "-", $product->name);
+        $product_slug_not_avail = Product::where('slug',$replace_whitespace_with_dash)->first();
+        if(!$product_slug_not_avail){
+            $product->slug = $replace_whitespace_with_dash;
+        }else{
+            $product->slug = $replace_whitespace_with_dash . '-' . (string)time();
+        }
+        $product->min_order = $request->product_min_order;
+        $product->stock = $request->product_stock;
+        $product->price = $request->product_price;
+        $product->weight = $request->product_weight;
+        $product->save();
 
-            $store = Auth::user()->hasStore();
-            $store->products()->attach($product->id);
+
+        $store = Auth::user()->hasStore();
+        $store->products()->attach($product->id);
+
+        if($request->product_category){
+            $product->category()->attach($request->product_category);
         }
         return redirect()->route('store.dashboard');
     }
