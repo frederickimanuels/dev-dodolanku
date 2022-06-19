@@ -13,6 +13,9 @@
   font-size: 16px;
   font-family: Montserrat-Bold;
 }
+.accordion:hover{
+    color: #000000;
+}
 .non-accordeon{
     background-color: #189AB4!important;
     color: #FFFFFF;
@@ -32,6 +35,9 @@ li{
     font-size: 12px;
     cursor: pointer;
     padding: 5px 0px
+}
+li:hover{
+    color: #000000;
 }
 .active, .accordion:hover {
   /* background-color: #ccc;  */
@@ -98,6 +104,9 @@ label{
 .btn-non-accordeon li{
     font-size: 16px;
     padding: 18px 18px 18px 0px;
+}
+.btn-non-accordeon li:hover{
+    color: black;
 }
 </style>
 <div id="wrapper">

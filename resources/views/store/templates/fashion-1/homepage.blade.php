@@ -68,6 +68,9 @@
         padding: 0;
         /* padding-bottom: 50px; */
     }
+    .store-home img{
+        max-height: 900px;
+    }
     .store-content{
         max-width: 80%;
         padding-bottom: 50px;
