@@ -38,8 +38,13 @@
         @if(!Auth::guest())
             <h1>Hai, {{ Auth::user()->name }}</h1>
             @if(count($carts) > 0)
-                <h2>Kamu memiliki beberapa belanjaan di toko berikut</h2>
+                <?php $c = 0?>
                 @foreach($carts as $cart)
+                    @if($cart->products()->first())
+                    @if($c == 0)
+                        <h2>Kamu memiliki beberapa belanjaan di toko berikut</h2>
+                        <?php $c = 1?>
+                    @endif
                     <div class="row shop-list">
                         <div class="col-xl-8 col-12">
                             <h2>{{ $cart->stores()->first()->name }}</h2>
@@ -53,7 +58,12 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                 @endforeach
+                @if($c == 0)
+                    <h2>Kamu belum memiliki keranjang belanjaan.</h2>
+                    <?php $c = 1?>
+                @endif
             @else
                 <h2>Kamu belum memiliki keranjang belanja</h2>
             @endif

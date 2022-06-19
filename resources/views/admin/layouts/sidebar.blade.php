@@ -13,7 +13,7 @@
             <li class="nav-item"><a class="nav-link {{ Request::routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}"><i class="fas fa-table"></i><span>Dashboard</span></a></li>
             <hr class="sidebar-divider my-0" >
             
-            <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-coins"></i><span>Penarikan Dana</span></a></li>
+            <li class="nav-item"><a class="nav-link {{ Request::routeIs('admin.withdrawal.list') ? 'active' : '' }}" href="{{ route('admin.withdrawal.list') }}"><i class="fas fa-coins"></i><span>Penarikan Dana</span></a></li>
             {{-- <li class="nav-item"><a class="nav-link" href="login.html"><i class="far fa-user-circle"></i><span>Chat</span></a></li> --}}
             <li class="nav-item"><a class="nav-link {{ Request::routeIs('admin.store.list') ? 'active' : '' }}" href="{{ route('admin.store.list') }}"><i class="fa-solid fa-store"></i><span>List Toko</span></a></li>
             <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-envelope"></i><span>List Pesanan</span></a></li>

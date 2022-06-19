@@ -17,9 +17,16 @@ Route::get('/', 'HomepageController@index')->name('base');
 
 Route::group([ 'middleware' => '\App\Http\Middleware\AdminMiddleware'], function(){
     Route::get('/admin', 'admin\AdminController@index')->name('admin.dashboard');
+
+    // Store
     Route::get('/admin/store-list', 'admin\AdminController@storeList')->name('admin.store.list');
     Route::get('/admin/store/edit/{store_slug}', 'admin\AdminController@storeEdit')->name('admin.store.edit');
     Route::get('/admin/store/delete/{store_slug}', 'admin\AdminController@storeDelete')->name('admin.store.delete');
+
+    // Balance
+    Route::get('/admin/withdrawal','admin\AdminController@withdrawalList')->name('admin.withdrawal.list');
+    Route::get('/admin/withdrawal/accept/{withdrawal_id}','admin\AdminController@withdrawalAccept')->name('admin.withdrawal.accept');
+    Route::get('/admin/withdrawal/reject/{withdrawal_id}','admin\AdminController@withdrawalReject')->name('admin.withdrawal.reject');
 });
 
 Route::get('/about', 'HomepageController@about')->name('about');
@@ -65,6 +72,10 @@ Route::get('/store/edit-product/{product_slug}','ProductController@edit')->name(
 Route::post('/store/edit-product/{product_slug}','ProductController@update')->name('store.product.update');
 Route::get('/store/delete-product/{product_slug}','ProductController@delete')->name('store.product.delete');
 
+// Balance
+Route::get('/store/balance','BalanceController@index')->name('store.balance');
+Route::post('/store/balance/withdraw','BalanceController@withdraw')->name('store.balance.withdraw');
+
 // Template
 Route::get('/store/template','TemplateController@index')->name('store.template');
 Route::post('/store/template','TemplateController@store')->name('store.template');
@@ -73,6 +84,7 @@ Route::post('/store/template/update','TemplateController@update')->name('store.t
 
 // Cart
 Route::get('/cart','CartController@index')->name('cart');
+Route::get('/cart/remove-product/{cart_id}/{product_id}','CartController@removeProduct')->name('cart.product.remove');
 Route::post('/buy-now','CartController@buyNow')->name('cart.buynow');
 Route::post('/pay','CartController@pay')->name('cart.pay');
 

@@ -65,10 +65,12 @@
             <span class="navbar-shop-name">Admin Dashboard</span>
           </a>
         </div>
-        @elseif(!Auth::user()->hasStore())
-          <a class="text-reset me-3" href="{{route('cart')}}">
-            <i class="fa-solid fa-shopping-cart"></i>
-          </a>
+        @endif
+        
+        <a class="text-reset me-3" href="{{route('cart')}}">
+          <i class="fa-solid fa-shopping-cart"></i>
+        </a>
+        @if(!Auth::user()->hasStore() && !Auth::user()->hasRole('admin'))
           <div class="shop-outer">
             <a class="text-reset shop-icon" href="{{ route('store.create') }}">
               {{-- <i class="fa-solid fa-shop"></i> --}}

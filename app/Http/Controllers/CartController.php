@@ -170,4 +170,14 @@ class CartController extends Controller
          );
         return response()->json($response);
     }
+
+    public function removeProduct($cart_id, $product_id){
+        $cart = Cart::where('id',$cart_id)->first();
+        $cart->products()->detach($product_id);
+        if($cart->products()->count() == 0){
+            Auth::user()->carts()->detach($cart->id);
+            $cart->delete();
+        }
+        return redirect()->back();
+    }
 }

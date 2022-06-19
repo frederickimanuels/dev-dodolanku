@@ -40,7 +40,7 @@ class Store extends Model
     }
     public function balances()
     {
-        return $this->belongsToMany(Balance::class, 'store_balances')->withTimestamps()->withPivot('change');
+        return $this->belongsToMany(Balance::class, 'store_balances')->withTimestamps()->withPivot(['change','reference_no']);
     }
     public function currentBalance()
     {
@@ -50,5 +50,10 @@ class Store extends Model
     public function orders()
     {
         return $this->belongsToMany(Order::class, 'store_orders')->withTimestamps();
+    }
+
+    public function withdrawals()
+    {
+        return $this->belongsToMany(Withdrawal::class, 'store_withdrawals')->withTimestamps();
     }
 }

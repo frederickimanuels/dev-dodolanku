@@ -77,16 +77,16 @@
 <main class="" >
   <form method="POST" action="{{ route('cart.pay') }}">
     @csrf 
-    <div class="basket container cart-empty {{ $products ? 'd-none' : '' }}">
+    <div class="basket container cart-empty {{ count($products)>0 ? 'd-none' : '' }}">
       <h2>Keranjang Belanjaanmu Masih Kosong Nih</h2>
-      <h3>Yuk Tambahkan produknya dan dapatkan diskon menarik</h3>
-      <a href="">
+      <h3>Yuk tambahkan produknya sekarang</h3>
+      <a href="{{ route('store.show',$store->slug) }}">
         <span>
           Belanja Sekarang
         </span>
       </a>
     </div>
-    <div class="basket {{ $products ? '' : 'd-none' }}">
+    <div class="basket {{ count($products)>0 ? '' : 'd-none' }}">
       <!-- <div class="basket-labels">
         <ul>
           <li class="item item-heading">Item</li>
@@ -96,7 +96,7 @@
         </ul>
       </div> -->
       <div id="details">
-        <h1 class="cart-h1">Order</h1>
+        <h1 class="cart-h1">Order di <span><a href="{{ route('store.show',$store->slug) }}" style="text-decoration: none; color:#EE6530;">{{ $store->name }}</a></span></h1>
         <input type="hidden" name="cart_id" value="{{ $cart ? $cart->id : '' }}">
         <input type="hidden" name="address_id" value="{{ $address ? $address->id : '' }}">
         <input type="hidden" id="input_shipping_fee" name="shipping_fee" value="">
@@ -136,7 +136,7 @@
             </div>
             <div class="subtotal ml-auto d-flex">
               Rp <span id="product_subtotal_{{$product->id}}">{{number_format($product->price * $product->pivot->count,0,',','.')}}</span>
-              <i class="fa-solid fa-trash mt-auto"></i>
+              <i class="fa-solid fa-trash mt-auto remove-product" product-id="{{ $product->id }}" cart-id="{{ $cart->id }}"></i>
             </div>
             <div>
             
@@ -175,8 +175,10 @@
         <!-- <div class="summary-total-items"><span class="total-items"></span>Address</div> -->
         <div class="summary-delivery">
           @if($address)
-          {{ $address ? $address->description : ''}}</br>
-          {{ $address ? $address->province . '-' . $address->city : ''}}
+          <div class="mb-2">
+            {{ $address ? $address->description : ''}}</br>
+            {{ $address ? $address->province . '-' . $address->city : ''}}
+          </div>
           {{-- <select name="delivery-collection" class="summary-delivery-selection">
               <option value="0" selected="selected">Select Collection or Delivery</option>
              <option value="collection">Collection</option>
@@ -184,6 +186,11 @@
              <option value="second-class">Royal Mail 2nd Class</option>
              <option value="signed-for">Royal Mail Special Delivery</option>
           </select> --}}
+          <a href="{{ route('user.address') }}" class="add-address">
+            <span>
+              Ubah
+            </span>
+          </a>
           @else
             <a href="{{ route('user.address') }}" class="add-address">
               <span>
@@ -238,34 +245,30 @@
   </main>
 </section>
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="modalRemoveProduct" tabindex="-1" role="dialog" aria-labelledby="modalRemoveProduct" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Konfirmasi Hapus Produk</h5>
+              <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              Apakah anda yakin menghapus barang ini dari keranjang belanja?
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
+              <a id="hyperlink_remove" href="#">
+                  <button type="button" class="btn btn-danger">Hapus Produk</button>
+              </a>
+          </div>
       </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
   </div>
 </div>
 @include('layouts.js')
 <!-- Add JS Here -->
 <script>
-    function openModal(){
-      $('#exampleModalCenter').modal('toggle');
-    }
-    function closeModal(){
-      $('#exampleModalCenter').modal('hide');
-    }
   $(document).ready(function(){
     var global_ongkir = 0;
     var global_total_order = 0;
@@ -328,6 +331,30 @@
       document.getElementById("total_amount").innerHTML = total_amount;
       document.getElementById("input_shipping_fee").value = global_ongkir;
     }
+
+    
+    function openRemoveModal(){
+      $('#modalRemoveProduct').modal('toggle');
+    }
+    function closeRemoveModal(){
+      $('#modalRemoveProduct').modal('hide');
+    }
+
+    $('.checkout-cta').on('click',function(){
+      calculateOngkir();
+      calculateOrder();
+    });
+
+    $('.remove-product').on('click',function(){
+        let product_id = $(this).attr('product-id');
+        let cart_id = $(this).attr('cart-id');
+        $('#hyperlink_remove').attr('href','/cart/remove-product/'+cart_id+'/'+ product_id);
+        openRemoveModal();
+    });
+
+    $('.close-modal').on('click',function(){
+      closeRemoveModal();
+    });
   });
 </script>
 <!-- End JS -->

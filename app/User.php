@@ -68,6 +68,7 @@ class User extends Authenticatable
                     ->join('cart_status','cart_status.cart_id','=','carts.id')
                     ->join('cart_stores','cart_stores.cart_id','=','carts.id')
                     ->where('status_id',1)
+                    ->whereNull('cart_status.deleted_at')
                     ->where('store_id',$store_id)->first();
         if($cart){
             return $cart;

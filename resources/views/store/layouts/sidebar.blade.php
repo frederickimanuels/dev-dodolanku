@@ -10,7 +10,7 @@
         <ul class="navbar-nav text-light" id="accordionSidebar">
         <hr class="sidebar-divider my-0" >
             <li class="nav-item">
-                <a class="nav-link active" href="#">
+                <a class="nav-link" href="{{ route('store.balance') }}">
                     <i class="fas fa-coins"></i>
                     <span>Saldo Toko</span><br>
                     <span>Rp {{ Auth::user()->hasStore()->balances()->first() ? number_format( Auth::user()->hasStore()->currentBalance()->first()->value,0,',','.') : '0'}}</span>

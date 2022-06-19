@@ -13,9 +13,9 @@
         </style>
         <ul class="profile-menu-list">
             {{-- <li>Wallet</li> --}}
-            <li><a href="{{ route('user.profile') }}">Profile</a></li>
-            <li><a href="{{ route('user.order') }}">Orders</a></li>
-            <li><a href="{{ route('user.address') }}">Address</a></li>
+            <li><a href="{{ route('user.profile') }}" style="{{ Request::routeIs('user.profile') ? 'color:#EE6530;' : '' }}">Profile</a></li>
+            <li><a href="{{ route('user.order') }}" style="{{ Request::routeIs('user.order') ? 'color:#EE6530;' : '' }}">Orders</a></li>
+            <li><a href="{{ route('user.address') }}" style="{{ Request::routeIs('user.address') ? 'color:#EE6530;' : '' }}">Address</a></li>
             {{-- <li>Payment Methods</li> --}}
         </ul>
 </div>

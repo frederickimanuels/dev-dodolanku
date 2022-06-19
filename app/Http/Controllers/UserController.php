@@ -109,7 +109,7 @@ class UserController extends Controller
         $cart = $order->carts()->first();
         $store = $cart->stores()->first();
 
-        $store_balance = $cart->stores()->first()->balances()->first();
+        $store_balance = $store->currentBalance()->first();
         if($store_balance){
             $current_balance = $store_balance->value;
 
@@ -118,14 +118,14 @@ class UserController extends Controller
             $balance->value =  $total_order + $current_balance;
             $balance->save();
             $store_balance->stores()->updateExistingPivot($store->id, ['deleted_at' => Carbon::now()]);
-            $balance->stores()->attach($store->id, ['change'=> $total_order ] );
+            $balance->stores()->attach($store->id, ['change'=> $total_order, 'reference_no' => $order->reference_no] );
         }else{
             $balance = new Balance();
             $total_order = $order->total_amount + $order->shipping_fee;
             $balance->value =  $total_order;
             $balance->save();
 
-            $balance->stores()->attach($store->id, ['change'=> $total_order ] );
+            $balance->stores()->attach($store->id, ['change'=> $total_order, 'reference_no' => $order->reference_no ] );
         }
         $cart->status()->updateExistingPivot(4, ['deleted_at' => Carbon::now()]);
         $cart->status()->attach(5);

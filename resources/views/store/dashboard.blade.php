@@ -27,13 +27,13 @@
                             
                         </div>
                         <div class="col-md-4 col-xl-4 mb-4">
-                            <a href="#" style="text-decoration: none;color:inherit;">
+                            <a href="{{ route('store.product.manage') }}" style="text-decoration: none;color:inherit;">
                                 <div class="card shadow border-start-warning py-2">
                                     <div class="card-body">
                                         <div class="row align-items-center no-gutters">
                                             <div class="col me-2">
                                                 <div class="text-uppercase text-warning fw-bold text-xs mb-1"><span>Produk Toko</span></div>
-                                                <div class="text-dark fw-bold h5 mb-0"><span>1</span></div>
+                                                <div class="text-dark fw-bold h5 mb-0"><span>{{ $store->products()->count() }}</span></div>
                                             </div>
                                             <!-- <div class="col-auto"><i class="fas fa-comments fa-2x text-gray-300"></i></div> -->
                                         </div>
@@ -42,19 +42,19 @@
                             </a>
                         </div>
                         <div class="col-md-4 col-xl-4 mb-4">
-                            <a href="#" style="text-decoration: none;color:inherit;">
+                            <div style="text-decoration: none;color:inherit;">
                                 <div class="card shadow border-start-success py-2">
                                     <div class="card-body">
                                         <div class="row align-items-center no-gutters">
                                             <div class="col me-2">
-                                                <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Produk Terjual</span></div>
-                                                <div class="text-dark fw-bold h5 mb-0"><span>1</span></div>
+                                                <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Penjualan</span></div>
+                                                <div class="text-dark fw-bold h5 mb-0"><span>{{ $store->orders()->count() }}</span></div>
                                             </div>
                                             <!-- <div class="col-auto"><i class="fas fa-dollar-sign fa-2x text-gray-300"></i></div> -->
                                         </div>
                                     </div>
                                 </div>
-                            </a>
+                            </div>
                         </div>
                     </div>
                     <div class="row inner-row my-5">
