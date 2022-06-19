@@ -38,6 +38,9 @@ Route::post('/address','UserController@storeAddress')->name('user.address.store'
 Route::get('/orders','UserController@orders')->name('user.order');
 Route::get('/orders/{reference_no}','UserController@detailOrders')->name('user.order.detail');
 
+Route::get('/change-password','ChangePasswordController@index')->name('change.password');
+Route::post('/change-password','ChangePasswordController@store')->name('change.password.store');
+
 // Store
 Route::get('/store', 'StoreController@index')->name('store.index');
 Route::get('/store/dashboard','StoreController@dashboard')->name('store.dashboard');

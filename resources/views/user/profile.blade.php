@@ -26,12 +26,19 @@
                             </div>
                         </div>
                         <div class="row form-list">
-                            <div class="col">
+                            <div class="col-xl-6 col-12">
                                 <label for="password" class="profile-label" >Password</label>
-                                <input type="password" name="password" class="form-control profile-form" placeholder="Password">
+                                <div class="form-control profile-form" style="display: flex; justify-content:space-between; padding-top:12px;">
+                                    <input type="password" value="******" style="background:none;" disabled="disabled">
+                                    <a href="{{ route('change.password') }}" style="text-decoration:none;">Ubah Password</a>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-12 pt-3 pt-xl-0">
+                                <label for="birth-date" class="profile-label">Birth Date</label>
+                                <input type="date" class="form-control profile-form" placeholder="Birth Date">
                             </div>
                         </div>
-                        <div class="row form-list">
+                        {{-- <div class="row form-list">
                             <div class="col-xl-6 col-12">
                                 <label for="phone-number" class="profile-label">Phone Number</label>
                                 <input type="number" class="form-control profile-form" placeholder="Phone Number">
@@ -40,7 +47,7 @@
                                 <label for="birth-date" class="profile-label">Birth Date</label>
                                 <input type="date" class="form-control profile-form" placeholder="Birth Date">
                             </div>
-                        </div>
+                        </div> --}}
                         {{-- <div class="row form-list">
                             <div class="col-6">
                                 <input type="text" class="form-control profile-form" placeholder="Password">

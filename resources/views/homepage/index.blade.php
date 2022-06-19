@@ -150,7 +150,9 @@
                         <span>Start Now its Free</span>
                     </a> -->
                     <form>
-                        <button class="start-button" formaction="{{route('store.create')}}">Start now its Free</button>
+                        <a href="{{ route('store.create') }}">
+                            <button class="start-button">Start now its Free</button>
+                        </a>
                     </form>
                 </div>
             </div>
