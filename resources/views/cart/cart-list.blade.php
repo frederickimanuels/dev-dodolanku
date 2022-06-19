@@ -37,19 +37,23 @@
 
         @if(!Auth::guest())
             <h1>Hai, {{ Auth::user()->name }}</h1>
-            @if(count($carts) > 1)
+            @if(count($carts) > 0)
                 <h2>Kamu memiliki beberapa belanjaan di toko berikut</h2>
-                <div class="row shop-list">
-                    <div class="col-xl-8 col-12">
-                        <h2>Toko Billie Halim</h2>
-                        <h3>Kamu Memiliki <span>4</span> Barang di keranjang toko ini</h3>
-                    </div>
-                    <div class="col-xl-4 col-12" style="position:relative">
-                        <div class="btn-wrapper">
-                            <button type="button" onclick="window.location.href='https://w3docs.com';" class="btn btn-primary">Lihat Keranjang</button>
+                @foreach($carts as $cart)
+                    <div class="row shop-list">
+                        <div class="col-xl-8 col-12">
+                            <h2>{{ $cart->stores()->first()->name }}</h2>
+                            <h3>Kamu Memiliki <span>{{ $cart->products()->count() }}</span> Barang di keranjang toko ini</h3>
+                        </div>
+                        <div class="col-xl-4 col-12" style="position:relative">
+                            <div class="btn-wrapper">
+                                <a href="{{ route('cart.show',$cart->stores()->first()->slug) }}">
+                                    <button type="button" class="btn btn-primary" >Lihat Keranjang</button>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
             @else
                 <h2>Kamu belum memiliki keranjang belanja</h2>
             @endif

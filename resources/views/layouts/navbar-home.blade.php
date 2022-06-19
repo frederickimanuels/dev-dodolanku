@@ -19,9 +19,9 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ route('about') }}">Faq</a>
         </li>
-         <li>
+         {{-- <li>
         <input autocomplete="off" type="search" class="form-control rounded" placeholder="Search" style="min-width: 125px;"/>
-        </li>
+        </li> --}}
       </ul>
     </div>
 

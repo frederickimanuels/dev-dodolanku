@@ -64,7 +64,7 @@
                 <h1>Customizable and Truly Unique</h1>
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse ipsum nemo, similique minus deserunt soluta. Corporis quod numquam ducimus voluptatem amet commodi consequatur! Est voluptatum quis vel accusantium inventore beatae!</p>
                 <div class="homepage-button">
-                    <a href="">
+                    <a href="{{ route('store.create') }}">
                         <span>Start Selling</span>
                     </a>
                 </div>
@@ -91,7 +91,7 @@
             <h2>Easily Design Engaging Exhibit</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex veritatis impedit molestias itaque fuga incidunt sint cumque saepe dicta optio nam, debitis, exercitationem cupiditate officiis omnis aspernatur. Dolorum, repudiandae delectus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi esse corrupti, quos incidunt nobis totam officia quibusdam deserunt odit voluptatibus minus labore eaque, quasi aperiam, dolor quo explicabo officiis illum?</p>
             <div class="homepage-button" >
-                <a href="">
+                <a href="{{ route('store.create') }}">
                     <span>Create your site</span>
                 </a>
             </div>
@@ -112,7 +112,7 @@
         <h2>Power up your online commerce website</h2>
         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates, at. Dolore quam placeat esse debitis iusto dolorum consequatur culpa doloribus, commodi dignissimos maxime similique maiores saepe labore eum possimus voluptas. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos error odit suscipit dicta minima modi, ratione voluptas non similique! Aut totam praesentium vel odio ea! Repellendus quis numquam hic dolorum.</p>
         <div class="homepage-button" >
-            <a href="{{ route('store.home') }}">
+            <a href="{{ route('store.create') }}">
                 <span>Start Selling</span>
             </a>
         </div>
@@ -122,7 +122,7 @@
 @include('layouts.js')
 <!-- Add Javascript Here ... -->
 <script>
-$('.center').slick({
+    $('.center').slick({
         centerMode: true,
         centerPadding: '60px',
         slidesToShow: 3,
@@ -151,7 +151,7 @@ $('.center').slick({
     $('.slick-slider').slick({
         centerMode: true,
         slidesToShow: 3,
-        dots: true,
+        // dots: true,
         arrows: true,
         swipe: true,
         focusOnSelect:true,
