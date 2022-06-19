@@ -30,7 +30,7 @@
                                 <label for="password" class="profile-label" >Password</label>
                                 <div class="form-control profile-form" style="display: flex; justify-content:space-between; padding-top:12px;">
                                     <input type="password" value="******" style="background:none;" disabled="disabled">
-                                    <a href="#" style="text-decoration:none;">Ubah Password</a>
+                                    <a href="{{ route('change.password') }}" style="text-decoration:none;">Ubah Password</a>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-12 pt-3 pt-xl-0">
