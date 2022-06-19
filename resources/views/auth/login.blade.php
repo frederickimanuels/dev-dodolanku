@@ -10,7 +10,7 @@
             <form method="POST" action="{{ route('login') }}" class="login100-form validate-form">
                 @csrf
                 <a href="{{ route('base') }}" class="login100-logo-title">
-                    <img src="{{ asset('images/homepage/Logo_Dodolanku_name.png') }}" alt="IMG" style="max-width:70%;max-height:100%;">
+                    <img src="{{ asset('images/homepage/Logo_dodolanku_name.png') }}" alt="IMG" style="max-width:70%;max-height:100%;">
                 </a>
                 <span class="login100-form-title">
                     Login To Your Account
