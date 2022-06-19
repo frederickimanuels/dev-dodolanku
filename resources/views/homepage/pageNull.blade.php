@@ -64,7 +64,7 @@
             <img src="{{asset('images/homepage/error-not-found.png')}}" alt=".." class="aboutus-img">
             <h1>Waduh Tujuanmu tidak ada</h1>
             <p>Mungkin Kamu salah jalan atau alamat, ayo balik.</p>
-            <button class="btn">Homepage</button>
+            <a href="{{ route('base') }}"><button class="btn">Homepage</button></a>
         </div>
 
     </div>
