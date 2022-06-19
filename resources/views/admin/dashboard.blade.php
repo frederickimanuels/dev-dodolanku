@@ -57,7 +57,7 @@
                                     <div class="row align-items-center no-gutters">
                                         <div class="col me-2">
                                             <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Permintaan penarikan dana</span></div>
-                                            <div class="text-dark fw-bold h5 mb-0"><span>1</span></div>
+                                            <div class="text-dark fw-bold h5 mb-0"><span>{{ App\Withdrawal::whereNull('is_accept')->count() }}</span></div>
                                         </div>
                                         <!-- <div class="col-auto"><i class="fas fa-dollar-sign fa-2x text-gray-300"></i></div> -->
                                     </div>
