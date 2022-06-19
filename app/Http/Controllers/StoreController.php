@@ -20,7 +20,6 @@ class StoreController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
         $this->middleware('store.manage')->except('create','store','show');
     }
 
@@ -112,7 +111,7 @@ class StoreController extends Controller
     {
         $store = Store::where('slug',$slug)->first();
         if(!$store){
-            return redirect()->route('base');
+            return redirect()->route('notfound');
         }else{
             $template = $store->template()->first();
             $popular_products = $store->products()->take(8)->get();

@@ -4,11 +4,14 @@
     <div class="container-login100">
         <div class="wrap-login100">
             <div class="login100-pic js-tilt">
-                <img src="{{ asset('images/homepage/blank-profile-picture.png') }}" alt="IMG">
+                <img src="{{ asset('images/homepage/Logo_Dodolanku_favicon.png') }}" alt="IMG" style="width:auto;height:80%">
             </div>
 
             <form method="POST" action="{{ route('login') }}" class="login100-form validate-form">
                 @csrf
+                <a href="{{ route('base') }}" class="login100-logo-title">
+                    <img src="{{ asset('images/homepage/Logo_Dodolanku_name.png') }}" alt="IMG" style="max-width:70%;max-height:100%;">
+                </a>
                 <span class="login100-form-title">
                     Login To Your Account
                 </span>
