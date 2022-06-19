@@ -2,13 +2,29 @@
 
 @include('layouts.navbar-home')
 <style>
-  div[data-acc-content] { display: none;  }
-  div[data-acc-step]:not(.open) { 
-        /* background: #f2f2f2;     */
-        color: green;
-    }
-  /* div[data-acc-step]:not(.open) h5 { color: #777;  } */
-  /* div[data-acc-step]:not(.open) .badge-primary { background: #ccc;  } */
+   /* div[data-acc-content] { display: none;  }
+  div[data-acc-step]:not(.open) { background: #f2f2f2;  }
+  div[data-acc-step]:not(.open) h5 { color: #777;  }
+  div[data-acc-step]:not(.open) .badge-primary { background: #ccc;  } */
+  .progress-step{
+    /* position: absolute; */
+  }
+  .form-content, .address-form, .form-checkbox{
+    margin-left: 60px;
+  }
+  .checkbox-icon{
+    width: 40px;
+    height: 40px;
+  }
+  .elips-box label{
+    margin-left: 20px;
+  }
+  .form-email span{
+    margin-left: 60px;
+  }
+  .label-address{
+    margin-left: 20px;
+  }
 </style>
 <section id="createStore" class="display-desktop">
     <div class="createStore-inner">
@@ -20,21 +36,27 @@
                 <div class="col-6 col-xl-6">
                     <div class="createStore-outer-form">
                         <div class="row">
-                            <div class="col-1 border-line">
+                            <!-- <div class="col-1 border-line">
                             <img src="{{asset('images/homepage/elips.png')}}" alt="">
 
-                            </div>
-                            <div class="col-11">
+                            </div> -->
+                            <div class="col-12">
                                 <h3>Halo,<span style="font-weight:bold">{{explode(' ', Auth::user()->name, 2)[0]}}</span> ayo isi detail toko anda</h3>
                                 <form class="createStore-form" id="form-1" method="POST" action="{{ route('store.store') }}">
                                     @csrf
                                     <div class="form-group form-email">
-                                        <label class="form-label mt-10">Email anda</label>
+                                        <div class="d-flex elips-box">
+                                            <img src="{{asset('images/homepage/elips-checklist.png')}}" class="checkbox-icon" alt="">
+                                            <label class="form-label mt-10">Email anda</label>
+                                        </div>
                                         <span>{{Auth::user()->email}}</span>
                                     </div>
-                                    <div class="form-group" id="form-create" data-acc-step>
-                                        <label for="store_name" class="form-label form-label-1" ata-acc-title>Nama Toko dan Link Toko</label>
-                                        <div data-acc-content>
+                                    <div class="form-group form-1" id="form-create" data-acc-step>
+                                        <div class="d-flex elips-box" data-acc-title>
+                                            <img src="{{asset('images/homepage/elips.png')}}" id="elips-1" class="checkbox-icon" alt="">
+                                            <label for="store_name" class="form-label form-label-1">Nama Toko dan Link Toko</label>
+                                        </div>
+                                        <div data-acc-content class="form-content">
                                             <label for="store_name">Nama toko</label>
                                             <input type="text" class="form-control form-input" id="store_name" aria-describedby="store_name" placeholder="Masukkan nama toko" name="store_name">
                                             @error('store_name')
@@ -55,9 +77,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group" id="form-create" data-acc-step>
-                                        <label class="form-label form-label-1" ata-acc-title>Masukkan Alamat Tokomu</label>
-                                        <div data-acc-content>
+                                    <div class="form-group form-2" id="form-create" data-acc-step>
+                                        <div class="d-flex elips-box" data-acc-title>
+                                            <img src="{{asset('images/homepage/elips.png')}}" id="elips-2" class="checkbox-icon" alt="">
+                                            <label class="form-label form-label-1" ata-acc-title>Masukkan Alamat Tokomu</label>
+                                        </div>
+                                        <div data-acc-content class="address-form">
                                             <label for="province">Provinsi dan Kota</label>
                                             <div class="row">
                                                 <div class="col-12 col-xl-6">
@@ -88,8 +113,8 @@
                                             <small style="display:flex;margin-bottom:10px" class="form-text text-muted">Pastikan Alamat toko yang diisi sudah benar</small>
                                         </div>
                                     </div>
-                                    <div class="form-check" id="form-create" data-acc-step>
-                                        <div data-acc-content style="position:relative">
+                                    <div class="form-check form-3" id="form-create" data-acc-step>
+                                        <div data-acc-content class="form-checkbox" style="position:relative">
                                             <input type="checkbox" class="form-check-input" id="terms" name="terms">
                                             <label class="form-check-label" for="terms">Agree to our Terms & Conditons</label>
                                             @error('terms')
@@ -112,18 +137,6 @@
 <!-- Add Js Here -->
 <script>
     
-    // $(function() {
-    //     $( "#form" ).accordionForm({
-    //         mode: 'accordion',
-    //         autoButtonsNextClass: 'btn btn-primary float-right',
-    //         autoButtonsPrevClass: 'btn btn-light',
-    //         stepNumberClass: 'badge badge-pill badge-primary mr-1',
-    //         onSubmit: function() {
-    //         alert('Form submitted!');
-    //         return true;
-    //         }
-    //     });
-    // });
     $(function(){
         $("#form-1").accWizard({
             autoButtons: true,
@@ -132,16 +145,53 @@
             autoButtonsShowSubmit: true,
             autoButtonsSubmitText: 'Submit',
             autoButtonsEditSubmitText: 'Saveee',
+            stepNumberClass:'testttt'
 
         });
         $("#form-1").accWizard({
             scrollPadding: 0,
             start:0,
             stepNumbers:true,
-            stepNumberClass:'',
         });
     });
     $(document).ready(function(){
+        $('.acc-step-number').hide();
+        $('.elips-box').closest('open').css({
+            "background-color":"green",
+        })
+        if($(".form-1").hasClass("open")){
+            console.log("aaaa")
+        }
+        $(".NextBTN").click(function(){
+            // alert("aaa");
+            if(!$(".form-1").hasClass("open")){
+                console.log("form1-close")
+                $("#elips-1").attr("src","{{asset('images/homepage/elips-checklist.png')}}")
+                // document.getElementById("elips-2").src == "{{asset('images/homepage/elips-checklist.png')}}"
+            }
+            if(!$(".form-2").hasClass("open")){
+                console.log("form-2-close");
+                $("#elips-2").attr("src","{{asset('images/homepage/elips-checklist.png')}}")
+                // document.getElementById("elips-2").src == "{{asset('images/homepage/elips-checklist.png')}}"
+            }
+            else{
+                $("#elips-2").attr("src","{{asset('images/homepage/elips.png')}}")
+            }
+        });
+        $(".PrevBTN").click(function(){
+            if($(".form-1").hasClass("open")){
+                console.log("form1-open")
+                $("#elips-1").attr("src","{{asset('images/homepage/elips.png')}}")
+                // document.getElementById("elips-2").src == "{{asset('images/homepage/elips-checklist.png')}}"
+            }
+            if ($(".form-2").hasClass("open")) {
+                console.log("form2-open")
+                $("#elips-2").attr("src","{{asset('images/homepage/elips.png')}}")
+            }
+
+        });
+       
+
         $("#form-create").click(function(){
             // if(document.getElementById("store_name").value.length == 0)
             // {
