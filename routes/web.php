@@ -46,6 +46,7 @@ Route::get('/store', 'StoreController@index')->name('store.index');
 Route::get('/store/dashboard','StoreController@dashboard')->name('store.dashboard');
 Route::get('/create-store','StoreController@create')->name('store.create');
 Route::post('/create-store','StoreController@store')->name('store.store');
+
 Route::get('/store/manage','StoreController@edit')->name('store.manage');
 Route::post('/store/update','StoreController@update')->name('store.update');
 
@@ -62,6 +63,7 @@ Route::get('/create-product','StoreController@createProduct')->name('store.creat
 
 // Template
 Route::get('/store/template','TemplateController@index')->name('store.template');
+Route::post('/store/template','TemplateController@store')->name('store.template');
 Route::get('/store/template/list','TemplateController@list')->name('store.template.list');
 Route::post('/store/template/update','TemplateController@update')->name('store.template.update');
 

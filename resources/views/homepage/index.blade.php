@@ -149,11 +149,9 @@
                     <!-- <a href="/" class="start-button">
                         <span>Start Now its Free</span>
                     </a> -->
-                    <form>
-                        <a href="{{ route('store.create') }}">
-                            <button class="start-button">Start now its Free</button>
-                        </a>
-                    </form>
+                    <a href="{{ route('store.create') }}">
+                        <button class="start-button">Start now its Free</button>
+                    </a>
                 </div>
             </div>
 
