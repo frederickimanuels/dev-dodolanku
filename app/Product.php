@@ -11,7 +11,7 @@ class Product extends Model
 
     public function stores()
     {
-        return $this->belongsToMany(Store::class, 'product_stores');
+        return $this->belongsToMany(Store::class, 'product_stores')->withTimestamps();
     }
 
     public function category()

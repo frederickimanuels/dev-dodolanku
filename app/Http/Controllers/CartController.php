@@ -108,6 +108,7 @@ class CartController extends Controller
         $cart = Cart::where('id',$request->cart_id)->first();
         $products = [];
         $i = 0;
+        $store = null;
         foreach($request->product_id as $p){
             $product = $cart->products()->where('id',$p)->first();
             if($product->stock < $request->product_count[$i]){
@@ -116,6 +117,7 @@ class CartController extends Controller
                 $products[] = $product;
             }
             $i+=1;
+            $store = $product->stores()->first();
         }
         $i = 0;
         $total_amount = 0;
@@ -137,10 +139,12 @@ class CartController extends Controller
         $order->courier = "JNE";
         $order->save();
 
-        $cart->status()->detach();
+        
+        $cart->status()->updateExistingPivot(1, ['deleted_at' => Carbon::now()]);
         $cart->status()->attach(2);
         $cart->orders()->attach($order->id);
         $cart->address()->attach($request->address_id);
+        $order->stores()->attach($store->id);
         return redirect()->route('user.order');
     }
     public function listOrder()

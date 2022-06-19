@@ -17,11 +17,14 @@ Route::get('/', 'HomepageController@index')->name('base');
 
 Route::group([ 'middleware' => '\App\Http\Middleware\AdminMiddleware'], function(){
     Route::get('/admin', 'admin\AdminController@index')->name('admin.dashboard');
+    Route::get('/admin/store-list', 'admin\AdminController@storeList')->name('admin.store.list');
+    Route::get('/admin/store/edit/{store_slug}', 'admin\AdminController@storeEdit')->name('admin.store.edit');
+    Route::get('/admin/store/delete/{store_slug}', 'admin\AdminController@storeDelete')->name('admin.store.delete');
 });
 
 Route::get('/about', 'HomepageController@about')->name('about');
 Route::get('/feature','HomepageController@feature')->name('feature');
-Route::get('/null','HomepageController@null')->name('null');
+Route::get('/not-found','HomepageController@null')->name('null');
 
 Auth::routes();
 
@@ -33,10 +36,12 @@ Route::post('/cart/update-couriertracking','CartController@postTracking')->name(
 // Middleware Auth
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile','UserController@profile')->name('user.profile');
+Route::post('/profile','UserController@storeProfile')->name('user.profile');
 Route::get('/address','UserController@address')->name('user.address');
 Route::post('/address','UserController@storeAddress')->name('user.address.store');
 Route::get('/orders','UserController@orders')->name('user.order');
-Route::get('/orders/{reference_no}','UserController@detailOrders')->name('user.order.detail');
+Route::get('/orders/{reference_no}','UserController@detailOrder')->name('user.order.detail');
+Route::get('/orders/finish/{reference_no}','UserController@finishOrder')->name('user.order.finish');
 
 Route::get('/change-password','ChangePasswordController@index')->name('change.password');
 Route::post('/change-password','ChangePasswordController@store')->name('change.password.store');
@@ -56,10 +61,9 @@ Route::get('/store/list-order','CartController@listOrder')->name('store.order');
 Route::get('/store/manage-product','ProductController@index')->name('store.product.manage');
 Route::get('/store/add-product','ProductController@create')->name('store.product.add');
 Route::post('/store/add-product','ProductController@store')->name('store.product.store');
-
-
-Route::get('/create-product','StoreController@createProduct')->name('store.createProduct');
-// Route::get('/detail-product','StoreController@detailProduct')->name('store.detailProduct');
+Route::get('/store/edit-product/{product_slug}','ProductController@edit')->name('store.product.edit');
+Route::post('/store/edit-product/{product_slug}','ProductController@update')->name('store.product.update');
+Route::get('/store/delete-product/{product_slug}','ProductController@delete')->name('store.product.delete');
 
 // Template
 Route::get('/store/template','TemplateController@index')->name('store.template');

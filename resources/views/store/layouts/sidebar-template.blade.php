@@ -2,7 +2,7 @@
     <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand justify-content-center align-items-center sidebar-brand m-0" href="#">
             <!-- <div class="sidebar-brand-icon"><i class="fas fa-laugh-wink"></i></div> -->
         <div class="sidebar-brand-icon">
-            <img class="border rounded-circle img-profile img-profile-sidebar" src="{{asset('images/homepage/profile1.jpg')}}">
+            <img class="border rounded-circle img-profile img-profile-sidebar" src="{{ Auth::user()->images()->first() ? asset('images/stored/'. Auth::user()->images()->first()->filepath) :  asset('images/homepage/blank-profile-picture.png') }}">
         </div>
         <div class="sidebar-brand-text mx-3"><span>{{ Auth::user()->hasStore()->name }}</span></div>
         </a>

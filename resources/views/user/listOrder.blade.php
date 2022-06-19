@@ -7,6 +7,7 @@
         border-radius: 8px;
         padding: 10px 20px;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        margin-bottom: 20px;
     }
     .user-order-detail{
         border-bottom: 4px solid #FFFFFF;

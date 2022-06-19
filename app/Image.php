@@ -15,4 +15,9 @@ class Image extends Model
     {
         return $this->belongsToMany(Templateconfig::class, 'templateconfig_images');
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_images');
+    }
 }

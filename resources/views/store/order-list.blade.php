@@ -10,13 +10,13 @@
                         <div class="container list-product-wrapper product-order-wrapper">
                             <div class="d-flex">
                                 <div class="mr-auto p-2">
-                                    <h1 class="h1-dashboard h1-product-list">Daftar Produk</h1>
+                                    <h1 class="h1-dashboard h1-product-list">Daftar Pesanan</h1>
                                 </div>
                                 
                                 <div class="p-2">
                                 <form class="me-auto navbar-search w-100">
                                     <div class="input-group">
-                                        <input class="form-control border-0 small search-box" type="text" placeholder="">
+                                        {{-- <input class="form-control border-0 small search-box" type="text" placeholder=""> --}}
                                         <!-- <div class="input-group-append"><button class="btn btn-primary py-0" type="button">Cari</button></div> -->
                                     </div>
                                 </form>
@@ -53,7 +53,7 @@
                                                     @foreach($products as $product)
                                                         <div class="row">
                                                             <div class="col-4 product-list-img-container">
-                                                                <img class="product-list-img" src="{{asset('images/homepage/profile1.jpg')}}" alt="Card image cap">
+                                                                <img class="product-list-img" src="{{ $product->images()->first() ? asset('images/stored/'. $product->images()->first()->filepath) :  asset('images/homepage/default-product-image.png') }}" alt="Card image cap">
                                                             </div>
                                                             <div class="col-8 product-list-text product-order-text pt-1">
                                                                 <h2>{{ $product->name }}</h2>
@@ -131,7 +131,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-4" style="display:flex;align-items:center">
-                                        <img class="product-list-img" src="{{asset('images/homepage/profile1.jpg')}}" alt="Card image cap">
+                                        <img class="product-list-img" src="{{ $product->images()->first() ? asset('images/stored/'. $product->images()->first()->filepath) :  asset('images/homepage/default-product-image.png') }}" alt="Card image cap">
                                     </div>
                                     <div class="col-8 product-list-mobile-text">
                                         <h1>Scarlett Whitening</h1>

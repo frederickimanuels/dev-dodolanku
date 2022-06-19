@@ -2,11 +2,8 @@
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
-            <!-- <div class="login100-pic js-tilt" data-tilt>
-                <img src="{{asset('images/homepage/profile1.jpg')}}" alt="IMG">
-            </div> -->
             <div class="login100-pic js-tilt">
-                <img src="{{asset('images/homepage/billie2.jpg')}}" alt="IMG">
+                <img src="{{ asset('images/homepage/blank-profile-picture.png') }}" alt="IMG">
             </div>
 
             <form method="POST" class="login100-form validate-form" action="{{ route('register') }}">

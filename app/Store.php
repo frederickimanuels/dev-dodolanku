@@ -15,17 +15,12 @@ class Store extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'product_stores');
+        return $this->belongsToMany(Product::class, 'product_stores')->whereNull('product_stores.deleted_at')->withTimestamps();
     }
 
     public function template()
     {
         return $this->belongsToMany(Template::class, 'template_stores');
-    }
-
-    public function activeProducts()
-    {
-        return $this->products()->where('products.is_active','1');
     }
     public function carts()
     {
@@ -42,5 +37,18 @@ class Store extends Model
     public function templateconfigs()
     {
         return $this->belongsToMany(Templateconfig::class, 'store_templateconfigs');
+    }
+    public function balances()
+    {
+        return $this->belongsToMany(Balance::class, 'store_balances')->withTimestamps()->withPivot('change');
+    }
+    public function currentBalance()
+    {
+        return $this->balances()->whereNull('store_balances.deleted_at')->withTimestamps();
+    }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'store_orders')->withTimestamps();
     }
 }

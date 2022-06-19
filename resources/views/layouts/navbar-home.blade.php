@@ -55,12 +55,20 @@
 
       <!-- Appear when login -->
       @if(!Auth::guest())
-        <a class="text-reset me-3" href="{{route('cart')}}">
-            <i class="fa-solid fa-shopping-cart"></i>
-        </a>
+        
 
         <!-- Appear When don't have shop -->
-        @if(!Auth::user()->hasStore())
+        @if(Auth::user()->hasRole('admin'))
+        <div class="shop-outer">
+          <a class="text-reset shop-icon" href="{{ route('admin.dashboard') }}">
+            <i class="fa-solid fa-shop"></i>
+            <span class="navbar-shop-name">Admin Dashboard</span>
+          </a>
+        </div>
+        @elseif(!Auth::user()->hasStore())
+          <a class="text-reset me-3" href="{{route('cart')}}">
+            <i class="fa-solid fa-shopping-cart"></i>
+          </a>
           <div class="shop-outer">
             <a class="text-reset shop-icon" href="{{ route('store.create') }}">
               {{-- <i class="fa-solid fa-shop"></i> --}}
@@ -84,15 +92,17 @@
           <a class="dropdown-toggle d-flex align-items-center hidden-arrow navbar-profile" href="#" id="navbarDropdownMenuAvatar" role="button" data-toggle="dropdown" aria-expanded="false">
             <strong class="d-none d-sm-block ms-1 me-2">Hi, {{Auth::check() ? explode(' ', Auth::user()->name, 2)[0] : 'User'}}</strong>
           
-            <img src="{{asset('images/homepage/profile1.jpg')}}" class="rounded-circle" height="25"alt="Black and White Portrait of a Man" loading="lazy"/>
+            <img src="{{ Auth::user()->images()->first() ? asset('images/stored/'. Auth::user()->images()->first()->filepath) :  asset('images/homepage/blank-profile-picture.png') }}" class="rounded-circle" height="25"alt="Black and White Portrait of a Man" loading="lazy"/>
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
             <li>
               <a class="dropdown-item" href="{{ route('user.profile') }}">My profile</a>
             </li>
+            @if(!Auth::user()->hasRole('admin'))
             <li>
               <a class="dropdown-item" href="{{ route('user.order') }}">Orders</a>
             </li>
+            @endif
             <li>
               <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 Logout

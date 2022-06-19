@@ -86,6 +86,14 @@ class StoreController extends Controller
         $store->slug = $request->store_slug;
         $store->save();
 
+        $address = new Address();
+        $address->description = $request->store_address;
+        $address->province_id = $request->province;
+        $address->city_id = $request->city;
+        $address->save();
+
+        $store->address()->attach($address->id);
+
         $user = User::find(Auth::user()->id);
         $user->stores()->attach($store->id);
         $store->template()->attach(1);

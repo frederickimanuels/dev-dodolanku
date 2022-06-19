@@ -89,6 +89,14 @@ h1{
     height:50px;
     /* margin-right:50px; */
 }
+.alert {
+  display: flex;
+  justify-content: space-between;
+}
+.alert button{
+  background: none!important;
+  color: gray;;
+}
 .slick-dots {
   text-align: center;
   margin: 0 0 10px 0;

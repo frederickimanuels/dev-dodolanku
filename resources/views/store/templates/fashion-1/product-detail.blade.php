@@ -357,16 +357,15 @@
                         <div class="row">
                             <div class="column small-11 small-centered">
                                 <div class="slider slider-single">
-                                    <div><img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick"></div>
-                                    <div><img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick"></div>
-                                    <div><img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick"></div>
-                                    <div><img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick"></div>
+                                    <?php $images = $product->images()->get(); ?>
+                                    @foreach($images as $image) 
+                                        <div><img src="{{asset('images/stored/'. $image->filepath)}}" alt="" class="homepage-slick"></div>
+                                    @endforeach
                                 </div>
                                 <div class="slider slider-nav">
-                                    <div><img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick"></div>
-                                    <div><img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick"></div>
-                                    <div><img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick"></div>
-                                    <div><img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick"></div>
+                                    @foreach($images as $image) 
+                                        <div><img src="{{asset('images/stored/'. $image->filepath)}}" alt="" class="homepage-slick"></div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -398,7 +397,7 @@
                                 </div> --}}
                             </div>
                             <h3 id="product-price">Rp {{number_format($product->price,0,',','.')}}</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas velit pariatur sequi. Beatae esse distinctio sunt. Magni, optio necessitatibus minima omnis aliquam dolores at natus enim officia accusamus aperiam suscipit?</p>
+                            <p>{{ $product->description }}</p>
                             <div class="detail-product">
                                 <input type="hidden" name="store_id" value="{{ $store->id }}">
                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
@@ -420,14 +419,14 @@
             </div>
             <div class="product-desc">
                 <div class="product-desc-text" >
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum labore corporis omnis eum. Accusantium a maiores adipisci voluptate, neque cumque inventore aliquid, libero doloribus rem quam nesciunt quaerat laudantium.lorem Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio aspernatur nulla excepturi, iste sint molestiae. Numquam assumenda illo doloribus consequuntur dolor ab voluptatem. Necessitatibus totam obcaecati similique voluptatum id quis!</p>
+                    <p>{!! nl2br(e($product->about)) !!}</p>
                 </div>
                 <div class="row product-desc-row1">
                     <div class="col-xl-6 col-12 product-desc-row1-text">
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita saepe debitis porro at laudantium suscipit ipsum, soluta animi ea hic fuga neque rerum quibusdam, autem quia, nesciunt illum. Aperiam, doloribus?</p>
+                        <h2>{{ $product->name }}</h2>
                     </div>
                     <div class="col-xl-6 col-12">
-                        <img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="desc-image">
+                        <img src="{{asset('images/stored/'. $product->images()->first()->filepath)}}" alt="" class="desc-image">
                     </div>
                 </div>
             </div>

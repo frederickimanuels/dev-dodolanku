@@ -105,7 +105,7 @@
           <div class="basket-product d-flex">
             <div class="basket-item">
               <div class="product-image">
-                <img src="{{asset('images/homepage/profile1.jpg')}}" alt="Placholder Image 2" class="product-frame">
+                <img src="{{ $product->images()->first() ? asset('images/stored/'. $product->images()->first()->filepath) :  asset('images/homepage/default-product-image.png') }}" alt="Placholder Image 2" class="product-frame">
               </div>
               <div class="product-details-cart">
                 <div class="container">

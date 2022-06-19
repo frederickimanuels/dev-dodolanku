@@ -86,6 +86,11 @@ class User extends Authenticatable
         return $this->address()->orderBy('created_at','DESC')->first();
     }
 
+    public function images()
+    {
+        return $this->belongsToMany(Image::class, 'user_images');
+    }
+
     protected static function booted(){
         
     }
