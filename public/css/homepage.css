@@ -1006,7 +1006,7 @@ aside {
   padding: 150px 50px 250px 50px;
 }
 .createStore-outer-form{
-  padding: 50px;
+  padding: 50px 50px 50px 20px;
   background-color: #FFFFFF;
   border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -1019,7 +1019,7 @@ aside {
   margin-bottom: 20px;
 }
 .form-label{
-  margin-top: 15px;
+  margin-top: 10px;
 }
 .form-domain{
   line-height: 40px;
