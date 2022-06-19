@@ -130,7 +130,7 @@
                                         <div class="col-xl-8 col-9">
                                             <div class="row">
                                                 <div class="col-xl-6 col-12">
-                                                    <img src="{{asset('images/homepage/laptop-1.png')}}" alt="">
+                                                    <img src="{{ $product->images()->first() ? asset('images/stored/'. $product->images()->first()->filepath) :  asset('images/homepage/default-product-image.png') }}" alt="">
                                                 </div>
                                                 <div class="col-xl-6 col-12">
                                                     <h6 clas="order-detail-h6" >{{ $product->name }}</h6>
