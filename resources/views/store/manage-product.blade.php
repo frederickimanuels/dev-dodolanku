@@ -1,3 +1,10 @@
+<?php $data=[
+    'title' => 'Atur Produk',
+    'description' => 'Pengaturan Produk Penjual @Dodolanku.id',
+    'keywords' => 'cart, online shop, business, haul',
+    'author' => 'Dodolanku.id',
+]; ?>
+
 @include('store.layouts.header')
 <style>
     a{
@@ -27,11 +34,20 @@
                 <div class="display-desktop">
                     <div class="container-fluid product-list-header">
                         <div class="container list-product-wrapper">
+                            
+                            @if (session('status'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <span>{{ session('status') }}</span>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif
                             <div class="d-flex">
                                 <div class="mr-auto p-2">
                                     <h1 class="h1-dashboard h1-product-list">Daftar Produk</h1>
                                 </div>
-                                <div class="mr-auto p-2 product-menu">
+                                {{-- <div class="mr-auto p-2 product-menu">
                                     <ul style="padding-left:0">
                                         <li><a href="{{ route('store.product.manage') }}" class="active-list">Semua Produk</a></li>
                                         <li><a href="" >Aktif</a></li>
@@ -45,9 +61,8 @@
                                         <!-- <div class="input-group-append"><button class="btn btn-primary py-0" type="button">Cari</button></div> -->
                                     </div>
                                 </form>
-                                </div>
+                                </div> --}}
                             </div>
-                          
                         </div>
                     </div>
                     <div class="container-fluid">
@@ -67,6 +82,15 @@
                                     </tr>
                                 </thead>
                                 <tbody class="table-body">
+                                    @if(count($products) == 0)
+                                    <tr style="position:relative">
+                                        <td colspan="6">
+                                            <div style="display: flex;justify-content:center;">
+                                                <a href="{{ route('store.product.add') }}"><i class="fa-solid fa-plus"></i> Tambahkan Produk Baru</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @endif
                                     @foreach($products as $product)
                                         <tr style="position:relative" >
                                             {{-- <th scope="row" style="padding-left:40px;border:none"> 
@@ -76,7 +100,7 @@
                                                 <a href="{{ route('store.product.show',[$store->slug,$product->slug]) }}">
                                                     <div class="row">
                                                         <div class="col-3 product-list-img-container">
-                                                            <img class="product-list-img" src="{{asset('images/homepage/profile1.jpg')}}" alt="Card image cap">
+                                                            <img class="product-list-img" src="{{ $product->images()->first() ? asset('images/stored/'. $product->images()->first()->filepath) :  asset('images/homepage/default-product-image.png') }}" alt="Card image cap">
                                                         </div>
                                                         <div class="col-9 product-list-text pt-4">
                                                             <h2>{{ $product->name }}</h2>
@@ -88,7 +112,15 @@
                                             <td>
                                                 <ul class="product-statistics pt-4">
                                                     {{-- <li><i class="fa-solid fa-eye"></i>999</li> --}}
-                                                    <li><i class="fa-solid fa-cart-shopping"></i></i>100</li>
+                                                    <?php $sold_count = 0;
+                                                        if($product->carts()->first()){
+                                                            $cart_products = $product->carts()->join('cart_status','cart_status.cart_id','carts.id')->where('status_id','<>','1')->where('status_id','<>','3')->whereNull('cart_status.deleted_at')->get();
+                                                            foreach($cart_products as $cart_product){
+                                                                $sold_count = $sold_count + $cart_product->pivot->count;
+                                                            }
+                                                        }
+                                                        ?>
+                                                    <li><i class="fa-solid fa-cart-shopping"></i></i>{{ $sold_count }}</li>
                                                 </ul>
                                             </td>
                                             <td>
@@ -102,22 +134,23 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <div class="form-check form-switch product-switch pt-4">
-                                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                                                <div class="product-stock pt-4">
+                                                    {{ $product->is_active == 1 ? 'Aktif' : 'Habis'}}
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="product-action pt-4">
                                                     <div class="product-action-icon">
-                                                        <a href=""><i class="fa-solid fa-pen-to-square"></i></a>
+                                                        <a href="{{ route('store.product.edit',$product->slug) }}"><i class="fa-solid fa-pen-to-square"></i></a>
                                                     </div>
                                                     <div class="product-action-icon">
-                                                        <a href=""><i class="fa-solid fa-trash-can"></i></a>
+                                                        <a href="#" data-slug="{{ $product->slug }}" id="delete-product-btn"><i class="fa-solid fa-trash-can"></i></a>
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
                                     @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
@@ -135,7 +168,7 @@
                             </form>
                             <div class="row product-list-row">
                                 <div class="col-4" style="display:flex;align-items:center">
-                                    <img class="product-list-img" src="{{asset('images/homepage/profile1.jpg')}}" alt="Card image cap">
+                                    {{-- <img class="product-list-img" src="{{ $product->images()->first() ? asset('images/stored/'. $product->images()->first()->filepath) :  asset('images/homepage/default-product-image.png') }}" alt="Card image cap"> --}}
                                 </div>
                                 <div class="col-6 product-list-mobile-text">
                                     <h1>Scarlett Whitening</h1>
@@ -151,7 +184,6 @@
                     </div>
                 </div>
                 {!! $products->links() !!}
-
             </div>
             <!-- <footer class="bg-white sticky-footer">
                 <div class="container my-auto">
@@ -160,9 +192,52 @@
             </footer> -->
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
+<style>
+    .modal button.close{
+        background:none;
+        color: grey;
+    }
+</style>
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Konfirmasi Hapus Produk</h5>
+                <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Apakah anda yakin menghapus barang ini?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
+                <a id="hyperlink_delete" href="#">
+                    <button type="button" class="btn btn-danger">Hapus Produk</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 @include('store.layouts.js')
 <!-- JS Here -->
 <script>
+    $(document).ready(function(){
+        $('#delete-product-btn').on('click',function(){
+            let slug = $(this).attr('data-slug');
+            $('#hyperlink_delete').attr('href','/store/delete-product/'+ slug);
+            openDeleteModal();
+        });
+        $('.close-modal').on('click',function(){
+            closeDeleteModal();
+        });
+        function openDeleteModal(){
+            $('#deleteModal').modal('toggle');
+        }
+        function closeDeleteModal(){
+            $('#deleteModal').modal('hide');
+        }
+    });
     $('#sidebarToggleTop').click(function() {
         $("#toggle-open").toggleClass("d-none");
         if(document.getElementById("toggle-exit").classList.contains("d-none")){

@@ -27,6 +27,11 @@
     <link rel="stylesheet" href="{{asset('templates/dashboard/fonts/fontawesome-all.min.css')}}">
     <!-- <link rel="stylesheet" href="{{asset('css/dashboard.css')}}"> -->
 
-    <title>Hello, world!</title>
+    <meta name="description" content="{{ $data['description'] }}">
+    <meta name="keywords" content="{{ $data['keywords'] }}">
+    <meta name="author" content="{{ $data['author'] }}">
+    <meta name="publisher" content="Dodolanku.id">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ $data['title'] }}</title>
   </head>
   <body>

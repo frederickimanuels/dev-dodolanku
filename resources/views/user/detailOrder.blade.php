@@ -1,3 +1,10 @@
+<?php $data=[
+    'title' => 'Daftar Pesanan',
+    'description' => 'Daftar pesanan toko @Dodolanku.id',
+    'keywords' => 'cart, online shop, business, haul',
+    'author' => 'Dodolanku.id',
+]; ?>
+
 @include('user.layouts.header')
 
 @include('layouts.navbar-home')
@@ -53,7 +60,7 @@
         font-size: 12px;
     }
     .detail-order-wrapper{
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
         border-radius: 5px;
         padding: 10px;
     }
@@ -158,7 +165,7 @@
                                         <div class="col-xl-8 col-9">
                                             <div class="row">
                                                 <div class="col-xl-6 col-12">
-                                                    <img src="{{asset('images/homepage/laptop-1.png')}}" alt="">
+                                                    <img src="{{ $product->images()->first() ? asset('images/stored/'. $product->images()->first()->filepath) :  asset('images/homepage/default-product-image.png') }}" alt="">
                                                 </div>
                                                 <div class="col-xl-6 col-12">
                                                     <h6 clas="order-detail-h6" >{{ $product->name }}</h6>
@@ -216,28 +223,77 @@
                                 </div>
                             </div> --}}
                         </div>
+                        @if ($cart->status()->first()->id == '4')
+                        <div class="container order-detail-wrapper-product">
+                            <div class="row">
+                                <div class="col-12 d-flex">
+                                    <div style="margin-left: auto">
+                                        <button class="btn btn-primary" id="finish-order">Selesaikan Pesanan</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
+<!-- Modal -->
+<style>
+    .modal button.close{
+        background:none;
+        color: grey;
+    }
+</style>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Konfirmasi Pesanan</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Apakah anda sudah menerima barang yang dibeli?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <a href="{{ route('user.order.finish',$cart->orders()->first()->reference_no) }}">
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </a>
+        </div>
+      </div>
+    </div>
+</div>
 
 @include('layouts.js')
 <!-- Add JS Here -->
 <script>
     $(function(){
-    var current = location.pathname;
-    $('#nav li a').each(function(){
-        var $this = $(this);
-        console.log($this);
-        // if the current path is like this link, make it active
-        if($this.attr('href').indexOf(current) !== -1){
-            $this.addClass('active');
-        }
+        var current = location.pathname;
+        $('#nav li a').each(function(){
+            var $this = $(this);
+            console.log($this);
+            // if the current path is like this link, make it active
+            if($this.attr('href').indexOf(current) !== -1){
+                $this.addClass('active');
+            }
+        })
     })
-})
+    $(document).ready(function(){
+        $('#finish-order').on('click',function(){
+            openModal();
+        });
+        function openModal(){
+            $('#exampleModalCenter').modal('toggle');
+        }
+        function closeModal(){
+            $('#exampleModalCenter').modal('hide');
+        }
+    });
 </script>
 <!-- End JS -->
 @include('layouts.footer')

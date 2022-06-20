@@ -1,3 +1,10 @@
+<?php $data=[
+    'title' => $store->name,
+    'description' => $store->name. ' Homepage @Dodolanku.id',
+    'keywords' => 'cart, online shop, business, haul',
+    'author' => 'Dodolanku.id',
+]; ?>
+
 @include('store.layouts.header')
 
 @include('store.layouts.navbar-home')
@@ -87,11 +94,6 @@
     .text-over-img{
         position: relative;
     }
-    .text-over-img img{
-        max-height: 500px;
-        filter: grayscale(0.59) saturate(1.1);
-
-    }
     .card{
         border-radius: 5%;
         margin: 0 20px;
@@ -102,12 +104,6 @@
     .card-img-top{
         border-top-left-radius: 5%;
         border-top-right-radius: 5%;
-    }
-    .image-side{
-        max-height: 250px;
-    }
-    .image-center{
-        max-height: 500px;
     }
     .text-over-img h4{
         position: absolute;
@@ -240,6 +236,8 @@
                 @foreach($store_banners as $store_banner)
                     <div><img src="{{ asset('images/stored/'. $store_banner->images()->first()->filepath) }}" alt="" class="homepage-slick"></div>
                 @endforeach
+                @else
+                <div><img src="{{ asset('images/template/'. $store->hasTemplate()->code.'/store_banner.png') }}" alt="" class="homepage-slick"></div>
                 @endif
             </div>
             <div class="slick-arrow d-none d-xl-block">
@@ -248,34 +246,37 @@
             </div>
         </div>
     </div>
+    <style>
+        
+    </style>
     <div class="store-home-wrapper">
         <div class="container store-content">
             <h1>Shop By Categories</h1>
             <div class="row">
                 <div class="col-12 col-xl-3">
                     <div class="row">
-                        <div class="col-xl-12 col-6 text-over-img image-side" style="margin-bottom:20px">
-                            <img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick">
+                        <div class="col-xl-12 col-6 text-over-img" style="margin-bottom:20px">
+                            <img src="{{ asset('images/template/'. $store->hasTemplate()->code.'/category_1.png') }}" alt="" class="homepage-slick">
                             <h5>Sepatu</h5>
                         </div>
-                        <div class="col-xl-12 col-6 text-over-img image-side">
-                            <img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick">
+                        <div class="col-xl-12 col-6 text-over-img">
+                            <img src="{{ asset('images/template/'. $store->hasTemplate()->code.'/category_2.png') }}" alt="" class="homepage-slick">
                             <h5>Jaket</h5>
                         </div>
                     </div>
                 </div> 
-                <div class="col-12 col-xl-6 text-over-img image-center">
-                    <img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick">
+                <div class="col-12 col-xl-6 text-over-img">
+                    <img src="{{ asset('images/template/'. $store->hasTemplate()->code.'/category_3.png') }}" alt="" class="homepage-slick">
                     <h4>Dress Wanita</h4>
                 </div>
                 <div class="col-12 col-xl-3">
                     <div class="row">
-                        <div class="col-xl-12 col-6 text-over-img image-side" style="margin-bottom:20px">
-                            <img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick">
+                        <div class="col-xl-12 col-6 text-over-img" style="margin-bottom:20px">
+                            <img src="{{ asset('images/template/'. $store->hasTemplate()->code.'/category_4.png') }}" alt="" class="homepage-slick">
                             <h5>Celana</h5>
                         </div>
-                        <div class="col-xl-12 col-6 text-over-img image-side">
-                            <img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick"> 
+                        <div class="col-xl-12 col-6 text-over-img">
+                            <img src="{{ asset('images/template/'. $store->hasTemplate()->code.'/category_5.png') }}" alt="" class="homepage-slick"> 
                             <h5>Kemeja</h5>
                         </div>
                     </div>
@@ -292,10 +293,10 @@
                         <div>
                             <div class="card">
                                 <a href="{{ route('store.product.show',[$store->slug,$popular_product->slug]) }}">
-                                    <img class="card-img-top" src="{{asset('images/homepage/bag-1.png')}}" alt="Card image cap">
+                                    <img class="card-img-top" src="{{$popular_product->images()->first() ? asset('images/stored/'. $popular_product->images()->first()->filepath) : asset('images/homepage/default-product-image.png')}}" alt="Card image cap">
                                     <div class="card-body popular-card-text">
                                         <h5 class="card-text">{{ $popular_product->name }}</h5>
-                                        <h6>Rp {{number_format($popular_product->price,0,',','.')}}</h6>
+                                        <h6>Rp {{number_format($popular_product->orderBy('price','ASC')->first()->price,0,',','.')}}</h6>
                                         {{-- <span class="fa fa-star checked"></span>
                                         <span class="fa fa-star checked"></span>
                                         <span class="fa fa-star checked"></span>

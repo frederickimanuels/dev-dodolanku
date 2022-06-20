@@ -1,3 +1,11 @@
+<?php $data=[
+    'title' => 'Halaman tidak ditemukan',
+    'description' => 'Halaman tidak ditemukan @Dodolanku.id',
+    'keywords' => 'cart, online shop, business, haul',
+    'author' => 'Dodolanku.id',
+]; ?>
+
+
 @include('homepage.layouts.header')
 
 @include('layouts.navbar-home')
@@ -56,15 +64,29 @@
         }
     }
 </style>
-
-
+@if (session('status'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <span>{{ session('status') }}aas</span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+@if (session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <span>{{ session('error') }}</span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
 <section id="null-page">
     <div class="container">
         <div class="content-wrapper">
             <img src="{{asset('images/homepage/error-not-found.png')}}" alt=".." class="aboutus-img">
             <h1>Waduh Tujuanmu tidak ada</h1>
             <p>Mungkin Kamu salah jalan atau alamat, ayo balik.</p>
-            <button class="btn">Homepage</button>
+            <a href="{{ route('base') }}"><button class="btn">Homepage</button></a>
         </div>
 
     </div>

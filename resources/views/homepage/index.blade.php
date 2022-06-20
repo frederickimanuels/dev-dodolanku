@@ -1,3 +1,10 @@
+<?php $data=[
+    'title' => 'Dodolanku.id',
+    'description' => 'Homepage Dodolanku.id',
+    'keywords' => 'cart, online shop, business, haul',
+    'author' => 'Dodolanku.id',
+]; ?>
+
 @include('homepage.layouts.header')
 
 @include('layouts.navbar-home')
@@ -149,11 +156,9 @@
                     <!-- <a href="/" class="start-button">
                         <span>Start Now its Free</span>
                     </a> -->
-                    <form>
-                        <a href="{{ route('store.create') }}">
-                            <button class="start-button">Start now its Free</button>
-                        </a>
-                    </form>
+                    <a href="{{ route('store.create') }}">
+                        <button class="start-button">Start now its Free</button>
+                    </a>
                 </div>
             </div>
 

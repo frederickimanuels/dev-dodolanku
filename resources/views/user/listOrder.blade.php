@@ -1,3 +1,10 @@
+<?php $data=[
+    'title' => 'Daftar Pesanan',
+    'description' => 'Daftar pesanan pengguna @Dodolanku.id',
+    'keywords' => 'cart, online shop, business, haul',
+    'author' => 'Dodolanku.id',
+]; ?>
+
 @include('user.layouts.header')
 
 @include('layouts.navbar-home')
@@ -7,6 +14,7 @@
         border-radius: 8px;
         padding: 10px 20px;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        margin-bottom: 20px;
     }
     .user-order-detail{
         border-bottom: 4px solid #FFFFFF;
@@ -129,7 +137,7 @@
                                         <div class="col-xl-8 col-9">
                                             <div class="row">
                                                 <div class="col-xl-6 col-12">
-                                                    <img src="{{asset('images/homepage/laptop-1.png')}}" alt="">
+                                                    <img src="{{ $product->images()->first() ? asset('images/stored/'. $product->images()->first()->filepath) :  asset('images/homepage/default-product-image.png') }}" alt="">
                                                 </div>
                                                 <div class="col-xl-6 col-12">
                                                     <h6 clas="order-detail-h6" >{{ $product->name }}</h6>
@@ -150,6 +158,8 @@
                                 </div>
                             </div>
                         @endforeach
+
+                        {!! $carts->links() !!}
                 </div>
             </div>
         </div>

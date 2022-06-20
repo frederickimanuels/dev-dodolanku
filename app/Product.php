@@ -11,7 +11,7 @@ class Product extends Model
 
     public function stores()
     {
-        return $this->belongsToMany(Store::class, 'product_stores');
+        return $this->belongsToMany(Store::class, 'product_stores')->withTimestamps();
     }
 
     public function category()
@@ -33,4 +33,9 @@ class Product extends Model
     {
         return $this->belongsToMany(Image::class, 'product_images');
     }
+
+    // public function isActive($product_id)
+    // {
+    //     return $this->where('id',$product_id)->where('is_active','1')->count();
+    // }
 }

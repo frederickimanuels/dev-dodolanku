@@ -38,7 +38,7 @@ class Cart extends Model
     }
 
     public function hasProduct($product_id)
-    { 
+    {
         $cart = $this->join('cart_products','cart_products.cart_id','=','carts.id')
                     ->where('product_id',$product_id)
                     ->first();

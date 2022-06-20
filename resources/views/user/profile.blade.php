@@ -1,3 +1,9 @@
+<?php $data=[
+    'title' => 'Profil Pengguna',
+    'description' => 'Pengaturan profil pengguna @Dodolanku.id',
+    'keywords' => 'cart, online shop, business, haul',
+    'author' => 'Dodolanku.id',
+]; ?>
 @include('user.layouts.header')
 
 @include('layouts.navbar-home')
@@ -74,7 +80,8 @@
                 @include('user.layouts.sidebarmenu')
                 <div class="col-lg-9 col-12 personal-info-detail">
                     <h1 class="personal-info-h1">Profile</h1>
-                    <form action="">
+                    <form action="{{ route('user.profile') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="row form-list">
                             <div class="col">
                                 <label for="name" class="profile-label" >Nama</label>
@@ -86,22 +93,22 @@
                         </div>
                         <div class="row form-list">
                             <div class="col">
-                                <label for="email" class="profile-label" >Email</label>
-                                <input type="email" name="email"  class="form-control profile-form" placeholder="Email" value="{{ Auth::user()->email }}">
+                                <label for="email" class="profile-label" >Email <span style="font-size:14px; font-family:Monserrat-light!important;">*cannot change</span></label>
+                                <input type="email" name="email"  class="form-control profile-form" placeholder="Email" value="{{ Auth::user()->email }}" disabled="disabled">
                             </div>
                         </div>
                         <div class="row form-list">
-                            <div class="col-xl-6 col-12">
+                            <div class="col">
                                 <label for="password" class="profile-label" >Password</label>
                                 <div class="form-control profile-form" style="display: flex; justify-content:space-between; padding-top:12px;">
                                     <input type="password" value="******" style="background:none;" disabled="disabled">
                                     <a href="{{ route('change.password') }}" style="text-decoration:none;">Ubah Password</a>
                                 </div>
                             </div>
-                            <div class="col-xl-6 col-12 pt-3 pt-xl-0">
+                            {{-- <div class="col-xl-6 col-12 pt-3 pt-xl-0">
                                 <label for="birth-date" class="profile-label">Birth Date</label>
                                 <input type="date" class="form-control profile-form" placeholder="Birth Date">
-                            </div>
+                            </div> --}}
                         </div>
                         {{-- <div class="row form-list">
                             <div class="col-xl-6 col-12">
@@ -126,12 +133,13 @@
                                 <label for="exampleFormControlFile1">Example file input</label>
                                 <input type="file" class="form-control-file" id="exampleFormControlFile1">
                             </div>                       -->
+                            <label for="password" class="profile-label" >Ubah Foto Profil</label>
                             <div class="container">
                                 <div class="panel">
                                     <div class="button_outer">
                                         <div class="btn_upload">
-                                            <input type="file" id="upload_file" name="">
-                                            Upload Image
+                                            <input type="file" id="upload_file" name="profile_photo">
+                                            Pilih Foto
                                         </div>
                                         <div class="processing_bar"></div>
                                         <div class="success_box"></div>

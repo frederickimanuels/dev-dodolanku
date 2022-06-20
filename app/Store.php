@@ -15,21 +15,24 @@ class Store extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'product_stores');
+        return $this->belongsToMany(Product::class, 'product_stores')->whereNull('product_stores.deleted_at')->withTimestamps();
     }
 
     public function template()
     {
         return $this->belongsToMany(Template::class, 'template_stores');
     }
-
-    public function activeProducts()
+    public function hasTemplate()
     {
-        return $this->products()->where('products.is_active','1');
+        return $this->template()->first();
     }
     public function carts()
     {
         return $this->belongsToMany(Cart::class, 'cart_stores');
+    }
+    public function activeCarts()
+    {
+        return $this->carts()->join('cart_status','cart_status.cart_id','carts.id')->whereNull('cart_status.deleted_at')->where('cart_status.status_id',1)->get();
     }
     public function address()
     {
@@ -42,5 +45,33 @@ class Store extends Model
     public function templateconfigs()
     {
         return $this->belongsToMany(Templateconfig::class, 'store_templateconfigs');
+    }
+    public function balances()
+    {
+        return $this->belongsToMany(Balance::class, 'store_balances')->withTimestamps()->withPivot(['change','reference_no']);
+    }
+    public function currentBalance()
+    {
+        return $this->balances()->whereNull('store_balances.deleted_at')->withTimestamps();
+    }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'store_orders')->withTimestamps();
+    }
+
+    public function withdrawals()
+    {
+        return $this->belongsToMany(Withdrawal::class, 'store_withdrawals')->withTimestamps();
+    }
+
+    public function banned()
+    {
+        return $this->belongsToMany(Banned::class, 'banned_stores')->withTimestamps();
+    }
+
+    public function isBanned()
+    {
+        return $this->banned()->whereNull('banned_stores.deleted_at')->where('name','banned')->count() == 1;
     }
 }

@@ -1,3 +1,10 @@
+<?php $data=[
+    'title' => 'Atur Alamat',
+    'description' => 'Pengaturan Alamat Pengguna @Dodolanku.id',
+    'keywords' => 'cart, online shop, business, haul',
+    'author' => 'Dodolanku.id',
+]; ?>
+
 @include('user.layouts.header')
 
 @include('layouts.navbar-home')

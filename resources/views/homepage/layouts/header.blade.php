@@ -18,6 +18,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
     <link rel="stylesheet" href="{{asset('templates/dashboard/fonts/fontawesome-all.min.css')}}">
 
-    <title>Hello, worlddd!</title>
+    <meta name="description" content="{{ $data['description'] }}">
+    <meta name="keywords" content="{{ $data['keywords'] }}">
+    <meta name="author" content="{{ $data['author'] }}">
+    <meta name="publisher" content="Dodolanku.id">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ $data['title'] }}</title>
   </head>
   <body>

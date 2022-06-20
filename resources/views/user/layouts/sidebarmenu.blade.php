@@ -1,15 +1,23 @@
 <div class="col-lg-3 col-12 left-profile">
     <div class="img-container">
         <div class="img-inner">
-            <img src="{{asset('images/homepage/profile1.jpg')}}" alt="Avatar" class="img-profile-big">
+            <img src="{{ Auth::user()->images()->first() ? asset('images/stored/'. Auth::user()->images()->first()->filepath) :  asset('images/homepage/blank-profile-picture.png') }}" alt="Avatar" class="img-profile-big">
         </div>
     </div>
         <h2 class="profile-name" >{{ Auth::user()->name }}</h2>
+        <style>
+            .profile-menu-list a{
+                text-decoration: none;
+                color: inherit;
+            }
+        </style>
         <ul class="profile-menu-list">
             {{-- <li>Wallet</li> --}}
-            <li><a href="{{ route('user.profile') }}">Profile</a></li>
-            <li><a href="{{ route('user.order') }}">Orders</a></li>
-            <li><a href="{{ route('user.address') }}">Address</a></li>
+            <li><a href="{{ route('user.profile') }}" style="{{ Request::routeIs('user.profile') ? 'color:#EE6530;' : '' }}">Profile</a></li>
+            @if(Auth::user()->hasRole('user'))
+            <li><a href="{{ route('user.order') }}" style="{{ Request::routeIs('user.order') || Request::routeIs('user.order.detail') ? 'color:#EE6530;' : '' }}">Orders</a></li>
+            <li><a href="{{ route('user.address') }}" style="{{ Request::routeIs('user.address') ? 'color:#EE6530;' : '' }}">Address</a></li>
+            @endif
             {{-- <li>Payment Methods</li> --}}
         </ul>
 </div>

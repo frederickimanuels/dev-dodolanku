@@ -1,3 +1,10 @@
+<?php $data=[
+    'title' => 'Fitur Dodolanku',
+    'description' => 'Tentang Dodolanku.id',
+    'keywords' => 'cart, online shop, business, haul',
+    'author' => 'Dodolanku.id',
+]; ?>
+
 @include('homepage.layouts.header')
 
 @include('layouts.navbar-home')

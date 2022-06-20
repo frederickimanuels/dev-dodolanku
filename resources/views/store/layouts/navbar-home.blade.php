@@ -6,7 +6,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <!-- Navbar brand -->
         <a class="navbar-brand mt-2 mt-lg-0" href="{{ route('store.show',$store->slug) }}">
-          <img src="{{ $store->templateconfigs()->where('type','store_logo')->first() ?  asset('images/stored/'. $store->templateconfigs()->where('type','store_logo')->first()->images()->first()->filepath) : ''  }}" height="30" alt=".." loading="lazy"/>
+          <img src="{{ $store->templateconfigs()->where('type','store_logo')->first() ?  asset('images/stored/'. $store->templateconfigs()->where('type','store_logo')->first()->images()->first()->filepath) : asset('images/homepage/logo_dodolanku_white.png')  }}" height="30" alt=".." loading="lazy"/>
         </a>
         <!-- Left links -->
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -17,7 +17,9 @@
             <a class="nav-link" href="{{ route('store.product.list',$store->slug) }}">Products</a>
           </li>
            <li>
-          <input autocomplete="off" type="search" class="form-control rounded" placeholder="Search" style="min-width: 125px;"/>
+            <form method="GET" action="{{ route('store.product.list',$store->slug) }}">
+              <input name="keywords" autocomplete="off" type="search" class="form-control rounded" placeholder="Cari Produk" style="min-width: 125px;"/>
+            </form>
           </li>
         </ul>
       </div>
@@ -81,7 +83,7 @@
             <a class="dropdown-toggle d-flex align-items-center hidden-arrow navbar-profile" href="#" id="navbarDropdownMenuAvatar" role="button" data-toggle="dropdown" aria-expanded="false">
               <strong class="d-none d-sm-block ms-1 me-2">Hi, {{Auth::check() ? explode(' ', Auth::user()->name, 2)[0] : 'User'}}</strong>
             
-              <img src="{{asset('images/homepage/profile1.jpg')}}" class="rounded-circle" height="25"alt="Black and White Portrait of a Man" loading="lazy"/>
+              <img src="{{ Auth::user()->images()->first() ? asset('images/stored/'. Auth::user()->images()->first()->filepath) :  asset('images/homepage/blank-profile-picture.png') }}" class="rounded-circle" height="25"alt="Black and White Portrait of a Man" loading="lazy"/>
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
               <li>
