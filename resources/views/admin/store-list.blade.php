@@ -51,15 +51,15 @@
                                         <li><a href="" >Aktif</a></li>
                                         <li><a href="">Nonaktif</a></li>
                                     </ul>
-                                </div>
+                                </div> --}}
                                 <div class="p-2">
-                                <form class="me-auto navbar-search w-100">
+                                <form class="me-auto navbar-search w-100" method="GET">
                                     <div class="input-group">
-                                        <input class="form-control border-0 small search-box" type="text" placeholder="">
+                                        <input name="store_search" class="form-control border-0 small search-box" type="text" placeholder="Cari Toko">
                                         <!-- <div class="input-group-append"><button class="btn btn-primary py-0" type="button">Cari</button></div> -->
                                     </div>
                                 </form>
-                                </div> --}}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -109,15 +109,15 @@
                                             </td>
                                             <td>
                                                 <ul class="product-statistics pt-4">
-                                                    {{ $store->isBanned() ? 'Banned' : 'Active'}}
+                                                    {{ $store->isBanned() ? 'Diblokir' : 'Aktif'}}
                                                 </ul>
                                             </td>
                                             <td>
                                                 <div class="product-action pt-4">
                                                     @if(!$store->isBanned())
-                                                        <a banned="0" store-id="{{ $store->id }}" class="btn btn-danger ban-store-button">Ban Toko</a>
+                                                        <a banned="0" store-id="{{ $store->id }}" class="btn btn-danger ban-store-button">Blokir Toko</a>
                                                     @else
-                                                        <a banned="1" store-id="{{ $store->id }}" class="btn btn-success ban-store-button">Unban Toko</a>
+                                                        <a banned="1" store-id="{{ $store->id }}" class="btn btn-success ban-store-button">Aktifkan Toko</a>
                                                     @endif
                                                     {{-- <div class="product-action-icon">
                                                         <a href="{{ route('admin.store.edit',$store->slug) }}"><i class="fa-solid fa-pen-to-square"></i></a>
@@ -138,13 +138,13 @@
                 <div class="display-mobile">
                     <div class="container-fluid">
                         <div class="container display-mobile-wrapper">
-                            <form class="me-auto navbar-search w-100">
+                            {{-- <form class="me-auto navbar-search w-100">
                                 <div class="input-group search-box-mobile">
                                     <i class="fa-solid fa-magnifying-glass magnifying-glass"></i>
                                     <input class="form-control border-0 small search-box" type="text" placeholder="">
                                     <!-- <div class="input-group-append"><button class="btn btn-primary py-0" type="button">Cari</button></div> -->
                                 </div>
-                            </form>
+                            </form> --}}
                             <div class="row product-list-row">
                                 <div class="col-4" style="display:flex;align-items:center">
                                     <img class="product-list-img" src="{{ asset('images/homepage/default-product-image.png') }}" alt="Card image cap">
@@ -184,7 +184,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="banModalTitle">Konfirmasi Ban Toko</h5>
+                <h5 class="modal-title" id="banModalTitle">Konfirmasi Blokir Toko</h5>
                 <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -194,8 +194,8 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
                 <a id="hyperlink-ban" href="#">
-                    <button type="button" class="btn btn-success" id="button-unban">Unban Toko</button>
-                    <button type="button" class="btn btn-danger" id="button-ban" hidden>Ban Toko</button>
+                    <button type="button" class="btn btn-success" id="button-unban">Aktifkan Toko</button>
+                    <button type="button" class="btn btn-danger" id="button-ban" hidden>Blokir Toko</button>
                 </a>
             </div>
         </div>
@@ -220,14 +220,14 @@
             let store_id = $(this).attr('store-id');
             if(banned == "1"){
                 $('#hyperlink-ban').attr('href','/admin/store/unban/'+ store_id);
-                document.getElementById('banModalTitle').innerHTML = "Konfirmasi unban toko";
-                document.getElementById('modal-text').innerHTML = "Apakah anda yakin unban toko ini?";
+                document.getElementById('banModalTitle').innerHTML = "Konfirmasi aktifkan toko";
+                document.getElementById('modal-text').innerHTML = "Apakah anda yakin aktifkan toko ini?";
                 $('#button-unban').attr("hidden", false);
                 $('#button-ban').attr("hidden", true);
             }else{
                 $('#hyperlink-ban').attr('href','/admin/store/ban/'+ store_id);
-                document.getElementById('banModalTitle').innerHTML = "Konfirmasi ban toko"
-                document.getElementById('modal-text').innerHTML = "Apakah anda yakin ban toko ini?"
+                document.getElementById('banModalTitle').innerHTML = "Konfirmasi blokir toko"
+                document.getElementById('modal-text').innerHTML = "Apakah anda yakin blokir toko ini?"
                 $('#button-unban').attr("hidden", true);
                 $('#button-ban').attr("hidden", false);
             }

@@ -17,17 +17,22 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
 
-    public function storeList(){
+    public function storeList(Request $request){
         $stores = Store::paginate(10);
+        if($request->store_search){
+            $stores = Store::where('name','like','%'.$request->store_search.'%' )
+                        ->orWhere('slug','like','%'.$request->store_search.'%' )
+                        ->paginate(10);
+        }
         return view('admin.store-list',compact('stores'));
     }
 
     public function userList(Request $request){
         $users = [];
         if($request->user_search){
-            $users = User::Where('name','like','%'.$request->user_search.'%' )
+            $users = User::where('name','like','%'.$request->user_search.'%' )
                         ->orWhere('email','like','%'.$request->user_search.'%' )
-                        ->get();
+                        ->paginate(10);
         }
         return view('admin.user-list',compact('users'));
     }

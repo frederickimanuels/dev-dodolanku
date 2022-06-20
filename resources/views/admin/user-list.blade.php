@@ -157,7 +157,7 @@
                         </div>
                     </div>
                 </div>
-                {{-- {!! $products->links() !!} --}}
+                {!! $users->links() !!}
 
             </div>
             <!-- <footer class="bg-white sticky-footer">

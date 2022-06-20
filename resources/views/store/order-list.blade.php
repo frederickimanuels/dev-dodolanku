@@ -45,6 +45,7 @@
                                     </tr>
                                 </thead>
                                 <tbody class="table-body">
+                                    @if(count($carts)>0)
                                     @foreach($carts as $cart)
                                         <tr>
                                             <td colspan="4" style="padding-left:40px">
@@ -110,6 +111,7 @@
                                                 </td>
                                             </tr>
                                     @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
