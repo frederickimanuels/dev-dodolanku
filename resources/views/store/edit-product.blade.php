@@ -1,3 +1,10 @@
+<?php $data=[
+    'title' => 'Ubah Produk',
+    'description' => 'Ubah detail produk @Dodolanku.id',
+    'keywords' => 'cart, online shop, business, haul',
+    'author' => 'Dodolanku.id',
+]; ?>
+
 @include('store.layouts.header')
 @include('layouts.navbar-home')
 

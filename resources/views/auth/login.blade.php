@@ -1,10 +1,18 @@
+<?php $data=[
+    'title' => 'Login to Dodolanku.id',
+    'description' => 'Login Page Dodolanku',
+    'keywords' => 'Dodolanku.id',
+    'author' => 'Dodolanku.id',
+]; ?>
 @include('auth.layouts.header')
 
 <div class="limiter">
+    
     <div class="container-login100">
+        
         <div class="wrap-login100">
             <div class="login100-pic js-tilt">
-                <img src="{{ asset('images/homepage/Logo_Dodolanku_favicon.png') }}" alt="IMG" style="width:auto;height:80%">
+                <img src="{{ asset('images/homepage/logo_dodolanku_favicon.png') }}" alt="IMG" style="width:auto;height:80%">
             </div>
 
             <form method="POST" action="{{ route('login') }}" class="login100-form validate-form">
@@ -15,6 +23,15 @@
                 <span class="login100-form-title">
                     Login To Your Account
                 </span>
+                
+            @if (session('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <span>{{ session('error') }}</span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @endif
 
                 <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
                     <input class="input100" type="text" name="email" placeholder="Email">

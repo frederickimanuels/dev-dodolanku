@@ -1,5 +1,5 @@
 <?php $data=[
-    'title' => 'Admin Store List',
+    'title' => 'Admin Order List',
     'description' => 'Dodolanku Admin Tool',
     'keywords' => 'Dodolanku.id',
     'author' => 'Dodolanku.id',
@@ -43,7 +43,7 @@
                             @endif
                             <div class="d-flex">
                                 <div class="mr-auto p-2">
-                                    <h1 class="h1-dashboard h1-product-list">List Toko</h1>
+                                    <h1 class="h1-dashboard h1-product-list">Cari Order</h1>
                                 </div>
                                 {{-- <div class="mr-auto p-2 product-menu">
                                     <ul style="padding-left:0">
@@ -51,15 +51,15 @@
                                         <li><a href="" >Aktif</a></li>
                                         <li><a href="">Nonaktif</a></li>
                                     </ul>
-                                </div>
+                                </div> --}}
                                 <div class="p-2">
-                                <form class="me-auto navbar-search w-100">
+                                <form class="me-auto navbar-search w-100" method="GET">
                                     <div class="input-group">
-                                        <input class="form-control border-0 small search-box" type="text" placeholder="">
+                                        <input name="reference_no" class="form-control border-0 small search-box" type="text" placeholder="Masukkan Reference No">
                                         <!-- <div class="input-group-append"><button class="btn btn-primary py-0" type="button">Cari</button></div> -->
                                     </div>
                                 </form>
-                                </div> --}}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -68,28 +68,65 @@
                             <table class="table product-table">
                                 <thead class="table-head" >
                                     <tr>
-                                    {{-- <th scope="col" style="padding-left:40px">
-                                        <input class="table-checkbox"  type="checkbox" aria-label="Checkbox for following text input">
-                                    </th> --}}
-                                    <th scope="col" style="padding-left:40px">Nama Toko</th>
-                                    <th scope="col">Penjualan</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Tindakan</th>
+                                        <th scope="row" style="padding-left:40px">Pesanan</th>
+                                        <th scope="row">Detail Pemesan</th>
+                                        <th scope="row">Toko</th>
+                                        <th scope="row">Kurir</th>
+                                        <th scope="row">No Resi</th>
+                                        <th scope="row">Status</th>
+                                        <th scope="row">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table-body">
-                                    @foreach($stores as $store)
+                                    @if(count($orders) == 0)
+                                    <tr style="position:relative">
+                                        <td colspan="7">
+                                            <div style="display: flex;justify-content:center;">
+                                                <span><i class="fa-solid fa-search"></i> Harap masukkan Order Reference No pada kolom search</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @else
+                                    @foreach($orders as $order)
+                                        <?php $cart = $order->carts()->first() ?>
+                                        <?php $store = $cart->stores()->first() ?>
+                                        <tr>
+                                            <td colspan="6" style="padding-left:40px">
+                                                <span class="order-number">Order #{{ $cart->orders()->first()->reference_no }}</span>
+                                            </td>
+                                            <td colspan="1">
+                                                <span class="order-date">{{ $cart->orders()->first()->created_at }}</span>
+                                            </td>
+                                        </tr>
                                         <tr style="position:relative" >
-                                            {{-- <th scope="row" style="padding-left:40px;border:none"> 
-                                                <input class="table-checkbox" type="checkbox" aria-label="Checkbox for following text input">
-                                            </th> --}}
-                                            <td style="padding-left:40px;">
+                                            <td style="padding-left:40px;padding-top:20px;">
+                                                <?php $products = $cart->products()->get(); ?>
+                                                @foreach($products as $product)
+                                                    <div class="row">
+                                                        <div class="col-4 product-list-img-container">
+                                                            <img class="product-list-img" src="{{ $product->images()->first() ? asset('images/stored/'. $product->images()->first()->filepath) :  asset('images/homepage/default-product-image.png') }}" alt="Card image cap">
+                                                        </div>
+                                                        <div class="col-8 product-list-text product-order-text pt-1">
+                                                            <h2>{{ $product->name }}</h2>
+                                                            <p>Jumlah : <span style="color:black;font-weight:bold" >{{ $product->pivot->count }}</span> Pcs</p>
+                                                            <p>Rp {{number_format( $product->price,0,',','.')}}</p>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </td>
+                                            <td>
+                                                <div class="product-order-detail pt-4">
+                                                    <h3>{{ $cart->users()->first()->name }}</h3>
+                                                    <?php $address = $cart->address()->withTrashed()->first();
+                                                            $address->province = App\Province::where('id',$address->province_id)->first()->name;
+                                                            $address->city =  App\City::where('id',$address->city_id)->first()->name; ?>
+                                                    <p>{{ $address->description . ', ' . $address->city . ', ' . $address->province }}</p>
+                                                <div>
+                                            </td>
+                                            <td>
                                                 <a href="{{ route('store.show',$store->slug) }}">
                                                     <div class="row">
-                                                        <div class="col-3 product-list-img-container">
-                                                            <img class="product-list-img" src="{{ $store->templateconfigs()->where('type','store_logo')->first() ?  asset('images/stored/'. $store->templateconfigs()->where('type','store_logo')->first()->images()->first()->filepath) : asset('images/homepage/dodolanku-logo.jpg')  }}" alt="Card image cap">
-                                                        </div>
-                                                        <div class="col-9 product-list-text pt-4">
+                                                        <div class="col-12 product-list-text pt-4">
                                                             <h2>{{ $store->name }}</h2>
                                                             <p>{{ App\City::where('id',$store->address()->first()->city_id)->first()->name .' - '. App\Province::where('id',$store->address()->first()->province_id)->first()->name}}</p>
                                                         </div>
@@ -97,27 +134,24 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                <ul class="product-statistics pt-4">
-                                                    {{-- <li><i class="fa-solid fa-eye"></i>999</li> --}}
-                                                    <?php $checkout_count = 0;
-                                                        if($store->carts()->first()){
-                                                            $checkout_count = $store->carts()->join('cart_status','cart_status.cart_id','carts.id')->where('status_id','<>','0')->where('status_id','<>','3')->whereNull('cart_status.deleted_at')->count();
-                                                        }
-                                                        ?>
-                                                    <li><i class="fa-solid fa-cart-shopping"></i></i>{{ $checkout_count }}</li>
-                                                </ul>
+                                                <div class="product-delivery pt-4">
+                                                    {{ $cart->orders()->first()->courier }}
+                                                </div>
                                             </td>
                                             <td>
-                                                <ul class="product-statistics pt-4">
-                                                    {{ $store->isBanned() ? 'Banned' : 'Active'}}
-                                                </ul>
+                                                <div class="pt-4">
+                                                    {{ $order->couriertracking ?  $order->couriertracking : '-'}}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="pt-4">
+                                                    {{ $cart->status()->first()->name }}
+                                                </div>
                                             </td>
                                             <td>
                                                 <div class="product-action pt-4">
-                                                    @if(!$store->isBanned())
-                                                        <a banned="0" store-id="{{ $store->id }}" class="btn btn-danger ban-store-button">Ban Toko</a>
-                                                    @else
-                                                        <a banned="1" store-id="{{ $store->id }}" class="btn btn-success ban-store-button">Unban Toko</a>
+                                                    @if($cart->status()->first()->id == 2)
+                                                        <a order-id="{{ $order->id }}" class="btn btn-danger cancel-order-button">Cancel Order</a>
                                                     @endif
                                                     {{-- <div class="product-action-icon">
                                                         <a href="{{ route('admin.store.edit',$store->slug) }}"><i class="fa-solid fa-pen-to-square"></i></a>
@@ -129,11 +163,11 @@
                                             </td>
                                         </tr>
                                     @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    {!! $stores->links() !!}
                 </div>
                 <div class="display-mobile">
                     <div class="container-fluid">
@@ -180,22 +214,22 @@
     }
 </style>
 
-<div class="modal fade" id="banModal" tabindex="-1" role="dialog" aria-labelledby="banModal" aria-hidden="true">
+<div class="modal fade" id="cancelordermodal" tabindex="-1" role="dialog" aria-labelledby="banModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="banModalTitle">Konfirmasi Ban Toko</h5>
+                <h5 class="modal-title" id="banModalTitle">Konfirmasi Cancel Order</h5>
                 <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body" id="modal-text">
+                Yakin ingin cancel order ini?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
                 <a id="hyperlink-ban" href="#">
-                    <button type="button" class="btn btn-success" id="button-unban">Unban Toko</button>
-                    <button type="button" class="btn btn-danger" id="button-ban" hidden>Ban Toko</button>
+                    <button type="button" class="btn btn-danger" id="button-cancel">Cancel Order</button>
                 </a>
             </div>
         </div>
@@ -215,32 +249,19 @@
         $("#sidebar-id").removeClass("toggled");
     });
     $(document).ready(function(){
-        $('.ban-store-button').on('click',function(){
-            let banned = $(this).attr('banned');
-            let store_id = $(this).attr('store-id');
-            if(banned == "1"){
-                $('#hyperlink-ban').attr('href','/admin/store/unban/'+ store_id);
-                document.getElementById('banModalTitle').innerHTML = "Konfirmasi unban toko";
-                document.getElementById('modal-text').innerHTML = "Apakah anda yakin unban toko ini?";
-                $('#button-unban').attr("hidden", false);
-                $('#button-ban').attr("hidden", true);
-            }else{
-                $('#hyperlink-ban').attr('href','/admin/store/ban/'+ store_id);
-                document.getElementById('banModalTitle').innerHTML = "Konfirmasi ban toko"
-                document.getElementById('modal-text').innerHTML = "Apakah anda yakin ban toko ini?"
-                $('#button-unban').attr("hidden", true);
-                $('#button-ban').attr("hidden", false);
-            }
+        $('.cancel-order-button').on('click',function(){
+            let order_id = $(this).attr('order-id');
+            $('#hyperlink-ban').attr('href','/admin/order/cancel/'+ order_id);
             openBanModal();
         });
         $('.close-modal').on('click',function(){
             closeBanModal();
         });
         function openBanModal(){
-            $('#banModal').modal('toggle');
+            $('#cancelordermodal').modal('toggle');
         }
         function closeBanModal(){
-            $('#banModal').modal('hide');
+            $('#cancelordermodal').modal('hide');
         }
     });
 </script>

@@ -1,3 +1,10 @@
+<?php $data=[
+    'title' => 'Ubah Password',
+    'description' => 'Pengaturan password pengguna @Dodolanku.id',
+    'keywords' => 'cart, online shop, business, haul',
+    'author' => 'Dodolanku.id',
+]; ?>
+
 @include('user.layouts.header')
 
 @include('layouts.navbar-home')

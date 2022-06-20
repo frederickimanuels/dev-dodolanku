@@ -1,3 +1,10 @@
+<?php $data=[
+    'title' => 'Dashboard Penjual',
+    'description' => 'Halaman dashboard penjual @Dodolanku.id',
+    'keywords' => 'cart, online shop, business, haul',
+    'author' => 'Dodolanku.id',
+]; ?>
+
 @include('store.layouts.header')
 
 <div id="wrapper">

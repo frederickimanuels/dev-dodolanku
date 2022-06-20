@@ -16,8 +16,8 @@
             <li class="nav-item"><a class="nav-link {{ Request::routeIs('admin.withdrawal.list') ? 'active' : '' }}" href="{{ route('admin.withdrawal.list') }}"><i class="fas fa-coins"></i><span>Penarikan Dana</span></a></li>
             {{-- <li class="nav-item"><a class="nav-link" href="login.html"><i class="far fa-user-circle"></i><span>Chat</span></a></li> --}}
             <li class="nav-item"><a class="nav-link {{ Request::routeIs('admin.store.list') ? 'active' : '' }}" href="{{ route('admin.store.list') }}"><i class="fa-solid fa-store"></i><span>List Toko</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-envelope"></i><span>List Pesanan</span></a></li>
-            <li class="nav-item"><a class="nav-link " href="{{ route('store.product.add') }}"><i class="fa-solid fa-user"></i><span>List User</span></a></li>
+            <li class="nav-item"><a class="nav-link {{ Request::routeIs('admin.user') ? 'active' : '' }}" href="{{ route('admin.user') }}"><i class="fa-solid fa-user"></i><span>List User</span></a></li>
+            <li class="nav-item"><a class="nav-link {{ Request::routeIs('admin.order') ? 'active' : '' }}" href="{{ route('admin.order') }}"><i class="fas fa-envelope"></i><span>Cari Order</span></a></li>
             {{-- <hr class="sidebar-divider my-0" > --}}
             {{-- <li class="nav-item"><a class="nav-link" href="register.html"><i class="fas fa-cog"></i><span>Pengaturan Toko</span></a></li> --}}
         </ul>

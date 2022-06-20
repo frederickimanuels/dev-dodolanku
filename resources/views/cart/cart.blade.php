@@ -1,3 +1,9 @@
+<?php $data=[
+    'title' => 'Keranjang belanja',
+    'description' => 'Keranjang belanja di Dodolanku',
+    'keywords' => 'cart, online shop, business, haul',
+    'author' => 'Dodolanku.id',
+]; ?>
 @include('layouts.header')
 
 @include('layouts.navbar-home')

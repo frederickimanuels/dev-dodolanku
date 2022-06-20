@@ -38,15 +38,13 @@ class StoreController extends Controller
             return redirect()->route('store.create');
         }else{
             $store = Auth::user()->hasStore();
+            if($store->isBanned()){
+                return redirect()->route('notfound')->with('error','Toko '. $store->name .' telah diblokir');
+            }
             return view ('store/dashboard',compact('store'));
         }
     }
     
-    
-    public function createProduct()
-    {
-        return view('store/createProduct');
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -113,6 +111,9 @@ class StoreController extends Controller
         if(!$store){
             return redirect()->route('notfound');
         }else{
+            if($store->isBanned()){
+                return redirect()->route('notfound')->with('error','Toko '. $store->name .' telah diblokir');
+            }
             $template = $store->template()->first();
             $popular_products = $store->products()->take(8)->get();
             return view('store/templates/'.$template->code.'/homepage',compact('store','popular_products'));
@@ -128,6 +129,9 @@ class StoreController extends Controller
     public function edit(Request $request)
     {
         $store = Auth::user()->stores()->first();
+        if($store->isBanned()){
+            return redirect()->route('notfound')->with('error','Toko '. $store->name .' telah diblokir');
+        }
         return view('store/edit',compact('store'));
     }
 
@@ -147,6 +151,9 @@ class StoreController extends Controller
         ]);
 
         $store = Auth::user()->hasStore();
+        if($store->isBanned()){
+            return redirect()->route('notfound')->with('error','Toko '. $store->name .' telah diblokir');
+        }
         $store->name = $request->store_name;
         $store->save();
         if($store->address()->first()){

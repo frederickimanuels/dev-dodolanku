@@ -17,6 +17,11 @@ class LoginMiddleware
     public function handle($request, Closure $next)
     {
         if(!Auth::guest()){
+            if(Auth::user()->isBanned()){
+                auth()->logout();
+                session()->invalidate();
+                return redirect('/login')->with('error','Akun anda telah diblokir');
+            }
             return $next($request);
         }
         return redirect()->route('login');

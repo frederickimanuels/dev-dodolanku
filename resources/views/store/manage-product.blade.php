@@ -1,3 +1,10 @@
+<?php $data=[
+    'title' => 'Atur Produk',
+    'description' => 'Pengaturan Produk Penjual @Dodolanku.id',
+    'keywords' => 'cart, online shop, business, haul',
+    'author' => 'Dodolanku.id',
+]; ?>
+
 @include('store.layouts.header')
 <style>
     a{

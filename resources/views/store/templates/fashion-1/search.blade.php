@@ -1,3 +1,11 @@
+<?php $data=[
+    'title' => 'Daftar produk di '.{{ $store->name }},
+    'description' => 'Daftar produk di '.{{ $store->name }} .'@Dodolanku.id',
+    'keywords' => 'cart, online shop, business, haul',
+    'author' => 'Dodolanku.id',
+]; ?>
+
+
 @include('store.layouts.header')
 
 @include('store.layouts.navbar-home')

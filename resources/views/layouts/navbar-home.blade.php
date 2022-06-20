@@ -6,7 +6,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- Navbar brand -->
       <a class="navbar-brand mt-2 mt-lg-0" href="#">
-        <img src="" height="15" alt=".." loading="lazy"/>
+        <img src="{{ asset('images/homepage/logo_dodolanku_white.png') }}" height="15" alt=".." loading="lazy"/>
       </a>
       <!-- Left links -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">

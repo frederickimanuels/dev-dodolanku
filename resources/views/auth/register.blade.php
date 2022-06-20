@@ -1,9 +1,15 @@
+<?php $data=[
+    'title' => 'Register to Dodolanku.id',
+    'description' => 'Register Page Dodolanku',
+    'keywords' => 'Dodolanku.id',
+    'author' => 'Dodolanku.id',
+]; ?>
 @include('auth.layouts.header')
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
             <div class="login100-pic js-tilt">
-                <img src="{{ asset('images/homepage/Logo_Dodolanku_favicon.png') }}" alt="IMG" style="width:auto;height:80%">
+                <img src="{{ asset('images/homepage/logo_dodolanku_favicon.png') }}" alt="IMG" style="width:auto;height:80%">
             </div>
 
             <form method="POST" class="login100-form validate-form" action="{{ route('register') }}">

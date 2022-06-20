@@ -1,3 +1,10 @@
+<?php $data=[
+    'title' => 'Ubah Template Toko',
+    'description' => 'Daftar pesanan toko @Dodolanku.id',
+    'keywords' => 'cart, online shop, business, haul',
+    'author' => 'Dodolanku.id',
+]; ?>
+
 @include('store.layouts.header')
 
 @include('layouts.navbar-home')

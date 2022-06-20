@@ -1,3 +1,10 @@
+<?php $data=[
+    'title' => 'Saldo Penjualan',
+    'description' => 'Halaman saldo penjualan @Dodolanku.id',
+    'keywords' => 'cart, online shop, business, haul',
+    'author' => 'Dodolanku.id',
+]; ?>
+
 @include('store.layouts.header')
 @include('layouts.navbar-home')
 

@@ -1,3 +1,9 @@
+<?php $data=[
+    'title' => 'Admin Dashboard',
+    'description' => 'Dodolanku Admin Tool',
+    'keywords' => 'Dodolanku.id',
+    'author' => 'Dodolanku.id',
+]; ?>
 @include('admin.layouts.header')
 
 <div id="wrapper">

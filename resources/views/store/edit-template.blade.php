@@ -1,3 +1,10 @@
+<?php $data=[
+    'title' => 'Pengaturan Template',
+    'description' => 'Pengaturan Template Toko @Dodolanku.id',
+    'keywords' => 'cart, online shop, business, haul',
+    'author' => 'Dodolanku.id',
+]; ?>
+
 @include('store.layouts.header')
 <style>
 .accordion {

@@ -1,3 +1,10 @@
+<?php $data=[
+    'title' => {{ $store->name }},
+    'description' => {{ $store->name }}. ' Homepage @Dodolanku.id',
+    'keywords' => 'cart, online shop, business, haul',
+    'author' => 'Dodolanku.id',
+]; ?>
+
 @include('store.layouts.header')
 
 @include('store.layouts.navbar-home')

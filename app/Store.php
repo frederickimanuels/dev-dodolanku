@@ -26,6 +26,10 @@ class Store extends Model
     {
         return $this->belongsToMany(Cart::class, 'cart_stores');
     }
+    public function activeCarts()
+    {
+        return $this->carts()->join('cart_status','cart_status.cart_id','carts.id')->whereNull('cart_status.deleted_at')->where('cart_status.status_id',1)->get();
+    }
     public function address()
     {
         return $this->belongsToMany(Address::class, 'address_stores')->withTimestamps();
@@ -55,5 +59,15 @@ class Store extends Model
     public function withdrawals()
     {
         return $this->belongsToMany(Withdrawal::class, 'store_withdrawals')->withTimestamps();
+    }
+
+    public function banned()
+    {
+        return $this->belongsToMany(Banned::class, 'banned_stores')->withTimestamps();
+    }
+
+    public function isBanned()
+    {
+        return $this->banned()->whereNull('banned_stores.deleted_at')->where('name','banned')->count() == 1;
     }
 }

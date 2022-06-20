@@ -26,13 +26,26 @@ Route::group([ 'middleware' => '\App\Http\Middleware\AdminMiddleware'], function
 
     // Store
     Route::get('/admin/store-list', 'admin\AdminController@storeList')->name('admin.store.list');
-    Route::get('/admin/store/edit/{store_slug}', 'admin\AdminController@storeEdit')->name('admin.store.edit');
-    Route::get('/admin/store/delete/{store_slug}', 'admin\AdminController@storeDelete')->name('admin.store.delete');
+    
+    // User
+    Route::get('/admin/user-list', 'admin\AdminController@userList')->name('admin.user');
 
     // Balance
     Route::get('/admin/withdrawal','admin\AdminController@withdrawalList')->name('admin.withdrawal.list');
     Route::get('/admin/withdrawal/accept/{withdrawal_id}','admin\AdminController@withdrawalAccept')->name('admin.withdrawal.accept');
     Route::get('/admin/withdrawal/reject/{withdrawal_id}','admin\AdminController@withdrawalReject')->name('admin.withdrawal.reject');
+
+    // Ban
+    Route::get('/admin/store/ban/{store_id}','admin\AdminBanController@banStore')->name('admin.store.ban');
+    Route::get('/admin/user/ban/{user_id}','admin\AdminBanController@banUser')->name('admin.user.ban');
+    Route::get('/admin/store/unban/{store_id}','admin\AdminBanController@unbanStore')->name('admin.store.unban');
+    Route::get('/admin/user/unban/{user_id}','admin\AdminBanController@unbanUser')->name('admin.user.unban');
+
+    // Order
+    Route::get('/admin/order','admin\AdminOrderController@index')->name('admin.order');
+    Route::get('/admin/order/cancel/{order_id}','admin\AdminOrderController@cancelOrder')->name('admin.order.cancel');
+
+    
 });
 
 Route::group([ 'middleware' => '\App\Http\Middleware\LoginMiddleware'], function(){

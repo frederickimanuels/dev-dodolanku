@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Balance;
 use App\Http\Controllers\Controller;
 use App\Store;
+use App\User;
 use App\Withdrawal;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -17,15 +18,18 @@ class AdminController extends Controller
     }
 
     public function storeList(){
-        $stores = Store::get();
+        $stores = Store::paginate(10);
         return view('admin.store-list',compact('stores'));
     }
 
-    public function storeEdit($store_slug){
-        return view('admin.dashboard');
-    }
-    public function storeDelete($store_slug){
-        return view('admin.dashboard');
+    public function userList(Request $request){
+        $users = [];
+        if($request->user_search){
+            $users = User::Where('name','like','%'.$request->user_search.'%' )
+                        ->orWhere('email','like','%'.$request->user_search.'%' )
+                        ->get();
+        }
+        return view('admin.user-list',compact('users'));
     }
 
     public function withdrawalList(Request $request){
