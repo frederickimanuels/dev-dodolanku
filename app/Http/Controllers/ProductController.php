@@ -145,6 +145,7 @@ class ProductController extends Controller
         $product->description = $request->product_description;
         $product->about = $request->product_about;
         $replace_whitespace_with_dash = preg_replace("/[\s_]/", "-", $product->name);
+        $replace_whitespace_with_dash = preg_replace("/[^A-Za-z0-9 ]/", "-", $replace_whitespace_with_dash);
         $product_slug_not_avail = Product::where('slug',$replace_whitespace_with_dash)->first();
         if(!$product_slug_not_avail){
             $product->slug = $replace_whitespace_with_dash;
