@@ -76,7 +76,7 @@
         /* padding-bottom: 50px; */
     }
     .store-home img{
-        max-height: 900px;
+        max-height: 700px;
     }
     .store-content{
         max-width: 80%;
@@ -190,6 +190,12 @@
     .copyright-wrapper{
         background-color:var(--bgcolor);
     }
+    .img-side{
+        max-height: 340px;
+    }
+    .img-center{
+        max-height: 700px;
+    }
     @media screen and (max-width:1199px){
         .text-over-img{
             margin-bottom: 20px;
@@ -255,27 +261,27 @@
             <div class="row">
                 <div class="col-12 col-xl-3">
                     <div class="row">
-                        <div class="col-xl-12 col-6 text-over-img" style="margin-bottom:20px">
+                        <div class="col-xl-12 col-6 text-over-img img-side" style="margin-bottom:20px">
                             <img src="{{ asset('images/template/'. $store->hasTemplate()->code.'/category_1.png') }}" alt="" class="homepage-slick">
                             <h5>Sepatu</h5>
                         </div>
-                        <div class="col-xl-12 col-6 text-over-img">
+                        <div class="col-xl-12 col-6 text-over-img img-side">
                             <img src="{{ asset('images/template/'. $store->hasTemplate()->code.'/category_2.png') }}" alt="" class="homepage-slick">
                             <h5>Jaket</h5>
                         </div>
                     </div>
                 </div> 
-                <div class="col-12 col-xl-6 text-over-img">
+                <div class="col-12 col-xl-6 text-over-img img-center">
                     <img src="{{ asset('images/template/'. $store->hasTemplate()->code.'/category_3.png') }}" alt="" class="homepage-slick">
                     <h4>Dress Wanita</h4>
                 </div>
                 <div class="col-12 col-xl-3">
                     <div class="row">
-                        <div class="col-xl-12 col-6 text-over-img" style="margin-bottom:20px">
+                        <div class="col-xl-12 col-6 text-over-img img-side" style="margin-bottom:20px">
                             <img src="{{ asset('images/template/'. $store->hasTemplate()->code.'/category_4.png') }}" alt="" class="homepage-slick">
                             <h5>Celana</h5>
                         </div>
-                        <div class="col-xl-12 col-6 text-over-img">
+                        <div class="col-xl-12 col-6 text-over-img img-side">
                             <img src="{{ asset('images/template/'. $store->hasTemplate()->code.'/category_5.png') }}" alt="" class="homepage-slick"> 
                             <h5>Kemeja</h5>
                         </div>
