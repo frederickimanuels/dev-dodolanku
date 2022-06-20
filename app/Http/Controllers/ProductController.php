@@ -129,7 +129,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'product_name' => 'required|min:5|max:60|alpha_dash',
+            'product_name' => 'required|min:5|max:60',
             'product_category' => 'required|exists:categories,id',
             'product_description' => 'required|min:5|max:500',
             'product_about' => 'required|min:10|max:2000',
@@ -186,7 +186,7 @@ class ProductController extends Controller
         // $old_images_count = $old_product->images()->count();
         
         $this->validate($request, [
-            'product_name' => 'required|min:5|max:60|alpha_dash',
+            'product_name' => 'required|min:5|max:60',
             'product_category' => 'required|exists:categories,id',
             'product_description' => 'required|min:5|max:500',
             'product_about' => 'required|min:10|max:2000',
