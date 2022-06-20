@@ -69,7 +69,7 @@ class TemplateController extends Controller
                 $templateconfig->images()->attach($image->id);
                 $templateconfig->stores()->attach($store->id);
             }
-            return redirect()->back();
+            return redirect()->back()->with('status','Sukses mengganti logo');
         }else if($request->input_type == 'store_banner'){
             $this->validate($request, [
                 'input_type' => 'required',
@@ -99,9 +99,74 @@ class TemplateController extends Controller
                 $templateconfig->stores()->attach($store->id);
                 $i+=1;
             }
-            return redirect()->back();
+            return redirect()->back()->with('status','Sukses mengganti banner');
+        }else if($request->input_type == 'store_search'){
+            $this->validate($request, [
+                'input_type' => 'required',
+                'images' => 'required|min:1|max:1',
+                'images.*' => 'image|mimes:jpeg,png,jpg,svg|max:10000',
+            ]);
+            $templateconfigs = $store->templateconfigs()->where('type','store_search')->get();
+            if(count($templateconfigs) > 0){
+                foreach($templateconfigs as $templateconfig){
+                    $templateconfig->stores()->detach($store->id);
+                }
+            }
+            foreach($request->images as $img){
+                $imageName = time().'.'.$img->getClientOriginalExtension();
+                $img->move(public_path('images/stored'), $imageName);
+
+                $image = new Image();
+                $image->filepath = $imageName;
+                $image->save();
+
+                $templateconfig = new Templateconfig();
+                $templateconfig->type = 'store_search';
+                $templateconfig->save();
+                $templateconfig->images()->attach($image->id);
+                $templateconfig->stores()->attach($store->id);
+            }
+            return redirect()->back()->with('status','Sukses mengganti banner');
         }else if($request->input_type == 'store_text'){
-            dd()
+            $this->validate($request, [
+                'input_type' => 'required',
+                'color' => 'required|min:4|max:4',
+                'color.*' => 'string|min:7|max:7',
+            ]);
+            $templateconfigs = $store->templateconfigs()->where('type','store_text')->get();
+            if(count($templateconfigs) > 0){
+                foreach($templateconfigs as $templateconfig){
+                    $templateconfig->stores()->detach($store->id);
+                }
+            }
+            foreach($request->color as $clr){
+                $templateconfig = new Templateconfig();
+                $templateconfig->type = 'store_text';
+                $templateconfig->extra = $clr;
+                $templateconfig->save();
+                $templateconfig->stores()->attach($store->id);
+            }
+            return redirect()->back()->with('status','Sukses mengganti warna text');
+        }else if($request->input_type == 'store_bg'){
+            $this->validate($request, [
+                'input_type' => 'required',
+                'bg_color' => 'required|min:4|max:4',
+                'bg_color.*' => 'string|min:7|max:7',
+            ]);
+            $templateconfigs = $store->templateconfigs()->where('type','store_bg')->get();
+            if(count($templateconfigs) > 0){
+                foreach($templateconfigs as $templateconfig){
+                    $templateconfig->stores()->detach($store->id);
+                }
+            }
+            foreach($request->bg_color as $clr){
+                $templateconfig = new Templateconfig();
+                $templateconfig->type = 'store_bg';
+                $templateconfig->extra = $clr;
+                $templateconfig->save();
+                $templateconfig->stores()->attach($store->id);
+            }
+            return redirect()->back()->with('status','Sukses mengganti warna background');
         }
     }
 }

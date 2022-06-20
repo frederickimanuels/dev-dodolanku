@@ -2,11 +2,14 @@
     <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand justify-content-center align-items-center sidebar-brand m-0" href="#">
             <!-- <div class="sidebar-brand-icon"><i class="fas fa-laugh-wink"></i></div> -->
         <div class="sidebar-brand-icon">
-            <img class="border rounded-circle img-profile img-profile-sidebar" src="{{ Auth::user()->images()->first() ? asset('images/stored/'. Auth::user()->images()->first()->filepath) :  asset('images/homepage/blank-profile-picture.png') }}">
+            <img class="border rounded-circle img-profile img-profile-sidebar" src="{{  Auth::user()->hasStore()->templateconfigs()->where('type','store_logo')->first() ?  asset('images/stored/'.  Auth::user()->hasStore()->templateconfigs()->where('type','store_logo')->first()->images()->first()->filepath) : asset('images/homepage/dodolanku-logo.jpg')  }}">
         </div>
         <div class="sidebar-brand-text mx-3"><span>{{ Auth::user()->hasStore()->name }}</span></div>
         </a>
         <hr class="sidebar-divider my-0">
+        <a class="nav-link" href="{{ route('store.dashboard') }}">
+            <button class="btn btn-secondary">Dashboard Toko</button>
+        </a>
         <ul class="navbar-nav text-light" id="accordionSidebar">
             <hr class="sidebar-divider my-0" >
             <h3 class="mt-3">Pengaturan Template</h3>
@@ -30,6 +33,7 @@
                     <li id="btn-text-color" >Background</li>
                 </ul>
             </div>
+            
         </ul>
     </div>
 </nav>

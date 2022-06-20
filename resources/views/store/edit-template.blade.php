@@ -131,6 +131,14 @@ label{
                                 </button>
                             </div>
                         @endif
+                        @if($errors->any())
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <span>Gagal memperbaharui template</span>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
                         <div class="template-wrapper" id="input-logo">
                             <form action="{{ route('store.template.update') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
@@ -178,7 +186,7 @@ label{
                             </form>
                         </div>
                         <div class="template-wrapper" id="input-banner-homepage-category">
-                            <form>
+                            <form >
                                 <div class="form-group">
                                 <h2 for="exampleInputEmail1">Upload Banner Kategori</h2>
                                 <p>Minimal Ukuran 1920x1080 dan Maksimal 5</p>
@@ -254,14 +262,16 @@ label{
                             </form>
                         </div>
                         <div class="template-wrapper" id="input-banner-search">
-                            <form>
+                            <form action="{{ route('store.template.update') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
                                 <div class="form-group">
+                                <input type="hidden" name="input_type" value="store_banner">
                                 <h2 for="exampleInputEmail1">Ganti Banner Daftar Produk</h2>
                                 <p>Maksimal 1 gambar</p>
                                 <div class="upload-img">
                                     <div class="row">
                                         <div class="input-field">
-                                            <div class="input-images-4" style="padding-top: .5rem;"></div>
+                                            <div class="input-images-search" style="padding-top: .5rem;"></div>
                                         </div>
                                     </div>
                                     <input type="file" id="myfile" style="display: none;">
@@ -278,34 +288,46 @@ label{
                                 <div class="form-group">
                                     <h2 for="exampleInputEmail1">Ganti Warna Text</h2>
                                     <input type="hidden" name="input_type" value="store_text">
-                                    <p>Silahkan Merubah Warna Sesuai dengan Keinginanmu</p>
+                                    <p>Silahkan Merubah Warna Text Sesuai dengan Keinginanmu</p>
                                     <div class="row">
-                                        <div class="col-3">
-                                            <div class="custom-file">
-                                                <label for="favcolor">Text 1</label>
-                                                <input type="color" id="favcolor" name="color_1" value="#ff0000"><br><br>
+                                        @if($store->templateconfigs()->where('type','store_text')->first())
+                                            <?php $i = 1;?>
+                                            @foreach($store->templateconfigs()->where('type','store_text')->get() as $store_text)
+                                                <div class="col-3">
+                                                    <div class="custom-file">
+                                                        <label for="favcolor">Text {{ $i }}</label>
+                                                        <input type="color" id="favcolor" name="color[]" value="{{ $store_text->extra }}"><br><br>
+                                                    </div>
+                                                </div>
+                                                <?php $i+=1;?>
+                                            @endforeach
+                                        @else
+                                            <div class="col-3">
+                                                <div class="custom-file">
+                                                    <label for="favcolor">Text 1</label>
+                                                    <input type="color" id="favcolor" name="color[]" value="#ff0000"><br><br>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-3">
-                                            <div class="custom-file">
-                                                <label for="favcolor">Text 2</label>
-                                                <input type="color" id="favcolor" name="color_2" value="#ff0000"><br><br>
+                                            <div class="col-3">
+                                                <div class="custom-file">
+                                                    <label for="favcolor">Text 2</label>
+                                                    <input type="color" id="favcolor" name="color[]" value="#ff0000"><br><br>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-3">
-                                            <div class="custom-file">
-                                                <label for="favcolor">Text 3</label>
-                                                <input type="color" id="favcolor" name="color_3" value="#ff0000"><br><br>
+                                            <div class="col-3">
+                                                <div class="custom-file">
+                                                    <label for="favcolor">Text 3</label>
+                                                    <input type="color" id="favcolor" name="color[]" value="#ff0000"><br><br>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-3">
-                                            <div class="custom-file">
-                                                <label for="favcolor">Text 4</label>
-                                                <input type="color" id="favcolor" name="color_4" value="#ff0000"><br><br>
+                                            <div class="col-3">
+                                                <div class="custom-file">
+                                                    <label for="favcolor">Text 4</label>
+                                                    <input type="color" id="favcolor" name="color[]" value="#ff0000"><br><br>
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endif
                                     </div>
-                                   
                                 </div>
                                 <div style="display:flex">
                                     <button type="submit" class="btn btn-primary mt-3" id="submit-btn">Submit</button>
@@ -313,37 +335,51 @@ label{
                             </form>
                         </div>
                         <div class="template-wrapper" id="input-color-bg">
-                            <form>
+                            <form method="POST" action="{{ route('store.template.update') }}">
+                                @csrf
                                 <div class="form-group">
+                                    <input type="hidden" name="input_type" value="store_bg">
                                     <h2 for="exampleInputEmail1">Ganti Warna Background</h2>
                                     <p>Silahkan Merubah Warna Background Sesuai dengan Keinginanmu</p>
                                     <div class="row">
-                                        <div class="col-3">
-                                            <div class="custom-file">
-                                                <label for="favcolor">Background 1</label>
-                                                <input type="color" id="favcolor" name="favcolor" value="#ff0000"><br><br>
+                                        @if($store->templateconfigs()->where('type','store_bg')->first())
+                                            <?php $i = 1;?>
+                                            @foreach($store->templateconfigs()->where('type','store_bg')->get() as $store_bg)
+                                                <div class="col-3">
+                                                    <div class="custom-file">
+                                                        <label for="favcolor">Background {{ $i }}</label>
+                                                        <input type="color" id="favcolor" name="bg_color[]" value="{{ $store_bg->extra }}"><br><br>
+                                                    </div>
+                                                </div>
+                                                <?php $i+=1;?>
+                                            @endforeach
+                                        @else
+                                            <div class="col-3">
+                                                <div class="custom-file">
+                                                    <label for="favcolor">Background 1</label>
+                                                    <input type="color" id="favcolor" name="bg_color[]" value="#ff0000"><br><br>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-3">
-                                            <div class="custom-file">
-                                                <label for="favcolor">Background 2</label>
-                                                <input type="color" id="favcolor" name="favcolor" value="#ff0000"><br><br>
+                                            <div class="col-3">
+                                                <div class="custom-file">
+                                                    <label for="favcolor">Background 2</label>
+                                                    <input type="color" id="favcolor" name="bg_color[]" value="#ff0000"><br><br>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-3">
-                                            <div class="custom-file">
-                                                <label for="favcolor">Background 3</label>
-                                                <input type="color" id="favcolor" name="favcolor" value="#ff0000"><br><br>
+                                            <div class="col-3">
+                                                <div class="custom-file">
+                                                    <label for="favcolor">Background 3</label>
+                                                    <input type="color" id="favcolor" name="bg_color[]" value="#ff0000"><br><br>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-3">
-                                            <div class="custom-file">
-                                                <label for="favcolor">Background 4</label>
-                                                <input type="color" id="favcolor" name="favcolor" value="#ff0000"><br><br>
+                                            <div class="col-3">
+                                                <div class="custom-file">
+                                                    <label for="favcolor">Background 4</label>
+                                                    <input type="color" id="favcolor" name="bg_color[]" value="#ff0000"><br><br>
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endif
                                     </div>
-                                   
                                 </div>
                                 <div style="display:flex">
                                     <button type="submit" class="btn btn-primary mt-3" id="submit-btn">Submit</button>
@@ -420,6 +456,7 @@ label{
         });
         $('.input-images-logo').imageUploader({});
         $('.input-images-banner').imageUploader({});
+        $('.input-images-search').imageUploader({});
         
         
         // $('.input-images-1').imageUploader({
