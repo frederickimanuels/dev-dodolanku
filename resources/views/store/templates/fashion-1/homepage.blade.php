@@ -87,6 +87,11 @@
     .text-over-img{
         position: relative;
     }
+    .text-over-img img{
+        max-height: 500px;
+        filter: grayscale(0.59) saturate(1.1);
+
+    }
     .card{
         border-radius: 5%;
         margin: 0 20px;
@@ -97,6 +102,12 @@
     .card-img-top{
         border-top-left-radius: 5%;
         border-top-right-radius: 5%;
+    }
+    .image-side{
+        max-height: 250px;
+    }
+    .image-center{
+        max-height: 500px;
     }
     .text-over-img h4{
         position: absolute;
@@ -243,27 +254,27 @@
             <div class="row">
                 <div class="col-12 col-xl-3">
                     <div class="row">
-                        <div class="col-xl-12 col-6 text-over-img" style="margin-bottom:20px">
+                        <div class="col-xl-12 col-6 text-over-img image-side" style="margin-bottom:20px">
                             <img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick">
                             <h5>Sepatu</h5>
                         </div>
-                        <div class="col-xl-12 col-6 text-over-img">
+                        <div class="col-xl-12 col-6 text-over-img image-side">
                             <img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick">
                             <h5>Jaket</h5>
                         </div>
                     </div>
                 </div> 
-                <div class="col-12 col-xl-6 text-over-img">
+                <div class="col-12 col-xl-6 text-over-img image-center">
                     <img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick">
                     <h4>Dress Wanita</h4>
                 </div>
                 <div class="col-12 col-xl-3">
                     <div class="row">
-                        <div class="col-xl-12 col-6 text-over-img" style="margin-bottom:20px">
+                        <div class="col-xl-12 col-6 text-over-img image-side" style="margin-bottom:20px">
                             <img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick">
                             <h5>Celana</h5>
                         </div>
-                        <div class="col-xl-12 col-6 text-over-img">
+                        <div class="col-xl-12 col-6 text-over-img image-side">
                             <img src="{{asset('images/homepage/bg-1.png')}}" alt="" class="homepage-slick"> 
                             <h5>Kemeja</h5>
                         </div>
