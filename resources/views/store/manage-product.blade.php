@@ -82,7 +82,15 @@
                                     </tr>
                                 </thead>
                                 <tbody class="table-body">
-                                    @if(count($products) > 0)
+                                    @if(count($products) == 0)
+                                    <tr style="position:relative">
+                                        <td colspan="6">
+                                            <div style="display: flex;justify-content:center;">
+                                                <a href="{{ route('store.product.add') }}"><i class="fa-solid fa-plus"></i> Tambahkan Produk Baru</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @endif
                                     @foreach($products as $product)
                                         <tr style="position:relative" >
                                             {{-- <th scope="row" style="padding-left:40px;border:none"> 
@@ -142,14 +150,6 @@
                                             </td>
                                         </tr>
                                     @endforeach
-                                    @else
-                                    <tr style="position:relative">
-                                        <td colspan="6">
-                                            <div style="display: flex;justify-content:center;">
-                                                <a href="{{ route('store.product.add') }}"><i class="fa-solid fa-plus"></i> Tambahkan Produk Baru</a>
-                                            </div>
-                                        </td>
-                                    </tr>
                                     @endif
                                 </tbody>
                             </table>

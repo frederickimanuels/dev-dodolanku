@@ -196,7 +196,7 @@
                         </div>
                     </div>
                 </div>
-                {{-- {!! $products->links() !!} --}}
+                {!! $orders->links() !!}
 
             </div>
             <!-- <footer class="bg-white sticky-footer">

@@ -45,7 +45,15 @@
                                     </tr>
                                 </thead>
                                 <tbody class="table-body">
-                                    @if(count($carts)>0)
+                                    @if(count($carts) == 0)
+                                    <tr style="position:relative">
+                                        <td colspan="5">
+                                            <div style="display: flex;justify-content:center;">
+                                                <span>Belum ada pesanan</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @else
                                     @foreach($carts as $cart)
                                         <tr>
                                             <td colspan="4" style="padding-left:40px">
