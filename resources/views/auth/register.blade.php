@@ -15,7 +15,7 @@
             <form method="POST" class="login100-form validate-form" action="{{ route('register') }}">
                 @csrf
                 <a href="{{ route('base') }}" class="login100-logo-title">
-                    <img src="{{ asset('images/homepage/Logo_dodolanku_name.png') }}" alt="IMG" style="max-width:70%;max-height:100%;">
+                    <img src="{{ asset('images/homepage/logo_dodolanku_name.png') }}" alt="IMG" style="max-width:70%;max-height:100%;">
                 </a>
                 <span class="login100-form-title">
                     Register
