@@ -1,6 +1,6 @@
 <?php $data=[
-    'title' => 'Daftar Belanja',
-    'description' => 'Daftar belanja pengguna @Dodolanku.id',
+    'title' => 'Daftar Pesanan',
+    'description' => 'Daftar pesanan pengguna @Dodolanku.id',
     'keywords' => 'cart, online shop, business, haul',
     'author' => 'Dodolanku.id',
 ]; ?>
@@ -158,6 +158,8 @@
                                 </div>
                             </div>
                         @endforeach
+
+                        {!! $carts->links() !!}
                 </div>
             </div>
         </div>

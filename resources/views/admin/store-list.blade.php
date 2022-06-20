@@ -101,7 +101,7 @@
                                                     {{-- <li><i class="fa-solid fa-eye"></i>999</li> --}}
                                                     <?php $checkout_count = 0;
                                                         if($store->carts()->first()){
-                                                            $checkout_count = $store->carts()->join('cart_status','cart_status.cart_id','carts.id')->where('status_id','<>','0')->where('status_id','<>','3')->whereNull('cart_status.deleted_at')->count();
+                                                            $checkout_count = $store->carts()->join('cart_status','cart_status.cart_id','carts.id')->where('status_id','<>','1')->where('status_id','<>','3')->whereNull('cart_status.deleted_at')->count();
                                                         }
                                                         ?>
                                                     <li><i class="fa-solid fa-cart-shopping"></i></i>{{ $checkout_count }}</li>

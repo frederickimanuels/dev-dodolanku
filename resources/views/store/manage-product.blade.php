@@ -106,7 +106,7 @@
                                                     {{-- <li><i class="fa-solid fa-eye"></i>999</li> --}}
                                                     <?php $sold_count = 0;
                                                         if($product->carts()->first()){
-                                                            $cart_products = $product->carts()->join('cart_status','cart_status.cart_id','carts.id')->where('status_id','<>','0')->where('status_id','<>','3')->whereNull('cart_status.deleted_at')->get();
+                                                            $cart_products = $product->carts()->join('cart_status','cart_status.cart_id','carts.id')->where('status_id','<>','1')->where('status_id','<>','3')->whereNull('cart_status.deleted_at')->get();
                                                             foreach($cart_products as $cart_product){
                                                                 $sold_count = $sold_count + $cart_product->pivot->count;
                                                             }
@@ -126,8 +126,8 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <div class="form-check form-switch product-switch pt-4">
-                                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" {{ $product->is_active == 1 ? 'checked' : ''}}>
+                                                <div class="product-stock pt-4">
+                                                    {{ $product->is_active == 1 ? 'Aktif' : 'Habis'}}
                                                 </div>
                                             </td>
                                             <td>

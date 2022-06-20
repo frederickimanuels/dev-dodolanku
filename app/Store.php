@@ -22,6 +22,10 @@ class Store extends Model
     {
         return $this->belongsToMany(Template::class, 'template_stores');
     }
+    public function hasTemplate()
+    {
+        return $this->template()->first();
+    }
     public function carts()
     {
         return $this->belongsToMany(Cart::class, 'cart_stores');

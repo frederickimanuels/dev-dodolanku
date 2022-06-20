@@ -149,134 +149,137 @@
             background-color: var(--bgcolor3);
             color: var(--textColor2);
         }
+        .btn-terapkan{
+            background-color: var(--bgcolor);
+            width: 100%;
+            height: 40px;
+        }
+
+        .btn-reset{
+            margin-top: 0.75rem;
+            background-color: var(--bgcolor2);
+            color: var(--textColor2);
+            width: 100%;
+            height: 40px;
+        }
        
 </style>
 <section id="aboutus-banner">
     <div class="container banner-text">
-        <img src="{{asset('images/homepage/hyundai.jpg')}}" alt=".." class="aboutus-img">
+        <img src="{{ asset('images/template/'. $store->hasTemplate()->code.'/search_banner.png') }}" alt=".." class="aboutus-img">
         <h1>Produk</h1>
     </div>
     <div class="container bootdey">
+        <form method="GET" id="search-form">
         <div class="row search-filter-wrapper">
+            <input name="keywords" type="hidden" id="keywords-hidden" value="{{ request()->keywords }}">
             <div class="col-3 search-filter">
-                <select class="form-select" aria-label="Default select example">
-                    <option selected value="0">Urutkan Berdasarkan</option>
-                    <option value="polkadot">Polkadot</option>
-                    <option value="birumaroon">Biru Maroon</option>
+                <select class="form-select"  type="text" name="order" onchange="submitAfterSelect(this)">
+                    <option value="">Terbaru</option>
+                    <option value="lowtohigh" @if(request()->order == 'lowtohigh') selected @endif>Harga: Terendah Ke Tertinggi</option>
+                    <option value="hightolow" @if(request()->order == 'hightolow') selected @endif>Harga: Tertinggi Ke Terendah</option>
                 </select>
             </div>
         </div>
         <div class="row">
             <div class="col-md-3">
-                <!-- <section class="panel">
-                    <div class="panel-body">
-                        <input type="text" placeholder="Keyword Search" class="form-control" />
-                    </div>
-                </section> -->
-                <section class="panel panel-color">
-                    <header class="panel-heading">
-                        <h1>Category</h1>
-                    </header>
-                    <div class="panel-body">
-                        <ul class="prod-cat">
-                            <li>
-                                <div class="category-filter">
-                                    <input type="checkbox" aria-label="Checkbox for following text input">
-                                    <label for="checkbox">Test</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="category-filter">
-                                    <input type="checkbox" aria-label="Checkbox for following text input">
-                                    <label for="checkbox">Test</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="category-filter">
-                                    <input type="checkbox" aria-label="Checkbox for following text input">
-                                    <label for="checkbox">Test</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="category-filter">
-                                    <input type="checkbox" aria-label="Checkbox for following text input">
-                                    <label for="checkbox">Test</label>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- <div class="break-line"></div> -->
-                    {{-- <header class="panel-heading panel-filter">
-                        <h1>Material</h1>
-                    </header>
-                    <div class="panel-body ">
-                        <ul class="prod-cat">
-                            <li>
-                                <div class="category-filter">
-                                    <input type="checkbox" aria-label="Checkbox for following text input">
-                                    <label for="checkbox">Test</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="category-filter">
-                                    <input type="checkbox" aria-label="Checkbox for following text input">
-                                    <label for="checkbox">Test</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="category-filter">
-                                    <input type="checkbox" aria-label="Checkbox for following text input">
-                                    <label for="checkbox">Test</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="category-filter">
-                                    <input type="checkbox" aria-label="Checkbox for following text input">
-                                    <label for="checkbox">Test</label>
-                                </div>
-                            </li>
-                        </ul>
-                    </div> --}}
-                    <header class="panel-heading panel-filter">
-                        <h1>Harga</h1>
-                    </header>
-                    <div class="panel-body ">
-                        <ul class="prod-cat prod-price">
-                            <li>
-                                <input type="number" class="form-control" placeholder="Harga Minimum" aria-label="Username" aria-describedby="basic-addon1">
-                            </li>
-                            <li>
-                                <input type="number" class="form-control" placeholder="Harga Maksimum" aria-label="Username" aria-describedby="basic-addon1">
-                            </li>
-                            <li>
-                                <div class="category-filter">
-                                    <input type="checkbox" aria-label="Checkbox for following text input">
-                                    <label for="checkbox">&#10094; Rp.300.000</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="category-filter">
-                                    <input type="checkbox" aria-label="Checkbox for following text input">
-                                    <label for="checkbox">Rp.300.000 - Rp.500.000</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="category-filter">
-                                    <input type="checkbox" aria-label="Checkbox for following text input">
-                                    <label for="checkbox">&#10095; Rp.501.000</label>
-                                </div>
-                            </li>
-                            
-                        </ul>
-                    </div>
-                </section>
+                    <!-- <section class="panel">
+                        <div class="panel-body">
+                            <input type="text" placeholder="Keyword Search" class="form-control" />
+                        </div>
+                    </section> -->
+                    <section class="panel panel-color">
+                        <header class="panel-heading">
+                            <h1 style="color: var(--textColor1);">Kategori</h1>
+                        </header>
+                        <div class="panel-body">
+                            <ul class="prod-cat">
+                                <li>
+                                    @foreach($categories as $cat)
+                                    <div class="category-filter">
+                                        <input type="checkbox" aria-label="Checkbox for following text input" name="cat[]" value="{{ $cat->id }}" @if(request()->cat) @foreach(request()->cat as $c) {{ $c == $cat->id ? 'checked' : ''}} @endforeach @endif>
+                                        <label for="checkbox">{{ $cat->name }}</label>
+                                    </div>
+                                    @endforeach
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- <div class="break-line"></div> -->
+                        {{-- <header class="panel-heading panel-filter">
+                            <h1>Material</h1>
+                        </header>
+                        <div class="panel-body ">
+                            <ul class="prod-cat">
+                                <li>
+                                    <div class="category-filter">
+                                        <input type="checkbox" aria-label="Checkbox for following text input">
+                                        <label for="checkbox">Test</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="category-filter">
+                                        <input type="checkbox" aria-label="Checkbox for following text input">
+                                        <label for="checkbox">Test</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="category-filter">
+                                        <input type="checkbox" aria-label="Checkbox for following text input">
+                                        <label for="checkbox">Test</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="category-filter">
+                                        <input type="checkbox" aria-label="Checkbox for following text input">
+                                        <label for="checkbox">Test</label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div> --}}
+                        <header class="panel-heading panel-filter">
+                            <h1 style="color: var(--textColor1);">Harga</h1>
+                        </header>
+                        <div class="panel-body ">
+                            <ul class="prod-cat prod-price">
+                                <li>
+                                    <input type="text" value="{{ request()->harga_min }}" name="harga_min" class="form-control input-number" placeholder="Harga Minimum" aria-label="Username" aria-describedby="basic-addon1">
+                                </li>
+                                <li>
+                                    <input type="text" value="{{ request()->harga_max }}" name="harga_max"  class="form-control input-number" placeholder="Harga Maksimum" aria-label="Username" aria-describedby="basic-addon1">
+                                </li>
+                                
+                                <li>
+                                    <div class="category-filter">
+                                        <input name="price_range" type="radio" aria-label="radio for following text input" value="below-300">
+                                        <label for="radio">&#10094; Rp 300.000</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="category-filter">
+                                        <input name="price_range" type="radio" aria-label="radio for following text input" value="between-300-1000">
+                                        <label for="radio">Rp 300.000 - Rp 1.000.000</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="category-filter">
+                                        <input name="price_range" type="radio" aria-label="radio for following text input" value="above-1000">
+                                        <label for="radio">&#10095; Rp 1.000.000</label>
+                                    </div>
+                                </li>
+                                
+                            </ul>
+                            <button type="submit" class="btn-terapkan">Terapkan</button>
+                            <button type="reset" class="btn-reset">Reset</button>
+                        </div>
+                    </section>
+                
             </div>
             <div class="col-md-9">
                 <div class="row product-list">
                     @foreach($products as $product)
                         <div class="col-md-3">
                             <a href="{{ route('store.product.show',[$store->slug,$product->slug]) }}" class="card" style="text-decoration: none;color:inherit;">
-                                <img class="card-img-top" src="{{asset('images/homepage/bag-1.png')}}" alt="Card image cap">
+                                <img class="card-img-top" src="{{$product->images()->first() ? asset('images/stored/'. $product->images()->first()->filepath) : asset('images/homepage/default-product-image.png')}}" alt="Card image cap">
                                 <div class="card-body popular-card-text">
                                     <h5 class="card-text">{{ $product->name }}</h5>
                                     <h6>Rp {{number_format($product->price,0,',','.')}}</h6>
@@ -292,18 +295,28 @@
                     @endforeach
                 </div>
             </div>
+            
+                
         </div>
         <div class="row mt-3">
         {!! $products->links() !!}
 
         </div>
+    </form>
     </div>
 </section>
 
 @include('store.layouts.js')
 <!-- JS -->
-
-
+<script >
+    function submitAfterSelect(selectedForm) {
+        selectedForm.form.submit();
+    }
+    $('.btn-reset').on('click',function(){
+        $('#search-form')[0].reset();
+        // $('.input-number').val(null);
+    });
+</script>
 <!-- END JS -->
 @include('store.layouts.footer')
 @include('store.layouts.footer-copyright')

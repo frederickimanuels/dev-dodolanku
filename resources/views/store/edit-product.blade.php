@@ -42,7 +42,7 @@
                             <?php $i+=1;?>
                             @endforeach
                             <h2 class="upload-image-text-h2" >Foto Produk <span style="color:red">*</span></h2>
-                            <p>Format Gambar .jpg .jpeg .png dan minimal 3 foto yang diupload</p>
+                            <p>Format Gambar .jpg .jpeg .png dan minimal 3 foto yang diupload, maksimal 2MB per foto</p>
                         </div>
                     </div>
                     <div class="col-xl-8 col-12">
@@ -69,17 +69,20 @@
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="product-name" name="product_name" placeholder="Isi nama produk.." value="{{ $product->name }}">
                                 @error('product_name')
-                                    <p class="help-block text-danger">Nama produk harus diisi</p>
+                                    <p class="help-block text-danger">Nama produk harus diisi minimal 5 karakter</p>
                                 @enderror
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="inputPassword" class="col-sm-2 col-form-label form-upload-label">Kategori</label>
+                            <label for="inputPassword" class="col-sm-2 col-form-label form-upload-label">Kategori <span style="color:red">*</span></label>
                             <div class="col-sm-10">
                                 <select type="text" class="form-control" id="product-category" name="product_category">
                                     <option selected disabled>Pilih Kategori</option>
+                                    <?php $c = $product->category()->first(); 
+                                            if($c) $c = $c->id;
+                                    ?>
                                     @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        <option value="{{ $category->id }}" {{ $c ? $c == $category->id ? 'selected' : '' : ''}}>{{ $category->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -144,7 +147,7 @@
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="product-weight" name="product_weight" placeholder="Isi berat produk.." value="{{ $product->weight }}">
                                 @error('product_weight')
-                                    <p class="help-block text-danger">Harga produk harus diisi minimal 10 gram</p>
+                                    <p class="help-block text-danger">Berat produk harus diisi minimal 10 gram</p>
                                 @enderror
                             </div>
                         </div>

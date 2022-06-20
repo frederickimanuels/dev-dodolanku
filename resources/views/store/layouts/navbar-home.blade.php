@@ -17,7 +17,9 @@
             <a class="nav-link" href="{{ route('store.product.list',$store->slug) }}">Products</a>
           </li>
            <li>
-          <input autocomplete="off" type="search" class="form-control rounded" placeholder="Search" style="min-width: 125px;"/>
+            <form method="GET" action="{{ route('store.product.list',$store->slug) }}">
+              <input name="keywords" autocomplete="off" type="search" class="form-control rounded" placeholder="Cari Produk" style="min-width: 125px;"/>
+            </form>
           </li>
         </ul>
       </div>

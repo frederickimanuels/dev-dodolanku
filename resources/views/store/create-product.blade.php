@@ -21,22 +21,13 @@
     <div class="container create-product-container">
         <form method="POST" action="{{ route('store.product.store') }}" enctype="multipart/form-data">
             @csrf
-            @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul class="list-unstyled">
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
             <h1>Tambahkan Produk</h1>
             <div class="form-container-content">
                 <div class="row">
                     <div class="col-xl-4 col-12 upload-image-text">
                         <div class="upload-text-inner">
                             <h2 class="upload-image-text-h2" >Foto Produk <span style="color:red">*</span></h2>
-                            <p>Format Gambar .jpg .jpeg .png dan minimal 3 foto yang diupload</p>
+                            <p>Format Gambar .jpg .jpeg .png dan minimal 3 foto yang diupload, maksimal 2MB per foto</p>
                         </div>
                     </div>
                     <div class="col-xl-8 col-12">
@@ -48,6 +39,11 @@
                             </div>
                             <input type="file" id="myfile" style="display: none;">
                         </div>
+                    
+                        @error('images')
+                            <p class="help-block text-danger">Foto produk diperlukan</p>
+                        @enderror
+                        
                     </div>
                 </div>
             </div>
@@ -61,14 +57,14 @@
                         <div class="form-group row">
                             <label for="staticEmail" class="col-sm-2 col-form-label form-upload-label">Nama Produk <span style="color:red">*</span></label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="product-name" name="product_name" placeholder="Isi nama produk..">
+                                <input type="text" class="form-control" id="product-name" name="product_name" placeholder="Isi nama produk.." value="{{ old('product_name') }}">
                                 @error('product_name')
-                                    <p class="help-block text-danger">Nama produk harus diisi</p>
+                                    <p class="help-block text-danger">Nama produk harus diisi minimal 5 karakter</p>
                                 @enderror
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="inputPassword" class="col-sm-2 col-form-label form-upload-label">Kategori</label>
+                            <label for="inputPassword" class="col-sm-2 col-form-label form-upload-label">Kategori <span style="color:red">*</span></label>
                             <div class="col-sm-10">
                                 <select type="text" class="form-control" id="product-category" name="product_category">
                                     <option selected disabled>Pilih Kategori</option>
@@ -76,12 +72,15 @@
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
                                 </select>
+                                @error('product_category')
+                                <p class="help-block text-danger">Kategori produk harus dipilih</p>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-2 col-form-label form-upload-label">Deskripsi Produk <span style="color:red">*</span></label>
                             <div class="col-sm-10">
-                                <textarea type="text" class="form-control" id="product-product_description" name="product_description" placeholder="Deskripsikan produk ini secara singkat.."></textarea>
+                                <textarea type="text" class="form-control" id="product-product_description" name="product_description" placeholder="Deskripsikan produk ini secara singkat..">{{ old('product_description') }}</textarea>
                                 @error('product_description')
                                     <p class="help-block text-danger">Deskripsi produk harus diisi minimal 5 karakter, maksimal 500 karakter</p>
                                 @enderror
@@ -90,7 +89,7 @@
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-2 col-form-label form-upload-label">Tentang Produk <span style="color:red">*</span></label>
                             <div class="col-sm-10">
-                                <textarea type="text" class="form-control" id="product-about" name="product_about" rows="5" placeholder="Ceritakan tentang produk ini.."></textarea>
+                                <textarea type="text" class="form-control" id="product-about" name="product_about" rows="5" placeholder="Ceritakan tentang produk ini..">{{ old('product_about') }}</textarea>
                                 @error('product_about')
                                     <p class="help-block text-danger">Tentang produk harus diisi minimal 10 karakter, maksimal 2000 karakter</p>
                                 @enderror
@@ -118,7 +117,7 @@
                         <div class="form-group row" id="product-stock-container">
                             <label for="staticEmail" class="col-sm-2 col-form-label form-upload-label">Stock <span style="color:red">*</span></label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="product-stock" name="product_stock"  placeholder="Isi jumlah stock..">
+                                <input type="text" class="form-control" id="product-stock" name="product_stock"  placeholder="Isi jumlah stock.." value="{{ old('product_stock') }}">
                                 @error('product_stock')
                                     <p class="help-block text-danger">Stock harus diisi minimal 1</p>
                                 @enderror
@@ -127,7 +126,7 @@
                         <div class="form-group row" id="product-price-container">
                             <label for="inputPassword" class="col-sm-2 col-form-label form-upload-label">Harga <span style="color:red">*</span></label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="product-price" name="product_price"  placeholder="Isi harga produk..">
+                                <input type="text" class="form-control" id="product-price" name="product_price"  placeholder="Isi harga produk.." value="{{ old('product_price') }}">
                                 @error('product_price')
                                     <p class="help-block text-danger">Harga produk harus diisi minimal Rp 100</p>
                                 @enderror
@@ -136,9 +135,9 @@
                         <div class="form-group row" id="product-weight-container">
                             <label for="inputPassword" class="col-sm-2 col-form-label form-upload-label">Berat <span style="font-family:Montserrat-Light">(gram)</span><span style="color:red">*</span></label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="product-weight" name="product_weight" placeholder="Isi berat produk..">
+                                <input type="text" class="form-control" id="product-weight" name="product_weight" placeholder="Isi berat produk.." value="{{ old('product_weight') }}">
                                 @error('product_weight')
-                                    <p class="help-block text-danger">Harga produk harus diisi minimal 10 gram</p>
+                                    <p class="help-block text-danger">Berat produk harus diisi minimal 10 gram</p>
                                 @enderror
                             </div>
                         </div>

@@ -35,7 +35,7 @@
                                     <div class="row align-items-center no-gutters">
                                         <div class="col me-2">
                                             <div class="text-uppercase text-warning fw-bold text-xs mb-1"><span>Pesanan Berlangsung</span></div>
-                                            <div class="text-dark fw-bold h5 mb-0"><span>{{ App\Cart::join('cart_status','cart_status.cart_id','carts.id')->where('status_id','<>','0')->where('status_id','<>','3')->where('status_id','<>','5')->whereNull('cart_status.deleted_at')->count()  }}</span></div>
+                                            <div class="text-dark fw-bold h5 mb-0"><span>{{ App\Cart::join('cart_status','cart_status.cart_id','carts.id')->where('status_id','<>','1')->where('status_id','<>','3')->where('status_id','<>','5')->whereNull('cart_status.deleted_at')->count()  }}</span></div>
                                         </div>
                                         <!-- <div class="col-auto"><i class="fas fa-comments fa-2x text-gray-300"></i></div> -->
                                     </div>

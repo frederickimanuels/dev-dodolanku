@@ -363,8 +363,10 @@
                     <div id="page">
                         <div class="row">
                             <div class="column small-11 small-centered">
+                                
+                                <?php $images = $product->images()->get(); ?>
+                                @if(count($images) > 0)
                                 <div class="slider slider-single">
-                                    <?php $images = $product->images()->get(); ?>
                                     @foreach($images as $image) 
                                         <div><img src="{{asset('images/stored/'. $image->filepath)}}" alt="" class="homepage-slick"></div>
                                     @endforeach
@@ -374,6 +376,18 @@
                                         <div><img src="{{asset('images/stored/'. $image->filepath)}}" alt="" class="homepage-slick"></div>
                                     @endforeach
                                 </div>
+                                @else
+                                <div class="slider slider-single">
+                                    <div><img src="{{asset('images/homepage/default-product-image.png')}}" alt="" class="homepage-slick"></div>
+                                    <div><img src="{{asset('images/homepage/default-product-image.png')}}" alt="" class="homepage-slick"></div>
+                                    <div><img src="{{asset('images/homepage/default-product-image.png')}}" alt="" class="homepage-slick"></div>
+                                </div>
+                                <div class="slider slider-nav">
+                                    <div><img src="{{asset('images/homepage/default-product-image.png')}}" alt="" class="homepage-slick"></div>
+                                    <div><img src="{{asset('images/homepage/default-product-image.png')}}" alt="" class="homepage-slick"></div>
+                                    <div><img src="{{asset('images/homepage/default-product-image.png')}}" alt="" class="homepage-slick"></div>
+                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -404,7 +418,15 @@
                                 </div> --}}
                             </div>
                             <h3 id="product-price">Rp {{number_format($product->price,0,',','.')}}</h3>
-                            <p>{{ $product->description }}</p>
+                            <?php $sold_count = 0;
+                                if($product->carts()->first()){
+                                    $cart_products = $product->carts()->join('cart_status','cart_status.cart_id','carts.id')->where('status_id','<>','1')->where('status_id','<>','3')->whereNull('cart_status.deleted_at')->get();
+                                    foreach($cart_products as $cart_product){
+                                        $sold_count = $sold_count + $cart_product->pivot->count;
+                                    }
+                                }
+                            ?>
+                            <h4>{{ $sold_count }} Produk Terjual</h4>
                             <div class="detail-product">
                                 <input type="hidden" name="store_id" value="{{ $store->id }}">
                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
@@ -433,7 +455,7 @@
                         <h2>{{ $product->name }}</h2>
                     </div>
                     <div class="col-xl-6 col-12">
-                        <img src="{{asset('images/stored/'. $product->images()->first()->filepath)}}" alt="" class="desc-image">
+                        <img src="{{$product->images()->first() ? asset('images/stored/'. $product->images()->first()->filepath) : asset('images/homepage/default-product-image.png')}}" alt="" class="desc-image">
                     </div>
                 </div>
             </div>
@@ -448,7 +470,7 @@
                         <div>
                             <div class="card">
                                 <a href="{{ route('store.product.show',[$store->slug,$popular_product->slug]) }}">
-                                    <img class="card-img-top" src="{{asset('images/homepage/bag-1.png')}}" alt="Card image cap">
+                                    <img class="card-img-top" src="{{$popular_product->images()->first() ? asset('images/stored/'. $popular_product->images()->first()->filepath) : asset('images/homepage/default-product-image.png')}}" alt="Card image cap">
                                     <div class="card-body popular-card-text">
                                         <h5 class="card-text">{{ $popular_product->name }}</h5>
                                         <h6>Rp {{number_format($popular_product->orderBy('price','ASC')->first()->price,0,',','.')}}</h6>

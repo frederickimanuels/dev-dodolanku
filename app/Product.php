@@ -33,4 +33,9 @@ class Product extends Model
     {
         return $this->belongsToMany(Image::class, 'product_images');
     }
+
+    // public function isActive($product_id)
+    // {
+    //     return $this->where('id',$product_id)->where('is_active','1')->count();
+    // }
 }

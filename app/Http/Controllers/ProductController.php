@@ -44,24 +44,71 @@ class ProductController extends Controller
         if(!$store){
             return redirect()->route('base');
         }
-        // $products = $store->products()->get();
         $products = $store->products();
-        if (request()->priceMin != "" or request()->priceMax != "" ) {
-            $products = $products->join('variant_products','products.id','=','variant_products.product_id')
-                                    ->join('variants','variants.id','=','variant_products.variant_id');
-            if(request()->priceMin != ""){
-                $products = $products->where('variants.price', '>=', request()->priceMin);
-            }
-            if(request()->priceMax != ""){
-                $products = $products->where('variants.price', '<=', request()->priceMax);
+        $categories = $store->products()->join('category_products','category_products.product_id','products.id')
+                        ->join('categories','category_products.category_id','categories.id')
+                        ->get(['categories.id','categories.name']);
+
+        if (request()->cat){
+            $products = $products->join('category_products','category_products.product_id','products.id');
+            if(count(request()->cat) == 1){
+                $products = $products->where('category_products.category_id',request()->cat[0]);
+            }else{
+                $i = 0;
+                $products = $products->orWhere('category_products.category_id',request()->cat[0]);
+                foreach(request()->cat as $req_cat){
+                    if($i > 0){
+                        $products = $products->orWhere('category_products.category_id',$req_cat);
+                    }
+                    $i+=1;
+                }
             }
         }
-        if (request()->get('keywords') != "") {
+        if(request()->price_range){
+            if(request()->price_range == 'below-300'){
+                $products = $products->where('price', '<', 300000);
+                request()->harga_max = 299999;
+            }elseif(request()->price_range == 'between-300-1000'){
+                $products = $products->where('price', '>=', 300000);
+                $products = $products->where('price', '<=', 1000000);
+                request()->harga_min = 300000;
+                request()->harga_max = 1000000;
+            }elseif(request()->price_range == 'above-1000'){
+                $products = $products->where('price', '>', 1000000);
+                request()->harga_min = 1000000;
+            }
+        }else{
+            if (request()->harga_min != "") {
+                $products = $products->where('price', '>=', request()->harga_min);
+            }
+            if (request()->harga_max != "") {
+                $products = $products->where('price', '<=', request()->harga_max);
+            }
+        }
+
+        if (request()->keywords != "") {
             $products = $products->where('products.name', 'LIKE', '%' . request()->get('keywords') . '%');
         }
-        $products = $products->orderBy('products.created_at', 'desc')->paginate(20);
+        if (request()->priceMin != "" or request()->priceMax != "" ) {
+            if(request()->priceMin != ""){
+                $products = $products->where('price', '>=', request()->priceMin);
+            }
+            if(request()->priceMax != ""){
+                $products = $products->where('price', '<=', request()->priceMax);
+            }
+        }
+        if (request()->order != "") {
+            if (request()->order == "lowtohigh") {
+                $products = $products->orderBy('price', 'asc');
+            } else {
+                $products = $products->orderBy('price', 'desc');
+            }
+        } else {
+            $products = $products->orderBy('products.created_at', 'desc');
+        }
+        $products = $products->paginate(20);
         $products->appends(request()->all());
-        return view('store/templates/'.$template->code.'/search',compact('store','products'));
+        return view('store/templates/'.$template->code.'/search',compact('store','products','categories'));
     }
 
     public function show($store_slug, $product_slug)
@@ -83,6 +130,7 @@ class ProductController extends Controller
     {
         $this->validate($request, [
             'product_name' => 'required|min:5|max:60',
+            'product_category' => 'required|exists:categories,id',
             'product_description' => 'required|min:5|max:500',
             'product_about' => 'required|min:10|max:2000',
             'product_price' => 'required|integer|min:100',
@@ -121,11 +169,8 @@ class ProductController extends Controller
 
         $store = Auth::user()->hasStore();
         $store->products()->attach($product->id);
-
-        if($request->product_category){
-            $product->category()->attach($request->product_category);
-        }
-        return redirect()->route('store.dashboard');
+        $product->category()->attach($request->product_category);
+        return redirect()->route('store.product.manage');
     }
 
     public function edit($product_slug){
@@ -142,11 +187,12 @@ class ProductController extends Controller
         
         $this->validate($request, [
             'product_name' => 'required|min:5|max:60',
+            'product_category' => 'required|exists:categories,id',
             'product_description' => 'required|min:5|max:500',
             'product_about' => 'required|min:10|max:2000',
             'product_price' => 'required|integer|min:100',
             'product_weight' => 'required|integer|min:10',
-            'product_stock' => 'required|integer|min:1',
+            'product_stock' => 'required|integer|min:0',
         ]);
 
         $product->name = $request->product_name;
@@ -155,6 +201,15 @@ class ProductController extends Controller
         $product->stock = $request->product_stock;
         $product->price = $request->product_price;
         $product->weight = $request->product_weight;
+
+        if($request->product_stock == 0){
+            $product->is_active = 0;
+        }
+
+        if($product->category()->first()){
+            $product->category()->detach($product->category()->first()->id);
+        }
+        $product->category()->attach($request->product_category);
         $product->save();
 
         return redirect()->back()->with('status','Sukses memperbaharui produk');
