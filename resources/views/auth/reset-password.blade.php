@@ -1,6 +1,6 @@
 <?php $data=[
-    'title' => 'Login to Dodolanku.id',
-    'description' => 'Login Page Dodolanku',
+    'title' => 'Reset Password',
+    'description' => 'Reset Password account Dodolanku',
     'keywords' => 'Dodolanku.id',
     'author' => 'Dodolanku.id',
 ]; ?>
