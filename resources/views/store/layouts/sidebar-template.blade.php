@@ -19,15 +19,15 @@
                 <ul>
                     <li id="btn-banner-home">Banner Homepage</li>
                     <li id="btn-banner-search">Banner Kategori</li>
-                    <li id="btn-banner-category">Banner Products</li>
+                    <li id="btn-banner-category">Banner Produk</li>
                 </ul>
             </div>
 
-            <button class="accordion">Color <i class="fa-solid fa-angle-down"></i></button>
+            <button class="accordion">Warna <i class="fa-solid fa-angle-down"></i></button>
             <div class="panel">
                 <ul>
-                    <li id="btn-bg-color" >Background Color</li>
-                    <li id="btn-text-color">Text-Color</li>
+                    <li id="btn-bg-color">Text</li>
+                    <li id="btn-text-color" >Background</li>
                 </ul>
             </div>
         </ul>

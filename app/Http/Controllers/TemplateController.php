@@ -100,6 +100,8 @@ class TemplateController extends Controller
                 $i+=1;
             }
             return redirect()->back();
+        }else if($request->input_type == 'store_text'){
+            dd()
         }
     }
 }

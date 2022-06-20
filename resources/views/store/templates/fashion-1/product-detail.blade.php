@@ -24,7 +24,7 @@
         /* Text */
         --textColor1:#FFFFFF;
         --textColor2:#000000;
-        --textColor3:#8A3624;
+        --textColor3:#FC764E;
         --textColor4:#9A9A9A;
         --textColor5:#FC764E;
 
@@ -420,7 +420,7 @@
                             <h3 id="product-price">Rp {{number_format($product->price,0,',','.')}}</h3>
                             <?php $sold_count = 0;
                                 if($product->carts()->first()){
-                                    $cart_products = $product->carts()->join('cart_status','cart_status.cart_id','carts.id')->where('status_id','<>','1')->where('status_id','<>','3')->whereNull('cart_status.deleted_at')->get();
+                                    $cart_products = $product->carts()->join('cart_status','cart_status.cart_id','carts.id')->where('status_id','<>','0')->where('status_id','<>','3')->whereNull('cart_status.deleted_at')->get();
                                     foreach($cart_products as $cart_product){
                                         $sold_count = $sold_count + $cart_product->pivot->count;
                                     }

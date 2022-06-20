@@ -123,14 +123,22 @@ label{
                 @include('store.layouts.navbar')
                 <div class="container-fluid">
                     <div class="container">
+                        @if (session('status'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <span>{{ session('status') }}</span>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
                         <div class="template-wrapper" id="input-logo">
                             <form action="{{ route('store.template.update') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="input_type" value="store_logo">
                                 <input type="hidden" id="store_logo_preload" value="{{ $store->templateconfigs()->where('type','store_logo')->first() ?  $store->templateconfigs()->where('type','store_logo')->first()->images()->first()->filepath : ''  }}">
                                 <div class="form-group">
-                                <h2>Upload Logo Toko</h2>
-                                {{-- <p>Maksimal Ukuran 300x300</p> --}}
+                                <h2>Ganti Logo Toko</h2>
+                                <p>Maksimal Ukuran 300x300</p>
                                     <div class="upload-img">
                                         <div class="row">
                                             <div class="input-field">
@@ -152,8 +160,8 @@ label{
                             <form action="{{ route('store.template.update') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
-                                <h2>Input Banner Homepage</h2>
-                                {{-- <p>Minimal Ukuran 1920x1080</p> --}}
+                                <h2>Ganti Banner Homepage</h2>
+                                <p>Maksimal 5 gambar</p>
                                 <input type="hidden" name="input_type" value="store_banner">
                                 <div class="upload-img">
                                     <div class="row">
@@ -248,8 +256,8 @@ label{
                         <div class="template-wrapper" id="input-banner-search">
                             <form>
                                 <div class="form-group">
-                                <h2 for="exampleInputEmail1">Input Banner Products</h2>
-                                <p>Minimal Ukuran 1920x1080</p>
+                                <h2 for="exampleInputEmail1">Ganti Banner Daftar Produk</h2>
+                                <p>Maksimal 1 gambar</p>
                                 <div class="upload-img">
                                     <div class="row">
                                         <div class="input-field">
@@ -265,33 +273,35 @@ label{
                             </form>
                         </div>
                         <div class="template-wrapper" id="input-color-text">
-                            <form>
+                            <form method="POST" action="{{ route('store.template.update') }}">
+                                @csrf
                                 <div class="form-group">
-                                    <h2 for="exampleInputEmail1">Input Color Text</h2>
+                                    <h2 for="exampleInputEmail1">Ganti Warna Text</h2>
+                                    <input type="hidden" name="input_type" value="store_text">
                                     <p>Silahkan Merubah Warna Sesuai dengan Keinginanmu</p>
                                     <div class="row">
                                         <div class="col-3">
                                             <div class="custom-file">
                                                 <label for="favcolor">Text 1</label>
-                                                <input type="color" id="favcolor" name="favcolor" value="#ff0000"><br><br>
+                                                <input type="color" id="favcolor" name="color_1" value="#ff0000"><br><br>
                                             </div>
                                         </div>
                                         <div class="col-3">
                                             <div class="custom-file">
                                                 <label for="favcolor">Text 2</label>
-                                                <input type="color" id="favcolor" name="favcolor" value="#ff0000"><br><br>
+                                                <input type="color" id="favcolor" name="color_2" value="#ff0000"><br><br>
                                             </div>
                                         </div>
                                         <div class="col-3">
                                             <div class="custom-file">
                                                 <label for="favcolor">Text 3</label>
-                                                <input type="color" id="favcolor" name="favcolor" value="#ff0000"><br><br>
+                                                <input type="color" id="favcolor" name="color_3" value="#ff0000"><br><br>
                                             </div>
                                         </div>
                                         <div class="col-3">
                                             <div class="custom-file">
                                                 <label for="favcolor">Text 4</label>
-                                                <input type="color" id="favcolor" name="favcolor" value="#ff0000"><br><br>
+                                                <input type="color" id="favcolor" name="color_4" value="#ff0000"><br><br>
                                             </div>
                                         </div>
                                     </div>
@@ -305,7 +315,7 @@ label{
                         <div class="template-wrapper" id="input-color-bg">
                             <form>
                                 <div class="form-group">
-                                    <h2 for="exampleInputEmail1">Input Background COlor</h2>
+                                    <h2 for="exampleInputEmail1">Ganti Warna Background</h2>
                                     <p>Silahkan Merubah Warna Background Sesuai dengan Keinginanmu</p>
                                     <div class="row">
                                         <div class="col-3">
