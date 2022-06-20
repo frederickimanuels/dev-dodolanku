@@ -65,7 +65,12 @@
         /* position: relative; */
         /* text-align: center; */
     }
-
+    .slider-single{
+        max-width: 600px;
+    }
+    .slider-nav{
+        max-width: 600px;
+    }
     .slider-single h3 {
         line-height: 10rem;
     }
@@ -82,6 +87,9 @@
         left: 50%;
         transform: translate(-50%, -50%);
     }
+    .slick-slide{
+        /* width: 600px !important; */
+    }
 
     .slider-nav .slick-slide { cursor: pointer; }
 
@@ -90,8 +98,9 @@
         background-color: #fff
     }
     .slider-single img{
-        height: 500px;
-        width: 500;
+        height: 600px;
+        width: 100%;
+        object-fit: cover;
        
     }
     .slider-nav img{
@@ -220,7 +229,7 @@
         background-color:var(--buttonbuynow) ;
     }
     .detail-product-navigation{
-        margin-top: 150px;
+        margin-top: 80px;
     }
     .btn-buy-now{
         /* width: 100%; */
@@ -259,7 +268,12 @@
         margin-top: 60px;
     }
     .product-desc-text{
+        text-align: center;
         margin-bottom: 50px;
+    }
+    .product-desc-text span{
+        font-size: 24px;
+        font-family: Montserrat-Bold;
     }
     .product-desc-text p{
         font-family: Montserrat-Regular;
@@ -301,7 +315,7 @@
         color: var(--textColor5);
     }
     .card{
-        border-radius: 5%;
+        /* border-radius: 5%; */
         margin: 0 20px;
     }
     .prev-arrow-1{
@@ -352,6 +366,33 @@
     .product-not-avaliable a{
         text-decoration: none;
         color: green;
+    }
+    .active-box-img{
+        width: 600px;
+    }
+    .prod-desc span{
+        font-size: 18px;
+        font-family: Montserrat-Bold;
+    }
+    .prod-desc p{
+        font-size: 18px;
+        font-family: Montserrat-Medium;
+    }
+    .desc-image{
+        max-height: 600px;
+        width: 100%;
+        object-fit: cover;
+    }
+    .card img{
+        height: 350px;
+        max-height: 350px;
+        width: 100%;
+        object-fit: cover;
+        /* border-top-left-radius: 8px;
+        border-top-right-radius: 8px; */
+    }
+    a{
+        text-decoration: none;
     }
 </style>
 
@@ -426,11 +467,15 @@
                                     }
                                 }
                             ?>
-                            <h4>{{ $sold_count }} Produk Terjual</h4>
+                            <h4 class="mt-3">{{ $sold_count }} Produk Terjual</h4>
+                            <div class="prod-desc mt-5" >
+                                <span>Deskripsi Produk</span>
+                                <p class="prod-desc">{!! nl2br(e($product->description)) !!}</p>
+                            </div>
                             <div class="detail-product">
                                 <input type="hidden" name="store_id" value="{{ $store->id }}">
                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                <label for="form-select">Jumlah</label>
+                                <label for="form-select" class="mt-5">Jumlah</label>
                                 <div class="quantity buttons_added">
                                     <input type="button" value="-" class="minus" {{ $product->stock == 0 ? "disabled='disabled'" : '' }}>
                                     <input type="number" step="1" min="1" max="{{ $product->stock }}" name="product_quantity" {{ $product->stock == 0 ? "disabled='disabled'" : '' }} value="{{ $product->stock == 0 ? '0' : '1' }}" title="Qty" class="input-text qty text" size="4" pattern="" inputmode="">
@@ -442,12 +487,14 @@
                                 <button type="button" class="btn btn-add-cart">Masukkan Keranjang</button>
                                 <button type="button" class="btn btn-share">Bagikan Produk</button>
                             </div>
+                           
                         </div>
                     </form>
                 </div>
             </div>
             <div class="product-desc">
                 <div class="product-desc-text" >
+                    <span>Tentang Produk</span>
                     <p>{!! nl2br(e($product->about)) !!}</p>
                 </div>
                 <div class="row product-desc-row1">
