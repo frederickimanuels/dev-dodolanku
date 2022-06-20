@@ -140,7 +140,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-4" style="display:flex;align-items:center">
-                                        <img class="product-list-img" src="{{ $product->images()->first() ? asset('images/stored/'. $product->images()->first()->filepath) :  asset('images/homepage/default-product-image.png') }}" alt="Card image cap">
+                                        <img class="product-list-img" src="{{ asset('images/homepage/default-product-image.png') }}" alt="Card image cap">
                                     </div>
                                     <div class="col-8 product-list-mobile-text">
                                         <h1>Scarlett Whitening</h1>
