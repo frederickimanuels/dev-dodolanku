@@ -5,7 +5,7 @@
     'author' => 'Dodolanku.id',
 ]; ?>
 
-include('user.layouts.header')
+@include('user.layouts.header')
 
 @include('layouts.navbar-home')
 <style>
