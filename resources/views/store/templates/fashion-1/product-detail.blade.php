@@ -1,6 +1,6 @@
 <?php $data=[
-    'title' => {{ $product->name }},
-    'description' => {{ $product->name }}. ' di '.{{ $store->name }} .'@Dodolanku.id',
+    'title' => $product->name,
+    'description' => $product->name. ' di '. $store->name .'@Dodolanku.id',
     'keywords' => 'cart, online shop, business, haul',
     'author' => 'Dodolanku.id',
 ]; ?>
