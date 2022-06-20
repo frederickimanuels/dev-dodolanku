@@ -191,10 +191,17 @@
         background-color:var(--bgcolor);
     }
     .img-side{
+        height: 340px;
         max-height: 340px;
     }
     .img-center{
+        height: 700px;
         max-height: 700px;
+    }
+    .favorite-img{
+        height: 350px;
+        max-height: 350px !important;
+        object-fit: cover;
     }
     @media screen and (max-width:1199px){
         .text-over-img{
@@ -299,7 +306,7 @@
                         <div>
                             <div class="card">
                                 <a href="{{ route('store.product.show',[$store->slug,$popular_product->slug]) }}">
-                                    <img class="card-img-top" src="{{$popular_product->images()->first() ? asset('images/stored/'. $popular_product->images()->first()->filepath) : asset('images/homepage/default-product-image.png')}}" alt="Card image cap">
+                                    <img class="card-img-top favorite-img" src="{{$popular_product->images()->first() ? asset('images/stored/'. $popular_product->images()->first()->filepath) : asset('images/homepage/default-product-image.png')}}" alt="Card image cap">
                                     <div class="card-body popular-card-text">
                                         <h5 class="card-text">{{ $popular_product->name }}</h5>
                                         <h6>Rp {{number_format($popular_product->orderBy('price','ASC')->first()->price,0,',','.')}}</h6>
@@ -339,7 +346,7 @@
                     </video>
                 </div>
             </div> -->
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-xl-6 col-12">
                     <video style="padding:10px" width="100%" height="390" controls>
                         <source src="movie.mp4" type="video/mp4">
@@ -352,7 +359,7 @@
                         Your browser does not support the video tag.
                     </video>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
