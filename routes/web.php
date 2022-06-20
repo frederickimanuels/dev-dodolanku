@@ -15,11 +15,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomepageController@index')->name('base');
 
+Auth::routes();
 Route::get('/about', 'HomepageController@about')->name('about');
 Route::get('/feature','HomepageController@feature')->name('feature');
 Route::get('/not-found','HomepageController@null')->name('notfound');
 
-Auth::routes();
+
+Route::get('/forgot-password','ForgotPasswordController@index')->name('forgot.password');
+Route::post('/forgot-password','ForgotPasswordController@requestEmail')->name('forgot.password');
+Route::get('/reset-password/{token}','ForgotPasswordController@resetPassword')->name('reset.password');
+Route::post('/reset-password','ForgotPasswordController@submitPassword')->name('reset.password');
+
 
 Route::group([ 'middleware' => '\App\Http\Middleware\AdminMiddleware'], function(){
     Route::get('/admin', 'admin\AdminController@index')->name('admin.dashboard');
