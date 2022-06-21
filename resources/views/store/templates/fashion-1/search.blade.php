@@ -202,6 +202,9 @@
             width: 100%;
             height: 40px;
         }
+        .copyright-wrapper{
+            background-color: var(--bgcolorFooter);
+        }
        
 </style>
 <section id="aboutus-banner">

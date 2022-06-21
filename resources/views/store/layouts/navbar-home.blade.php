@@ -5,6 +5,7 @@
   }
   a:hover{
     color: green;
+    text-decoration: none;
   }
 </style>
 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-homepage">

@@ -1,3 +1,11 @@
+
+<style>
+    .nav-link button{
+        background-color:#03AC0E;
+        border-radius: 8px;
+        border: none;
+    }
+</style>
 <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0 sidebar-menu" id="sidebar-id">
     <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand justify-content-center align-items-center sidebar-brand m-0" href="#">
             <!-- <div class="sidebar-brand-icon"><i class="fas fa-laugh-wink"></i></div> -->

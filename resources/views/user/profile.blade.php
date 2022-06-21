@@ -93,7 +93,7 @@
                         </div>
                         <div class="row form-list">
                             <div class="col">
-                                <label for="email" class="profile-label" >Email <span style="font-size:14px; font-family:Monserrat-light!important;">*cannot change</span></label>
+                                <label for="email" class="profile-label" >Email <span style="font-size:14px; font-family:Monserrat-light!important;color:#f00">*cannot change</span></label>
                                 <input type="email" name="email"  class="form-control profile-form" placeholder="Email" value="{{ Auth::user()->email }}" disabled="disabled">
                             </div>
                         </div>

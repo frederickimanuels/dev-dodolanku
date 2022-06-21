@@ -6,6 +6,9 @@
   #navbarDropdownMenuAvatar:hover{
     color: green;
   }
+  a:hover{
+    text-decoration: none;
+  }
 </style>
 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-homepage">
   <div class="container-fluid navbar-container">
