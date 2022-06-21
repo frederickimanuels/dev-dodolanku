@@ -46,6 +46,6 @@ class HomepageController extends Controller
             $message->subject('User Help Dodolanku.id');
         });
         
-        return redirect()->back()->with('status','Berhasil mengirimkan pesan');
+        return back()->with('status','Berhasil mengirimkan pesan');
     }
 }

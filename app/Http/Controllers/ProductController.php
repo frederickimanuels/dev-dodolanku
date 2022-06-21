@@ -27,7 +27,21 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $store = Auth::user()->hasStore();
-        $products = $store->products()->orderBy('created_at', 'desc')->paginate(10);
+        $products = $store->products();
+        if(request()->status){
+            if($request->status == 'aktif'){
+                $products = $products->where('is_active',1);
+            }
+            if($request->status == 'habis'){
+                $products = $products->where('is_active',0);
+            }
+        }
+        if(request()->search){
+            $products = $products->where('name', 'LIKE', '%' . request()->search . '%');
+        }
+        $products = $products->paginate(10);
+        $products->appends(request()->all());
+        
         return view('store/manage-product',compact('products','store'));
     }
 
@@ -205,6 +219,8 @@ class ProductController extends Controller
 
         if($request->product_stock == 0){
             $product->is_active = 0;
+        }else{
+            $product->is_active = 1;
         }
 
         if($product->category()->first()){
@@ -213,7 +229,7 @@ class ProductController extends Controller
         $product->category()->attach($request->product_category);
         $product->save();
 
-        return redirect()->back()->with('status','Sukses memperbaharui produk');
+        return back()->with('status','Sukses memperbaharui produk');
         // if($old_images_count == count($request->old)){
         //     $this->validate($request, [
         //         'product_name' => 'required|min:5|max:60',
@@ -249,6 +265,6 @@ class ProductController extends Controller
         }
         
         $product->stores()->updateExistingPivot(Auth::user()->hasStore()->id, ['deleted_at' => Carbon::now()]);
-        return redirect()->back()->with('status','Sukses menghapus produk');
+        return back()->with('status','Sukses menghapus produk');
     }
 }

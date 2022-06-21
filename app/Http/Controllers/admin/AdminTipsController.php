@@ -56,13 +56,13 @@ class AdminTipsController extends Controller
         $tips = Tips::where('id',$tips_id)->first();
         $tips->is_show = $tips->is_show == 1 ? 0 : 1;
         $tips->save();
-        return redirect()->back()->with('status','Sukses mengganti status tips');
+        return back()->with('status','Sukses mengganti status tips');
     }
 
     public function delete($tips_id){
         $tips = Tips::where('id',$tips_id)->first();
         $tips->delete();
-        return redirect()->back()->with('status','Sukses menghapus tips');
+        return back()->with('status','Sukses menghapus tips');
     }
 
     public function edit($tips_id,Request $request){
@@ -98,6 +98,6 @@ class AdminTipsController extends Controller
         $tips->description = $request->description;
         $tips->save();
         
-        return redirect()->back()->with('status','Tips berhasil diubah');
+        return back()->with('status','Tips berhasil diubah');
     }
 }

@@ -46,7 +46,7 @@ class AdminController extends Controller
         $withdrawal = Withdrawal::where('id',$withdrawal_id)->first();
         $withdrawal->is_accept = 1;
         $withdrawal->save();
-        return redirect()->back()->with('status','Sukses menerima permintaan withdraw');
+        return back()->with('status','Sukses menerima permintaan withdraw');
     }
 
     public function withdrawalReject($withdrawal_id, Request $request){
@@ -63,6 +63,6 @@ class AdminController extends Controller
         
         $store_balance->stores()->updateExistingPivot($store->id, ['deleted_at' => Carbon::now()]);
         $balance->stores()->attach($store->id, ['change'=> $withdrawal->amount ,'reference_no' => $withdrawal->reference_no] );
-        return redirect()->back()->with('status','Sukses menolak permintaan withdraw');
+        return back()->with('status','Sukses menolak permintaan withdraw');
     }
 }

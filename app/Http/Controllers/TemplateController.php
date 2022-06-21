@@ -47,7 +47,7 @@ class TemplateController extends Controller
                 $templateconfig->stores()->detach($store->id);
             }
         }
-        return redirect()->back()->with('status','Sukses menghapus warna text');
+        return back()->with('status','Sukses menghapus warna text');
     }
     public function resetBg(Request $request)
     {
@@ -58,7 +58,7 @@ class TemplateController extends Controller
                 $templateconfig->stores()->detach($store->id);
             }
         }
-        return redirect()->back()->with('status','Sukses menghapus warna background');
+        return back()->with('status','Sukses menghapus warna background');
     }
 
     public function update(Request $request)
@@ -92,7 +92,7 @@ class TemplateController extends Controller
                 $templateconfig->images()->attach($image->id);
                 $templateconfig->stores()->attach($store->id);
             }
-            return redirect()->back()->with('status','Sukses mengganti logo');
+            return back()->with('status','Sukses mengganti logo');
         }else if($request->input_type == 'store_banner'){
             $this->validate($request, [
                 'input_type' => 'required',
@@ -122,7 +122,7 @@ class TemplateController extends Controller
                 $templateconfig->stores()->attach($store->id);
                 $i+=1;
             }
-            return redirect()->back()->with('status','Sukses mengganti banner');
+            return back()->with('status','Sukses mengganti banner');
         }else if($request->input_type == 'store_search'){
             $this->validate($request, [
                 'input_type' => 'required',
@@ -149,7 +149,7 @@ class TemplateController extends Controller
                 $templateconfig->images()->attach($image->id);
                 $templateconfig->stores()->attach($store->id);
             }
-            return redirect()->back()->with('status','Sukses mengganti banner');
+            return back()->with('status','Sukses mengganti banner');
         }else if($request->input_type == 'store_text'){
             $this->validate($request, [
                 'input_type' => 'required',
@@ -169,7 +169,7 @@ class TemplateController extends Controller
                 $templateconfig->save();
                 $templateconfig->stores()->attach($store->id);
             }
-            return redirect()->back()->with('status','Sukses mengganti warna text');
+            return back()->with('status','Sukses mengganti warna text');
         }else if($request->input_type == 'store_bg'){
             $this->validate($request, [
                 'input_type' => 'required',
@@ -189,7 +189,7 @@ class TemplateController extends Controller
                 $templateconfig->save();
                 $templateconfig->stores()->attach($store->id);
             }
-            return redirect()->back()->with('status','Sukses mengganti warna background');
+            return back()->with('status','Sukses mengganti warna background');
         }
     }
 }

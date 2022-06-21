@@ -25,13 +25,13 @@ class AdminBanController extends Controller
             }
         }
         $store->banned()->attach(1);
-        return redirect()->back()->with('status','Sukses ban toko ' . $store->name);
+        return back()->with('status','Sukses ban toko ' . $store->name);
     }
     public function unbanStore($store_id)
     {
         $store = Store::where('id',$store_id)->first();
         $store->banned()->detach(1);
-        return redirect()->back()->with('status','Sukses unban toko ' . $store->name);
+        return back()->with('status','Sukses unban toko ' . $store->name);
     }
 
     public function forceFinishOrder($reference_no){
@@ -72,12 +72,12 @@ class AdminBanController extends Controller
             }
         }
         $user->banned()->attach(1);
-        return redirect()->back()->with('status','Sukses ban user ' . $user->name);
+        return back()->with('status','Sukses ban user ' . $user->name);
     }
     public function unbanUser($user_id)
     {
         $user = User::where('id',$user_id)->first();
         $user->banned()->detach(1);
-        return redirect()->back()->with('status','Sukses unban user ' . $user->name);
+        return back()->with('status','Sukses unban user ' . $user->name);
     }
 }

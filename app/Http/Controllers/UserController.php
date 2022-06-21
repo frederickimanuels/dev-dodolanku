@@ -130,6 +130,6 @@ class UserController extends Controller
         $cart->status()->updateExistingPivot(4, ['deleted_at' => Carbon::now()]);
         $cart->status()->attach(5);
 
-        return redirect()->back();
+        return back();
     }
 }

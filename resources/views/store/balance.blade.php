@@ -119,14 +119,14 @@
                             <div class="col-sm-4" style="padding-top: 5px">
                                 @if( $balance->withdrawals()->first() )
                                     @if($balance->withdrawals()->first()->is_accept == 1)
-                                        (Diterima)
+                                        Penarikan Saldo (Diterima)
                                     @elseif($balance->withdrawals()->first()->is_accept === 0)
-                                        (Ditolak)
+                                        Penarikan Saldo (Ditolak)
                                     @else
-                                        (Pending)
+                                        Penarikan Saldo (Pending)
                                     @endif
                                 @else
-                                aa
+                                    Dana Masuk
                                 @endif
                              </div>
                         </div>

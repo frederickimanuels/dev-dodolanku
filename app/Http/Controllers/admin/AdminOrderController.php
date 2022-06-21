@@ -21,11 +21,11 @@ class AdminOrderController extends Controller
         $order = Order::where('id',$order_id)->first();
         $cart = $order->carts()->first();
         if($cart->status()->first()->id != 2){
-            return redirect()->back()->with('error','Gagal cancel order '.$order->reference_no);
+            return back()->with('error','Gagal cancel order '.$order->reference_no);
         }else{
             $cart->status()->updateExistingPivot(2, ['deleted_at' => Carbon::now()]);
             $cart->status()->attach(3);
-            return redirect()->back()->with('status','Sukses cancel order '.$order->reference_no);
+            return back()->with('status','Sukses cancel order '.$order->reference_no);
         }
     }
 }

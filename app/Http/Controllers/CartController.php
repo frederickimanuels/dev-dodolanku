@@ -70,12 +70,12 @@ class CartController extends Controller
         ]);
         $product = Product::where('id',$request->product_id)->first();
         if($product->is_active == 0){
-            return redirect()->back()->with('error','Gagal menambahkan produk ke keranjang, produk tidak tersedia');
+            return back()->with('error','Gagal menambahkan produk ke keranjang, produk tidak tersedia');
         }
         $store = Store::find($request->store_id);
         if(Auth::user()->hasStore()){
             if(Auth::user()->hasStore()->id == $store->id){
-                return redirect()->back()->with('error','Penjual tidak bisa membeli produk miliknya sendiri');
+                return back()->with('error','Penjual tidak bisa membeli produk miliknya sendiri');
             }
         }
         $exist_cart = Auth::user()->hasCart($store->id);
@@ -88,7 +88,7 @@ class CartController extends Controller
                 if($success){
                     return redirect()->route('cart.show',$store->slug);
                 }else{
-                    return redirect()->back()->with('checkout','Gagal menambahkan produk, stok produk tersisa '.$product->stock.' dan sudah ada di keranjang belanjamu');
+                    return back()->with('checkout','Gagal menambahkan produk, stok produk tersisa '.$product->stock.' dan sudah ada di keranjang belanjamu');
                 }
             }else{
                 $cart->products()->attach($request->product_id, ['count'=> $request->product_quantity ]);
@@ -121,7 +121,7 @@ class CartController extends Controller
         foreach($request->product_id as $p){
             $product = $cart->products()->where('id',$p)->first();
             if($product->stock < $request->product_count[$i]){
-                return redirect()->back()->with('error','Pembelian melebihi stok produk yang tersedia');
+                return back()->with('error','Pembelian melebihi stok produk yang tersedia');
             }else{
                 $products[] = $product;
             }
@@ -209,6 +209,6 @@ class CartController extends Controller
             Auth::user()->carts()->detach($cart->id);
             $cart->delete();
         }
-        return redirect()->back();
+        return back();
     }
 }

@@ -21,7 +21,23 @@
     <div class="container create-product-container">
         <form method="POST" action="{{ route('store.product.store') }}" enctype="multipart/form-data">
             @csrf
-            <h1>Tambahkan Produk</h1>
+            <style>
+                .button-return-back{
+                    text-decoration: none;
+                    color: #03AC0E;
+                    font-size: 1rem;
+                }
+            </style>
+            <div class="row">
+                <div class="col">
+                    <h1>Tambahkan Produk</h1>
+                </div>
+                <div class="col" style="display: flex;justify-content:end;align-items:center;">
+                    <a href="{{ route('store.index') }}" class="button-return-back">
+                        <i class="fa-solid fa-caret-left"></i> Kembali ke halaman sebelumnya
+                    </a>
+                </div>
+            </div>
             <div class="form-container-content">
                 <div class="row">
                     <div class="col-xl-4 col-12 upload-image-text">

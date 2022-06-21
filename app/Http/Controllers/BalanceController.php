@@ -37,6 +37,6 @@ class BalanceController extends Controller
         $balance->stores()->attach($store->id, ['change'=> -$withdrawal->amount, 'reference_no' => $withdrawal->reference_no ] );
         $withdrawal->stores()->attach($store->id);
         
-        return redirect()->back()->with('status','Sukses melakukan permintaan tarik saldo');
+        return back()->with('status','Sukses melakukan permintaan tarik saldo');
     }
 }

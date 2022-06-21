@@ -47,21 +47,22 @@
                                 <div class="mr-auto p-2">
                                     <h1 class="h1-dashboard h1-product-list">Daftar Produk</h1>
                                 </div>
-                                {{-- <div class="mr-auto p-2 product-menu">
+                                <div class="mr-auto p-2 product-menu">
                                     <ul style="padding-left:0">
-                                        <li><a href="{{ route('store.product.manage') }}" class="active-list">Semua Produk</a></li>
-                                        <li><a href="" >Aktif</a></li>
-                                        <li><a href="">Nonaktif</a></li>
+                                        <li><a href="{{ route('store.product.manage') }}" class="{{ request()->status ? '' : 'active-list' }}">Semua Produk</a></li>
+                                        <li><a href="{{ route('store.product.manage') }}?status=aktif" class="{{ request()->status == 'aktif' ? 'active-list' : ''}}">Aktif</a></li>
+                                        <li><a href="{{ route('store.product.manage') }}?status=habis" class="{{ request()->status == 'habis' ? 'active-list' : ''}}">Habis</a></li>
                                     </ul>
                                 </div>
                                 <div class="p-2">
-                                <form class="me-auto navbar-search w-100">
+                                <form class="me-auto navbar-search w-100" method="GET">
                                     <div class="input-group">
-                                        <input class="form-control border-0 small search-box" type="text" placeholder="">
+                                        <input type="hidden" value="{{ request()->status }}" name='status'>
+                                        <input name="search" class="form-control border-0 small search-box" type="text" placeholder="Masukkan nama produk">
                                         <!-- <div class="input-group-append"><button class="btn btn-primary py-0" type="button">Cari</button></div> -->
                                     </div>
                                 </form>
-                                </div> --}}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -74,7 +75,7 @@
                                         <input class="table-checkbox"  type="checkbox" aria-label="Checkbox for following text input">
                                     </th> --}}
                                     <th scope="col" style="padding-left:40px">Nama Produk</th>
-                                    <th scope="col">Statistik</th>
+                                    <th scope="col">Penjualan</th>
                                     <th scope="col">Harga</th>
                                     <th scope="col">Stok</th>
                                     <th scope="col">Status</th>
@@ -120,7 +121,7 @@
                                                             }
                                                         }
                                                         ?>
-                                                    <li><i class="fa-solid fa-cart-shopping"></i></i>{{ $sold_count }}</li>
+                                                    <li><i class="fa-solid fa-bag-shopping"></i>{{ $sold_count }}</li>
                                                 </ul>
                                             </td>
                                             <td>
