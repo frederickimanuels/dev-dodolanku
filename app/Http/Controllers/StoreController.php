@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Address;
 use App\Province;
 use App\Store;
+use App\Tips;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -38,10 +39,11 @@ class StoreController extends Controller
             return redirect()->route('store.create');
         }else{
             $store = Auth::user()->hasStore();
+            $tips = Tips::where('is_show',1)->orderBy('created_at','DESC')->take(3)->get();
             if($store->isBanned()){
                 return redirect()->route('notfound')->with('error','Toko '. $store->name .' telah diblokir');
             }
-            return view ('store/dashboard',compact('store'));
+            return view ('store/dashboard',compact('store','tips'));
         }
     }
     
