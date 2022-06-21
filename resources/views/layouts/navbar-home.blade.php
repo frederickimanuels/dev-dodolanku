@@ -1,3 +1,12 @@
+<style>
+  .navbar-brand{
+    display: flex;
+    padding-top: 0px !important;
+  }
+  #navbarDropdownMenuAvatar:hover{
+    color: green;
+  }
+</style>
 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-homepage">
   <div class="container-fluid navbar-container">
     <button class="navbar-toggler navbar-burger-btn" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -5,7 +14,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- Navbar brand -->
-      <a class="navbar-brand mt-2 mt-lg-0" href="#">
+      <a class="navbar-brand mt-2 mt-lg-0" href="{{ route('base') }}">
         <img src="{{ asset('images/homepage/logo_dodolanku_white.png') }}" height="15" alt=".." loading="lazy"/>
       </a>
       <!-- Left links -->

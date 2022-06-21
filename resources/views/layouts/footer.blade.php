@@ -18,7 +18,7 @@
                         <ul class="contact-wrapper">
                             <li><a href="{{route('base')}}">Home</a></li>
                             <li><a href="{{route('feature')}}">Feature</a></li>
-                            <li><a href="#">FAQ</a></li>
+                            <li><a href="{{route('about')}}">FAQ</a></li>
                             <li><a href="#">Help</a></li>
                             <li><a href="{{route('about')}}">About Us</a></li>
                         </ul>
@@ -34,7 +34,7 @@
                     <div class="col-lg-3 item social">
                         <h3>Contact Us</h3>
                         <ul class="contact-wrapper" >
-                            <li><a href="#"><img src="{{asset('images/homepage/telephone.png')}}" alt="" class="contact-icon">customerservice@dodolanku.id</a></li>
+                            <li><a href="mailto:customerservice@dodolanku.id"><img src="{{asset('images/homepage/telephone.png')}}" alt="" class="contact-icon">customerservice@dodolanku.id</a></li>
                             <li><a href="#"><img src="{{asset('images/homepage/house.png')}}" alt="" class="contact-icon">(021) 210-135-45</a></li>
                         </ul>
                     </div>
