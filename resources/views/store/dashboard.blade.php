@@ -57,7 +57,7 @@
                             </a>
                         </div>
                         <div class="col-md-4 col-xl-4 mb-4">
-                            <div style="text-decoration: none;color:inherit;">
+                            <a href="{{ route('store.order') }}" style="text-decoration: none;color:inherit;">
                                 <div class="card shadow border-start-success py-2">
                                     <div class="card-body">
                                         <div class="row align-items-center no-gutters">
@@ -69,7 +69,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                     <div class="row inner-row my-5">

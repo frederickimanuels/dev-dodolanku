@@ -154,14 +154,36 @@ class CartController extends Controller
         $order->stores()->attach($store->id);
         return redirect()->route('user.order');
     }
-    public function listOrder()
+    public function listOrder(Request $request)
     {
         $carts = Auth::user()->hasStore()->carts();
-        $carts = $carts->join('cart_status','cart_status.cart_id','=','carts.id')
-                    ->where('status_id','<>','1')
-                    ->whereNull('cart_status.deleted_at')
-                    ->orderBy('cart_status.created_at','DESC')
-                    ->paginate(10);
+        $carts = $carts->join('cart_status','cart_status.cart_id','=','carts.id');
+        //         ->where('status_id','<>','1')
+        //         ->whereNull('cart_status.deleted_at')
+        //         ->orderBy('cart_status.created_at','DESC')
+        //         ->paginate(10);
+        // $carts = $carts->where('status_id','<>','1');
+        if(request()->status){
+            if($request->status == 'ongoing'){
+                $carts = $carts->where('status_id','<>','1')->where('status_id','<>','3')->where('status_id','<>','5');
+            }
+            if($request->status == 'finish'){
+                $carts = $carts->where('status_id',5);
+            }
+        }else{
+            $carts = $carts->where('status_id','<>','1');
+        }
+        if(request()->search){
+            $carts = $carts->join('cart_orders','cart_orders.cart_id','=','carts.id')
+                            ->join('orders','cart_orders.order_id','=','orders.id')
+                            ->where('reference_no', 'LIKE', '%' . request()->search . '%')
+                            ->orWhere('couriertracking', 'LIKE', '%' . request()->search . '%');
+        }
+        $carts = $carts->whereNull('cart_status.deleted_at');
+        $carts = $carts->orderBy('cart_status.created_at','DESC');
+        $carts = $carts->paginate(10);
+        $carts->appends(request()->all());
+        // dd($carts);
         return view('store/order-list',compact('carts'));
     }
 
