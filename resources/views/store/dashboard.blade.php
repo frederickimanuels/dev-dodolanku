@@ -6,7 +6,15 @@
 ]; ?>
 
 @include('store.layouts.header')
-
+<style>
+    .image-tips{
+        width: 100%;
+        max-height: 200px;
+    }
+    .noHover{
+        pointer-events: none;
+    }
+</style>
 <div id="wrapper">
         @include('store.layouts.sidebar')
         <div class="d-flex flex-column" id="content-wrapper">
@@ -49,7 +57,7 @@
                             </a>
                         </div>
                         <div class="col-md-4 col-xl-4 mb-4">
-                            <div style="text-decoration: none;color:inherit;">
+                            <a href="{{ route('store.order') }}" style="text-decoration: none;color:inherit;">
                                 <div class="card shadow border-start-success py-2">
                                     <div class="card-body">
                                         <div class="row align-items-center no-gutters">
@@ -61,35 +69,25 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                     <div class="row inner-row my-5">
-                        <h1 class="h1-dashboard">Halo, Bagaimana Kabar Tokomu?</h1>
+                        <h1 class="h1-dashboard" style="margin-bottom:15px;">Halo, Bagaimana Kabar Tokomu?</h1>
+                        <h4 class="mb-4">Berikut ada beberapa tips dari mimin Dodolanku</h4>
+                        @if(count($tips) > 0)
+                        @foreach($tips as $tp)
                         <div class="col-lg-4 mb-4">
-                            <div class="card" style="width: 100%">
-                                <img class="card-img-top" src="{{asset('images/homepage/hyundai.jpg')}}" alt="Card image cap">
+                            <div class="card noHover" style="width: 100%">
+                                <img class="card-img-top image-tips" src="{{ $tp->images()->first() ? asset('images/stored/'. $tp->images()->first()->filepath) : asset('images/homepage/computer-1.png') }}" alt="Card image cap">
                                 <div class="card-body">
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <h4>{{ $tp->title }}</h4>
+                                    <p class="card-text">{{ $tp->description }}</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 mb-4">
-                        <div class="card" style="width: 100%">
-                                <img class="card-img-top" src="{{asset('images/homepage/hyundai.jpg')}}" alt="Card image cap">
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 mb-4">
-                        <div class="card" style="width: 100%">
-                                <img class="card-img-top" src="{{asset('images/homepage/hyundai.jpg')}}" alt="Card image cap">
-                                <div class="card-body">
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
+                        @endif
                     </div>
                     <!-- <div class="row">
                         <div class="col-lg-7 col-xl-8">

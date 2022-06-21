@@ -9,25 +9,56 @@
 
 @include('store.layouts.navbar-home')
 
+<?php   
+    $text_color = $store->templateconfigs()->where('type','store_text')->get();
+    $bg_color = $store->templateconfigs()->where('type','store_bg')->get();
+?>
+@if(count($text_color)>0)
+    <style>
+        :root{
+            --textColor1:{{ $text_color[0]->extra }};
+            --textColor2:{{ $text_color[1]->extra }};
+            --textColor3:{{ $text_color[2]->extra }};
+            --textColor4:{{ $text_color[3]->extra }};
+            --textColor5:{{ $text_color[2]->extra }};
+        }
+    </style>
+@else
+    <style>
+        :root{
+            --textColor1:#FFFFFF;
+            --textColor2:#000000;
+            --textColor3:#FC764E;
+            --textColor4:#9A9A9A;
+            --textColor5:#FC764E;
+        }
+    </style>
+@endif
+@if(count($bg_color)>0)
+    <style>
+        :root{
+            --bgcolor:{{ $bg_color[0]->extra }};
+            --bgcolor1:{{ $bg_color[1]->extra }};
+            --bgcolor2:{{ $bg_color[2]->extra }};
+            --bgcolor3:{{ $bg_color[3]->extra }};
+            --bgcolorFooter:{{ $bg_color[0]->extra }};
+            --bgcolorHeader:{{ $bg_color[0]->extra }};
+        }
+    </style>
+@else
+    <style>
+        :root{
+            --bgcolor:#AE8D84;
+            --bgcolor1:#FFFFFF;
+            --bgcolor2:#FFF8F6;
+            --bgcolor3:#DFC3BB;
+            --bgcolorFooter:#AE8D84;
+            --bgcolorHeader:#AE8D84;
+        }
+    </style>
+@endif
 <style>
     :root{
-
-        /* BG */
-        --bgcolor:#AE8D84;
-        --bgcolor1:#FFFFFF;
-        --bgcolor2:#FFF8F6;
-        --bgcolor3:#DFC3BB;
-        --bgcolorFooter:#AE8D84;
-        --bgcolorHeader:#AE8D84;
-       
-
-        /* Text */
-        --textColor1:#FFFFFF;
-        --textColor2:#000000;
-        --textColor3:#FC764E;
-        --textColor4:#9A9A9A;
-        --textColor5:#FC764E;
-
         /* Popular Product Color */
         --popularProductName:#000000;
         --popularProductPrice:#FC764E;
@@ -36,9 +67,9 @@
         --buttonbuynow:#FC764E;
         --buttontext:#FFFFFF;
         --buttontext2:#9A9A9A;
-
-        /* FooterColor */
     }
+</style>
+<style>
     #homepage-footer .footer-clean{
         background-color:var(--bgcolorFooter);
     }
@@ -404,7 +435,6 @@
                     <div id="page">
                         <div class="row">
                             <div class="column small-11 small-centered">
-                                
                                 <?php $images = $product->images()->get(); ?>
                                 @if(count($images) > 0)
                                 <div class="slider slider-single">
@@ -434,6 +464,31 @@
                     </div>
                 </div>
                 <div class="col-xl-6 col-12">
+                    
+                    @if (session('status'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <span>{{ session('status') }}</span>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
+                    @if (session('error'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <span>{{ session('error') }}</span>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
+                    @if (session('checkout'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <span>{{ session('checkout') }} <a href="{{ route('cart.show',$store->slug) }}">Yuk Checkout Sekarang</a></span>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
                     @if($product->is_active == '0')
                     <div class="product-not-avaliable">
                         <div>
@@ -461,14 +516,14 @@
                             <h3 id="product-price">Rp {{number_format($product->price,0,',','.')}}</h3>
                             <?php $sold_count = 0;
                                 if($product->carts()->first()){
-                                    $cart_products = $product->carts()->join('cart_status','cart_status.cart_id','carts.id')->where('status_id','<>','0')->where('status_id','<>','3')->whereNull('cart_status.deleted_at')->get();
+                                    $cart_products = $product->carts()->join('cart_status','cart_status.cart_id','carts.id')->where('status_id','<>','1')->where('status_id','<>','3')->whereNull('cart_status.deleted_at')->get();
                                     foreach($cart_products as $cart_product){
                                         $sold_count = $sold_count + $cart_product->pivot->count;
                                     }
                                 }
                             ?>
-                            <h4 class="mt-3">{{ $sold_count }} Produk Terjual</h4>
-                            <div class="prod-desc mt-5" >
+                            <h4 class="mt-1">{{ $sold_count }} Produk Terjual</h4>
+                            <div class="prod-desc mt-4" >
                                 <span>Deskripsi Produk</span>
                                 <p class="prod-desc">{!! nl2br(e($product->description)) !!}</p>
                             </div>
@@ -484,7 +539,7 @@
                             </div>
                             <div class="detail-product-navigation">
                                 <button type="submit" class="btn btn-buy-now" {{ $product->stock == 0 ? 'disabled="disabled"' : '' }}>Beli Sekarang</button>
-                                <button type="button" class="btn btn-add-cart">Masukkan Keranjang</button>
+                                <button type="button" class="btn btn-add-cart">Hubungi Penjual</button>
                                 <button type="button" class="btn btn-share">Bagikan Produk</button>
                             </div>
                            
@@ -497,14 +552,14 @@
                     <span>Tentang Produk</span>
                     <p>{!! nl2br(e($product->about)) !!}</p>
                 </div>
-                <div class="row product-desc-row1">
+                {{-- <div class="row product-desc-row1">
                     <div class="col-xl-6 col-12 product-desc-row1-text">
                         <h2>{{ $product->name }}</h2>
                     </div>
                     <div class="col-xl-6 col-12">
                         <img src="{{$product->images()->first() ? asset('images/stored/'. $product->images()->first()->filepath) : asset('images/homepage/default-product-image.png')}}" alt="" class="desc-image">
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
@@ -542,8 +597,13 @@
     </div>
 </section>
 
-
 <!-- Modal -->
+<style>
+    .modal button.close{
+        background:none;
+        color: grey;
+    }
+</style>
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -568,123 +628,131 @@
 <!-- Add Js Here -->
 <script> 
 
-function openModal(){
-    $('#exampleModalCenter').modal('toggle');
-}
-function closeModal(){
-    $('#exampleModalCenter').modal('hide');
-}
-    
-$(document).ready(function(){
-    
-
-    // $('#exampleModalCenter').modal('toggle');
-   
-    
-    $('.slider-single').slick({
- 	slidesToShow: 1,
- 	slidesToScroll: 1,
- 	arrows: false,
- 	fade: false,
- 	adaptiveHeight: true,
- 	infinite: false,
-	useTransform: true,
- 	speed: 400,
- 	cssEase: 'cubic-bezier(0.77, 0, 0.18, 1)',
- });
-
- $('.slider-nav')
- 	.on('init', function(event, slick) {
- 		$('.slider-nav .slick-slide.slick-current').addClass('is-active');
- 	})
- 	.slick({
- 		slidesToShow: 3,
- 		slidesToScroll: 3,
- 		dots: false,
-        arrows:false,
- 		focusOnSelect: false,
- 		infinite: false,
- 		responsive: [{
- 			breakpoint: 1024,
- 			settings: {
- 				slidesToShow: 5,
- 				slidesToScroll: 5,
- 			}
- 		}, {
- 			breakpoint: 640,
- 			settings: {
- 				slidesToShow: 4,
- 				slidesToScroll: 4,
-			}
- 		}, {
- 			breakpoint: 420,
- 			settings: {
- 				slidesToShow: 3,
- 				slidesToScroll: 3,
-		}
- 		}]
- 	});
-
- $('.slider-single').on('afterChange', function(event, slick, currentSlide) {
- 	$('.slider-nav').slick('slickGoTo', currentSlide);
- 	var currrentNavSlideElem = '.slider-nav .slick-slide[data-slick-index="' + currentSlide + '"]';
- 	$('.slider-nav .slick-slide.is-active').removeClass('is-active');
- 	$(currrentNavSlideElem).addClass('is-active');
- });
-
- $('.slider-nav').on('click', '.slick-slide', function(event) {
- 	event.preventDefault();
- 	var goToSingleSlide = $(this).data('slick-index');
-
- 	$('.slider-single').slick('slickGoTo', goToSingleSlide);
- });
- $('.multiple-items').slick({
-            infinite: true,
-            slidesToShow: 4,
-            slidesToScroll: 4,
-            nextArrow:$('.next-arrow'),
-            prevArrow:$('.prev-arrow'),
-            responsive: [
-                {
-                breakpoint: 1199,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2,
-                }
-                },
-                {
-                breakpoint: 599,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
-                },
-            ]
+    function openModal(){
+        $('#exampleModalCenter').modal('toggle');
+    }
+    function closeModal(){
+        $('#exampleModalCenter').modal('hide');
+    }
+        
+    $(document).ready(function(){
+        $('#finish-order').on('click',function(){
+            openModal();
         });
-});
+        function openModal(){
+            $('#exampleModalCenter').modal('toggle');
+        }
+        function closeModal(){
+            $('#exampleModalCenter').modal('hide');
+        }
 
-function wcqib_refresh_quantity_increments() {
-    jQuery("div.quantity:not(.buttons_added), td.quantity:not(.buttons_added)").each(function(a, b) {
-        var c = jQuery(b);
-        c.addClass("buttons_added"), c.children().first().before('<input type="button" value="-" class="minus" />'), c.children().last().after('<input type="button" value="+" class="plus" />')
-    })
-}
-String.prototype.getDecimals || (String.prototype.getDecimals = function() {
-    var a = this,
-        b = ("" + a).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
-    return b ? Math.max(0, (b[1] ? b[1].length : 0) - (b[2] ? +b[2] : 0)) : 0
-}), jQuery(document).ready(function() {
-    wcqib_refresh_quantity_increments()
-}), jQuery(document).on("updated_wc_div", function() {
-    wcqib_refresh_quantity_increments()
-}), jQuery(document).on("click", ".plus, .minus", function() {
-    var a = jQuery(this).closest(".quantity").find(".qty"),
-        b = parseFloat(a.val()),
-        c = parseFloat(a.attr("max")),
-        d = parseFloat(a.attr("min")),
-        e = a.attr("step");
-    b && "" !== b && "NaN" !== b || (b = 0), "" !== c && "NaN" !== c || (c = ""), "" !== d && "NaN" !== d || (d = 0), "any" !== e && "" !== e && void 0 !== e && "NaN" !== parseFloat(e) || (e = 1), jQuery(this).is(".plus") ? c && b >= c ? a.val(c) : a.val((b + parseFloat(e)).toFixed(e.getDecimals())) : d && b <= d ? a.val(d) : b > 0 && a.val((b - parseFloat(e)).toFixed(e.getDecimals())), a.trigger("change")
-});
+        // $('#exampleModalCenter').modal('toggle');
+    
+        
+        $('.slider-single').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        fade: false,
+        adaptiveHeight: true,
+        infinite: false,
+        useTransform: true,
+        speed: 400,
+        cssEase: 'cubic-bezier(0.77, 0, 0.18, 1)',
+    });
+
+    $('.slider-nav')
+        .on('init', function(event, slick) {
+            $('.slider-nav .slick-slide.slick-current').addClass('is-active');
+        })
+        .slick({
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            dots: false,
+            arrows:false,
+            focusOnSelect: false,
+            infinite: false,
+            responsive: [{
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 5,
+                    slidesToScroll: 5,
+                }
+            }, {
+                breakpoint: 640,
+                settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 4,
+                }
+            }, {
+                breakpoint: 420,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+            }
+            }]
+        });
+
+    $('.slider-single').on('afterChange', function(event, slick, currentSlide) {
+        $('.slider-nav').slick('slickGoTo', currentSlide);
+        var currrentNavSlideElem = '.slider-nav .slick-slide[data-slick-index="' + currentSlide + '"]';
+        $('.slider-nav .slick-slide.is-active').removeClass('is-active');
+        $(currrentNavSlideElem).addClass('is-active');
+    });
+
+    $('.slider-nav').on('click', '.slick-slide', function(event) {
+        event.preventDefault();
+        var goToSingleSlide = $(this).data('slick-index');
+
+        $('.slider-single').slick('slickGoTo', goToSingleSlide);
+    });
+    $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 4,
+                nextArrow:$('.next-arrow'),
+                prevArrow:$('.prev-arrow'),
+                responsive: [
+                    {
+                    breakpoint: 1199,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
+                    }
+                    },
+                    {
+                    breakpoint: 599,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                    },
+                ]
+            });
+    });
+
+    function wcqib_refresh_quantity_increments() {
+        jQuery("div.quantity:not(.buttons_added), td.quantity:not(.buttons_added)").each(function(a, b) {
+            var c = jQuery(b);
+            c.addClass("buttons_added"), c.children().first().before('<input type="button" value="-" class="minus" />'), c.children().last().after('<input type="button" value="+" class="plus" />')
+        })
+    }
+    String.prototype.getDecimals || (String.prototype.getDecimals = function() {
+        var a = this,
+            b = ("" + a).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
+        return b ? Math.max(0, (b[1] ? b[1].length : 0) - (b[2] ? +b[2] : 0)) : 0
+    }), jQuery(document).ready(function() {
+        wcqib_refresh_quantity_increments()
+    }), jQuery(document).on("updated_wc_div", function() {
+        wcqib_refresh_quantity_increments()
+    }), jQuery(document).on("click", ".plus, .minus", function() {
+        var a = jQuery(this).closest(".quantity").find(".qty"),
+            b = parseFloat(a.val()),
+            c = parseFloat(a.attr("max")),
+            d = parseFloat(a.attr("min")),
+            e = a.attr("step");
+        b && "" !== b && "NaN" !== b || (b = 0), "" !== c && "NaN" !== c || (c = ""), "" !== d && "NaN" !== d || (d = 0), "any" !== e && "" !== e && void 0 !== e && "NaN" !== parseFloat(e) || (e = 1), jQuery(this).is(".plus") ? c && b >= c ? a.val(c) : a.val((b + parseFloat(e)).toFixed(e.getDecimals())) : d && b <= d ? a.val(d) : b > 0 && a.val((b - parseFloat(e)).toFixed(e.getDecimals())), a.trigger("change")
+    });
 </script>
 
 <!-- End JS -->

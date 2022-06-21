@@ -70,6 +70,12 @@ li:hover{
 #submit-btn{
     margin-left: auto;
 }
+.with-reset{
+    justify-content:flex-end;
+}
+.with-reset #submit-btn{
+    margin-left: 0;
+}
 h2{
     font-size: 24px;
     font-family: Montserrat-Bold;
@@ -329,8 +335,9 @@ label{
                                         @endif
                                     </div>
                                 </div>
-                                <div style="display:flex">
-                                    <button type="submit" class="btn btn-primary mt-3" id="submit-btn">Submit</button>
+                                <div style="display:flex;" class="with-reset">
+                                    <a href="{{ route('store.template.reset-text') }}" class="btn btn-info mt-3" style="margin-right: 10px; text-decoration:none; color:white; font-weight:bold">Kembalikan ke awal</a>
+                                    <button type="submit" class="btn btn-primary mt-3" id="submit-btn">Simpan</button>
                                 </div>
                             </form>
                         </div>
@@ -381,8 +388,9 @@ label{
                                         @endif
                                     </div>
                                 </div>
-                                <div style="display:flex">
-                                    <button type="submit" class="btn btn-primary mt-3" id="submit-btn">Submit</button>
+                                <div style="display:flex" class="with-reset">
+                                    <a href="{{ route('store.template.reset-bg') }}" class="btn btn-info mt-3" style="margin-right: 10px; text-decoration:none; color:white; font-weight:bold">Kembalikan ke awal</a>
+                                    <button type="submit" class="btn btn-primary mt-3" id="submit-btn">Simpan</button>
                                 </div>
                             </form>
                         </div>

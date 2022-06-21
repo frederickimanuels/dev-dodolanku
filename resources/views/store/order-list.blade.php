@@ -19,11 +19,18 @@
                                 <div class="mr-auto p-2">
                                     <h1 class="h1-dashboard h1-product-list">Daftar Pesanan</h1>
                                 </div>
-                                
+                                <div class="mr-auto p-2 product-menu">
+                                    <ul style="padding-left:0">
+                                        <li><a href="{{ route('store.order') }}" class="{{ request()->status ? '' : 'active-list' }}">Semua Pesanan</a></li>
+                                        <li><a href="{{ route('store.order') }}?status=ongoing" class="{{ request()->status == 'ongoing' ? 'active-list' : ''}}">Berlangsung</a></li>
+                                        <li><a href="{{ route('store.order') }}?status=finish" class="{{ request()->status == 'finish' ? 'active-list' : ''}}">Selesai</a></li>
+                                    </ul>
+                                </div>
                                 <div class="p-2">
-                                <form class="me-auto navbar-search w-100">
+                                <form class="me-auto navbar-search w-100" method="GET">
                                     <div class="input-group">
-                                        {{-- <input class="form-control border-0 small search-box" type="text" placeholder=""> --}}
+                                        <input type="hidden" value="{{ request()->status }}" name='status'>
+                                        <input name="search" class="form-control border-0 small search-box" type="text" placeholder="Masukkan no Referensi">
                                         <!-- <div class="input-group-append"><button class="btn btn-primary py-0" type="button">Cari</button></div> -->
                                     </div>
                                 </form>

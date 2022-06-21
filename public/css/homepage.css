@@ -689,6 +689,9 @@ li.subtotal:before {
 
 .product-frame {
   border: 1px solid #aaa;
+  border-radius: 7px;
+  max-height: 200px;
+  width: 100%;
 }
 
 .product-details {

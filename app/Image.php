@@ -20,4 +20,9 @@ class Image extends Model
     {
         return $this->belongsToMany(User::class, 'user_images');
     }
+
+    public function tips()
+    {
+        return $this->belongsToMany(Tips::class, 'tips_images');
+    }
 }

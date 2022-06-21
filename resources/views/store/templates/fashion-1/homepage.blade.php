@@ -9,28 +9,67 @@
 
 @include('store.layouts.navbar-home')
 
+<?php   
+    $text_color = $store->templateconfigs()->where('type','store_text')->get();
+    $bg_color = $store->templateconfigs()->where('type','store_bg')->get();
+?>
+@if(count($text_color)>0)
+    <style>
+        :root{
+            --textColor1:{{ $text_color[0]->extra }};
+            --textColor2:{{ $text_color[1]->extra }};
+            --textColor3:{{ $text_color[2]->extra }};
+            --textColor4:{{ $text_color[3]->extra }};
+            --textColor5:{{ $text_color[2]->extra }};
+        }
+    </style>
+@else
+    <style>
+        :root{
+            --textColor1:#FFFFFF;
+            --textColor2:#000000;
+            --textColor3:#FC764E;
+            --textColor4:#9A9A9A;
+            --textColor5:#FC764E;
+        }
+    </style>
+@endif
+@if(count($bg_color)>0)
+    <style>
+        :root{
+            --bgcolor:{{ $bg_color[0]->extra }};
+            --bgcolor1:{{ $bg_color[1]->extra }};
+            --bgcolor2:{{ $bg_color[2]->extra }};
+            --bgcolor3:{{ $bg_color[3]->extra }};
+            --bgcolorFooter:{{ $bg_color[0]->extra }};
+            --bgcolorHeader:{{ $bg_color[0]->extra }};
+        }
+    </style>
+@else
+    <style>
+        :root{
+            --bgcolor:#AE8D84;
+            --bgcolor1:#FFFFFF;
+            --bgcolor2:#FFF8F6;
+            --bgcolor3:#DFC3BB;
+            --bgcolorFooter:#AE8D84;
+            --bgcolorHeader:#AE8D84;
+        }
+    </style>
+@endif
 <style>
     :root{
-
-        /* Header Disini */
-        /* BG Color Dsini */
-        --bgcolor:#AE8D84;
-        --bgcolor1:#FFFFFF;
-        --bgcolor2:#FFF8F6;
-        --bgcolor3:#DFC3BB;
-        --bgcolorFooter:#AE8D84;
-        --bgcolorHeader:#AE8D84;
-       
-
-        /* Text Gede Color Disini */
-        --textColor1:#FFFFFF;
-        --textColor2:#000000;
-        --textColor3:#FC764E;
-
         /* Popular Product Color */
-    
-        /* FooterColor */
+        --popularProductName:#000000;
+        --popularProductPrice:#FC764E;
+
+        /* Button Color */
+        --buttonbuynow:#FC764E;
+        --buttontext:var(--textColor1);
+        --buttontext2:var(--textColor4);
     }
+</style>
+<style>
     a{
         text-decoration: none !important;
     }
@@ -76,7 +115,7 @@
         /* padding-bottom: 50px; */
     }
     .store-home img{
-        max-height: 700px;
+        max-height: 800px;
     }
     .store-content{
         max-width: 80%;

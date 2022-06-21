@@ -75,6 +75,10 @@
       width: 95%;
     }
   }
+  .button-return-to-site{
+    color: #03AC0E;
+    font-size: 1rem;
+  }
 </style>
 
 <section id="shopping_cart" >
@@ -102,29 +106,64 @@
         </ul>
       </div> -->
       <div id="details">
-        <h1 class="cart-h1">Order di <span><a href="{{ route('store.show',$store->slug) }}" style="text-decoration: none; color:#EE6530;">{{ $store->name }}</a></span></h1>
+        <div style="display: flex;justify-content:space-between;align-items:center">
+
+          <h1 class="cart-h1">Order di 
+            <span><a href="{{ route('store.show',$store->slug) }}" style="text-decoration: none; color:#EE6530;">{{ $store->name }}</a></span>
+          </h1>
+          <a href="{{ route('store.show',$store->slug) }}" class="button-return-to-site"><i class="fa-solid fa-caret-left"></i> Kembali ke toko</a>
+        </div>
         <input type="hidden" name="cart_id" value="{{ $cart ? $cart->id : '' }}">
         <input type="hidden" name="address_id" value="{{ $address ? $address->id : '' }}">
         <input type="hidden" id="input_shipping_fee" name="shipping_fee" value="">
         @if($products)
         @foreach($products as $product)
+          @if(session('status'))
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <span>{{ session('status') }}</span>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          @endif
+          @if(session('error'))
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <span>{{ session('error') }}</span>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          @endif
+          @if($errors->has('product_count.*'))
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <span>Minimal pembelian adalah 1 produk</span>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          @endif
           <div class="basket-product d-flex">
             <div class="basket-item">
-              <div class="product-image">
-                <img src="{{ $product->images()->first() ? asset('images/stored/'. $product->images()->first()->filepath) :  asset('images/homepage/default-product-image.png') }}" alt="Placholder Image 2" class="product-frame">
-              </div>
+              <a href="{{ route('store.product.show',[$store->slug,$product->slug]) }}">
+                <div class="product-image">
+                  <img src="{{ $product->images()->first() ? asset('images/stored/'. $product->images()->first()->filepath) :  asset('images/homepage/default-product-image.png') }}" alt="Placholder Image 2" class="product-frame">
+                </div>
+              </a>
               <div class="product-details-cart">
                 <div class="container">
                   <div class="row">
-                    <div class="col-12 ">
-                      <h1>{{ $product->name }}</h1>
-                    </div>
+                      <div class="col-12 ">
+                        <a href="{{ route('store.product.show',[$store->slug,$product->slug]) }}" style="text-decoration: none;color:inherit;">
+                          <h1>{{ $product->name }}</h1>
+                        </a>
+                      </div>
                   </div>
                   <div class="row pt-2 pb-2">
                     <div class="col-12">
                       <div class="price"><span style="color:#FC764E">Rp {{number_format($product->price,0,',','.')}}</span>  / unit</div>
                     </div>
                   </div>
+                  Stok Produk : {{ $product->stock }}
                   <div class="row pt-2 pb-2">
                     <div class="col-6">
                       <div class="quantity">
@@ -134,7 +173,7 @@
                         <input type="hidden" name="" class="product_price" value="{{ $product->price }}">
                         <input type="hidden" name="" class="product_weight" value="{{ $product->weight }}">
                       </div>
-                    </div>  
+                    </div>
                   </div>
                  
                 </div>

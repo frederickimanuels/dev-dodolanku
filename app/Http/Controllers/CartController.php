@@ -68,18 +68,25 @@ class CartController extends Controller
             'product_id' => 'required|exists:products,id',
             'product_quantity' => 'required|integer|min:1',
         ]);
+        $product = Product::where('id',$request->product_id)->first();
+        if($product->is_active == 0){
+            return redirect()->back()->with('error','Gagal menambahkan produk ke keranjang, produk tidak tersedia');
+        }
         $store = Store::find($request->store_id);
+        if(Auth::user()->hasStore()->id = $store->id){
+            return redirect()->back()->with('error','Penjual tidak bisa membeli produk miliknya sendiri');
+        }
         $exist_cart = Auth::user()->hasCart($store->id);
         if($exist_cart){
             // dd("aa");
             $cart = $exist_cart;
-            $cart_product = $cart->hasProduct($request->product_id);
+            $cart_product = $cart->hasProduct($cart->id,$request->product_id);
             if($cart_product){
-                $success = $cart->changecountVariant($cart_product,(int)$request->product_quantity);
+                $success = $cart->changeProductCount($cart_product,(int)$request->product_quantity);
                 if($success){
                     return redirect()->route('cart.show',$store->slug);
                 }else{
-                    return redirect()->back();
+                    return redirect()->back()->with('checkout','Gagal menambahkan produk, stok produk tersisa '.$product->stock.' dan sudah ada di keranjang belanjamu');
                 }
             }else{
                 $cart->products()->attach($request->product_id, ['count'=> $request->product_quantity ]);
@@ -112,7 +119,7 @@ class CartController extends Controller
         foreach($request->product_id as $p){
             $product = $cart->products()->where('id',$p)->first();
             if($product->stock < $request->product_count[$i]){
-                return redirect()->back();
+                return redirect()->back()->with('error','Pembelian melebihi stok produk yang tersedia');
             }else{
                 $products[] = $product;
             }
@@ -147,14 +154,36 @@ class CartController extends Controller
         $order->stores()->attach($store->id);
         return redirect()->route('user.order');
     }
-    public function listOrder()
+    public function listOrder(Request $request)
     {
         $carts = Auth::user()->hasStore()->carts();
-        $carts = $carts->join('cart_status','cart_status.cart_id','=','carts.id')
-                    ->where('status_id','<>','1')
-                    ->whereNull('cart_status.deleted_at')
-                    ->orderBy('cart_status.created_at','DESC')
-                    ->paginate(10);
+        $carts = $carts->join('cart_status','cart_status.cart_id','=','carts.id');
+        //         ->where('status_id','<>','1')
+        //         ->whereNull('cart_status.deleted_at')
+        //         ->orderBy('cart_status.created_at','DESC')
+        //         ->paginate(10);
+        // $carts = $carts->where('status_id','<>','1');
+        if(request()->status){
+            if($request->status == 'ongoing'){
+                $carts = $carts->where('status_id','<>','1')->where('status_id','<>','3')->where('status_id','<>','5');
+            }
+            if($request->status == 'finish'){
+                $carts = $carts->where('status_id',5);
+            }
+        }else{
+            $carts = $carts->where('status_id','<>','1');
+        }
+        if(request()->search){
+            $carts = $carts->join('cart_orders','cart_orders.cart_id','=','carts.id')
+                            ->join('orders','cart_orders.order_id','=','orders.id')
+                            ->where('reference_no', 'LIKE', '%' . request()->search . '%')
+                            ->orWhere('couriertracking', 'LIKE', '%' . request()->search . '%');
+        }
+        $carts = $carts->whereNull('cart_status.deleted_at');
+        $carts = $carts->orderBy('cart_status.created_at','DESC');
+        $carts = $carts->paginate(10);
+        $carts->appends(request()->all());
+        // dd($carts);
         return view('store/order-list',compact('carts'));
     }
 

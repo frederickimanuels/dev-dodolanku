@@ -51,7 +51,14 @@ Route::group([ 'middleware' => '\App\Http\Middleware\AdminMiddleware'], function
     Route::get('/admin/order','admin\AdminOrderController@index')->name('admin.order');
     Route::get('/admin/order/cancel/{order_id}','admin\AdminOrderController@cancelOrder')->name('admin.order.cancel');
 
-    
+    // Tips
+    Route::get('/admin/tips', 'admin\AdminTipsController@index')->name('admin.tips');
+    Route::get('/admin/tips/create', 'admin\AdminTipsController@create')->name('admin.tips.create');
+    Route::post('/admin/tips/create', 'admin\AdminTipsController@store')->name('admin.tips.store');
+    Route::get('/admin/tips/edit/{tips_id}', 'admin\AdminTipsController@edit')->name('admin.tips.edit');
+    Route::post('/admin/tips/edit/{tips_id}', 'admin\AdminTipsController@update')->name('admin.tips.update');
+    Route::get('/admin/tips/toggle/{tips_id}', 'admin\AdminTipsController@toggle')->name('admin.tips.toggle');
+    Route::get('/admin/tips/delete/{tips_id}', 'admin\AdminTipsController@delete')->name('admin.tips.delete');
 });
 
 Route::group([ 'middleware' => '\App\Http\Middleware\LoginMiddleware'], function(){
@@ -108,6 +115,8 @@ Route::group([ 'middleware' => '\App\Http\Middleware\LoginMiddleware'], function
     Route::post('/store/template','TemplateController@store')->name('store.template');
     Route::get('/store/template/list','TemplateController@list')->name('store.template.list');
     Route::post('/store/template/update','TemplateController@update')->name('store.template.update');
+    Route::get('/store/template/reset-text','TemplateController@resetText')->name('store.template.reset-text');
+    Route::get('/store/template/reset-bg','TemplateController@resetBg')->name('store.template.reset-bg');
 });
 
 

@@ -37,9 +37,10 @@ class Cart extends Model
         return $this->belongsToMany(Order::class, 'cart_orders');
     }
 
-    public function hasProduct($product_id)
+    public function hasProduct($cart_id,$product_id)
     {
         $cart = $this->join('cart_products','cart_products.cart_id','=','carts.id')
+                    ->where('cart_id',$cart_id)
                     ->where('product_id',$product_id)
                     ->first();
         if($cart){
@@ -48,7 +49,7 @@ class Cart extends Model
             return false;
         }
     }
-    public function changecountVariant($cart_product,$add)
+    public function changeProductCount($cart_product,$add)
     {
         $product = Product::where('id',$cart_product->product_id)->first();
         if($product->stock < ($cart_product->count + $add)){

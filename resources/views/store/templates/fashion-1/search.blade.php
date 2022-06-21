@@ -10,27 +10,67 @@
 
 @include('store.layouts.navbar-home')
 
-<style>
-     :root{
-            /* Header Disini */
-            /* BG Color Dsini */
+<?php   
+    $text_color = $store->templateconfigs()->where('type','store_text')->get();
+    $bg_color = $store->templateconfigs()->where('type','store_bg')->get();
+?>
+@if(count($text_color)>0)
+    <style>
+        :root{
+            --textColor1:{{ $text_color[0]->extra }};
+            --textColor2:{{ $text_color[1]->extra }};
+            --textColor3:{{ $text_color[2]->extra }};
+            --textColor4:{{ $text_color[3]->extra }};
+            --textColor5:{{ $text_color[2]->extra }};
+        }
+    </style>
+@else
+    <style>
+        :root{
+            --textColor1:#FFFFFF;
+            --textColor2:#000000;
+            --textColor3:#FC764E;
+            --textColor4:#9A9A9A;
+            --textColor5:#FC764E;
+        }
+    </style>
+@endif
+@if(count($bg_color)>0)
+    <style>
+        :root{
+            --bgcolor:{{ $bg_color[0]->extra }};
+            --bgcolor1:{{ $bg_color[1]->extra }};
+            --bgcolor2:{{ $bg_color[2]->extra }};
+            --bgcolor3:{{ $bg_color[3]->extra }};
+            --bgcolorFooter:{{ $bg_color[0]->extra }};
+            --bgcolorHeader:{{ $bg_color[0]->extra }};
+        }
+    </style>
+@else
+    <style>
+        :root{
             --bgcolor:#AE8D84;
             --bgcolor1:#FFFFFF;
             --bgcolor2:#FFF8F6;
             --bgcolor3:#DFC3BB;
             --bgcolorFooter:#AE8D84;
             --bgcolorHeader:#AE8D84;
-
-
-            /* Text Gede Color Disini */
-            --textColor1:#FFFFFF;
-            --textColor2:#000000;
-            --textColor3:#FC764E;
-
-            /* Popular Product Color */
-
-            /* FooterColor */
         }
+    </style>
+@endif
+<style>
+    :root{
+        /* Popular Product Color */
+        --popularProductName:#000000;
+        --popularProductPrice:#FC764E;
+
+        /* Button Color */
+        --buttonbuynow:#FC764E;
+        --buttontext:#FFFFFF;
+        --buttontext2:#9A9A9A;
+    }
+</style>
+<style>
         #homepage-footer .footer-clean{
             background-color:var(--bgcolorFooter);
         }
@@ -277,11 +317,11 @@
             <div class="col-md-9">
                 <div class="row product-list">
                     @foreach($products as $product)
-                        <div class="col-md-3">
+                        <div class="col-md-3 mb-2">
                             <a href="{{ route('store.product.show',[$store->slug,$product->slug]) }}" class="card" style="text-decoration: none;color:inherit;">
                                 <img class="card-img-top" src="{{$product->images()->first() ? asset('images/stored/'. $product->images()->first()->filepath) : asset('images/homepage/default-product-image.png')}}" alt="Card image cap">
                                 <div class="card-body popular-card-text">
-                                    <h5 class="card-text">{{ $product->name }}</h5>
+                                    <h5 class="card-text"><strong>{{ $product->name }}</strong></h5>
                                     <h6>Rp {{number_format($product->price,0,',','.')}}</h6>
                                     {{-- <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star checked"></span>
