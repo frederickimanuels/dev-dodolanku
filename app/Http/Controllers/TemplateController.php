@@ -38,6 +38,29 @@ class TemplateController extends Controller
         // $template->stores()->attach($template->id);
     }
 
+    public function resetText(Request $request)
+    {
+        $store = Auth::user()->stores()->first();
+        $templateconfigs = $store->templateconfigs()->where('type','store_text')->get();
+        if(count($templateconfigs) > 0){
+            foreach($templateconfigs as $templateconfig){
+                $templateconfig->stores()->detach($store->id);
+            }
+        }
+        return redirect()->back()->with('status','Sukses menghapus warna text');
+    }
+    public function resetBg(Request $request)
+    {
+        $store = Auth::user()->stores()->first();
+        $templateconfigs = $store->templateconfigs()->where('type','store_bg')->get();
+        if(count($templateconfigs) > 0){
+            foreach($templateconfigs as $templateconfig){
+                $templateconfig->stores()->detach($store->id);
+            }
+        }
+        return redirect()->back()->with('status','Sukses menghapus warna background');
+    }
+
     public function update(Request $request)
     {
         $this->validate($request, [

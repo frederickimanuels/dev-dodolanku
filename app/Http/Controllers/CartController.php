@@ -68,18 +68,25 @@ class CartController extends Controller
             'product_id' => 'required|exists:products,id',
             'product_quantity' => 'required|integer|min:1',
         ]);
+        $product = Product::where('id',$request->product_id)->first();
+        if($product->is_active == 0){
+            return redirect()->back()->with('error','Gagal menambahkan produk ke keranjang, produk tidak tersedia');
+        }
         $store = Store::find($request->store_id);
+        if(Auth::user()->hasStore()->id = $store->id){
+            return redirect()->back()->with('error','Penjual tidak bisa membeli produk miliknya sendiri');
+        }
         $exist_cart = Auth::user()->hasCart($store->id);
         if($exist_cart){
             // dd("aa");
             $cart = $exist_cart;
-            $cart_product = $cart->hasProduct($request->product_id);
+            $cart_product = $cart->hasProduct($cart->id,$request->product_id);
             if($cart_product){
-                $success = $cart->changecountVariant($cart_product,(int)$request->product_quantity);
+                $success = $cart->changeProductCount($cart_product,(int)$request->product_quantity);
                 if($success){
                     return redirect()->route('cart.show',$store->slug);
                 }else{
-                    return redirect()->back();
+                    return redirect()->back()->with('checkout','Gagal menambahkan produk, stok produk tersisa '.$product->stock.' dan sudah ada di keranjang belanjamu');
                 }
             }else{
                 $cart->products()->attach($request->product_id, ['count'=> $request->product_quantity ]);
@@ -112,7 +119,7 @@ class CartController extends Controller
         foreach($request->product_id as $p){
             $product = $cart->products()->where('id',$p)->first();
             if($product->stock < $request->product_count[$i]){
-                return redirect()->back();
+                return redirect()->back()->with('error','Pembelian melebihi stok produk yang tersedia');
             }else{
                 $products[] = $product;
             }

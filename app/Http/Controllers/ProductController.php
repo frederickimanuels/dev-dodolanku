@@ -243,6 +243,11 @@ class ProductController extends Controller
     
     public function delete($product_slug){
         $product = Auth::user()->hasStore()->products()->where('slug',$product_slug)->first();
+        $carts = $product->carts()->join('cart_status','cart_status.cart_id','=','carts.id')->where('status_id',1)->whereNull('cart_status.deleted_at')->get();
+        foreach($carts as $cart){
+            $cart->products()->detach($product->id);
+        }
+        
         $product->stores()->updateExistingPivot(Auth::user()->hasStore()->id, ['deleted_at' => Carbon::now()]);
         return redirect()->back()->with('status','Sukses menghapus produk');
     }

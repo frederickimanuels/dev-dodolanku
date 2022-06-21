@@ -108,6 +108,8 @@ Route::group([ 'middleware' => '\App\Http\Middleware\LoginMiddleware'], function
     Route::post('/store/template','TemplateController@store')->name('store.template');
     Route::get('/store/template/list','TemplateController@list')->name('store.template.list');
     Route::post('/store/template/update','TemplateController@update')->name('store.template.update');
+    Route::get('/store/template/reset-text','TemplateController@resetText')->name('store.template.reset-text');
+    Route::get('/store/template/reset-bg','TemplateController@resetBg')->name('store.template.reset-bg');
 });
 
 
