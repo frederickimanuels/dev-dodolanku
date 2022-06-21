@@ -26,7 +26,7 @@
           <a class="nav-link" href="{{ route('feature') }}">Feature</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('about') }}">Faq</a>
+          <a class="nav-link" href="{{ route('about') }}">About</a>
         </li>
          {{-- <li>
         <input autocomplete="off" type="search" class="form-control rounded" placeholder="Search" style="min-width: 125px;"/>

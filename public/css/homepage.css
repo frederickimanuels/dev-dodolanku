@@ -347,18 +347,23 @@ h1{
   font-size:36px;
   color: black;
 }
+.aboutus-p{
+  text-align: center;
+  font-size:28px;
+  color: black;
+}
 .aboutus-text{
   margin-top: 40px;
   color: black;
   text-align: center;
 }
 #aboutus-search{
-  background-color: #C4C4C4;
+  background-color: #F8FAFC;
   padding: 50px 10px 50px 10px;
 }
 .aboutus-searchbar{
-  max-width: 600px;
-  margin: auto;
+  /* max-width: 600px; */
+  /* margin: auto; */
   background-color: #EDEDED ;
 }
 .search-inner{

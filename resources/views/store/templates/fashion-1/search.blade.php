@@ -237,8 +237,8 @@
                                 <li>
                                     @foreach($categories as $cat)
                                     <div class="category-filter">
-                                        <input type="checkbox" aria-label="Checkbox for following text input" name="cat[]" value="{{ $cat->id }}" @if(request()->cat) @foreach(request()->cat as $c) {{ $c == $cat->id ? 'checked' : ''}} @endforeach @endif>
-                                        <label for="checkbox">{{ $cat->name }}</label>
+                                        <input type="checkbox" aria-label="Checkbox for following text input" name="cat[]" value="{{ array_keys($categories, $cat)[0] }}" @if(request()->cat) @foreach(request()->cat as $c) {{ $c == array_keys($categories, $cat)[0] ? 'checked' : ''}} @endforeach @endif>
+                                        <label for="checkbox">{{ $cat  }}</label>
                                     </div>
                                     @endforeach
                                 </li>

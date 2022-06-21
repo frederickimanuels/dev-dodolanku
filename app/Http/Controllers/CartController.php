@@ -73,8 +73,10 @@ class CartController extends Controller
             return redirect()->back()->with('error','Gagal menambahkan produk ke keranjang, produk tidak tersedia');
         }
         $store = Store::find($request->store_id);
-        if(Auth::user()->hasStore()->id = $store->id){
-            return redirect()->back()->with('error','Penjual tidak bisa membeli produk miliknya sendiri');
+        if(Auth::user()->hasStore()){
+            if(Auth::user()->hasStore()->id == $store->id){
+                return redirect()->back()->with('error','Penjual tidak bisa membeli produk miliknya sendiri');
+            }
         }
         $exist_cart = Auth::user()->hasCart($store->id);
         if($exist_cart){

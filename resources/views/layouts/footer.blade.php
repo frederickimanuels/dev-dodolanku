@@ -18,17 +18,14 @@
                         <ul class="contact-wrapper">
                             <li><a href="{{route('base')}}">Home</a></li>
                             <li><a href="{{route('feature')}}">Feature</a></li>
-                            <li><a href="{{route('about')}}">FAQ</a></li>
-                            <li><a href="#">Help</a></li>
-                            <li><a href="{{route('about')}}">About Us</a></li>
+                            <li><a href="{{route('about')}}#FAQ">FAQ</a></li>
                         </ul>
                     </div> 
                     <div class="col-sm-4 col-md-2 col-6 item contact-left">
                         <h3>Company</h3>
                         <ul class="contact-wrapper">
+                            <li><a href="{{route('about')}}">About Us</a></li>
                             <li><a href="#">Syarat & Ketentuan</a></li>
-                            <li><a href="#">Kebijakan Privasi</a></li>
-                            <li><a href="#">Blog</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-3 item social">

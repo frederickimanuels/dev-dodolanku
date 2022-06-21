@@ -47,8 +47,8 @@ class ProductController extends Controller
         $products = $store->products();
         $categories = $store->products()->join('category_products','category_products.product_id','products.id')
                         ->join('categories','category_products.category_id','categories.id')
-                        ->get(['categories.id','categories.name']);
-
+                        ->pluck('categories.name','categories.id')->toArray();
+        
         if (request()->cat){
             $products = $products->join('category_products','category_products.product_id','products.id');
             if(count(request()->cat) == 1){

@@ -20,6 +20,7 @@ Route::get('/about', 'HomepageController@about')->name('about');
 Route::get('/feature','HomepageController@feature')->name('feature');
 Route::get('/not-found','HomepageController@null')->name('notfound');
 
+Route::post('/email-us','HomepageController@emailUs')->name('email-us');
 
 Route::get('/forgot-password','ForgotPasswordController@index')->name('forgot.password');
 Route::post('/forgot-password','ForgotPasswordController@requestEmail')->name('forgot.password');
