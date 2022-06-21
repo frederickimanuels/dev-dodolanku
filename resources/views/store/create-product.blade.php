@@ -85,7 +85,7 @@
                                 <select type="text" class="form-control" id="product-category" name="product_category">
                                     <option selected disabled>Pilih Kategori</option>
                                     @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        <option value="{{ $category->id }}" {{ $category->id == old('product_category') ? 'selected' : ''}}>{{ $category->name }}</option>
                                     @endforeach
                                 </select>
                                 @error('product_category')

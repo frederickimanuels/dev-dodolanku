@@ -151,7 +151,7 @@ class ProductController extends Controller
             'product_weight' => 'required|integer|min:10',
             'product_stock' => 'required|integer|min:1',
             'images' => 'required|min:3|max:5',
-            'images.*' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'images.*' => 'image|mimes:jpeg,png,jpg,JPEG,PNG,JPG|max:2048',
         ]);
 
         $product = new Product();
