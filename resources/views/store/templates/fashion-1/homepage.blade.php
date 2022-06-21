@@ -348,7 +348,7 @@
                                     <img class="card-img-top favorite-img" src="{{$popular_product->images()->first() ? asset('images/stored/'. $popular_product->images()->first()->filepath) : asset('images/homepage/default-product-image.png')}}" alt="Card image cap">
                                     <div class="card-body popular-card-text">
                                         <h5 class="card-text">{{ $popular_product->name }}</h5>
-                                        <h6>Rp {{number_format($popular_product->orderBy('price','ASC')->first()->price,0,',','.')}}</h6>
+                                        <h6>Rp {{number_format($popular_product->price,0,',','.')}}</h6>
                                         {{-- <span class="fa fa-star checked"></span>
                                         <span class="fa fa-star checked"></span>
                                         <span class="fa fa-star checked"></span>

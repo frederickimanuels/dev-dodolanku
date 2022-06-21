@@ -73,30 +73,50 @@
                             </div>
                         </div> --}}
                         <div class="form-group row" id="product-stock-container">
-                            <label class="col-sm-3 col-form-label form-upload-label">
+                            <label class="col-sm-2 col-form-label form-upload-label">
                                 Tanggal
                             </label>
-                            <div class="col-sm-3 col-form-label form-upload-label">
+                            <div class="col-sm-2 col-form-label form-upload-label">
                                 No Referensi
                             </div>
-                            <div class="col-sm-3 col-form-label form-upload-label">
+                            <div class="col-sm-2 col-form-label form-upload-label">
                                 Perubahan
                             </div>
-                            <div class="col-sm-3 col-form-label form-upload-label">
+                            <div class="col-sm-2 col-form-label form-upload-label">
                                 Saldo Akhir
                             </div>
+                            <div class="col-sm-4 col-form-label form-upload-label">
+                                Keterangan
+                            </div>
                         </div>
+                        @if(count($balances) == 0)
+
+                        @else
                         @foreach ($balances as $balance)
                         <div class="form-group row" id="product-stock-container">
-                            <label class="col-sm-3" style="padding-top: 5px">
+                            <label class="col-sm-2" style="padding-top: 5px">
                                 {{ $balance->created_at }}
                             </label>
-                            <div class="col-sm-3" style="padding-top: 5px">
+                            <div class="col-sm-2" style="padding-top: 5px">
                                 {{ $balance->pivot->reference_no }}
                             </div>
-                            <div class="col-sm-3" style="padding-top: 5px">
+                            <div class="col-sm-2" style="padding-top: 5px">
                                 {{ $balance->pivot->change > 0 ? '+' : '-'}}
                                     Rp {{ number_format( abs($balance->pivot->change),0,',','.') }}
+                                {{-- @if( $balance->withdrawals()->first() )
+                                    @if($balance->withdrawals()->first()->is_accept == 1)
+                                        (Diterima)
+                                    @elseif($balance->withdrawals()->first()->is_accept === 0)
+                                        (Ditolak)
+                                    @else
+                                        (Pending)
+                                    @endif
+                                @endif --}}
+                            </div>
+                            <div class="col-sm-2" style="padding-top: 5px">
+                               Rp {{ number_format( $balance->value,0,',','.') }}
+                            </div>
+                            <div class="col-sm-4" style="padding-top: 5px">
                                 @if( $balance->withdrawals()->first() )
                                     @if($balance->withdrawals()->first()->is_accept == 1)
                                         (Diterima)
@@ -105,13 +125,13 @@
                                     @else
                                         (Pending)
                                     @endif
+                                @else
+                                aa
                                 @endif
-                            </div>
-                            <div class="col-sm-3" style="padding-top: 5px">
-                               Rp {{ number_format( $balance->value,0,',','.') }}
-                            </div>
+                             </div>
                         </div>
                         @endforeach
+                        @endif
                         {!! $balances->links() !!}
                     </div>
                 </div>
