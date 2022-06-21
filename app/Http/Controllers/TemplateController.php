@@ -75,7 +75,7 @@ class TemplateController extends Controller
             $this->validate($request, [
                 'input_type' => 'required',
                 'images' => 'required|min:1|max:1',
-                'images.*' => 'image|mimes:jpeg,png,jpg,svg|max:2048',
+                'images.*' => 'image|mimes:jpeg,png,jpg,JPEG,PNG,JPG|max:2048',
             ]);
             $imageName = $this->generateRandomString() .time().'.'.$request->images[0]->getClientOriginalExtension();
             $request->images[0]->move(public_path('images/stored'), $imageName);
@@ -101,7 +101,7 @@ class TemplateController extends Controller
             $this->validate($request, [
                 'input_type' => 'required',
                 'images' => 'required|min:1|max:5',
-                'images.*' => 'image|mimes:jpeg,png,jpg,svg|max:10000',
+                'images.*' => 'image|mimes:jpeg,png,jpg,JPEG,PNG,JPG|max:10000',
             ]);
             $templateconfigs = $store->templateconfigs()->where('type','store_banner')->get();
             if(count($templateconfigs) > 0){
@@ -110,6 +110,7 @@ class TemplateController extends Controller
                 }
             }
             $i = 0;
+            // dd($request->images);
             foreach($request->images as $img){
                 $imageName = $this->generateRandomString() .time().'.'.$img->getClientOriginalExtension();
                 $img->move(public_path('images/stored'), $imageName);
@@ -131,7 +132,7 @@ class TemplateController extends Controller
             $this->validate($request, [
                 'input_type' => 'required',
                 'images' => 'required|min:1|max:1',
-                'images.*' => 'image|mimes:jpeg,png,jpg,svg|max:10000',
+                'images.*' => 'image|jpeg,png,jpg,JPEG,PNG,JPG|max:10000',
             ]);
             $templateconfigs = $store->templateconfigs()->where('type','store_search')->get();
             if(count($templateconfigs) > 0){

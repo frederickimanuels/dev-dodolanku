@@ -38,7 +38,7 @@ class UserController extends Controller
         ]);
         if($request->profile_photo){
             $this->validate($request, [
-                'profile_photo' => 'image|mimes:jpeg,png,jpg,svg|max:2048',
+                'profile_photo' => 'image|mimes:jpeg,png,jpg,JPEG,PNG,JPG|max:2048',
             ]);
         }
         $user = Auth::user();

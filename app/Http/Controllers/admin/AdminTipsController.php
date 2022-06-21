@@ -32,7 +32,7 @@ class AdminTipsController extends Controller
             'title' => 'required|string|min:1',
             'description' => 'required|string|min:1',
             'images' => 'required|min:1|max:1',
-            'images.*' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'images.*' => 'image|mimes:jpeg,png,jpg,JPEG,PNG,JPG|max:2048',
         ]);
         $tips = new Tips();
         $tips->title = $request->title;
@@ -79,7 +79,7 @@ class AdminTipsController extends Controller
         if($request->images){
             $this->validate($request, [
                 'images' => 'required|min:1|max:1',
-                'images.*' => 'image|mimes:jpeg,png,jpg|max:2048',
+                'images.*' => 'image|mimes:jpeg,png,jpg,JPEG,PNG,JPG|max:2048',
             ]);
             $old_image = $tips->images()->first();
             $tips->images()->detach($old_image->id);
