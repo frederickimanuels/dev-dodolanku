@@ -15,7 +15,7 @@
                 <img src="{{ asset('images/homepage/logo_dodolanku_favicon.png') }}" alt="IMG" style="width:auto;height:80%">
             </div>
 
-            <form method="POST" action="{{ route('login') }}" class="login100-form validate-form">
+            <form method="POST" action="{{ route('login') }}" class="login100-form validate-form mt-3">
                 @csrf
                 <a href="{{ route('base') }}" class="login100-logo-title">
                     <img src="{{ asset('images/homepage/logo_dodolanku_name.png') }}" alt="IMG" style="max-width:70%;max-height:100%;">
