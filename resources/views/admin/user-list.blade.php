@@ -157,7 +157,9 @@
                         </div>
                     </div>
                 </div>
+                @if(count($users) > 0)
                 {!! $users->links() !!}
+                @endif
 
             </div>
             <!-- <footer class="bg-white sticky-footer">
