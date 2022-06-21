@@ -16,6 +16,10 @@ class TemplateController extends Controller
         $this->middleware('store.manage');
     }
 
+    public function generateRandomString($length = 10) {
+        return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
+    }
+
     public function index()
     {
         $store = Auth::user()->hasStore();
@@ -73,7 +77,7 @@ class TemplateController extends Controller
                 'images' => 'required|min:1|max:1',
                 'images.*' => 'image|mimes:jpeg,png,jpg,svg|max:2048',
             ]);
-            $imageName = time().'.'.$request->images[0]->getClientOriginalExtension();
+            $imageName = $this->generateRandomString() .time().'.'.$request->images[0]->getClientOriginalExtension();
             $request->images[0]->move(public_path('images/stored'), $imageName);
             
             $image = new Image();
@@ -107,7 +111,7 @@ class TemplateController extends Controller
             }
             $i = 0;
             foreach($request->images as $img){
-                $imageName = time().'.'.$img->getClientOriginalExtension();
+                $imageName = $this->generateRandomString() .time().'.'.$img->getClientOriginalExtension();
                 $img->move(public_path('images/stored'), $imageName);
 
                 $image = new Image();
@@ -136,7 +140,7 @@ class TemplateController extends Controller
                 }
             }
             foreach($request->images as $img){
-                $imageName = time().'.'.$img->getClientOriginalExtension();
+                $imageName = $this->generateRandomString() .time().'.'.$img->getClientOriginalExtension();
                 $img->move(public_path('images/stored'), $imageName);
 
                 $image = new Image();

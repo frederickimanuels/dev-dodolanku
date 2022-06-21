@@ -19,6 +19,9 @@ class UserController extends Controller
     {
         $this->middleware('auth');
     }
+    public function generateRandomString($length = 10) {
+        return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
+    }
 
     public function profile(){
         return view('user/profile');
@@ -44,7 +47,7 @@ class UserController extends Controller
 
         
         if($request->profile_photo){
-            $imageName = time().'.'.$request->profile_photo->getClientOriginalExtension();
+            $imageName = $this->generateRandomString() .time().'.'.$request->profile_photo->getClientOriginalExtension();
             $request->profile_photo->move(public_path('images/stored'), $imageName);
 
             $old_image = $user->images()->first();
