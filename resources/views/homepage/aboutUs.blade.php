@@ -29,7 +29,7 @@
 </section>
 
 <section id="aboutus-search">
-<h1 class="aboutus-h1">Need Help?</h1>
+<h1 class="aboutus-h1" id="HELP">Need Help?</h1>
 <p class="aboutus-p">Email Us</p>
 <div class="container">
     <div class="search-inner">

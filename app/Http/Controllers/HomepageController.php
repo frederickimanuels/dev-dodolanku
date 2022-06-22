@@ -48,4 +48,8 @@ class HomepageController extends Controller
         
         return back()->with('status','Berhasil mengirimkan pesan');
     }
+
+    public function terms(){
+        return view ('homepage/terms');
+    }
 }

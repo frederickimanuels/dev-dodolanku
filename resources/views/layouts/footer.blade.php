@@ -18,6 +18,7 @@
                         <ul class="contact-wrapper">
                             <li><a href="{{route('base')}}">Home</a></li>
                             <li><a href="{{route('feature')}}">Feature</a></li>
+                            <li><a href="{{route('about')}}#HELP">Help</a></li>
                             <li><a href="{{route('about')}}#FAQ">FAQ</a></li>
                         </ul>
                     </div> 
@@ -25,7 +26,7 @@
                         <h3>Company</h3>
                         <ul class="contact-wrapper">
                             <li><a href="{{route('about')}}">About Us</a></li>
-                            <li><a href="#">Syarat & Ketentuan</a></li>
+                            <li><a href="{{ route('terms') }}">Syarat & Ketentuan</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-3 item social">

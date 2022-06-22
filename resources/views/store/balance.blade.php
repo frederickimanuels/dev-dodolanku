@@ -90,7 +90,11 @@
                             </div>
                         </div>
                         @if(count($balances) == 0)
-
+                            <div class="form-group row" id="product-stock-container">
+                                <div class="col-sm-12" style="padding-top: 5px">
+                                    Belum ada riwayat saldo
+                                </div>
+                            </div>
                         @else
                         @foreach ($balances as $balance)
                         <div class="form-group row" id="product-stock-container">

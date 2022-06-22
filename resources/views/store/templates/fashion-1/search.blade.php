@@ -319,6 +319,11 @@
             </div>
             <div class="col-md-9">
                 <div class="row product-list">
+                    @if(count($products) == 0)
+                        <div class="col-md-12 text-center">
+                            <strong>Produk tidak ditemukan</strong> 
+                        </div>
+                    @else
                     @foreach($products as $product)
                         <div class="col-md-3 mb-2">
                             <a href="{{ route('store.product.show',[$store->slug,$product->slug]) }}" class="card" style="text-decoration: none;color:inherit;">
@@ -336,6 +341,7 @@
                             </a>
                         </div>
                     @endforeach
+                    @endif
                 </div>
             </div>
             

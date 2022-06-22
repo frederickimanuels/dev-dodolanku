@@ -77,6 +77,15 @@
                                     </tr>
                                 </thead>
                                 <tbody class="table-body">
+                                    @if(count($withdrawals) == 0)
+                                    <tr style="position:relative">
+                                        <td colspan="4">
+                                            <div style="display: flex;justify-content:center;">
+                                                <span>Belum ada permintaan penarikan dana</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @else
                                     @foreach($withdrawals as $withdrawal)
                                         <?php $store = $withdrawal->stores()->first() ?>
                                         <tr style="position:relative" >
@@ -113,6 +122,7 @@
                                             </td>
                                         </tr>
                                     @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                         </div>

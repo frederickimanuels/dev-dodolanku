@@ -308,28 +308,38 @@
                 <div class="col-12 col-xl-3">
                     <div class="row">
                         <div class="col-xl-12 col-6 text-over-img img-side" style="margin-bottom:20px">
-                            <img src="{{ asset('images/template/'. $store->hasTemplate()->code.'/category_1.png') }}" alt="" class="homepage-slick">
-                            <h5>Sepatu</h5>
+                            <a href="{{ route('store.product.list',$store->slug) }}?cat[]=8">
+                                <img src="{{ asset('images/template/'. $store->hasTemplate()->code.'/category_1.png') }}" alt="" class="homepage-slick">
+                                <h5>Sepatu</h5>
+                            </a>
                         </div>
                         <div class="col-xl-12 col-6 text-over-img img-side">
-                            <img src="{{ asset('images/template/'. $store->hasTemplate()->code.'/category_2.png') }}" alt="" class="homepage-slick">
-                            <h5>Jaket</h5>
+                            <a href="{{ route('store.product.list',$store->slug) }}?cat[]=5">
+                                <img src="{{ asset('images/template/'. $store->hasTemplate()->code.'/category_2.png') }}" alt="" class="homepage-slick">
+                                <h5>Outerwear</h5>
+                            </a>
                         </div>
                     </div>
-                </div> 
+                </div>
                 <div class="col-12 col-xl-6 text-over-img img-center">
-                    <img src="{{ asset('images/template/'. $store->hasTemplate()->code.'/category_3.png') }}" alt="" class="homepage-slick">
-                    <h4>Dress Wanita</h4>
+                    <a href="{{ route('store.product.list',$store->slug) }}?cat[]=11">
+                        <img src="{{ asset('images/template/'. $store->hasTemplate()->code.'/category_3.png') }}" alt="" class="homepage-slick">
+                        <h4>Dress Wanita</h4>
+                    </a>
                 </div>
                 <div class="col-12 col-xl-3">
                     <div class="row">
                         <div class="col-xl-12 col-6 text-over-img img-side" style="margin-bottom:20px">
-                            <img src="{{ asset('images/template/'. $store->hasTemplate()->code.'/category_4.png') }}" alt="" class="homepage-slick">
-                            <h5>Celana</h5>
+                            <a href="{{ route('store.product.list',$store->slug) }}?cat[]=6">
+                                <img src="{{ asset('images/template/'. $store->hasTemplate()->code.'/category_4.png') }}" alt="" class="homepage-slick">
+                                <h5>Celana</h5>
+                            </a>
                         </div>
                         <div class="col-xl-12 col-6 text-over-img img-side">
-                            <img src="{{ asset('images/template/'. $store->hasTemplate()->code.'/category_5.png') }}" alt="" class="homepage-slick"> 
-                            <h5>Kemeja</h5>
+                            <a href="{{ route('store.product.list',$store->slug) }}?cat[]=4">
+                                <img src="{{ asset('images/template/'. $store->hasTemplate()->code.'/category_5.png') }}" alt="" class="homepage-slick"> 
+                                <h5>Kemeja</h5>
+                            </a>
                         </div>
                     </div>
                 </div>

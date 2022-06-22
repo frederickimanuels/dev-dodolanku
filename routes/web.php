@@ -18,6 +18,7 @@ Route::get('/', 'HomepageController@index')->name('base');
 Auth::routes();
 Route::get('/about', 'HomepageController@about')->name('about');
 Route::get('/feature','HomepageController@feature')->name('feature');
+Route::get('/terms','HomepageController@terms')->name('terms');
 Route::get('/not-found','HomepageController@null')->name('notfound');
 
 Route::post('/email-us','HomepageController@emailUs')->name('email-us');
@@ -113,7 +114,8 @@ Route::group([ 'middleware' => '\App\Http\Middleware\LoginMiddleware'], function
 
     // Template
     Route::get('/store/template','TemplateController@index')->name('store.template');
-    Route::post('/store/template','TemplateController@store')->name('store.template');
+    Route::get('/store/template/use/{template_id}','TemplateController@store')->name('store.template.use');
+
     Route::get('/store/template/list','TemplateController@list')->name('store.template.list');
     Route::post('/store/template/update','TemplateController@update')->name('store.template.update');
     Route::get('/store/template/reset-text','TemplateController@resetText')->name('store.template.reset-text');
