@@ -65,7 +65,7 @@
                                         </div>
                                         <div data-acc-content class="form-content">
                                             <label for="store_name">Nama toko</label>
-                                            <input type="text" class="form-control form-input" id="store_name" aria-describedby="store_name" placeholder="Masukkan nama toko" name="store_name">
+                                            <input type="text" class="form-control form-input" id="store_name" aria-describedby="store_name" placeholder="Masukkan nama toko" name="store_name" value="{{ old('store_name') }}">
                                             @error('store_name')
                                                 <p class="help-block text-danger">Nama toko harus diisi</p>
                                             @enderror
@@ -76,7 +76,7 @@
                                                 <span class="form-domain">dodolanku.id/</span>
                                                 </div>
                                                 <div class="col-9">
-                                                    <input type="text" class="form-control" id="store_slug" aria-describedby="store_slug" placeholder="Masukkan link toko" name="store_slug">
+                                                    <input type="text" class="form-control" id="store_slug" aria-describedby="store_slug" placeholder="Masukkan link toko" name="store_slug" value="{{ old('store_slug') }}">
                                                     @error('store_slug')
                                                         <p class="help-block text-danger">Link toko harus diisi</p>
                                                     @enderror
@@ -96,7 +96,7 @@
                                                 <select class="custom-select" name="province" id="province">
                                                     <option value="" disabled selected>Pilih Provinsi</option>
                                                     @foreach($provinces as $province)
-                                                        <option value="{{ $province->id }}">{{ $province->name }}</option>
+                                                        <option value="{{ $province->id }}" {{ $province->id == old('province') ? 'selected' : ''}}>{{ $province->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('province')
@@ -113,7 +113,7 @@
                                                 </div>
                                             </div>
                                             <label for="store_address" style="margin-top:10px">Alamat toko</label>
-                                            <textarea class="form-control form-input" id="store_address" aria-describedby="store_address" placeholder="Masukkan alamat toko" name="store_address"></textarea>
+                                            <textarea class="form-control form-input" id="store_address" aria-describedby="store_address" placeholder="Masukkan alamat toko" name="store_address">{{ old('store_address') }}</textarea>
                                             @error('store_address')
                                                 <p class="help-block text-danger">Alamat harus diisi</p>
                                             @enderror
