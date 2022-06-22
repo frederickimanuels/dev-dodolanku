@@ -33,7 +33,7 @@
                         <h3>Contact Us</h3>
                         <ul class="contact-wrapper" >
                             <li><a href="mailto:customerservice@dodolanku.id"><img src="{{asset('images/homepage/telephone.png')}}" alt="" class="contact-icon">customerservice@dodolanku.id</a></li>
-                            <li><a href="#"><img src="{{asset('images/homepage/house.png')}}" alt="" class="contact-icon">(021) 210-135-45</a></li>
+                            <li><a href="#"><img src="{{asset('images/homepage/house.png')}}" alt="" class="contact-icon">+62 XXX-XXX-XX</a></li>
                         </ul>
                     </div>
                     <!-- <div class="col-lg-3 item social">
