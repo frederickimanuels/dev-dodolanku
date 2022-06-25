@@ -157,7 +157,7 @@
                         </div>
                     </div>
                 </div>
-                @if(count($users) > 0)
+                @if(count($users) > 1)
                 {!! $users->links() !!}
                 @endif
 

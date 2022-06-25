@@ -196,7 +196,7 @@
                         </div>
                     </div>
                 </div>
-                @if(count($orders)>0)
+                @if(count($orders)>1)
                 {!! $orders->links() !!}
                 @endif
 
