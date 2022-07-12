@@ -69,7 +69,7 @@ class ProductController extends Controller
                 $products = $products->where('category_products.category_id',request()->cat[0]);
             }else{
                 $i = 0;
-                $products = $products->orWhere('category_products.category_id',request()->cat[0]);
+                $products = $products->where('category_products.category_id',request()->cat[0]);
                 foreach(request()->cat as $req_cat){
                     if($i > 0){
                         $products = $products->orWhere('category_products.category_id',$req_cat);
@@ -140,7 +140,6 @@ class ProductController extends Controller
         $popular_products = $store->products()->take(8)->get();
         
         return view('store/templates/'.$template->code.'/product-detail',compact('store','popular_products','product'));
-        // return view('store/product-detail',compact('store','popular_products','product'));
     }
 
     public function store(Request $request)

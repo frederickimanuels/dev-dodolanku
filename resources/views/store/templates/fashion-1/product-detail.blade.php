@@ -256,14 +256,12 @@
     .quantity.buttons_added .plus:focus {
         outline: none; 
     }
-    .btn-buy-now{
-        background-color:var(--buttonbuynow) ;
-    }
     .detail-product-navigation{
         margin-top: 80px;
     }
     .btn-buy-now{
         /* width: 100%; */
+        background-color:var(--buttonbuynow) ;
         padding: 18px 170px;
         font-family: PlusJakarta-Bold;
         font-size: 16px;
@@ -271,6 +269,7 @@
         color:var(--buttontext);
         border-radius: 15px;
         margin-bottom: 15px;
+        width: 80%;
     }
     .btn-add-cart{
         padding: 18px 10px;
@@ -285,6 +284,17 @@
         margin-right: 10px;
     }
     .btn-share{
+        padding: 18px 170px;
+        font-family: PlusJakarta-Bold;
+        font-size: 16px;
+        line-height: 20px;
+        color:var(--buttontext2);
+        border-radius: 15px;
+        margin-bottom: 15px;
+        width: 80%;
+        border: 1px solid #9A9A9A;
+    }
+    /* .btn-share{
         padding: 18px 10px;
         font-family: PlusJakarta-Bold;
         font-size: 16px;
@@ -292,9 +302,8 @@
         color:var(--buttontext2);
         border-radius: 15px;
         border: 1px solid #9A9A9A;
-        /* width: 30%; */
         width: 210px;
-    }
+    } */
     .product-desc{
         margin-top: 60px;
     }
@@ -426,7 +435,6 @@
         text-decoration: none;
     }
 </style>
-
 <section id="detail-product">
     <div class="detail-product-wrapper">
         <div class="container">
@@ -539,7 +547,6 @@
                             </div>
                             <div class="detail-product-navigation">
                                 <button type="submit" class="btn btn-buy-now" {{ $product->stock == 0 ? 'disabled="disabled"' : '' }}>Beli Sekarang</button>
-                                <button type="button" class="btn btn-add-cart">Hubungi Penjual</button>
                                 <button type="button" class="btn btn-share">Bagikan Produk</button>
                             </div>
                            
@@ -623,9 +630,50 @@
     </div>
   </div>
 </div>
+<div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Bagikan Produk</h5>
+                <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <style>
+                .btn-sm{
+                    width: 110px;
+                }
+                .shareon{
+                    display: flex;
+                    justify-content: space-around;
+                }
+            </style>
+            <div class="modal-body">
+                <div class="shareon">
+                    <a class="facebook btn-sm">Facebook</a>
+                    <a class="twitter btn-sm">Twitter</a>
+                    <a class="whatsapp btn-sm">Whatsapp</a>
+                    
+                </div>
+                <div class="shareon">
+                    <a class="telegram btn-sm">Telegram</a>
+                    <a class="pinterest btn-sm">Pinterest</a>
+                    <a class="reddit btn-sm">Reddit</a>
+                </div>
+            </div>
+            {{-- <div class="modal-footer">
+                <button type="button" class="btn btn-secondary close-modal" data-dismiss="modal">Close</button>
+                <a id="hyperlink_delete" href="#">
+                    <button type="button" class="btn btn-danger">Hapus Produk</button>
+                </a>
+            </div> --}}
+        </div>
+    </div>
+</div>
 
 @include('store.layouts.js')
 <!-- Add Js Here -->
+<script src="https://cdn.jsdelivr.net/npm/shareon@2/dist/shareon.iife.js" defer init></script>
 <script> 
 
     function openModal(){
@@ -636,6 +684,19 @@
     }
         
     $(document).ready(function(){
+        $('.btn-share').on('click',function(){
+            openShareModal();
+        });
+        $('.close-modal').on('click',function(){
+            closeShareModal();
+        });
+        function openShareModal(){
+            $('#shareModal').modal('toggle');
+        }
+        function closeShareModal(){
+            $('#shareModal').modal('hide');
+        }
+
         $('#finish-order').on('click',function(){
             openModal();
         });

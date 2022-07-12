@@ -34,5 +34,8 @@
     <title>{{ $data['title'] }}</title>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    {{-- Shareon --}}
+    <link href="https://cdn.jsdelivr.net/npm/shareon@2/dist/shareon.min.css" rel="stylesheet"/>
   </head>
   <body>
