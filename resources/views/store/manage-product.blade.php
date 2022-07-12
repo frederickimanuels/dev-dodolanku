@@ -145,7 +145,7 @@
                                                         <a href="{{ route('store.product.edit',$product->slug) }}"><i class="fa-solid fa-pen-to-square"></i></a>
                                                     </div>
                                                     <div class="product-action-icon">
-                                                        <a href="#" data-slug="{{ $product->slug }}" id="delete-product-btn"><i class="fa-solid fa-trash-can"></i></a>
+                                                        <a href="#" data-slug="{{ $product->slug }}" class="delete-product-btn"><i class="fa-solid fa-trash-can"></i></a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -223,7 +223,7 @@
 <!-- JS Here -->
 <script>
     $(document).ready(function(){
-        $('#delete-product-btn').on('click',function(){
+        $('.delete-product-btn').on('click',function(){
             let slug = $(this).attr('data-slug');
             $('#hyperlink_delete').attr('href','/store/delete-product/'+ slug);
             openDeleteModal();
