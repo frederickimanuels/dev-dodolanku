@@ -76,6 +76,7 @@ class ProductController extends Controller
                     }
                     $i+=1;
                 }
+                $products = $products->whereNull('products.deleted_at');
             }
         }
         if(request()->price_range){
@@ -137,7 +138,9 @@ class ProductController extends Controller
         }
         $template = $store->template()->first();
         $popular_products = $store->products()->take(8)->get();
+        
         return view('store/templates/'.$template->code.'/product-detail',compact('store','popular_products','product'));
+        // return view('store/product-detail',compact('store','popular_products','product'));
     }
 
     public function store(Request $request)
