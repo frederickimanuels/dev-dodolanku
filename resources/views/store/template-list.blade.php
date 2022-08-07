@@ -35,20 +35,20 @@
                 @foreach($templates as $template)
                     <div class="col-6">
                         <div class="card" style="width: 100%">
-                            <img class="card-img-top" src="{{asset('images/homepage/hyundai.jpg')}}" alt="Card image cap">
+                            <img class="card-img-top" src="{{ asset('images/template/'. $template->code.'/preview.jpg') }}" alt="Card image cap">
                             <div class="card-body">
                             <span>{{ $template->name }}</span>
-                            <button type="button" class="btn btn-primary">Pakai Desain</button>
+                            <button type="button" class="btn btn-success" disabled="disabled">Terpakai</button>
                             </div>
                         </div>
                     </div>
                 @endforeach
-                @for ($i = 0; $i < 3; $i++)
+                @for ($i = 0; $i < 1; $i++)
                     <div class="col-6">
                         <div class="card" style="width: 100%">
-                            <img class="card-img-top" src="{{asset('images/homepage/hyundai.jpg')}}" alt="Card image cap">
+                            <img class="card-img-top" src="{{asset('images/homepage/template-coming-soon.jpg')}}" alt="Card image cap">
                             <div class="card-body">
-                            <span>Ini Desain 1</span>
+                            <span>Template Coming Soon</span>
                             <button type="button" class="btn btn-primary" disabled="disabled">Coming soon</button>
                             </div>
                         </div>

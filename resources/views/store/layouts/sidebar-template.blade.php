@@ -24,13 +24,13 @@
             <h3 class="mt-3">Pengaturan Template</h3>
             <!-- <button class="accordion">Logo <i class="fa-solid fa-angle-down"></i></button> -->
             <ul class="btn-non-accordeon">
-                <li id="btn-logo">Logo Home</li>
+                <li id="btn-logo">Logo Toko</li>
             </ul>
             <button class="accordion">Banner <i class="fa-solid fa-angle-down"></i></button>
             <div class="panel">
                 <ul>
                     <li id="btn-banner-home">Banner Homepage</li>
-                    <li id="btn-banner-search">Banner Kategori</li>
+                    {{-- <li id="btn-banner-search">Banner Kategori</li> --}}
                     <li id="btn-banner-category">Banner Produk</li>
                 </ul>
             </div>
@@ -43,6 +43,9 @@
                 </ul>
             </div>
             
+        <a class="nav-link" href="{{ route('store.dashboard') }}">
+            <button class="btn btn-secondary">Ganti Template</button>
+        </a>
         </ul>
     </div>
 </nav>

@@ -202,7 +202,7 @@
                   <div class="delivery-checkbox">
                       <div class="card" style="width: 100%">
                         <div class="card-body">
-                          <h5 class="card-title">Sicepat</h5>
+                          <h5 class="card-title">JNE</h5>
                           <h6 class="card-subtitle mb-2">1-3 Hari</h6>
                           <p class="card-text">Rp <span id="shipping_fee_1"></span></p>
                         </div>
