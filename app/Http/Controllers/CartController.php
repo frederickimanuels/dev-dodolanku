@@ -68,6 +68,9 @@ class CartController extends Controller
             'product_id' => 'required|exists:products,id',
             'product_quantity' => 'required|integer|min:1',
         ]);
+        if (Auth::user()->hasRole('admin')) {
+            return back()->with('error','Admin tidak bisa melakukan pembelian');
+        }
         $product = Product::where('id',$request->product_id)->first();
         if($product->is_active == 0){
             return back()->with('error','Gagal menambahkan produk ke keranjang, produk tidak tersedia');
